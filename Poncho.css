@@ -1,0 +1,374 @@
+body {
+	background: #fafafa;
+	font-family: Helvetica;
+	font-weight: 300;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+fieldset {
+	border: 1px solid #ddd;
+	margin: 1em 0;
+}
+
+#mw-js-message {
+	display: none;
+}
+
+/* Main */
+
+#main {
+	margin-left: 10em;
+}
+
+/* Sidebar */
+
+#header-wrapper {
+	background: black;	
+}
+
+#header {
+	margin: auto;
+	max-width: 1000px;
+	padding: 0 2%;
+}
+
+#logo {
+	padding: 15px 15px 15px 0;
+}
+
+#logo img {
+	display: inline;
+	vertical-align: middle;
+}
+
+#menu {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menu li {
+	display: inline;
+	position: relative;
+}
+
+#menu span {
+	color: white;
+	display: inline-block;
+	padding: 15px;
+	text-decoration: none;
+}
+
+#menu span:focus,
+#menu span:hover {
+	cursor: default;
+	background: #555;
+}
+
+#menu .submenu {
+	background: black;
+	display: none;
+	list-style: none;
+	margin: 0;
+	min-width: 120px;
+	padding: 0;
+	position: absolute;
+	left: 0;
+	z-index: 1;
+}
+
+#menu .submenu li {
+	display: block;
+}
+
+#menu .submenu a {
+	color: white;
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 15px;
+	text-decoration: none;
+	white-space: nowrap;
+	width: 100%;
+}
+
+#menu .submenu a:hover {
+	cursor: normal;
+	background: #555;
+}
+
+/* Namespaces / Tabs */
+
+#namespaces {
+	border: none;
+	margin: 10px 0 10px 0;
+	padding: 0;
+}
+
+#namespaces span {
+	background: white;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: none;
+	border-radius: 10px 10px 0 0;
+	display: inline;
+	margin: 0;
+	padding: 10px 20px 10px 20px;
+}
+
+#namespaces span.selected {
+	border-bottom: 1px solid white;
+}
+
+#namespaces span a {
+	color: #0645ad;
+}
+
+#namespaces span.selected a,
+#namespaces span.selected a:visited {
+	color: #333;
+	text-decoration: none;
+}
+
+#namespaces span.new a,
+#namespaces span.new a:visited {
+	color: #a55858;
+}
+
+/* Title */
+
+#title {
+
+}
+
+/* Actions */
+
+#actions {
+	font-size: small;
+	font-weight: 300;
+	position: relative;
+}
+
+#actions span {
+	display: inline;
+	margin-left: 1em;
+	padding: 0;
+}
+
+#actions span.selected a {
+	color: #333;
+}
+
+#actions a {
+	color: blue;
+	text-decoration: none;
+}
+
+#actions a:hover {
+	text-decoration: underline;
+}
+
+/* Search form */
+
+#search-form {
+	float: right;
+	padding: 10px 0;
+	position: relative;
+}
+
+#search-form input {
+	background: white;
+	border: none;
+	font: inherit;
+	padding: 5px;
+}
+
+/* Content */
+
+#content {
+	line-height: 1.5;
+	margin: 50px auto;
+	max-width: 1000px;
+	padding: 0 2%;
+}
+
+#content ol {
+	margin: 0 0 0 25px;
+	padding: 0;
+}
+
+#content ul {
+	margin: 0 0 0 25px;
+	padding: 0;
+}
+
+#content pre {
+	background: white;
+	border: 1px solid #ddd;
+	padding: 20px;
+}
+
+/* Table of contents */
+#toc {
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	display: inline-block;
+	padding: 1em;
+}
+#toc ul {
+	margin: 0;
+}
+#toc li {
+	list-style: none;
+}
+#toc h2 {
+	display: inline;
+}
+#toc .toctoggle {
+	display: none; /* Hide it because it cannot be styled like the Edit section button */
+}
+
+/* Thumbs */
+.thumb {
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+}
+.thumb .thumbinner {
+	padding: 10px;
+}
+.thumb .tright {
+	margin: 0 0 10px 10px;
+}
+.thumb .tleft {
+	margin: 0 10px 10px 0;
+}
+.thumb .thumbcaption {
+	font-size: small;
+}
+
+/**
+ * Galleries
+ * 
+ * Galleries come with their own styling, these are overrides to make the galleries fit with the overall style of the skin
+ */
+#content .gallerytext {
+	font-size: small;
+	margin: 5px;
+	padding: 0;
+}
+#content .gallerytext p {
+	margin: 0;
+}
+
+/* Edit section button */
+.mw-editsection {
+	font-size: small;
+	font-weight: 300;
+	text-transform: capitalize;
+}
+.mw-editsection-bracket {
+	display: none;
+}
+
+/* Edit page */
+
+#wpTextbox1 {
+	box-sizing: border-box;
+	width: 100%;
+	height: 500px;
+}
+#wpSummary {
+	box-sizing: border-box;
+	width: 100% !important;
+}
+
+/**
+ * Collapse button
+ *
+ * This button is found on Special:RecentChanges and Special:Watchlist
+ */
+.mw-collapsible-toggle {
+	margin-left: 1em;
+}
+.mw-collapsible-bracket {
+	display: none;
+}
+
+/* Portals */
+
+h5 {
+	font: inherit;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.portal {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 1em 0;
+}
+
+.portal li {
+	margin: 0;
+}
+
+#catlinks {
+	margin: 50px 0;
+}
+
+#catlinks ul {
+	margin: 0;
+}
+
+/* Footer */
+
+#footer-wrapper {
+	background: black;
+}
+
+#footer {
+	color: white;
+	margin: auto;
+	padding: 20px;
+	max-width: 1000px;
+}
+
+#footer ul {
+	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
+	margin: 10px 0;
+	padding: 0;
+}
+
+#footer li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#footer a {
+	color: white;
+	margin: 0 20px 0 0;
+}

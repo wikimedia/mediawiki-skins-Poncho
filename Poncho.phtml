@@ -1,0 +1,99 @@
+<?php $this->html( 'headelement' ); ?>
+
+<div id="mw-js-message"></div>
+<?php if ( $this->data['newtalk'] ): ?><div class="usermessage"><?php $this->html( 'newtalk' ); ?></div><?php endif; ?>
+<?php if ( $this->data['sitenotice'] ): ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php endif; ?>
+
+<div id="header-wrapper">
+	<div id="header">
+
+		<a id="logo" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>>
+			<img src="<?php $this->text( 'logopath' ); ?>" alt="<?php $this->text( 'sitename' ) ?>">
+		</a>
+<!--
+		<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
+			<?php echo $this->makeSearchInput( array( 'type' => 'text', 'id' => 'search-field', 'placeholder' => 'Search...' ) ); ?>
+			<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
+		</form>
+-->
+		<ul id="menu">
+			<li><span>Browse</span>
+				<ul class="submenu">
+				<?php foreach ( $this->data['sidebar']['navigation'] as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+
+			<?php if ( ! $Title->isSpecialPage() ): // Special pages don't have actions ?>
+			<li><span>Actions</span>
+				<ul class="submenu">
+				<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+			<?php endif; ?>
+
+			<li><span>Tools</span>
+				<ul class="submenu">
+				<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+
+			<li><span>You</span>
+				<ul class="submenu">
+				<?php foreach ( $this->getPersonalTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+</div>
+
+<div id="content-wrapper">
+
+	<div id="content">
+
+		<h1 id="title"><?php $this->html( 'title' ); ?></h1>
+
+		<?php if ( $this->data['subtitle'] ): ?>
+		<div id="subtitle"><?php $this->html( 'subtitle' ) ?></div>
+		<?php endif; ?>
+
+		<?php if ( $this->data['undelete'] ): ?>
+		<div id="undelete"><?php $this->html( 'undelete' ) ?></div>
+		<?php endif; ?>
+
+		<?php if ( $this->data['newtalk'] ): ?>
+		<div class="newtalk"><?php $this->html( 'newtalk' )  ?></div>
+		<?php endif; ?>
+
+		<?php $this->html( 'bodytext' ) ?>
+
+		<div class="printfooter"><?php $this->html( 'printfooter' ); ?></div>
+
+		<?php $this->html( 'catlinks' ); ?>
+
+		<?php $this->html( 'dataAfterContent' ); ?>
+
+		<?php $this->html( 'debughtml' ); ?>
+
+	</div>
+
+</div>
+
+<?php $this->printTrail(); ?>
+
+<!--
+<div id="footer-wrapper">
+	<div id="footer">
+	<?php foreach ( $this->getFooterLinks() as $category => $links ): ?>
+		<ul id="footer-<?php echo $category ?>">
+			<?php foreach ( $links as $link ): ?>
+			<li id="footer-<?php echo $category ?>-<?php echo $link; ?>"><?php $this->html( $link ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endforeach; ?>
+	</div>
+</div>
+-->
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+	"manifest_version": 1,
+	"name": "Poncho",
+	"version": "1.0",
+	"author": "[http://mediawiki.org/wiki/User:Felipe_Schenone Felipe Schenone]",
+	"description": "Responsive skin",
+	"descriptionmsg": "poncho-desc",
+	"type": "skin",
+	"MessagesDirs": {
+		"Poncho": [
+			"i18n"
+		]
+	},
+	"ValidSkinNames": {
+		"poncho": "Poncho"
+	},
+	"AutoloadClasses": {
+		"SkinPoncho": "Poncho.php"
+	},
+	"ResourceModules": {
+		"skins.poncho": {
+			"scripts": "Poncho.js",
+			"styles": "Poncho.css",
+			"position": "top"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "Poncho"
+	},
+	"Hooks": {
+		"OutputPageBeforeHTML": "SkinPoncho::onOutputPageBeforeHTML"
+	}
+}
