@@ -17,7 +17,6 @@ a:hover {
 img {
 	max-width: 100%;
 	height: auto;
-	vertical-align: bottom;
 }
 
 pre {
@@ -57,7 +56,7 @@ fieldset {
 
 #logo img {
 	display: inline;
-	vertical-align: middle;
+	vertical-align: bottom;
 }
 
 #menu {
