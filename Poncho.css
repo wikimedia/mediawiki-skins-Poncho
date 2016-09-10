@@ -111,6 +111,7 @@ fieldset {
 
 #menu .submenu a {
 	color: inherit;
+	cursor: pointer;
 	box-sizing: border-box;
 	display: inline-block;
 	padding: 15px 10px;
