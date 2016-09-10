@@ -20,7 +20,7 @@ class SkinPoncho extends SkinTemplate {
 	    $out->addModules( 'skins.poncho' );
 	}
 
-	static function onOutputPageBeforeHTML( &$out, &$text ) {
+	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		$out->addMeta( 'viewport', 'width=device-width' );
 	}
 }
@@ -32,7 +32,7 @@ class PonchoTemplate extends BaseTemplate {
 	 * because distinguishing them is not relevant
 	 * Also remove the current action, per useless and confusing
 	 */
-	public function getActions() {
+	function getActions() {
 		global $mediaWiki;
 		$actions = array_merge(
 			$this->data['content_navigation']['views'],
@@ -44,10 +44,14 @@ class PonchoTemplate extends BaseTemplate {
 		return $actions;
 	}
 
+	function getFooter() {
+		return $this->getFooterLinks()['places'];
+	}
+
 	/**
 	 * Outputs the entire contents of the page
 	 */
-	public function execute() {
+	function execute() {
 		$Title = $this->getSkin()->getTitle();
 		$Request = $this->getSkin()->getRequest();
 		include 'Poncho.phtml';

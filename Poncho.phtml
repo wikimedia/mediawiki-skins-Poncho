@@ -7,29 +7,20 @@
 <div id="header-wrapper">
 	<div id="header">
 
-		<a id="logo" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>>
-			<img src="<?php $this->text( 'logopath' ); ?>" alt="<?php $this->text( 'sitename' ) ?>">
-		</a>
-<!--
+		<a id="logo" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
+
 		<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
+			<button type="submit"></button>
 			<?php echo $this->makeSearchInput( array( 'type' => 'text', 'id' => 'search-field', 'placeholder' => 'Search...' ) ); ?>
-			<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
+			<input type="hidden" name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
 		</form>
--->
+
 		<ul id="menu">
-			<li><span>Browse</span>
+			<li><span><?php $this->text( 'sitename' ) ?></span>
 				<ul class="submenu">
 				<?php foreach ( $this->data['sidebar']['navigation'] as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</li>
-
-			<?php if ( ! $Title->isSpecialPage() ): // Special pages don't have actions ?>
-			<li><span>Actions</span>
-				<ul class="submenu">
-				<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
-			<?php endif; ?>
 
 			<li><span>Tools</span>
 				<ul class="submenu">
@@ -51,7 +42,9 @@
 
 	<div id="content">
 
-		<h1 id="title"><?php $this->html( 'title' ); ?></h1>
+		<?php echo $this->getIndicators(); ?>
+
+		<h1 id="title"><?php $this->html( 'title' ) ?></h1>
 
 		<?php if ( $this->data['subtitle'] ): ?>
 		<div id="subtitle"><?php $this->html( 'subtitle' ) ?></div>
@@ -75,25 +68,15 @@
 
 		<?php $this->html( 'debughtml' ); ?>
 
+		<ul id="actions">
+		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+		</ul>
+
 	</div>
 
 </div>
 
 <?php $this->printTrail(); ?>
-
-<!--
-<div id="footer-wrapper">
-	<div id="footer">
-	<?php foreach ( $this->getFooterLinks() as $category => $links ): ?>
-		<ul id="footer-<?php echo $category ?>">
-			<?php foreach ( $links as $link ): ?>
-			<li id="footer-<?php echo $category ?>-<?php echo $link; ?>"><?php $this->html( $link ); ?></li>
-			<?php endforeach; ?>
-		</ul>
-	<?php endforeach; ?>
-	</div>
-</div>
--->
 
 </body>
 </html>

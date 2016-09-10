@@ -19,9 +19,9 @@
 	},
 	"ResourceModules": {
 		"skins.poncho": {
+			"position": "top",
 			"scripts": "Poncho.js",
-			"styles": "Poncho.css",
-			"position": "top"
+			"styles": "Poncho.css"
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -29,6 +29,6 @@
 		"remoteSkinPath": "Poncho"
 	},
 	"Hooks": {
-		"OutputPageBeforeHTML": "SkinPoncho::onOutputPageBeforeHTML"
+		"BeforePageDisplay": "SkinPoncho::onBeforePageDisplay"
 	}
 }
