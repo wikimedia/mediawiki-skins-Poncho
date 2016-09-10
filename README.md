@@ -1,2 +1,3 @@
 # Poncho
-Responsive skin for MediaWiki
+
+Responsive skin for MediaWiki.
