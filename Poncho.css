@@ -87,8 +87,7 @@ fieldset {
 	text-decoration: none;
 }
 
-#menu span:focus,
-#menu span:hover {
+#menu li:hover span {
 	background: #aaa;
 	cursor: default;
 }
@@ -115,14 +114,8 @@ fieldset {
 	box-sizing: border-box;
 	display: inline-block;
 	padding: 15px 10px;
-	text-decoration: none;
 	white-space: nowrap;
 	width: 100%;
-}
-
-#menu .submenu a:hover {
-	cursor: normal;
-	background: #aaa;
 }
 
 /* Search form */
@@ -202,10 +195,10 @@ fieldset {
 
 #content {
 	line-height: 1.5;
-	margin: 50px auto;
+	margin: 0 auto;
 	max-width: 1000px;
 	overflow: hidden;
-	padding: 0 1em;
+	padding: 1em;
 }
 
 #mw-content-text ol {
@@ -253,14 +246,14 @@ fieldset {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
 }
-.thumb .thumbinner {
-	padding: 10px;
-}
-.thumb .tright {
+.thumb.tright {
 	margin: 0 0 10px 10px;
 }
-.thumb .tleft {
+.thumb.tleft {
 	margin: 0 10px 10px 0;
+}
+.thumb .thumbinner {
+	padding: 10px;
 }
 .thumb .thumbcaption {
 	font-size: small;
