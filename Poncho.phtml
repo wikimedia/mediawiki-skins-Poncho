@@ -7,11 +7,11 @@
 <div id="header-wrapper">
 	<div id="header">
 
-		<a id="logo" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
+		<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
 
 		<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
 			<button type="submit"></button>
-			<?php echo $this->makeSearchInput( array( 'type' => 'text', 'id' => 'search-field', 'placeholder' => 'Search...' ) ); ?>
+			<?php echo $this->makeSearchInput([ 'type' => 'text', 'id' => 'search-field', 'placeholder' => wfMessage( 'poncho-search' ) ]); ?>
 			<input type="hidden" name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
 		</form>
 
@@ -22,13 +22,19 @@
 				</ul>
 			</li>
 
-			<li><span>Tools</span>
+			<li><span><?= wfMessage( 'poncho-tools' ); ?></span>
 				<ul class="submenu">
 				<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</li>
 
-			<li><span>You</span>
+			<li><span><?= wfMessage( 'poncho-actions' ); ?></span>
+				<ul class="submenu">
+				<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+
+			<li><span><?= wfMessage( 'poncho-you' ); ?></span>
 				<ul class="submenu">
 				<?php foreach ( $this->getPersonalTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
@@ -42,7 +48,7 @@
 
 	<div id="content">
 
-		<?php echo $this->getIndicators(); ?>
+		<?= $this->getIndicators(); ?>
 
 		<h1 id="title"><?php $this->html( 'title' ) ?></h1>
 
@@ -68,12 +74,12 @@
 
 		<?php $this->html( 'debughtml' ); ?>
 
-		<ul id="actions">
-		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-		</ul>
-
 	</div>
 
+</div>
+
+<div id="footer">
+	<?= $this->getFooter(); ?>
 </div>
 
 <?php $this->printTrail(); ?>

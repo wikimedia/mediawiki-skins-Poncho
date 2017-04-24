@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Felipe Schenone"
+			"Sophivorus"
 		]
 	},
-	"poncho-desc": "Skin adaptable."
+	"poncho-desc": "Skin adaptable, compatible con dispositivos móbiles.",
+	"poncho-wiki": "Wiki",
+	"poncho-tools": "Herramientas",
+	"poncho-actions": "Acciones",
+	"poncho-you": "Tu",
+	"poncho-search": "Buscar..."
 }

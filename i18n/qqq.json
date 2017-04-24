@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sophivorus"
+		]
+	},
+	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho}}",
+	"poncho-wiki": "Label for the navigation menu",
+	"poncho-tools": "Label for the tools menu",
+	"poncho-actions": "Label for the actions menu",
+	"poncho-you": "Label for the personal menu",
+	"poncho-search": "Placeholder for the search form"
+}

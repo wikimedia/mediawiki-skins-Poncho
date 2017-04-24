@@ -3,11 +3,13 @@ var poncho = {
 	init: function () {
 		poncho.bind();
 
+/*
 		// Push the footer to the bottom
 	    var heightDiff = $( window ).height() - $( 'body' ).height();
 	    if ( heightDiff > 0 ) {
-	        $( '#footer' ).css( 'margin-top', heightDiff + 50 );
+	        $( '#footer' ).css( 'margin-top', heightDiff );
 	    }
+*/
 	},
 
 	bind: function () {

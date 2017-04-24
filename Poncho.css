@@ -1,3 +1,6 @@
+/**
+ * Site-wide elements
+ */
 body {
 	font-family: Arial;
 	font-size: 14px;
@@ -5,61 +8,50 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
 a {
 	color: blue;
 	text-decoration: none;
 }
-
 a:hover {
 	text-decoration: underline;
 }
-
 h2 {
 	margin: 1em 0 0.5em 0;
 }
-
 img {
 	max-width: 100%;
 	height: auto;
 }
-
 pre {
 	white-space: pre-wrap;
 }
-
 fieldset {
 	border: 1px solid #aaa;
 	margin: 1em 0;
 }
 
+/**
+ * Specific elements
+ */
 #mw-js-message {
 	display: none;
 }
-
 .mw-indicator {
 	float: right;
 }
 
-/* Main */
-
-#main {
-	margin-left: 10em;
-}
-
-/* Sidebar */
-
+/**
+ * Header and main menu
+ */
 #header-wrapper {
 	background: #f9f9f9;
 	border-bottom: 1px solid #aaa;
 }
-
 #header {
 	margin: auto;
 	max-width: 1000px;
 	padding: 0 1em;
 }
-
 #logo {
 	background-size: contain;
 	display: inline-block;
@@ -68,30 +60,25 @@ fieldset {
 	width: 32px;
 	height: 32px;
 }
-
 #menu {
 	display: inline;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
-
 #menu li {
 	display: inline;
 	position: relative;
 }
-
 #menu span {
 	display: inline-block;
 	padding: 15px 10px;
 	text-decoration: none;
 }
-
 #menu li:hover span {
 	background: #aaa;
 	cursor: default;
 }
-
 #menu .submenu {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
@@ -104,11 +91,9 @@ fieldset {
 	word-spacing: nowrap;
 	z-index: 1;
 }
-
 #menu .submenu li {
 	display: block;
 }
-
 #menu .submenu a {
 	color: inherit;
 	cursor: pointer;
@@ -119,14 +104,14 @@ fieldset {
 	width: 100%;
 }
 
-/* Search form */
-
+/**
+ * Search form
+ */
 #search-form {
 	float: right;
 	padding: 7px 0;
 	position: relative;
 }
-
 #search-form button {
 	background: url( 'images/lens.png' );
 	background-size: contain;
@@ -138,12 +123,10 @@ fieldset {
 	width: 32px;
 	height: 32px;
 }
-
 #search-form button.active {
 	background-color: white;
 	border-color: #aaa;
 }
-
 #search-form input {
 	border: 1px solid #aaa;
 	border-right: none;
@@ -157,43 +140,19 @@ fieldset {
 	z-index: 1;
 }
 
-/* Actions */
-
-#actions {
-	display: block;
-	font-size: small;
-	font-weight: normal;
-	list-style: none;
-	margin: 50px 0;
-	padding: 0;
-}
-
-#actions li {
-	display: inline;
-	margin: 0 5px;
-	padding: 0;
-}
-
-#actions a {
-	text-decoration: none;
-}
-
-#actions a:hover {
-	text-decoration: underline;
-}
-
-/* Title */
-
+/**
+ * Title
+ */
 #title {
 
 }
-
 #subtitle {
 	margin: 1em 0;
 }
 
-/* Content */
-
+/**
+ * Content
+ */
 #content {
 	line-height: 1.5;
 	margin: 0 auto;
@@ -201,24 +160,23 @@ fieldset {
 	overflow: hidden;
 	padding: 1em;
 }
-
 #mw-content-text ol {
 	margin: 0 0 0 20px;
 	padding: 0;
 }
-
 #mw-content-text ul {
 	margin: 0 0 0 20px;
 	padding: 0;
 }
-
 #mw-content-text pre {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
 	padding: 20px;
 }
 
-/* Table of contents */
+/**
+ * Table of contents
+ */
 #mw-content-text #toc {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
@@ -242,7 +200,9 @@ fieldset {
 	padding: 1em;
 }
 
-/* Thumbs */
+/**
+ * Thumbnails
+ */
 .thumb {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
@@ -274,7 +234,9 @@ fieldset {
 	margin: 0;
 }
 
-/* Edit section button */
+/**
+ * Edit section button
+ */
 .mw-editsection {
 	font-size: small;
 	font-weight: normal;
@@ -284,8 +246,9 @@ fieldset {
 	display: none;
 }
 
-/* Edit page */
-
+/**
+ * Edit page
+ */
 #wpTextbox1 {
 	box-sizing: border-box;
 	width: 100%;
@@ -308,8 +271,9 @@ fieldset {
 	display: none;
 }
 
-/* Categories */
-
+/**
+ * Categories
+ */
 #catlinks {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
@@ -317,38 +281,29 @@ fieldset {
 	margin: 50px 0;
 	padding: 1em;
 }
-
 #catlinks ul {
 	margin: 0;
 }
 
-/* Footer */
-
-#facebook-image {
-	display: none;
-}
-
-#footer-wrapper {
-	background: black;	
-}
-
+/**
+ * Footer
+ */
 #footer {
+	border-top: 1px solid #aaa;
+	margin-top: 5em;
+	padding: 1em;
+}
+#footer-bottom {
 	margin: auto;
 	max-width: 1000px;
 }
-
-#footer ul {
-	margin: 0;
+.footer-icons {
+	float: right;
+}
+.footer-places {
 	padding: 0;
 }
-
-#footer li {
-	color: white;
+.footer-places li {
 	display: inline;
-}
-
-#footer a {
-	color: white;
-	display: inline-block;
-	padding: 1em;
+	margin-right: 1em;
 }

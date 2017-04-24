@@ -1,11 +1,11 @@
 {
 	"manifest_version": 1,
 	"name": "Poncho",
-	"version": "1.0",
-	"author": "[http://mediawiki.org/wiki/User:Felipe_Schenone Felipe Schenone]",
-	"description": "Responsive skin",
+	"version": "1.1",
+	"author": "[http://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"descriptionmsg": "poncho-desc",
 	"type": "skin",
+	"license-name": "GPL-3.0",
 	"MessagesDirs": {
 		"Poncho": [
 			"i18n"
@@ -19,7 +19,6 @@
 	},
 	"ResourceModules": {
 		"skins.poncho": {
-			"position": "top",
 			"scripts": "Poncho.js",
 			"styles": "Poncho.css"
 		}

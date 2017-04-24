@@ -3,24 +3,11 @@
 class SkinPoncho extends SkinTemplate {
 
 	var $skinname = 'poncho',
-		$stylename = 'Poncho',
-		$template = 'PonchoTemplate',
-		$useHeadElement = true;
-
-	/**
-	 * @param $out OutputPage object
-	 */
-	function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'skins.poncho' );
-	}
-
-	function initPage( OutputPage $out ) {
-	    parent::initPage( $out );
-	    $out->addModules( 'skins.poncho' );
-	}
+		$template = 'PonchoTemplate';
 
 	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
+		$out->addModuleStyles( 'skins.poncho' );
+		$out->addModuleScripts( 'skins.poncho' );
 		$out->addMeta( 'viewport', 'width=device-width' );
 	}
 }
@@ -29,8 +16,7 @@ class PonchoTemplate extends BaseTemplate {
 
 	/**
 	 * Merge together the views, actions and variants
-	 * because distinguishing them is not relevant
-	 * Also remove the current action, per useless and confusing
+	 * and remove the current action, per useless and confusing
 	 */
 	function getActions() {
 		global $mediaWiki;
@@ -44,12 +30,8 @@ class PonchoTemplate extends BaseTemplate {
 		return $actions;
 	}
 
-	function getFooter() {
-		return $this->getFooterLinks()['places'];
-	}
-
 	/**
-	 * Outputs the entire contents of the page
+	 * Output the page
 	 */
 	function execute() {
 		$Title = $this->getSkin()->getTitle();
