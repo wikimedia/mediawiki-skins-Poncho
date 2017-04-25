@@ -2,13 +2,17 @@
 
 class SkinPoncho extends SkinTemplate {
 
-	var $skinname = 'poncho',
-		$template = 'PonchoTemplate';
+	public $skinname = 'poncho';
+
+	public $template = 'PonchoTemplate';
 
 	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		$out->addModuleStyles( 'skins.poncho' );
-		$out->addModuleScripts( 'skins.poncho' );
-		$out->addMeta( 'viewport', 'width=device-width' );
+		global $wgDefaultSkin;
+		if ( $wgDefaultSkin === 'poncho' ) {
+			$out->addModuleStyles( 'skins.poncho' );
+			$out->addModuleScripts( 'skins.poncho' );
+			$out->addMeta( 'viewport', 'width=device-width' );
+		}
 	}
 }
 
@@ -34,8 +38,6 @@ class PonchoTemplate extends BaseTemplate {
 	 * Output the page
 	 */
 	function execute() {
-		$Title = $this->getSkin()->getTitle();
-		$Request = $this->getSkin()->getRequest();
 		include 'Poncho.phtml';
 	}
 }
