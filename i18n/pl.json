@@ -1,10 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chrumps"
+			"Chrumps",
+			"Woytecr"
 		]
 	},
+	"poncho-desc": "Prosta, responsywna i przyjazna dla urządzeń mobilnych skórka",
 	"poncho-wiki": "Wiki",
 	"poncho-tools": "Narzędzia",
-	"poncho-you": "Ty"
+	"poncho-actions": "Działania",
+	"poncho-you": "Ty",
+	"poncho-search": "Wyszukiwanie..."
 }

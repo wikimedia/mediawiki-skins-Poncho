@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Sophivorus",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"poncho-desc": "Apariencia simple, adaptable y amigable con dispositivos móbiles.",
 	"poncho-wiki": "Wiki",
 	"poncho-tools": "Herramientas",
 	"poncho-actions": "Acciones",
-	"poncho-you": "Tu",
+	"poncho-you": "Tú",
 	"poncho-search": "Buscar..."
 }
