@@ -3,10 +3,11 @@
 		"authors": [
 			"Sophivorus",
 			"Liuxinyu970226",
-			"Robby"
+			"Robby",
+			"Umherirrender"
 		]
 	},
-	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho}}",
+	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}",
 	"poncho-wiki": "Label for the navigation menu\n{{Identical|Wiki}}",
 	"poncho-tools": "Label for the tools menu\n{{Identical|Tool}}",
 	"poncho-actions": "Label for the actions menu\n{{Identical|Action}}",
