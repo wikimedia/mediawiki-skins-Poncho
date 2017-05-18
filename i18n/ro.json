@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Matrafox"
+			"Matrafox",
+			"XXN"
 		]
 	},
 	"poncho-wiki": "Wiki",
 	"poncho-tools": "Unelte",
 	"poncho-actions": "Acțiuni",
-	"poncho-you": "Tu",
-	"poncho-search": "Cauta..."
+	"poncho-you": "Dumneavoastră",
+	"poncho-search": "Caută..."
 }
