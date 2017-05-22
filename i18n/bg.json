@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vodnokon4e"
+			"Vodnokon4e",
+			"StanProg"
 		]
 	},
+	"poncho-desc": "Опростен, с отзивчив дизайн и подходящ за мобилни устройства облик.",
+	"poncho-wiki": "Уики",
 	"poncho-tools": "Инструменти",
-	"poncho-actions": "Действия"
+	"poncho-actions": "Действия",
+	"poncho-you": "Вие",
+	"poncho-search": "Търсене..."
 }
