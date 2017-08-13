@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Metalhead64"
+			"Metalhead64",
+			"Kghbln"
 		]
 	},
-	"poncho-desc": "Einfache, ansprechende und mobilfreundliche Benutzeroberfläche.",
+	"poncho-desc": "Stellt eine einfache, responsive und für mobile Endgeräte geeignete Benutzeroberfläche bereit",
 	"poncho-wiki": "Wiki",
 	"poncho-tools": "Werkzeuge",
 	"poncho-actions": "Aktionen",
