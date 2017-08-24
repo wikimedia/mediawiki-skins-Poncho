@@ -113,7 +113,7 @@ fieldset {
 	position: relative;
 }
 #search-form button {
-	background: url( 'images/lens.png' );
+	background: url( images/lens.png );
 	background-size: contain;
 	border: 1px solid transparent;
 	border-left: none;
