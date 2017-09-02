@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bunukwiki"
+			"Bunukwiki",
+			"Benel"
 		]
 	},
+	"poncho-tools": "sakaluk",
 	"poncho-search": "kilim..."
 }
