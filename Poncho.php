@@ -9,8 +9,8 @@ class SkinPoncho extends SkinTemplate {
 	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		global $wgDefaultSkin;
 		if ( $wgDefaultSkin === 'poncho' ) {
-			$out->addModuleStyles( 'skins.poncho' );
-			$out->addModuleScripts( 'skins.poncho' );
+			$out->addModuleStyles( 'skins.poncho.styles' );
+			$out->addModuleScripts( 'skins.poncho.scripts' );
 			$out->addMeta( 'viewport', 'width=device-width' );
 		}
 	}

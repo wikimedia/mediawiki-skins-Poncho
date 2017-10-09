@@ -19,9 +19,11 @@
 		"PonchoTemplate": "Poncho.php"
 	},
 	"ResourceModules": {
-		"skins.poncho": {
-			"scripts": "Poncho.js",
+		"skins.poncho.styles": {
 			"styles": "Poncho.css"
+		},
+		"skins.poncho.scripts": {
+			"scripts": "Poncho.js"
 		}
 	},
 	"ResourceFileModulePaths": {
