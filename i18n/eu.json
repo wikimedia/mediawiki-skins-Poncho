@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Mikel Ibaiba"
 		]
 	},
+	"poncho-wiki": "Wiki",
 	"poncho-tools": "Tresnak",
 	"poncho-actions": "Ekintzak",
+	"poncho-you": "Zu",
 	"poncho-search": "Bilatu..."
 }
