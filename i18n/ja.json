@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hinaloe"
+			"Hinaloe",
+			"Otokoume"
 		]
 	},
-	"poncho-tools": "ツール"
+	"poncho-wiki": "ウィキ",
+	"poncho-tools": "ツール",
+	"poncho-actions": "操作",
+	"poncho-you": "あなた",
+	"poncho-search": "検索..."
 }
