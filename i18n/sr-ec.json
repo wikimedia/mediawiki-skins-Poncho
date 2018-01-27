@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Obsuser"
+			"Obsuser",
+			"Acamicamacaraca"
 		]
 	},
 	"poncho-desc": "Једноставан, респонсиван и за мобилне прилагођен скин.",
 	"poncho-wiki": "Вики",
 	"poncho-tools": "Алатке",
-	"poncho-actions": "Акције",
+	"poncho-actions": "Радње",
 	"poncho-you": "Ви",
 	"poncho-search": "Претрага..."
 }
