@@ -5,7 +5,7 @@
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"descriptionmsg": "poncho-desc",
 	"type": "skin",
-	"license-name": "GPL-3.0",
+	"license-name": "GPL-3.0-only",
 	"MessagesDirs": {
 		"Poncho": [
 			"i18n"
