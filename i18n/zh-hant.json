@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wehwei"
+			"Wehwei",
+			"Kly"
 		]
 	},
-	"poncho-desc": "簡易、響應式、利於行動裝置的屏膚。",
+	"poncho-desc": "簡易、響應式、利於行動裝置的外觀。",
 	"poncho-wiki": "Wiki",
 	"poncho-tools": "工具",
 	"poncho-actions": "動作",
