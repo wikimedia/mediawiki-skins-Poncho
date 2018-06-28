@@ -2,17 +2,27 @@
 
 class SkinPoncho extends SkinTemplate {
 
-	public $skinname = 'poncho';
+	public $skinname = 'poncho',
+		$template = 'PonchoTemplate';
 
-	public $template = 'PonchoTemplate';
+	/**
+	 * Initializes OutputPage and sets up skin-specific parameters
+	 *
+	 * @param OutputPage $out
+	 */
+	public function initPage( OutputPage $out ) {
+		$out->addMeta( 'viewport', 'width=device-width' );
 
-	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		global $wgDefaultSkin;
-		if ( $wgDefaultSkin === 'poncho' ) {
-			$out->addModuleStyles( 'skins.poncho.styles' );
-			$out->addModuleScripts( 'skins.poncho.scripts' );
-			$out->addMeta( 'viewport', 'width=device-width' );
-		}
+		$out->addModuleScripts( 'skins.poncho.scripts' );
+	}
+
+	/**
+	 * @param OutputPage $out
+	 */
+	function setupSkinUserCss( OutputPage $out ) {
+		parent::setupSkinUserCss( $out );
+
+		$out->addModuleStyles( 'skins.poncho.styles' );
 	}
 }
 
@@ -30,7 +40,7 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['content_navigation']['variants']
 		);
 		$action = $mediaWiki->getAction();
-		unset( $actions[ $action ] ); // Remove the current action (doesn't work with Move)
+		unset( $actions[$action] ); // Remove the current action (doesn't work with Move)
 		return $actions;
 	}
 

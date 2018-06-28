@@ -29,8 +29,5 @@
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "Poncho"
-	},
-	"Hooks": {
-		"BeforePageDisplay": "SkinPoncho::onBeforePageDisplay"
 	}
 }
