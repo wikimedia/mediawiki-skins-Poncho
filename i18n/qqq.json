@@ -1,16 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sophivorus",
-			"Liuxinyu970226",
-			"Robby",
-			"Umherirrender"
+			"Sophivorus"
 		]
 	},
-	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}",
-	"poncho-wiki": "Label for the navigation menu\n{{Identical|Wiki}}",
-	"poncho-tools": "Label for the tools menu\n{{Identical|Tool}}",
-	"poncho-actions": "Label for the actions menu\n{{Identical|Action}}",
-	"poncho-you": "Label for the personal menu\n{{Identical|You}}",
-	"poncho-search": "Placeholder for the search form\n{{Identical|Search}}"
+	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho}}"
 }

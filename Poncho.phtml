@@ -1,46 +1,23 @@
 <?php $this->html( 'headelement' ); ?>
 
-<div id="mw-js-message"></div>
-<?php if ( $this->data['newtalk'] ): ?><div class="usermessage"><?php $this->html( 'newtalk' ); ?></div><?php endif; ?>
-<?php if ( $this->data['sitenotice'] ): ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php endif; ?>
-
 <div id="header-wrapper">
 	<div id="header">
+		<div id="logo-wrapper">
 
-		<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
+			<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"><?php global $wgSitename; echo $wgSitename; ?></a>
 
-		<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
-			<button type="submit"></button>
-			<?php echo $this->makeSearchInput([ 'type' => 'text', 'id' => 'search-field', 'placeholder' => wfMessage( 'poncho-search' ) ]); ?>
-			<input type="hidden" name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
-		</form>
+		</div><div id="search-form-wrapper">
 
-		<ul id="menu">
-			<li><span><?php $this->text( 'sitename' ) ?></span>
-				<ul class="submenu">
-				<?php foreach ( $this->data['sidebar']['navigation'] as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
+			<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
+				<?php $this->searchInput(); ?>
+			</form>
 
-			<li><span><?= wfMessage( 'poncho-tools' ); ?></span>
-				<ul class="submenu">
-				<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
-
-			<li><span><?= wfMessage( 'poncho-actions' ); ?></span>
-				<ul class="submenu">
-				<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
-
-			<li><span><?= wfMessage( 'poncho-you' ); ?></span>
-				<ul class="submenu">
-				<?php foreach ( $this->getPersonalTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
-		</ul>
-
+		</div><div id="user-menu-wrapper">
+			<ul id="user-menu">
+				<li id="user-icon-wrapper"><div id="user-icon"></div></li>
+				<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -48,12 +25,17 @@
 
 	<div id="content">
 
+		<?php $this->html( 'sitenotice' ); ?>
+
 		<?= $this->getIndicators(); ?>
 
-		<h1 id="title"><?php $this->html( 'title' ) ?></h1>
+		<h1 id="firstHeading"><?php $this->html( 'title' ) ?></h1>
+		<ul id="actions">
+			<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+		</ul>
 
 		<?php if ( $this->data['subtitle'] ): ?>
-		<div id="subtitle"><?php $this->html( 'subtitle' ) ?></div>
+		<div id="contentSub"><?php $this->html( 'subtitle' ) ?></div>
 		<?php endif; ?>
 
 		<?php if ( $this->data['undelete'] ): ?>
@@ -78,8 +60,13 @@
 
 </div>
 
-<div id="footer">
-	<?= $this->getFooter(); ?>
+<div id="footer-wrapper">
+	<div id="footer">
+		<ul class="footer-tools">
+			<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+		</ul>
+		<?= $this->getFooter(); ?>
+	</div>
 </div>
 
 <?php $this->printTrail(); ?>

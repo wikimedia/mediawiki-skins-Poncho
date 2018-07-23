@@ -1,15 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sophivorus",
-			"Macofe",
-			"Fitoschido"
+			"Sophivorus"
 		]
 	},
-	"poncho-desc": "Apariencia simple, adaptable y amigable con dispositivos móviles.",
-	"poncho-wiki": "Wiki",
-	"poncho-tools": "Herramientas",
-	"poncho-actions": "Acciones",
-	"poncho-you": "Tú",
-	"poncho-search": "Buscar..."
+	"poncho-desc": "Skin simple, limpia, flexible y para móviles.",
 }

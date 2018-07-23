@@ -2,6 +2,7 @@
  * Site-wide elements
  */
 body {
+	background: #f9f9f9;
 	font-family: Arial;
 	font-size: 14px;
 	height: 100%;
@@ -15,8 +16,23 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0 .5em 0;
+}
+h1 {
+	font-size: 2em;
+}
 h2 {
-	margin: 1em 0 0.5em 0;
+	font-size: 1.6em;
+}
+h3 {
+	font-size: 1.4em;
+}
+h4 {
+	font-size: 1.2em;
+}
+h5, h6 {
+	font-size: 1em;
 }
 img {
 	max-width: 100%;
@@ -31,144 +47,180 @@ fieldset {
 }
 
 /**
- * Specific elements
- */
-#mw-js-message {
-	display: none;
-}
-.mw-indicator {
-	float: right;
-}
-
-/**
- * Header and main menu
+ * Header
  */
 #header-wrapper {
-	background: #f9f9f9;
 	border-bottom: 1px solid #aaa;
 }
 #header {
 	margin: auto;
 	max-width: 1000px;
-	padding: 0 1em;
+	padding: .5em;
+}
+#logo-wrapper {
+	display: inline-block;
+	width: 25%;
 }
 #logo {
 	background-size: contain;
+	background-repeat: no-repeat;
+	color: inherit;
 	display: inline-block;
-	margin-right: 5px;
-	vertical-align: middle;
-	width: 32px;
-	height: 32px;
-}
-#menu {
-	display: inline;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-#menu li {
-	display: inline;
-	position: relative;
-}
-#menu span {
-	display: inline-block;
-	padding: 15px 10px;
+	font-size: 2em;
+	padding-left: 1.5em;
 	text-decoration: none;
+	vertical-align: middle;
+	width: 160px;
+	height: 30px;
 }
-#menu li:hover span {
-	background: #aaa;
-	cursor: default;
+#search-form-wrapper {
+	display: inline-block;
+	width: 50%;
 }
-#menu .submenu {
-	background: #f9f9f9;
-	border: 1px solid #aaa;
-	display: none;
+#user-menu-wrapper {
+	display: inline-block;
+	position: relative;
+	text-align: right;
+	width: 25%;
+}
+#user-icon-wrapper {
+	position: relative;
+	height: 39px;
+}
+#user-icon {
+	background: url('images/user.png') no-repeat;
+	margin: 5px 10px 10px 0;
+	opacity: .4;
+	position: absolute;
+	right: 0;
+	width: 20px;
+	height: 20px;
+}
+#user-menu {
+	border-bottom: 1px solid #aaa;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	left: 0;
-	word-spacing: nowrap;
-	z-index: 1;
+	right: 0;
+	top: -20px;
 }
-#menu .submenu li {
+#user-menu li {
+	text-align: right;
+}
+#user-menu a {
+	background: #f9f9f9;
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	display: none;
+	margin: 0;
+	padding: 1em;
+	vertical-align: top;
+}
+#user-menu:hover a {
 	display: block;
 }
-#menu .submenu a {
-	color: inherit;
-	cursor: pointer;
-	box-sizing: border-box;
-	display: inline-block;
-	padding: 15px 10px;
-	white-space: nowrap;
-	width: 100%;
+#user-menu li a:hover {
+	background: #eee;
 }
-
-/**
- * Search form
- */
-#search-form {
-	float: right;
-	padding: 7px 0;
-	position: relative;
-}
-#search-form button {
-	background: url( images/lens.png );
-	background-size: contain;
-	border: 1px solid transparent;
-	border-left: none;
-	cursor: pointer;
-	float: right;
-	outline: none;
-	width: 32px;
-	height: 32px;
-}
-#search-form button.active {
-	background-color: white;
-	border-color: #aaa;
-}
-#search-form input {
-	border: 1px solid #aaa;
-	border-right: none;
+/*
+#user-menu {
 	display: none;
-	font: inherit;
-	outline: none;
-	padding: 7px;
-	position: absolute;
-	right: 32px;
-	width: 200px;
-	z-index: 1;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
-
+#user-menu li {
+	line-height: 2em;
+	margin: 0;
+	padding: 0;
+}
+#user-menu a {
+	display: inline !important;
+	opacity: 1 !important;
+	top: 0 !important;
+	white-space: nowrap;
+	width: auto !important;
+}
+#user-menu a:before {
+	background-image: none !important;
+}
+#user-menu a:after {
+	background-image: none !important;
+}
+*/
 /**
  * Title
  */
-#title {
-
+.mw-indicator {
+	float: right;
 }
-#subtitle {
+#firstHeading {
+	display: inline-block;
+}
+#contentSub {
+	font-size: small;
 	margin: 1em 0;
+}
+
+/**
+ * Actions
+ */
+#actions {
+	display: inline;
+	font-size: small;
+	font-weight: normal;
+	padding: 0;
+	text-transform: lowercase;
+	white-space: nowrap;	
+}
+#actions li {
+	display: inline;
+	margin-left: 1em;
+}
+#ca-edit a {
+	font-weight: bold;
+}
+.mw-editsection {
+	font-size: small;
+	font-weight: normal;
+}
+.mw-editsection a {
+	margin-left: 1em;
+}
+.mw-editsection-divider,
+.mw-editsection-bracket {
+	display: none;
 }
 
 /**
  * Content
  */
+#content-wrapper {
+	background: white;
+}
 #content {
 	line-height: 1.5;
 	margin: 0 auto;
 	max-width: 1000px;
-	overflow: hidden;
 	padding: 1em;
+	padding-bottom: 5em;
 }
-#mw-content-text ol {
-	margin: 0 0 0 20px;
+.ve-ce-documentNode {
+	padding: 0 !important;
+}
+#mw-content-text ol,
+.ve-ui-surface ol {
+	margin: 0 0 0 2em;
 	padding: 0;
 }
-#mw-content-text ul {
-	margin: 0 0 0 20px;
+#mw-content-text ul,
+.ve-ui-surface ul {
+	margin: 0 0 0 2em;
 	padding: 0;
 }
-#mw-content-text pre {
+#mw-content-text pre,
+.ve-ui-surface pre {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
 	padding: 20px;
@@ -177,27 +229,35 @@ fieldset {
 /**
  * Table of contents
  */
-#mw-content-text #toc {
+#toc {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
 	display: inline-block;
 	padding: 1em;
 }
-#mw-content-text #toc ul {
-	margin: 0;
-}
-#mw-content-text #toc li {
-	list-style: none;
-}
-#mw-content-text #toc h2 {
-	display: inline;
-}
-#mw-content-text #toc .toctoggle {
+#toc .toctoggle {
 	display: none; /* Hide it because it cannot be styled like the Edit section button */
 }
-#mw-content-text #filetoc {
-	margin: 1em 0;
-	padding: 1em;
+#toc .tocnumber {
+	color: black;
+}
+#toc .toctext:hover {
+	text-decoration: underline;
+}
+#toc a:hover {
+	text-decoration: none;
+}
+#toc h2 {
+	display: inline;
+}
+#toc ul {
+	margin: 0;
+}
+#toc li {
+	list-style: none;
+}
+#filetoc {
+	display: none; /* Hide it per useless */
 }
 
 /**
@@ -223,8 +283,12 @@ fieldset {
 /**
  * Galleries
  * 
- * Galleries come with their own styling, these are overrides to make the galleries fit with the overall style of the skin
+ * Galleries come with their own styling,
+ * these are overrides to make the galleries fit with the overall style of the skin
  */
+.gallery {
+	margin: 0 !important;
+}
 .gallerytext {
 	font-size: small;
 	margin: 5px;
@@ -235,34 +299,9 @@ fieldset {
 }
 
 /**
- * Edit section button
- */
-.mw-editsection {
-	font-size: small;
-	font-weight: normal;
-	text-transform: capitalize;
-}
-.mw-editsection-bracket {
-	display: none;
-}
-
-/**
- * Edit page
- */
-#wpTextbox1 {
-	box-sizing: border-box;
-	width: 100%;
-	height: 500px;
-}
-#wpSummary {
-	box-sizing: border-box;
-	width: 100% !important;
-}
-
-/**
  * Collapse button
  *
- * This button is found on Special:RecentChanges and Special:Watchlist
+ * This button is prominent in Special:RecentChanges and Special:Watchlist
  */
 .mw-collapsible-toggle {
 	margin-left: 1em;
@@ -278,7 +317,6 @@ fieldset {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
 	clear: both;
-	margin: 50px 0;
 	padding: 1em;
 }
 #catlinks ul {
@@ -288,22 +326,36 @@ fieldset {
 /**
  * Footer
  */
-#footer {
+#footer-wrapper {
 	border-top: 1px solid #aaa;
-	margin-top: 5em;
+	clear: both;
 	padding: 1em;
 }
-#footer-bottom {
+#footer {
 	margin: auto;
 	max-width: 1000px;
 }
-.footer-icons {
-	float: right;
-}
-.footer-places {
+#footer ul {
+	list-style: none;
+	margin: 0;
 	padding: 0;
 }
-.footer-places li {
-	display: inline;
-	margin-right: 1em;
+#footer li {
+	margin: .7em 0;
+}
+#footer-bottom {
+	width: 640px;
+}
+#footer .footer-places {
+	list-style: none;
+	padding: 0;
+}
+#footer .footer-icons {
+	display: none;
+}
+#footer .footer-tools {
+	float: right;
+}
+#footer .footer-tools li {
+	margin-top: 0;
 }
