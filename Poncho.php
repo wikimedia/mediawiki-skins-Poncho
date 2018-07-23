@@ -68,22 +68,42 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Merge together the views, actions and variants
+	 * Select the main actions from the lot
 	 * and remove the current action, per useless and confusing
 	 */
-	function getActions() {
-		global $mediaWiki;
-		$actions = array_merge(
-			$this->data['content_navigation']['views'],
-			$this->data['content_navigation']['actions'],
-			$this->data['content_navigation']['variants'],
-			$this->data['content_navigation']['namespaces']
-		);
-		$action = $mediaWiki->getAction();
-		if ( $action === 'view' ) {
-			unset( $actions['view'] ); // Remove the View action when viewing
+	function getMainActions() {
+		// Visual edit
+		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
+			$actions[] = $this->data['content_navigation']['views']['ve-edit'];
 		}
-		unset( $actions['main'] ); // Remove the View action when viewing
+		// Source edit
+		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
+			$actions[] = $this->data['content_navigation']['views']['edit'];
+		}
+		// Talk page
+		// The talk page has a different key in each namespace
+		if ( count( $this->data['content_navigation']['namespaces'] ) > 1 ) {
+			$actions[] = array_pop( $this->data['content_navigation']['namespaces'] );
+		}
+		return $actions;
+	}
+
+	/**
+	 * Select the other actions
+	 */
+	function getMoreActions() {
+		$actions = [];
+		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
+			$actions[] = $this->data['content_navigation']['views']['edit'];
+		}
+		if ( array_key_exists( 'history', $this->data['content_navigation']['views'] ) ) {
+			$actions[] = $this->data['content_navigation']['views']['history'];
+		}
+		$actions = array_merge(
+			$actions,
+			$this->data['content_navigation']['actions'],
+			$this->data['content_navigation']['variants']
+		);
 		return $actions;
 	}
 
