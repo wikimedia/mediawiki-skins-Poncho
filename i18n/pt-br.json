@@ -1,13 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
-	"poncho-desc": "Tema simples, responsivo e amigável para dispositivos móveis",
-	"poncho-wiki": "Wiki",
-	"poncho-tools": "Ferramentas",
-	"poncho-actions": "Ações",
-	"poncho-you": "Você",
-	"poncho-search": "Pesquisar…"
+	"poncho-desc": "Tema simples, claro, reativo e adaptado a dispositivos móveis"
 }

@@ -1,13 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wladek92"
+			"Wladek92",
+			"Gomoko"
 		]
 	},
-	"poncho-desc": "Habillage simple, réactif et adapté aux mobiles.",
-	"poncho-wiki": "Wiki",
-	"poncho-tools": "Outils",
-	"poncho-actions": "Actions",
-	"poncho-you": "Vous",
-	"poncho-search": "Recherche …"
+	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles."
 }
