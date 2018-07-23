@@ -4,7 +4,7 @@
 	<div id="header">
 		<div id="logo-wrapper">
 
-			<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"><?php global $wgSitename; echo $wgSitename; ?></a>
+			<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
 
 		</div><div id="search-form-wrapper">
 
@@ -12,11 +12,24 @@
 				<?php $this->searchInput(); ?>
 			</form>
 
-		</div><div id="user-menu-wrapper">
-			<ul id="user-menu">
-				<li id="user-icon-wrapper"><div id="user-icon"></div></li>
-				<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+		</div><div id="header-menu-wrapper">
+
+			<ul id="header-menu">
+				<li id="main-menu-item">
+					<div id="main-menu-icon"></div>
+					<ul id="main-menu">
+						<?php foreach ( array_shift( $this->data['sidebar'] ) as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
+
+				<li id="user-menu-item">
+					<div id="user-menu-icon"></div>
+					<ul id="user-menu">
+						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
 			</ul>
+
 		</div>
 	</div>
 </div>
@@ -31,7 +44,15 @@
 
 		<h1 id="firstHeading"><?php $this->html( 'title' ) ?></h1>
 		<ul id="actions">
-			<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+			<?php foreach ( $this->getMainActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+			<?php if ( $this->getMoreActions() ): ?>
+			<li id="more-actions-wrapper">
+				<span id="more-actions-button">...</span>
+				<ul id="more-actions">
+					<?php foreach ( $this->getMoreActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</li>
+			<?php endif; ?>
 		</ul>
 
 		<?php if ( $this->data['subtitle'] ): ?>
