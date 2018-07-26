@@ -4,7 +4,7 @@
 	<div id="header">
 		<div id="logo-wrapper">
 
-			<a id="logo" href="<?= htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ); ?>" <?= Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?> style="background-image: url(<?php global $wgLogo; echo $wgLogo; ?>)"></a>
+			<a id="logo" <?php $this->logoAttributes(); ?>></a>
 
 		</div><div id="search-form-wrapper">
 
@@ -18,7 +18,7 @@
 				<li id="main-menu-item">
 					<div id="main-menu-icon"></div>
 					<ul id="main-menu">
-						<?php foreach ( array_shift( $this->data['sidebar'] ) as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+						<?php foreach ( $this->getMainMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 
@@ -40,7 +40,7 @@
 
 		<?php $this->html( 'sitenotice' ); ?>
 
-		<?= $this->getIndicators(); ?>
+		<?php echo $this->getIndicators(); ?>
 
 		<h1 id="firstHeading"><?php $this->html( 'title' ) ?></h1>
 		<ul id="actions">
@@ -86,7 +86,7 @@
 		<ul class="footer-tools">
 			<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 		</ul>
-		<?= $this->getFooter(); ?>
+		<?php echo $this->getFooter(); ?>
 	</div>
 </div>
 

@@ -224,6 +224,9 @@ fieldset {
 #more-actions-wrapper:hover #more-actions-button {
 	display: none;
 }
+#more-actions-button {
+	cursor: default;
+}
 #more-actions {
 	display: none;
 	padding: 0;
