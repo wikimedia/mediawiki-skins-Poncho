@@ -41,7 +41,19 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 *
+	 * Print the attributes of the logo
+	 */
+	function logoAttributes() {
+		global $wgLogo;
+		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
+		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
+		$attributes['style'] = 'background-image: url("' . $wgLogo . '");';
+		$attributes = Xml::expandAttributes( $attributes );
+		echo $attributes;
+	}
+
+	/**
+	 * Print the path to the skin
 	 */
 	function skinPath() {
 		global $wgResourceBasePath;
@@ -49,21 +61,20 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Customize the user menu
+	 * Return the main menu of the header
+	 */
+	function getMainMenu() {
+		return array_shift( $this->data['sidebar'] );
+	}
+
+	/**
+	 * Return the user menu of the header
 	 */
 	function getUserMenu() {
 		$userMenu = $this->getPersonalTools();
 		unset( $userMenu['uls'] );
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
-/*
-		unset( $userMenu['userpage'] );
-		unset( $userMenu['mytalk'] );
-		unset( $userMenu['mycontris'] );
-		unset( $userMenu['watchlist'] );
-		unset( $userMenu['anontalk'] );
-		unset( $userMenu['anoncontribs'] );
-*/
 		return $userMenu;
 	}
 
@@ -72,6 +83,7 @@ class PonchoTemplate extends BaseTemplate {
 	 * and remove the current action, per useless and confusing
 	 */
 	function getMainActions() {
+		$actions = [];
 		// Visual edit
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$actions[] = $this->data['content_navigation']['views']['ve-edit'];
