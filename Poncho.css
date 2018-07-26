@@ -59,19 +59,19 @@ fieldset {
 }
 #logo-wrapper {
 	display: inline-block;
-	width: 25%;
+	width: 30%;
 }
 #logo {
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: inherit;
 	display: inline-block;
-	font-size: 2em;
-	padding-left: 1.5em;
+	font-size: 1.7em;
+	line-height: 32px;
+	padding-left: 1.8em;
 	text-decoration: none;
 	vertical-align: middle;
 	height: 32px;
-	width: 192px;
 }
 #search-form-wrapper {
 	display: inline-block;
@@ -82,7 +82,7 @@ fieldset {
 #header-menu-wrapper {
 	display: inline-block;
 	vertical-align: middle;
-	width: 25%;
+	width: 20%;
 }
 #header-menu {
 	margin: 0;

@@ -44,6 +44,14 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
+	 * Print the site name
+	 */
+	function siteName() {
+		global $wgSitename;
+		echo $wgSitename;
+	}
+
+	/**
 	 * Print the path to the skin
 	 */
 	function skinPath() {
