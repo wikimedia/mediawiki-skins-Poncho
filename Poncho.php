@@ -31,16 +31,6 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the User button
-	 */
-	function userButton() {
-		echo new OOUI\ButtonWidget([
-			'id' => 'user-button',
-			'label' => wfMessage( 'poncho-my-account' )->text()
-		]);
-	}
-
-	/**
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {

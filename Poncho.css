@@ -218,18 +218,35 @@ fieldset {
 .mw-editsection-bracket {
 	display: none;
 }
-#more-actions-wrapper:hover #more-actions {
-	display: inline;
+#more-actions-wrapper {
+	position: relative;
 }
-#more-actions-wrapper:hover #more-actions-button {
-	display: none;
+#more-actions-wrapper:hover a {
+	display: block;
 }
-#more-actions-button {
+#more-actions-icon {
 	cursor: default;
 }
 #more-actions {
-	display: none;
+	list-style: none;
+	margin: 0;
 	padding: 0;
+	position: absolute;
+	top: 1em;
+	right: -.5em;
+	text-align: right;
+	z-index: 3;
+}
+#more-actions li {
+	margin: 0;
+	padding: 0;
+}
+#more-actions a {
+	background: white;
+	display: none;
+	margin: 0;
+	padding: .5em;
+	vertical-align: top;
 }
 
 /**
