@@ -34,7 +34,8 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgLogo;
+		global $wgServer, $wgLogo;
+		list( $width, $height ) = getimagesize( $wgServer . $wgLogo );
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
 		$attributes['style'] = 'background-image: url("' . $wgLogo . '");';
