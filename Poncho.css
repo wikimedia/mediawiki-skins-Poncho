@@ -75,6 +75,7 @@ fieldset {
 }
 #search-form-wrapper {
 	display: inline-block;
+	vertical-align: middle;
 	width: 50%;
 }
 
@@ -134,6 +135,7 @@ fieldset {
 }
 #main-menu a:hover {
 	background: #eee;
+	text-decoration: none;
 }
 
 /* User menu */
@@ -176,6 +178,7 @@ fieldset {
 }
 #user-menu a:hover {
 	background: #eee;
+	text-decoration: none;
 }
 
 /**
@@ -226,6 +229,7 @@ fieldset {
 }
 #more-actions-icon {
 	cursor: default;
+	font-size: large;
 }
 #more-actions {
 	list-style: none;
