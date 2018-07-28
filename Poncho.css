@@ -79,7 +79,9 @@ fieldset {
 	width: 50%;
 }
 
-/* Header menu */
+/**
+ * Header menu
+ */
 #header-menu-wrapper {
 	display: inline-block;
 	vertical-align: middle;
@@ -95,7 +97,9 @@ fieldset {
 	float: right;
 }
 
-/* Main menu */
+/**
+ * Main menu
+ */
 #main-menu-item {
 	margin-right: 1em;
 	position: relative;
@@ -138,7 +142,9 @@ fieldset {
 	text-decoration: none;
 }
 
-/* User menu */
+/**
+ * User menu
+ */
 #user-menu-item {
 	margin-right: 1em;
 	position: relative;
@@ -374,13 +380,10 @@ fieldset {
  * Categories
  */
 #catlinks {
-	background: #f9f9f9;
-	border: 1px solid #aaa;
+	border-top: 1px solid #aaa;
 	clear: both;
-	padding: 1em;
-}
-#catlinks ul {
-	margin: 0;
+	margin-top: 2em;
+	padding-top: 1em;
 }
 
 /**
@@ -418,4 +421,12 @@ fieldset {
 }
 #footer .footer-tools li {
 	margin-top: 0;
+}
+
+/**
+ * External links
+ */
+.external {
+	background: url( 'images/external.png' ) no-repeat center right;
+	padding-right: 1em;
 }

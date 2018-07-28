@@ -104,9 +104,6 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function getMoreActions() {
 		$actions = [];
-		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
-			$actions[] = $this->data['content_navigation']['views']['edit'];
-		}
 		if ( array_key_exists( 'history', $this->data['content_navigation']['views'] ) ) {
 			$actions[] = $this->data['content_navigation']['views']['history'];
 		}
