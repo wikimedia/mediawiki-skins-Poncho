@@ -198,7 +198,7 @@ fieldset {
 }
 #contentSub {
 	font-size: small;
-	margin: 1em 0;
+	margin-bottom: 1em;
 }
 
 /**
@@ -421,6 +421,22 @@ fieldset {
 }
 #footer .footer-tools li {
 	margin-top: 0;
+}
+
+/**
+ * Self-links
+ */
+.selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/**
+ * Search results
+ */
+.searchresults {
+	margin: 1em 0;
 }
 
 /**
