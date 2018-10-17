@@ -1,12 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bulgu"
+			"Bulgu",
+			"TmY e12"
 		]
 	},
-	"poncho-wiki": "Viki",
-	"poncho-tools": "Araçlar",
-	"poncho-actions": "Eylemler",
-	"poncho-you": "Siz",
-	"poncho-search": "Ara..."
+	"poncho-desc": "Basit, temiz, duyarlı ve cep telefonu dostu bir skin."
 }
