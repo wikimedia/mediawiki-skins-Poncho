@@ -1,7 +1,7 @@
 {
 	"manifest_version": 1,
 	"name": "Poncho",
-	"version": "1.4",
+	"version": "1.5",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Felipe Schenone]",
 	"descriptionmsg": "poncho-desc",
 	"type": "skin",
@@ -19,14 +19,8 @@
 		"PonchoTemplate": "Poncho.php"
 	},
 	"ResourceModules": {
-		"skins.poncho.styles": {
-			"styles": "Poncho.css"
-		},
 		"skins.poncho": {
-			"scripts": "Poncho.js",
-			"dependencies": [
-				"oojs-ui"
-			]
+			"styles": "Poncho.css"
 		}
 	},
 	"ResourceFileModulePaths": {

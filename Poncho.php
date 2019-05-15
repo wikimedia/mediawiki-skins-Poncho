@@ -9,11 +9,7 @@ class SkinPoncho extends SkinTemplate {
 	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		if ( $skin->getUser()->getOption( 'skin' ) === 'poncho' ) {
 			$out->enableOOUI();
-			$out->addModuleStyles([
-				'skins.poncho.styles',
-				'oojs-ui-core.styles'
-			]);
-			$out->addModules( 'skins.poncho' );
+			$out->addModuleStyles( 'skins.poncho' );
 			$out->addMeta( 'viewport', 'width=device-width' );
 		}
 	}
@@ -22,12 +18,19 @@ class SkinPoncho extends SkinTemplate {
 class PonchoTemplate extends BaseTemplate {
 
 	/**
-	 * Echo the search bar
+	 * Print the search bar
 	 */
 	function searchInput() {
 		echo new MediaWiki\Widget\SearchInputWidget([
 			'name' => 'search'
 		]);
+	}
+
+	/**
+	 * Print the talk page
+	 */
+	function talkPage() {
+		
 	}
 
 	/**
