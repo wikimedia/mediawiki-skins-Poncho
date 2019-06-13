@@ -1,12 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Alirezaaa"
+			"Alirezaaa",
+			"FarsiNevis"
 		]
 	},
-	"poncho-wiki": "ویکی",
-	"poncho-tools": "ابزارها",
-	"poncho-actions": "اقدامات",
-	"poncho-you": "شما",
-	"poncho-search": "جستجو..."
+	"poncho-desc": "پوسته‌ای ساده، تمیز، سریع و سازگار با تلفن همراه"
 }
