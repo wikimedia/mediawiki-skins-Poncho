@@ -3,6 +3,7 @@
 	"name": "Poncho",
 	"version": "1.5",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Felipe Schenone]",
+	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
 	"type": "skin",
 	"license-name": "GPL-3.0-only",
