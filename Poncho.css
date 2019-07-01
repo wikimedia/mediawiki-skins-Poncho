@@ -55,136 +55,122 @@ fieldset {
 #header {
 	margin: auto;
 	max-width: 1000px;
-	padding: .5em;
 }
+
+/**
+ * Logo
+ */
 #logo-wrapper {
-	display: inline-block;
-	width: 25%;
+	float: left;
 }
 #logo {
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: inherit;
 	display: inline-block;
-	font-size: 1.7em;
-	line-height: 32px;
-	padding-left: 1.8em;
+	font-size: 1.5em;
+	height: 1.4em;
+	line-height: 1.5;
+	padding: .33em .33em .33em 2.5em;
 	text-decoration: none;
-	vertical-align: middle;
-	height: 32px;
-}
-#search-form-wrapper {
-	display: inline-block;
-	vertical-align: middle;
-	width: 50%;
 }
 
 /**
- * Header menu
+ * Search form
+ */
+#search-form-wrapper {
+	overflow: hidden;
+	padding: 0 3em;
+}
+#search-form {
+	margin: auto;
+	padding: .5em;
+	max-width: 600px;
+}
+
+/**
+ * Header menus
  */
 #header-menu-wrapper {
-	display: inline-block;
-	vertical-align: middle;
-	width: 25%;
+	float: right;
 }
 #header-menu {
+	display: inline-block;
+	height: 46px;
 	margin: 0;
 	padding: 0;
 	white-space: nowrap;
+	vertical-align: middle;
 }
 #header-menu > li {
-	display: inline;
-	float: right;
+	display: inline-block;
+	height: 46px;
 }
-
-/**
- * Main menu
- */
-#main-menu-item {
-	margin-right: 1em;
+.header-menu-item {
 	position: relative;
 }
-#main-menu-icon {
-	background: url('images/menu.png') no-repeat;
-	margin: 0;
+.header-menu-icon {
+	display: inline-block;
 	opacity: .4;
-	padding: 0;
+	margin: .5em;
 	width: 32px;
 	height: 32px;
 }
-#main-menu {
-	border-bottom: 1px solid #aaa;
+.header-menu-list {
+	background: #eee;
+	display: none;
 	list-style: none;
 	margin: 0;
-	padding: 0;
-	padding-top: 8px;
+	padding: .5em 0;
 	position: absolute;
+	top: 46px;
 	right: 0;
 	text-align: right;
 	z-index: 3;
 }
-#main-menu li {
+.header-menu-list .active,
+.header-menu-list .active a {
+	color: inherit;
+	font-weight: bold;
 }
-#main-menu a {
-	background: #f9f9f9;
-	border-left: 1px solid #aaa;
-	border-right: 1px solid #aaa;
-	display: none;
+.header-menu-item a,
+.header-menu-item .text {
+	display: block;
 	margin: 0;
 	padding: 1em;
-	vertical-align: top;
 }
-#main-menu-item:hover a {
+.header-menu-item:hover {
+	background: #eee;
+}
+.header-menu-item:hover .header-menu-list {
 	display: block;
 }
-#main-menu a:hover {
-	background: #eee;
-	text-decoration: none;
+#menu-icon {
+	background: url('images/menu.png') no-repeat center;
+}
+#lens-icon {
+	background: url('images/lens.png') no-repeat center;
+}
+#user-icon {
+	background: url('images/user.png') no-repeat center;
+}
+#bell-icon {
+	background: url('images/bell.png') no-repeat center;
 }
 
 /**
- * User menu
+ * Mobile header
  */
-#user-menu-item {
-	margin-right: 1em;
-	position: relative;
-}
-#user-menu-icon {
-	background: url('images/user.png') no-repeat;
-	margin: 0;
-	opacity: .4;
-	padding: 0;
-	width: 32px;
-	height: 32px;
-}
-#user-menu {
-	border-bottom: 1px solid #aaa;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	padding-top: 8px;
-	position: absolute;
-	right: 0;
-	text-align: right;
-	z-index: 3;
-}
-#user-menu li {
-}
-#user-menu a {
-	background: #f9f9f9;
-	border-left: 1px solid #aaa;
-	border-right: 1px solid #aaa;
-	display: none;
-	margin: 0;
-	padding: 1em;
-	vertical-align: top;
-}
-#user-menu-item:hover a {
-	display: block;
-}
-#user-menu a:hover {
-	background: #eee;
-	text-decoration: none;
+@media (max-width: 600px) {
+	#logo-wrapper {
+		margin-left: .5em;
+	}
+	#search-form-wrapper {
+		padding: 0;
+		width: 100%;
+	}
+	#header-menu-wrapper {
+	}
 }
 
 /**
@@ -195,8 +181,10 @@ fieldset {
 }
 #firstHeading {
 	display: inline-block;
+	margin-right: 1em;
 }
-#contentSub {
+#contentSub,
+#contentSub2 {
 	font-size: small;
 	margin-bottom: 1em;
 }
@@ -213,7 +201,7 @@ fieldset {
 }
 #actions li {
 	display: inline;
-	margin-left: 1em;
+	margin-right: 1em;
 }
 .mw-editsection {
 	font-size: small;
@@ -226,17 +214,17 @@ fieldset {
 .mw-editsection-bracket {
 	display: none;
 }
-#more-actions-wrapper {
+#more-actions-menu {
 	position: relative;
 }
-#more-actions-wrapper:hover a {
+#more-actions-menu:hover a {
 	display: block;
 }
 #more-actions-icon {
 	cursor: default;
 	font-size: large;
 }
-#more-actions {
+#more-actions-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -246,11 +234,11 @@ fieldset {
 	text-align: right;
 	z-index: 999;
 }
-#more-actions li {
+#more-actions-list li {
 	margin: 0;
 	padding: 0;
 }
-#more-actions a {
+#more-actions-list a {
 	background: white;
 	display: none;
 	margin: 0;
@@ -430,7 +418,7 @@ fieldset {
 	padding: 0;
 }
 #footer li {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin: .7em 0;
 }
 #footer-bottom {
@@ -445,6 +433,7 @@ fieldset {
 }
 #footer .footer-tools {
 	float: right;
+	text-align: right;
 }
 #footer .footer-tools li {
 	margin-top: 0;

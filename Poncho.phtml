@@ -6,29 +6,34 @@
 
 			<a id="logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
 
-		</div><div id="search-form-wrapper">
-
-			<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>">
-				<?php $this->searchInput(); ?>
-			</form>
-
 		</div><div id="header-menu-wrapper">
 
 			<ul id="header-menu">
-				<li id="main-menu-item">
-					<div id="main-menu-icon"></div>
-					<ul id="main-menu">
-						<?php foreach ( $this->getMainMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
+				<li class="header-menu-item">
+					<div class="header-menu-icon" id="bell-icon"></div>
+					<ul class="header-menu-list">
+						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-
-				<li id="user-menu-item">
-					<div id="user-menu-icon"></div>
-					<ul id="user-menu">
+				<?php endif; ?>
+				<li class="header-menu-item">
+					<div class="header-menu-icon" id="user-icon"></div>
+					<ul class="header-menu-list">
 						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
+				<li class="header-menu-item">
+					<div class="header-menu-icon" id="menu-icon"></div>
+					<ul class="header-menu-list">
+						<?php foreach ( $this->getMainMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
 			</ul>
+
+		</div><div id="search-form-wrapper">
+
+			<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>"><?php $this->searchInput(); ?></form>
 
 		</div>
 	</div>
@@ -38,17 +43,20 @@
 
 	<div id="content">
 
-		<?php $this->html( 'sitenotice' ); ?>
+		<?php if ( $this->data['sitenotice'] ): ?>
+		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
+		<?php endif; ?>
 
 		<?php echo $this->getIndicators(); ?>
 
 		<h1 id="firstHeading"><?php $this->html( 'title' ) ?></h1>
+
 		<ul id="actions">
 			<?php foreach ( $this->getMainActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 			<?php if ( $this->getMoreActions() ): ?>
-			<li id="more-actions-wrapper">
+			<li id="more-actions-menu">
 				<span id="more-actions-icon">...</span>
-				<ul id="more-actions">
+				<ul id="more-actions-list">
 					<?php foreach ( $this->getMoreActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</li>
@@ -60,16 +68,14 @@
 		<?php endif; ?>
 
 		<?php if ( $this->data['undelete'] ): ?>
-		<div id="undelete"><?php $this->html( 'undelete' ) ?></div>
+		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
 		<?php endif; ?>
 
 		<?php if ( $this->data['newtalk'] ): ?>
-		<div class="newtalk"><?php $this->html( 'newtalk' )  ?></div>
+		<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
 		<?php endif; ?>
 
 		<?php $this->html( 'bodytext' ) ?>
-
-		<div class="printfooter"><?php $this->html( 'printfooter' ); ?></div>
 
 		<?php $this->html( 'catlinks' ); ?>
 

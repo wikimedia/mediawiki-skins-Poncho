@@ -9,8 +9,9 @@ class SkinPoncho extends SkinTemplate {
 	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		if ( $skin->getUser()->getOption( 'skin' ) === 'poncho' ) {
 			$out->enableOOUI();
-			$out->addModuleStyles( 'skins.poncho' );
-			$out->addMeta( 'viewport', 'width=device-width' );
+			$out->addModuleStyles( 'skins.poncho.style' );
+			$out->addModules( 'skins.poncho.script' );
+			$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
 		}
 	}
 }
@@ -21,8 +22,11 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the search bar
 	 */
 	function searchInput() {
+		global $wgSitename;
+		$placeholder = wfMessage( 'search' ) . ' ' . $wgSitename;
 		echo new MediaWiki\Widget\SearchInputWidget([
-			'name' => 'search'
+			'name' => 'search',
+			'placeholder' => $placeholder,
 		]);
 	}
 
@@ -50,8 +54,12 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the site name
 	 */
 	function siteName() {
-		global $wgSitename;
-		echo $wgSitename;
+		global $wgSitename, $wgPonchoSitename;
+		if ( $wgPonchoSitename === false ) {
+			echo $wgSitename;
+		} else {
+			echo $wgPonchoSitename;
+		}
 	}
 
 	/**
@@ -116,6 +124,64 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['content_navigation']['variants']
 		);
 		return $actions;
+	}
+
+	/**
+	 * Get the latest notifications
+	 * process them and return them in a format fit for BaseTemplate::makeListItem
+	 *
+	 * @todo This method uses an internal API call which should be replaced by the proper Echo classes
+	 */
+	function getNotifications() {
+		$notifications = [];
+		$user = $this->getSkin()->getUser();
+		if ( $user->isLoggedIn() ) {
+			global $wgRequest;
+			$params = new DerivativeRequest(
+				$wgRequest,
+				[
+					'action' => 'query',
+					'meta' => 'notifications',
+					'notformat' => 'model',
+					'format' => 'json',
+				]
+			);
+			$api = new ApiMain( $params );
+			$api->execute();
+			$data = $api->getResult()->getResultData();
+			$list = $data['query']['notifications']['list'];
+			$list = array_reverse( $list );
+			foreach ( $list as $key => $item ) {
+				if ( ! is_int( $key ) ) {
+					continue;
+				}
+				$content = $item['*'];
+				$id = "notification-$key";
+				$text = strip_tags( $content['header'] );
+				$href = $content['links']['primary']['url'] ?? null;
+				$active = array_key_exists( 'read', $item ) ? false : true;
+				$link = [
+					'id' => $id,
+					'text' => $text,
+					'href' => $href,
+				];
+				$notification = [
+					'id' => $id,
+					'links' => [ $link ],
+					'class' => $href ? 'link' : 'text',
+					'active' => $active,
+				];
+				$notifications[ $id ] = $notification;
+			}
+		}
+		if ( ! $notifications ) {
+			$notifications[] = [
+				'id' => 'notification-0',
+				'text' => wfMessage( 'echo-none' ),
+				'class' => 'text',
+			];
+		}
+		return $notifications;
 	}
 
 	/**
