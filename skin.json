@@ -34,7 +34,7 @@
 	"Hooks": {
 		"BeforePageDisplay": "SkinPoncho::onBeforePageDisplay"
 	},
-    "config": {
-        "PonchoSitename": false
-    }
+	"config": {
+		"PonchoSitename": false
+	}
 }
