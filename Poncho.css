@@ -145,6 +145,10 @@ fieldset {
 .header-menu-item:hover .header-menu-list {
 	display: block;
 }
+#bell-icon + .header-menu-list {
+	white-space: normal;
+	width: 200px;
+}
 #menu-icon {
 	background: url('images/menu.png') no-repeat center;
 }
@@ -306,6 +310,9 @@ fieldset {
 }
 #toc ul {
 	margin: 0;
+}
+#toc ul ul {
+	margin-left: 1em;
 }
 #toc li {
 	list-style: none;
