@@ -89,41 +89,48 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Select the main actions from the lot
-	 * and remove the current action, per useless and confusing
+	 * Get the main actions
 	 */
 	function getMainActions() {
-		$actions = [];
-		// Visual edit
-		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
-			$actions[] = $this->data['content_navigation']['views']['ve-edit'];
+		$main = [];
+		$views = $this->data['content_navigation']['views'];
+		$namespaces = $this->data['content_navigation']['namespaces'];
+		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' ); // Current action
+		$title = $this->getSkin()->getTitle();
+		if ( $title->isTalkPage() ) {
+			$main[] = array_shift( $namespaces );
 		}
-		// Source edit
-		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
-			$actions[] = $this->data['content_navigation']['views']['edit'];
+		if ( $action !== 'view' and array_key_exists( 'view', $views ) ) {
+			$main[] = $views['view'];
 		}
-		// Talk page
-		// The talk page has a different key in each namespace
-		if ( count( $this->data['content_navigation']['namespaces'] ) > 1 ) {
-			$actions[] = array_pop( $this->data['content_navigation']['namespaces'] );
+		if ( $action !== 've-edit' and array_key_exists( 've-edit', $views ) ) {
+			$main[] = $views['ve-edit'];
 		}
-		return $actions;
+		if ( $action !== 'edit' and array_key_exists( 'edit', $views ) ) {
+			$main[] = $views['edit'];
+		}
+		if ( count( $namespaces ) > 1 ) {
+			$main[] = array_pop( $namespaces );
+		}
+		return $main;
 	}
 
 	/**
-	 * Select the other actions
+	 * Get the other actions
 	 */
 	function getMoreActions() {
-		$actions = [];
-		if ( array_key_exists( 'history', $this->data['content_navigation']['views'] ) ) {
-			$actions[] = $this->data['content_navigation']['views']['history'];
+		$more = [];
+		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' ); // Current action
+		$views = $this->data['content_navigation']['views'];
+		if ( $action !== 'history' and array_key_exists( 'history', $views ) ) {
+			$more[] = $views['history'];
 		}
-		$actions = array_merge(
-			$actions,
+		$more = array_merge(
+			$more,
 			$this->data['content_navigation']['actions'],
 			$this->data['content_navigation']['variants']
 		);
-		return $actions;
+		return $more;
 	}
 
 	/**
