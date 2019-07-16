@@ -150,6 +150,7 @@ class PonchoTemplate extends BaseTemplate {
 					'action' => 'query',
 					'meta' => 'notifications',
 					'notformat' => 'model',
+					'notlimit' => 10,
 					'format' => 'json',
 				]
 			);

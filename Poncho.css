@@ -139,6 +139,7 @@ fieldset {
 	margin: 0;
 	padding: 1em;
 }
+.header-menu-item.active,
 .header-menu-item:hover {
 	background: #eee;
 }
