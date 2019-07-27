@@ -121,6 +121,7 @@ fieldset {
 	display: none;
 	list-style: none;
 	margin: 0;
+	opacity: .9;
 	padding: .5em 0;
 	position: absolute;
 	top: 46px;
@@ -261,7 +262,6 @@ fieldset {
 	line-height: 1.5;
 	margin: 0 auto;
 	max-width: 1000px;
-	overflow: hidden;
 	padding: 1em;
 	padding-bottom: 5em;
 }
