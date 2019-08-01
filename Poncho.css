@@ -188,6 +188,11 @@ fieldset {
 #firstHeading {
 	display: inline-block;
 	margin-right: 1em;
+	margin-bottom: 0;
+}
+#siteSub {
+	display: none;
+	font-style: italic;
 }
 #contentSub,
 #contentSub2 {
@@ -262,11 +267,15 @@ fieldset {
 	line-height: 1.5;
 	margin: 0 auto;
 	max-width: 1000px;
+	overflow: hidden;
 	padding: 1em;
 	padding-bottom: 5em;
 }
 .ve-ce-documentNode {
 	padding: 0 !important;
+}
+#mw-content-text {
+	margin-top: 2em;
 }
 #mw-content-text ol,
 .ve-ui-surface ol {
