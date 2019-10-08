@@ -1,12 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
-	"poncho-wiki": "Вики",
-	"poncho-tools": "Кораллар",
-	"poncho-actions": "Гамәлләр",
-	"poncho-you": "Сез",
-	"poncho-search": "Эзләү..."
+	"poncho-desc": "Гади, пөхтә, сизгер һәм кесә җайланмаларда кулай бизәлеш."
 }
