@@ -1,7 +1,7 @@
 {
 	"manifest_version": 1,
 	"name": "Poncho",
-	"version": "1.7",
+	"version": "1.8",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -30,9 +30,6 @@
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "Poncho"
-	},
-	"Hooks": {
-		"BeforePageDisplay": "SkinPoncho::onBeforePageDisplay"
 	},
 	"config": {
 		"PonchoSitename": false

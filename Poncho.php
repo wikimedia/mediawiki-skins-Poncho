@@ -6,13 +6,12 @@ class SkinPoncho extends SkinTemplate {
 
 	public $template = 'PonchoTemplate';
 
-	static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		if ( $skin->getUser()->getOption( 'skin' ) === 'poncho' ) {
-			$out->enableOOUI();
-			$out->addModuleStyles( 'skins.poncho.style' );
-			$out->addModules( 'skins.poncho.script' );
-			$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
-		}
+	public function initPage( OutputPage $out ) {
+		parent::initPage( $out );
+		$out->enableOOUI();
+		$out->addModuleStyles( 'skins.poncho.style' );
+		$out->addModules( 'skins.poncho.script' );
+		$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
 	}
 }
 
