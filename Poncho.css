@@ -10,11 +10,13 @@ body {
 	padding: 0;
 }
 a {
-	color: blue;
 	text-decoration: none;
 }
 a:hover {
 	text-decoration: underline;
+}
+a.new {
+	color: #a55858;
 }
 h1, h2, h3, h4, h5, h6 {
 	margin: 1em 0 .5em 0;
@@ -26,24 +28,21 @@ h2 {
 	font-size: 1.6em;
 }
 h3 {
-	font-size: 1.4em;
-}
-h4 {
 	font-size: 1.2em;
 }
-h5, h6 {
+h4, h5, h6 {
 	font-size: 1em;
 }
-img {
-	max-width: 100%;
-	height: auto;
-}
 pre {
+	overflow: hidden;
 	white-space: pre-wrap;
 }
 fieldset {
 	border: 1px solid #aaa;
 	margin: 1em 0;
+}
+sup {
+	line-height: 1em;
 }
 
 /**
@@ -288,7 +287,37 @@ fieldset {
 .ve-ui-surface pre {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
-	padding: 20px;
+	padding: 1em;
+}
+#content .printfooter {
+	display: none;
+}
+
+/**
+ * Wikitables
+ */
+table.wikitable {
+	background: #f9f9f9;
+	border-collapse: collapse;
+}
+table.wikitable th,
+table.wikitable td {
+	border: 1px solid #aaa;
+	padding: .2em;
+}
+
+/**
+ * Misc
+ */
+.floatleft {
+	float: left;
+}
+.floatright {
+	float: right;
+}
+.plainlinks a {
+	background: none;
+	padding: 0;
 }
 
 /**
@@ -357,14 +386,17 @@ fieldset {
 	border: 1px solid #aaa;
 }
 .thumb.tright {
+	clear: right;
+	float: right;
 	margin: 0 0 1em 1em;
 }
 .thumb.tleft {
+	clear: left;
+	float: left;
 	margin: 0 1em 1em 0;
 }
 .thumb .thumbinner {
 	margin: 1em;
-	width: 200px !important;
 }
 .thumb .thumbimage {
 	display: block;
@@ -372,6 +404,10 @@ fieldset {
 .thumb .thumbcaption {
 	margin-top: 1em;
 	font-size: small;
+}
+.thumb.embedvideo {
+	background: none;
+	border: none;
 }
 
 /**
@@ -385,7 +421,7 @@ fieldset {
 }
 .gallerytext {
 	font-size: small;
-	margin: 5px;
+	margin: .5em;
 	padding: 0;
 }
 .gallerytext p {
@@ -412,6 +448,14 @@ fieldset {
 	clear: both;
 	margin-top: 2em;
 	padding-top: 1em;
+}
+#catlinks ul {
+	display: inline;
+	padding: 0;
+}
+#catlinks li {
+	display: inline;
+	margin-left: 1em;
 }
 
 /**
@@ -479,4 +523,16 @@ fieldset {
 .external {
 	background: url( 'images/external.png' ) no-repeat center right;
 	padding-right: 1em;
+}
+
+/**
+ * Printable version
+ */
+@media print {
+	#header-wrapper {
+		display: none;
+	}
+	#footer-wrapper {
+		display: none;
+	}
 }

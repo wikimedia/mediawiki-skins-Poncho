@@ -22,10 +22,9 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function searchInput() {
 		global $wgSitename;
-		$placeholder = wfMessage( 'search' ) . ' ' . $wgSitename;
 		echo new MediaWiki\Widget\SearchInputWidget([
 			'name' => 'search',
-			'placeholder' => $placeholder,
+			'placeholder' => wfMessage( 'search' )
 		]);
 	}
 
@@ -40,8 +39,8 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgServer, $wgLogo;
-		list( $width, $height ) = getimagesize( $wgServer . $wgLogo );
+		global $wgLogo;
+		list( $width, $height ) = getimagesize( $wgLogo );
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
 		$attributes['style'] = 'background-image: url("' . $wgLogo . '");';
@@ -111,6 +110,9 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $action !== 'edit' and array_key_exists( 'edit', $views ) ) {
 			$actions[] = $views['edit'];
 		}
+		if ( $action !== 'history' and array_key_exists( 'history', $views ) ) {
+			$actions[] = $views['history'];
+		}
 		if ( count( $namespaces ) > 1 ) {
 			$actions[] = array_pop( $namespaces );
 		}
@@ -130,6 +132,7 @@ class PonchoTemplate extends BaseTemplate {
 		unset( $actions['ve-edit'] );
 		unset( $actions['formedit'] );
 		unset( $actions['edit'] );
+		unset( $actions['history'] );
 		return $actions;
 	}
 
