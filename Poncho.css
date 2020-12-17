@@ -312,6 +312,9 @@ table.wikitable td {
 /**
  * Misc
  */
+.center {
+	text-align: center;
+}
 .floatleft {
 	float: left;
 }
@@ -397,6 +400,9 @@ table.wikitable td {
 	clear: left;
 	float: left;
 	margin: 0 1em 1em 0;
+}
+.thumb.tnone {
+	display: inline-block;
 }
 .thumb .thumbinner {
 	margin: 1em;
