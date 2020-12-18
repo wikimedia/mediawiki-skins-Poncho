@@ -187,11 +187,6 @@ sup {
 .mw-indicator {
 	float: right;
 }
-#firstHeading {
-	display: inline-block;
-	margin-right: 1em;
-	margin-bottom: 0;
-}
 #siteSub {
 	display: none;
 	font-style: italic;
@@ -206,7 +201,6 @@ sup {
  * Actions
  */
 #poncho-actions {
-	display: inline;
 	font-size: small;
 	font-weight: normal;
 	padding: 0;
@@ -227,37 +221,6 @@ sup {
 .mw-editsection-bracket {
 	display: none;
 }
-#poncho-more-actions-menu {
-	position: relative;
-}
-#poncho-more-actions-menu:hover a {
-	display: block;
-}
-#poncho-more-actions-icon {
-	cursor: default;
-	font-size: large;
-}
-#poncho-more-actions-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	top: 1em;
-	right: -.5em;
-	text-align: right;
-	z-index: 999;
-}
-#poncho-more-actions-list li {
-	margin: 0;
-	padding: 0;
-}
-#poncho-more-actions-list a {
-	background: white;
-	display: none;
-	margin: 0;
-	padding: .5em;
-	vertical-align: top;
-}
 
 /**
  * Content
@@ -265,7 +228,7 @@ sup {
 #poncho-content-wrapper {
 	background: white;
 }
-#poncho-content {
+#content {
 	line-height: 1.5;
 	margin: 0 auto;
 	max-width: 1000px;
@@ -292,7 +255,7 @@ sup {
 	border: 1px solid #aaa;
 	padding: 1em;
 }
-#poncho-content .printfooter {
+#content .printfooter {
 	display: none;
 }
 

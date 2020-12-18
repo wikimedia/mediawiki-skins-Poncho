@@ -87,52 +87,17 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Get the main actions
+	 * Get the actions
 	 */
-	function getMainActions() {
-		$actions = [];
-		$views = $this->data['content_navigation']['views'];
-		$namespaces = $this->data['content_navigation']['namespaces'];
-		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' ); // Current action
-		$title = $this->getSkin()->getTitle();
-		if ( $title->isTalkPage() ) {
-			$actions[] = array_shift( $namespaces );
-		}
-		if ( $action !== 'view' and array_key_exists( 'view', $views ) ) {
-			$actions[] = $views['view'];
-		}
-		if ( $action !== 've-edit' and array_key_exists( 've-edit', $views ) ) {
-			$actions[] = $views['ve-edit'];
-		}
-		if ( $action !== 'formedit' and array_key_exists( 'formedit', $views ) ) {
-			$actions[] = $views['formedit'];
-		}
-		if ( $action !== 'edit' and array_key_exists( 'edit', $views ) ) {
-			$actions[] = $views['edit'];
-		}
-		if ( $action !== 'history' and array_key_exists( 'history', $views ) ) {
-			$actions[] = $views['history'];
-		}
-		if ( count( $namespaces ) > 1 ) {
-			$actions[] = array_pop( $namespaces );
-		}
-		return $actions;
-	}
-
-	/**
-	 * Get the other actions
-	 */
-	function getMoreActions() {
+	function getActions() {
 		$actions = array_merge(
 			$this->data['content_navigation']['views'],
 			$this->data['content_navigation']['actions'],
 			$this->data['content_navigation']['variants']
 		);
-		unset( $actions['view'] );
-		unset( $actions['ve-edit'] );
-		unset( $actions['formedit'] );
-		unset( $actions['edit'] );
-		unset( $actions['history'] );
+		// Remove the current action
+		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' );
+		unset( $actions[ $action ] );
 		return $actions;
 	}
 
