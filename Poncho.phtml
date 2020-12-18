@@ -41,7 +41,7 @@
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-content">
+	<div id="content">
 
 		<?php if ( $this->data['sitenotice'] ): ?>
 		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
@@ -52,15 +52,7 @@
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
 
 		<ul id="poncho-actions">
-			<?php foreach ( $this->getMainActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-			<?php if ( $this->getMoreActions() ): ?>
-			<li id="poncho-more-actions-menu">
-				<span id="poncho-more-actions-icon">...</span>
-				<ul id="poncho-more-actions-list">
-					<?php foreach ( $this->getMoreActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-				</ul>
-			</li>
-			<?php endif; ?>
+			<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 		</ul>
 
 		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
