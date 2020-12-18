@@ -461,11 +461,11 @@ table.wikitable td {
 #poncho-footer .footer-icons {
 	display: none;
 }
-#poncho-footer .footer-tools {
+#poncho-footer-tools {
 	float: right;
 	text-align: right;
 }
-#poncho-footer .footer-tools li {
+#poncho-footer-tools li {
 	margin-top: 0;
 }
 #poncho-footer .external {
