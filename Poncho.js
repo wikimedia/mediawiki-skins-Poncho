@@ -14,7 +14,7 @@ var Poncho = {
      * Bind events
      */
     bind: function () {
-        jQuery( '#bell-icon' ).mouseenter( Poncho.readNotifications ); 
+        jQuery( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications ); 
     },
 
     /**
@@ -26,14 +26,14 @@ var Poncho = {
     		'action': 'echomarkread',
     		'all': true,
     	});
-        jQuery( '#bell-icon' ).parent().removeClass( 'active' );
+        jQuery( '#poncho-bell-icon' ).parent().removeClass( 'active' );
     },
 
     /**
      * Mark the bell icon if the current user has unread notifications
      */
     ring: function () {
-        var notificationsItem = jQuery( '#bell-icon' ).parent();
+        var notificationsItem = jQuery( '#poncho-bell-icon' ).parent();
         if ( jQuery( 'li.active', notificationsItem ).length ) {
             notificationsItem.addClass( 'active' );
         }
