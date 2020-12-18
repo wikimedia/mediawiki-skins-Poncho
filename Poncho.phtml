@@ -1,47 +1,47 @@
 <?php $this->html( 'headelement' ); ?>
 
-<div id="header-wrapper">
-	<div id="header">
-		<div id="logo-wrapper">
+<div id="poncho-header-wrapper">
+	<div id="poncho-header">
+		<div id="poncho-logo-wrapper">
 
-			<a id="logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
+			<a id="poncho-logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
 
-		</div><div id="header-menu-wrapper">
+		</div><div id="poncho-header-menu-wrapper">
 
-			<ul id="header-menu">
+			<ul id="poncho-header-menu">
 				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
-				<li class="header-menu-item">
-					<div class="header-menu-icon" id="bell-icon"></div>
-					<ul class="header-menu-list">
+				<li class="poncho-header-menu-item">
+					<div class="poncho-header-menu-icon" id="poncho-bell-icon"></div>
+					<ul class="poncho-header-menu-list">
 						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 				<?php endif; ?>
-				<li class="header-menu-item">
-					<div class="header-menu-icon" id="user-icon"></div>
-					<ul class="header-menu-list">
+				<li class="poncho-header-menu-item">
+					<div class="poncho-header-menu-icon" id="poncho-user-icon"></div>
+					<ul class="poncho-header-menu-list">
 						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-				<li class="header-menu-item">
-					<div class="header-menu-icon" id="menu-icon"></div>
-					<ul class="header-menu-list">
+				<li class="poncho-header-menu-item">
+					<div class="poncho-header-menu-icon" id="poncho-menu-icon"></div>
+					<ul class="poncho-header-menu-list">
 						<?php foreach ( $this->getMainMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 			</ul>
 
-		</div><div id="search-form-wrapper">
+		</div><div id="poncho-search-form-wrapper">
 
-			<form id="search-form" action="<?php $this->text( 'wgScript' ); ?>"><?php $this->searchInput(); ?></form>
+			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>"><?php $this->searchInput(); ?></form>
 
 		</div>
 	</div>
 </div>
 
-<div id="content-wrapper">
+<div id="poncho-content-wrapper">
 
-	<div id="content">
+	<div id="poncho-content">
 
 		<?php if ( $this->data['sitenotice'] ): ?>
 		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
@@ -51,12 +51,12 @@
 
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
 
-		<ul id="actions">
+		<ul id="poncho-actions">
 			<?php foreach ( $this->getMainActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 			<?php if ( $this->getMoreActions() ): ?>
-			<li id="more-actions-menu">
-				<span id="more-actions-icon">...</span>
-				<ul id="more-actions-list">
+			<li id="poncho-more-actions-menu">
+				<span id="poncho-more-actions-icon">...</span>
+				<ul id="poncho-more-actions-list">
 					<?php foreach ( $this->getMoreActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</li>
@@ -89,9 +89,9 @@
 
 </div>
 
-<div id="footer-wrapper">
-	<div id="footer">
-		<ul class="footer-tools">
+<div id="poncho-footer-wrapper">
+	<div id="poncho-footer">
+		<ul class="poncho-footer-tools">
 			<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 		</ul>
 		<?php echo $this->getFooter(); ?>

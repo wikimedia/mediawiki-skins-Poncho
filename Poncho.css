@@ -50,11 +50,11 @@ sup {
 /**
  * Header
  */
-#header-wrapper {
+#poncho-header-wrapper {
 	border-bottom: 1px solid #aaa;
 	padding: .5em 0;
 }
-#header {
+#poncho-header {
 	margin: auto;
 	max-width: 1000px;
 }
@@ -62,10 +62,10 @@ sup {
 /**
  * Logo
  */
-#logo-wrapper {
+#poncho-logo-wrapper {
 	float: left;
 }
-#logo {
+#poncho-logo {
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: inherit;
@@ -80,11 +80,11 @@ sup {
 /**
  * Search form
  */
-#search-form-wrapper {
+#poncho-search-form-wrapper {
 	overflow: hidden;
 	padding: 0 3em;
 }
-#search-form {
+#poncho-search-form {
 	margin: auto;
 	padding: .5em;
 	max-width: 600px;
@@ -93,10 +93,10 @@ sup {
 /**
  * Header menus
  */
-#header-menu-wrapper {
+#poncho-header-menu-wrapper {
 	float: right;
 }
-#header-menu {
+#poncho-header-menu {
 	display: inline-block;
 	height: 46px;
 	margin: 0;
@@ -104,21 +104,21 @@ sup {
 	white-space: nowrap;
 	vertical-align: middle;
 }
-#header-menu > li {
+#poncho-header-menu > li {
 	display: inline-block;
 	height: 46px;
 }
-.header-menu-item {
+.poncho-header-menu-item {
 	position: relative;
 }
-.header-menu-icon {
+.poncho-header-menu-icon {
 	display: inline-block;
 	opacity: .4;
 	margin: .5em;
 	width: 32px;
 	height: 32px;
 }
-.header-menu-list {
+.poncho-header-menu-list {
 	background: #eee;
 	display: none;
 	list-style: none;
@@ -131,38 +131,38 @@ sup {
 	text-align: right;
 	z-index: 9;
 }
-.header-menu-list .active,
-.header-menu-list .active a {
+.poncho-header-menu-list .active,
+.poncho-header-menu-list .active a {
 	color: inherit;
 	font-weight: bold;
 }
-.header-menu-item a,
-.header-menu-item .text {
+.poncho-header-menu-item a,
+.poncho-header-menu-item .text {
 	display: block;
 	margin: 0;
 	padding: 1em;
 }
-.header-menu-item.active,
-.header-menu-item:hover {
+.poncho-header-menu-item.active,
+.poncho-header-menu-item:hover {
 	background: #eee;
 }
-.header-menu-item:hover .header-menu-list {
+.poncho-header-menu-item:hover .poncho-header-menu-list {
 	display: block;
 }
-#bell-icon + .header-menu-list {
+#poncho-bell-icon + .poncho-header-menu-list {
 	white-space: normal;
 	width: 200px;
 }
-#menu-icon {
+#poncho-menu-icon {
 	background: url('images/menu.png') no-repeat center;
 }
-#lens-icon {
+#poncho-lens-icon {
 	background: url('images/lens.png') no-repeat center;
 }
-#user-icon {
+#poncho-user-icon {
 	background: url('images/user.png') no-repeat center;
 }
-#bell-icon {
+#poncho-bell-icon {
 	background: url('images/bell.png') no-repeat center;
 }
 
@@ -205,14 +205,14 @@ sup {
 /**
  * Actions
  */
-#actions {
+#poncho-actions {
 	display: inline;
 	font-size: small;
 	font-weight: normal;
 	padding: 0;
 	white-space: nowrap;	
 }
-#actions li {
+#poncho-actions li {
 	display: inline;
 	margin-right: 1em;
 }
@@ -227,17 +227,17 @@ sup {
 .mw-editsection-bracket {
 	display: none;
 }
-#more-actions-menu {
+#poncho-more-actions-menu {
 	position: relative;
 }
-#more-actions-menu:hover a {
+#poncho-more-actions-menu:hover a {
 	display: block;
 }
-#more-actions-icon {
+#poncho-more-actions-icon {
 	cursor: default;
 	font-size: large;
 }
-#more-actions-list {
+#poncho-more-actions-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -247,11 +247,11 @@ sup {
 	text-align: right;
 	z-index: 999;
 }
-#more-actions-list li {
+#poncho-more-actions-list li {
 	margin: 0;
 	padding: 0;
 }
-#more-actions-list a {
+#poncho-more-actions-list a {
 	background: white;
 	display: none;
 	margin: 0;
@@ -262,10 +262,10 @@ sup {
 /**
  * Content
  */
-#content-wrapper {
+#poncho-content-wrapper {
 	background: white;
 }
-#content {
+#poncho-content {
 	line-height: 1.5;
 	margin: 0 auto;
 	max-width: 1000px;
@@ -292,7 +292,7 @@ sup {
 	border: 1px solid #aaa;
 	padding: 1em;
 }
-#content .printfooter {
+#poncho-content .printfooter {
 	display: none;
 }
 
@@ -470,42 +470,42 @@ table.wikitable td {
 /**
  * Footer
  */
-#footer-wrapper {
+#poncho-footer-wrapper {
 	border-top: 1px solid #aaa;
 	clear: both;
 	padding: 1em;
 }
-#footer {
+#poncho-footer {
 	margin: auto;
 	max-width: 1000px;
 }
-#footer ul {
+#poncho-footer ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
-#footer li {
+#poncho-footer li {
 	line-height: 1.5;
 	margin: .7em 0;
 }
-#footer-bottom {
+#poncho-footer-bottom {
 	width: 640px;
 }
-#footer .footer-places {
+#poncho-footer .footer-places {
 	list-style: none;
 	padding: 0;
 }
-#footer .footer-icons {
+#poncho-footer .footer-icons {
 	display: none;
 }
-#footer .footer-tools {
+#poncho-footer .footer-tools {
 	float: right;
 	text-align: right;
 }
-#footer .footer-tools li {
+#poncho-footer .footer-tools li {
 	margin-top: 0;
 }
-#footer .external {
+#poncho-footer .external {
 	background: none;
 	padding: 0;
 }
@@ -538,10 +538,10 @@ table.wikitable td {
  * Printable version
  */
 @media print {
-	#header-wrapper {
+	#poncho-header-wrapper {
 		display: none;
 	}
-	#footer-wrapper {
+	#poncho-footer-wrapper {
 		display: none;
 	}
 }
