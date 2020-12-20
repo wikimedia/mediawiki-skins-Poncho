@@ -41,19 +41,21 @@
 
 <div id="poncho-content-wrapper">
 
+	<ul id="poncho-actions">
+		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+	</ul>
+
 	<div id="content">
 
 		<?php if ( $this->data['sitenotice'] ): ?>
 		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
 		<?php endif; ?>
 
+		<?php if ( $this->data['indicators'] ): ?>
 		<?php echo $this->getIndicators(); ?>
+		<?php endif; ?>
 
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
-
-		<ul id="poncho-actions">
-			<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-		</ul>
 
 		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 
