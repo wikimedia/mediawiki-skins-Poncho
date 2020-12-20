@@ -2,7 +2,6 @@
  * Site-wide elements
  */
 body {
-	background: #f9f9f9;
 	color: #222;
 	font-family: Arial;
 	font-size: 14px;
@@ -51,6 +50,7 @@ sup {
  * Header
  */
 #poncho-header-wrapper {
+	background: #f9f9f9;
 	border-bottom: 1px solid #aaa;
 	padding: .5em 0;
 }
@@ -129,7 +129,7 @@ sup {
 	top: 46px;
 	right: 0;
 	text-align: right;
-	z-index: 9;
+	z-index: 999;
 }
 .poncho-header-menu-list .active,
 .poncho-header-menu-list .active a {
@@ -169,15 +169,13 @@ sup {
 /**
  * Mobile header
  */
-@media (max-width: 600px) {
-	#logo-wrapper {
+@media (max-width: 640px) {
+	#poncho-logo-wrapper {
 		margin-left: .5em;
 	}
-	#search-form-wrapper {
+	#poncho-search-form-wrapper {
 		padding: 0;
 		width: 100%;
-	}
-	#header-menu-wrapper {
 	}
 }
 
@@ -203,6 +201,8 @@ sup {
 #poncho-actions {
 	font-size: small;
 	font-weight: normal;
+	margin: 1rem auto;
+	max-width: 1000px;
 	padding: 0;
 	white-space: nowrap;	
 }
@@ -210,31 +210,19 @@ sup {
 	display: inline;
 	margin-right: 1em;
 }
-.mw-editsection {
-	font-size: small;
-	font-weight: normal;
-}
-.mw-editsection a {
-	margin-left: 1em;
-}
-.mw-editsection-divider,
-.mw-editsection-bracket {
-	display: none;
-}
 
 /**
  * Content
  */
 #poncho-content-wrapper {
-	background: white;
+	padding: 1em;
+	padding-bottom: 5em;
 }
 #content {
 	line-height: 1.5;
-	margin: 0 auto;
+	margin: 1em auto;
 	max-width: 1000px;
 	overflow: hidden;
-	padding: 1em;
-	padding-bottom: 5em;
 }
 #mw-content-text {
 	margin-top: 2em;
@@ -287,6 +275,17 @@ table.wikitable td {
 .plainlinks a {
 	background: none;
 	padding: 0;
+}
+.mw-editsection {
+	font-size: small;
+	font-weight: normal;
+}
+.mw-editsection a {
+	margin-left: 1em;
+}
+.mw-editsection-divider,
+.mw-editsection-bracket {
+	display: none;
 }
 
 /**
@@ -434,6 +433,7 @@ table.wikitable td {
  * Footer
  */
 #poncho-footer-wrapper {
+	background: #f9f9f9;
 	border-top: 1px solid #aaa;
 	clear: both;
 	padding: 1em;
