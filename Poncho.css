@@ -263,6 +263,9 @@ table.wikitable td {
 /**
  * Misc
  */
+.hide, .hidden {
+	display: none;
+}
 .center {
 	text-align: center;
 }
@@ -271,6 +274,15 @@ table.wikitable td {
 }
 .floatright {
 	float: right;
+}
+.selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+.external {
+	background: url( 'images/external.png' ) no-repeat center right;
+	padding-right: 1em;
 }
 .plainlinks a {
 	background: none;
@@ -441,6 +453,7 @@ table.wikitable td {
 #poncho-footer {
 	margin: auto;
 	max-width: 1000px;
+	overflow: hidden;
 }
 #poncho-footer ul {
 	list-style: none;
@@ -465,21 +478,9 @@ table.wikitable td {
 	float: right;
 	text-align: right;
 }
-#poncho-footer-tools li {
-	margin-top: 0;
-}
 #poncho-footer .external {
 	background: none;
 	padding: 0;
-}
-
-/**
- * Self-links
- */
-.selflink {
-	color: inherit;
-	font-weight: bold;
-	text-decoration: none;
 }
 
 /**
@@ -487,14 +488,6 @@ table.wikitable td {
  */
 .searchresults {
 	margin: 1em 0;
-}
-
-/**
- * External links
- */
-.external {
-	background: url( 'images/external.png' ) no-repeat center right;
-	padding-right: 1em;
 }
 
 /**

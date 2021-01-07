@@ -86,7 +86,7 @@
 <div id="poncho-footer-wrapper">
 	<div id="poncho-footer">
 		<ul id="poncho-footer-tools">
-			<?php foreach ( $this->getToolbox() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+			<?php foreach ( $this->get('sidebar')['TOOLBOX'] as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 		</ul>
 		<?php echo $this->getFooter(); ?>
 	</div>
