@@ -2,26 +2,21 @@
 
 class SkinPoncho extends SkinTemplate {
 
-	public $skinname = 'poncho';
-
+	// @var string Needed for 1.35 support. This property and entire class can be removed in 1.36
 	public $template = 'PonchoTemplate';
-
-	public function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$out->enableOOUI();
-		$out->addModuleStyles( 'skins.poncho.style' );
-		$out->addModules( 'skins.poncho.script' );
-		$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
-	}
 }
 
 class PonchoTemplate extends BaseTemplate {
+
+	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		$out->enableOOUI();
+		$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
+	}
 
 	/**
 	 * Print the search bar
 	 */
 	function searchInput() {
-		global $wgSitename;
 		echo new MediaWiki\Widget\SearchInputWidget([
 			'name' => 'search',
 			'placeholder' => wfMessage( 'search' )
@@ -29,18 +24,10 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the talk page
-	 */
-	function talkPage() {
-		
-	}
-
-	/**
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgServer, $wgLogo;
-		list( $width, $height ) = getimagesize( $wgServer . $wgLogo );
+		global $wgLogo;
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
 		$attributes['style'] = 'background-image: url("' . $wgLogo . '");';
@@ -52,20 +39,8 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the site name
 	 */
 	function siteName() {
-		global $wgSitename, $wgPonchoSitename;
-		if ( $wgPonchoSitename === false ) {
-			echo $wgSitename;
-		} else {
-			echo $wgPonchoSitename;
-		}
-	}
-
-	/**
-	 * Print the path to the skin
-	 */
-	function skinPath() {
-		global $wgResourceBasePath;
-		echo $wgResourceBasePath . '/skins/Poncho/';
+		global $wgSitename;
+		echo $wgSitename;
 	}
 
 	/**
@@ -84,6 +59,13 @@ class PonchoTemplate extends BaseTemplate {
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
 		return $userMenu;
+	}
+
+	/**
+	 * Return the page tools for the footer
+	 */
+	function getTools() {
+		return $this->get('sidebar')['TOOLBOX'];
 	}
 
 	/**

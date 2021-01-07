@@ -13,17 +13,27 @@
 		]
 	},
 	"ValidSkinNames": {
-		"poncho": "Poncho"
+		"poncho": {
+			"class": "SkinPoncho",
+			"args": [
+				{
+					"name": "poncho",
+					"template": "PonchoTemplate",
+					"styles": [ "skins.poncho.styles" ],
+					"scripts": [ "skins.poncho.scripts" ]
+				}
+			]
+		}
 	},
 	"AutoloadClasses": {
 		"SkinPoncho": "Poncho.php",
 		"PonchoTemplate": "Poncho.php"
 	},
 	"ResourceModules": {
-		"skins.poncho.style": {
+		"skins.poncho.styles": {
 			"styles": "Poncho.css"
 		},
-		"skins.poncho.script": {
+		"skins.poncho.scripts": {
 			"scripts": "Poncho.js"
 		}
 	},
@@ -31,7 +41,7 @@
 		"localBasePath": "",
 		"remoteSkinPath": "Poncho"
 	},
-	"config": {
-		"PonchoSitename": false
+	"Hooks": {
+		"BeforePageDisplay": "PonchoTemplate::onBeforePageDisplay"
 	}
 }
