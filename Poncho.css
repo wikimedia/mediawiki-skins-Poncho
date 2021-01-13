@@ -180,7 +180,46 @@ sup {
 }
 
 /**
- * Title
+ * Namespaces
+ */
+#poncho-namespaces {
+	margin: 1em 0;
+	margin-bottom: 2em;
+	padding: 0;
+	white-space: nowrap;	
+}
+#poncho-namespaces li {
+	display: inline;
+	margin-right: 1em;
+	padding: .5em 0;
+}
+#poncho-namespaces .selected {
+	border-bottom: 4px solid #aaa;
+}
+#poncho-namespaces a {
+	color: #aaa;
+}
+
+/**
+ * Actions
+ */
+#poncho-actions {
+	display: inline;
+	font-size: small;
+	font-weight: normal;
+	padding: 0;
+	white-space: nowrap;	
+}
+#poncho-actions li {
+	display: inline;
+	margin-left: 1em;
+}
+#poncho-actions a {
+	text-transform: lowercase;
+}
+
+/**
+ * Title, etc.
  */
 .mw-indicator {
 	float: right;
@@ -196,32 +235,16 @@ sup {
 }
 
 /**
- * Actions
- */
-#poncho-actions {
-	font-size: small;
-	font-weight: normal;
-	margin: 1rem auto;
-	max-width: 1000px;
-	padding: 0;
-	white-space: nowrap;	
-}
-#poncho-actions li {
-	display: inline;
-	margin-right: 1em;
-}
-
-/**
  * Content
  */
 #poncho-content-wrapper {
+	margin: 1em auto;
 	padding: 1em;
 	padding-bottom: 5em;
+	max-width: 1000px;
 }
 #content {
 	line-height: 1.5;
-	margin: 1em auto;
-	max-width: 1000px;
 	overflow: hidden;
 }
 #mw-content-text {
@@ -263,8 +286,8 @@ table.wikitable td {
 /**
  * Misc
  */
-.hide, .hidden {
-	display: none;
+.error {
+	color: red;
 }
 .center {
 	text-align: center;

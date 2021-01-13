@@ -62,10 +62,14 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Return the page tools for the footer
+	 * Get the namespaces
 	 */
-	function getTools() {
-		return $this->get('sidebar')['TOOLBOX'];
+	function getNamespaces() {
+		$namespaces = [];
+		if ( count( $this->data['content_navigation']['namespaces'] ) > 1 ) {
+			$namespaces = $this->data['content_navigation']['namespaces'];
+		}
+		return $namespaces;
 	}
 
 	/**
@@ -78,9 +82,16 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['content_navigation']['variants']
 		);
 		// Remove the current action
-		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' );
+		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' ); // Doesn't work with Move
 		unset( $actions[ $action ] );
 		return $actions;
+	}
+
+	/**
+	 * Return the page tools for the footer
+	 */
+	function getTools() {
+		return $this->get('sidebar')['TOOLBOX'];
 	}
 
 	/**

@@ -41,37 +41,41 @@
 
 <div id="poncho-content-wrapper">
 
-	<ul id="poncho-actions">
-		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+	<?php if ( $this->getNamespaces() ): ?>
+	<ul id="poncho-namespaces">
+		<?php foreach ( $this->getNamespaces() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 	</ul>
+	<?php endif; ?>
+
+	<?php if ( $this->data['sitenotice'] ): ?>
+	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
+	<?php endif; ?>
+
+	<?php if ( $this->data['indicators'] ): ?>
+	<?php echo $this->getIndicators(); ?>
+	<?php endif; ?>
+
+	<h1 id="firstHeading" class="firstHeading">
+		<?php $this->html( 'title' ); ?><ul id="poncho-actions"><?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?></ul>
+	</h1>
+
+	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
+
+	<?php if ( $this->data['subtitle'] ): ?>
+	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
+	<?php endif; ?>
+
+	<?php if ( $this->data['undelete'] ): ?>
+	<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
+	<?php endif; ?>
+
+	<?php if ( $this->data['newtalk'] ): ?>
+	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
+	<?php endif; ?>
 
 	<div id="content">
 
-		<?php if ( $this->data['sitenotice'] ): ?>
-		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
-		<?php endif; ?>
-
-		<?php if ( $this->data['indicators'] ): ?>
-		<?php echo $this->getIndicators(); ?>
-		<?php endif; ?>
-
-		<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
-
-		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-
-		<?php if ( $this->data['subtitle'] ): ?>
-		<div id="contentSub"><?php $this->html( 'subtitle' ) ?></div>
-		<?php endif; ?>
-
-		<?php if ( $this->data['undelete'] ): ?>
-		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-		<?php endif; ?>
-
-		<?php if ( $this->data['newtalk'] ): ?>
-		<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
-		<?php endif; ?>
-
-		<?php $this->html( 'bodytext' ) ?>
+		<?php $this->html( 'bodytext' ); ?>
 
 		<?php $this->html( 'catlinks' ); ?>
 
