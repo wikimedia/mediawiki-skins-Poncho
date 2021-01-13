@@ -191,13 +191,18 @@ sup {
 #poncho-namespaces li {
 	display: inline;
 	margin-right: 1em;
-	padding: .5em 0;
 }
-#poncho-namespaces .selected {
+#poncho-namespaces .selected a {
 	border-bottom: 4px solid #aaa;
+	padding: .5em 0;
 }
 #poncho-namespaces a {
 	color: #aaa;
+}
+#poncho-namespaces a:hover {
+	border-bottom: 4px solid #aaa;
+	padding: .5em 0;
+	text-decoration: initial;
 }
 
 /**
