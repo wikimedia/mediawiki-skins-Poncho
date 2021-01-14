@@ -78,13 +78,15 @@
 	<?php endif; ?>
 
 	<div id="content" class="mw-body">
+		<div id="bodyContent" class="mw-body-content">
 
-		<?php $this->html( 'bodytext' ); ?>
+			<?php $this->html( 'bodytext' ); ?>
 
-		<?php $this->html( 'dataAfterContent' ); ?>
+			<?php $this->html( 'dataAfterContent' ); ?>
 
-		<?php $this->html( 'catlinks' ); ?>
+			<?php $this->html( 'catlinks' ); ?>
 
+		</div>
 	</div>
 
 	<?php $this->html( 'debughtml' ); ?>
