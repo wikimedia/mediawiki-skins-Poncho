@@ -183,23 +183,19 @@ sup {
  * Namespaces
  */
 #poncho-namespaces {
-	margin: 1em 0;
-	margin-bottom: 2em;
+	display: inline-block;
+	margin-right: 1em;
 	padding: 0;
-	white-space: nowrap;	
 }
 #poncho-namespaces li {
 	display: inline;
 	margin-right: 1em;
 }
-#poncho-namespaces .selected a {
-	border-bottom: 4px solid #aaa;
-	padding: .5em 0;
-}
 #poncho-namespaces a {
 	color: #aaa;
 }
-#poncho-namespaces a:hover {
+#poncho-namespaces a:hover,
+#poncho-namespaces .selected a {
 	border-bottom: 4px solid #aaa;
 	padding: .5em 0;
 	text-decoration: initial;
@@ -209,18 +205,19 @@ sup {
  * Actions
  */
 #poncho-actions {
-	display: inline;
-	font-size: small;
-	font-weight: normal;
+	display: inline-block;
 	padding: 0;
-	white-space: nowrap;	
+	white-space: nowrap;
 }
 #poncho-actions li {
 	display: inline;
-	margin-left: 1em;
+	margin-right: 1em;
 }
 #poncho-actions a {
 	text-transform: lowercase;
+}
+#poncho-actions .selected a {
+	text-decoration: underline;
 }
 
 /**
@@ -228,6 +225,7 @@ sup {
  */
 .mw-indicator {
 	float: right;
+	margin-top: 1em;
 }
 #siteSub {
 	display: none;
@@ -250,10 +248,8 @@ sup {
 }
 #content {
 	line-height: 1.5;
+	margin: 2em 0;
 	overflow: hidden;
-}
-#mw-content-text {
-	margin-top: 2em;
 }
 #mw-content-text ol,
 .ve-ui-surface ol {

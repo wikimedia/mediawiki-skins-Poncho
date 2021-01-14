@@ -47,17 +47,23 @@
 	</ul>
 	<?php endif; ?>
 
+	<?php if ( $this->getActions() ): ?>
+	<ul id="poncho-actions">
+		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+	</ul>
+	<?php endif; ?>
+
 	<?php if ( $this->data['sitenotice'] ): ?>
 	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
 	<?php endif; ?>
+
+	<div class="mw-indicator">ok</div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
 	<?php endif; ?>
 
-	<h1 id="firstHeading" class="firstHeading">
-		<?php $this->html( 'title' ); ?><ul id="poncho-actions"><?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?></ul>
-	</h1>
+	<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ); ?></h1>
 
 	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
 
@@ -73,17 +79,17 @@
 	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
 	<?php endif; ?>
 
-	<div id="content">
+	<div id="content" class="mw-body">
 
 		<?php $this->html( 'bodytext' ); ?>
 
-		<?php $this->html( 'catlinks' ); ?>
-
 		<?php $this->html( 'dataAfterContent' ); ?>
 
-		<?php $this->html( 'debughtml' ); ?>
+		<?php $this->html( 'catlinks' ); ?>
 
 	</div>
+
+	<?php $this->html( 'debughtml' ); ?>
 
 </div>
 

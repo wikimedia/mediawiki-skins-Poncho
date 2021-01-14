@@ -27,20 +27,20 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgLogo;
+		global $wgLogo, $wgPonchoLogo;
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$attributes['style'] = 'background-image: url("' . $wgLogo . '");';
+		$attributes['style'] = 'background-image: url("' . ( $wgPonchoLogo === false ? $wgLogo : $wgPonchoLogo ) . '");';
 		$attributes = Xml::expandAttributes( $attributes );
 		echo $attributes;
 	}
 
 	/**
-	 * Print the site name
+	 * Print the name of the site
 	 */
 	function siteName() {
-		global $wgSitename;
-		echo $wgSitename;
+		global $wgSitename, $wgPonchoSitename;
+		echo $wgPonchoSitename === false ? $wgSitename : $wgPonchoSitename;
 	}
 
 	/**
@@ -81,9 +81,7 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['content_navigation']['actions'],
 			$this->data['content_navigation']['variants']
 		);
-		// Remove the current action
-		$action = $this->getSkin()->getRequest()->getVal( 'action', 'view' ); // Doesn't work with Move
-		unset( $actions[ $action ] );
+		unset( $actions[ 'view' ] ); // Remove the view action per useless
 		return $actions;
 	}
 
