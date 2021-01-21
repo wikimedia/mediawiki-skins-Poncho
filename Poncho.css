@@ -18,21 +18,25 @@ a:hover {
 a.new {
 	color: #a55858;
 }
-h1, h2, h3, h4, h5, h6 {
+h1 {
+	font-size: 2em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
 }
-h1 {
-	font-size: 2em;
-}
 h2 {
 	font-size: 1.6em;
+	margin: 1em 0 .5em 0;
+	overflow: hidden;
 }
 h3 {
 	font-size: 1.2em;
+	margin: 1em 0 .5em 0;
+	overflow: hidden;
 }
 h4, h5, h6 {
 	font-size: 1em;
+	margin: 1em 0 .5em 0;
+	overflow: hidden;
 }
 pre {
 	overflow: hidden;
@@ -183,8 +187,7 @@ sup {
  * Namespaces
  */
 #poncho-namespaces {
-	display: inline-block;
-	margin-right: 1em;
+	float: right;
 	padding: 0;
 }
 #poncho-namespaces li {
@@ -345,7 +348,7 @@ table.wikitable td {
 #toc a:hover {
 	text-decoration: none;
 }
-#toc h2 {
+#toc #mw-toc-heading {
 	display: inline;
 }
 #toc ul {
@@ -488,8 +491,8 @@ table.wikitable td {
 	line-height: 1.5;
 	margin: .7em 0;
 }
-#poncho-footer-bottom {
-	width: 640px;
+#poncho-footer .mw-footer {
+	max-width: 640px;
 }
 #poncho-footer .footer-places {
 	list-style: none;
