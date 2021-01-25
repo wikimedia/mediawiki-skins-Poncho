@@ -277,14 +277,14 @@ sup {
 /**
  * Wikitables
  */
-table.wikitable {
+.wikitable {
 	background: #f9f9f9;
 	border-collapse: collapse;
 }
-table.wikitable th,
-table.wikitable td {
+.wikitable th,
+.wikitable td {
 	border: 1px solid #aaa;
-	padding: .2em;
+	padding: 1em;
 }
 
 /**
