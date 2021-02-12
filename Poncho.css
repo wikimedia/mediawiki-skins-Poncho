@@ -230,6 +230,11 @@ sup {
 	float: right;
 	margin-top: 1em;
 }
+.mw-indicator a {
+	background: none !important;
+	line-height: inherit !important;
+	padding-left: 0 !important;
+}
 #siteSub {
 	display: none;
 	font-style: italic;
