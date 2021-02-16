@@ -315,6 +315,7 @@ sup {
 .external {
 	background: url( 'images/external.png' ) no-repeat center right;
 	padding-right: 1em;
+	word-break: break-all;
 }
 .plainlinks a {
 	background: none;
