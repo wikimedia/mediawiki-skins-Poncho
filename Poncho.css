@@ -529,7 +529,10 @@ sup {
 @media print {
 	#poncho-header-wrapper,
 	#poncho-footer-wrapper,
-	#toc {
+	#poncho-namespaces,
+	#poncho-actions,
+	#toc,
+	.mw-editsection {
 		display: none;
 	}
 }
