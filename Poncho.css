@@ -526,10 +526,9 @@ sup {
  * Printable version
  */
 @media print {
-	#poncho-header-wrapper {
-		display: none;
-	}
-	#poncho-footer-wrapper {
+	#poncho-header-wrapper,
+	#poncho-footer-wrapper,
+	#toc {
 		display: none;
 	}
 }
