@@ -119,7 +119,7 @@ sup {
 	display: inline-block;
 	height: 46px;
 	position: relative;
-	z-index: 1;
+	z-index: 999;
 }
 .poncho-menu-icon {
 	background: inherit;
@@ -139,7 +139,6 @@ sup {
 	top: 46px;
 	right: 0;
 	text-align: right;
-	z-index: 999;
 }
 .poncho-menu-item.active,
 .poncho-menu-item:hover {
