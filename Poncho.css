@@ -59,6 +59,7 @@ sup {
 	padding: .5em 0;
 }
 #poncho-header {
+	background: inherit;
 	margin: auto;
 	max-width: 1000px;
 }
@@ -97,10 +98,12 @@ sup {
 /**
  * Header menus
  */
-#poncho-header-menu-wrapper {
+#poncho-menu-wrapper {
+	background: inherit;
 	float: right;
 }
-#poncho-header-menu {
+#poncho-menu {
+	background: inherit;
 	display: inline-block;
 	height: 46px;
 	margin: 0;
@@ -108,52 +111,52 @@ sup {
 	white-space: nowrap;
 	vertical-align: middle;
 }
-#poncho-header-menu > li {
+#poncho-menu > li {
 	display: inline-block;
 	height: 46px;
 }
-.poncho-header-menu-item {
+.poncho-menu-item {
+	background: inherit;
 	position: relative;
 }
-.poncho-header-menu-icon {
+.poncho-menu-icon {
 	display: inline-block;
 	opacity: .4;
 	margin: .5em;
 	width: 32px;
 	height: 32px;
 }
-.poncho-header-menu-list {
-	background: #eee;
+.poncho-menu-list {
+	background: inherit;
 	display: none;
 	list-style: none;
 	margin: 0;
-	opacity: .9;
-	padding: .5em 0;
+	padding: 0;
 	position: absolute;
 	top: 46px;
 	right: 0;
 	text-align: right;
 	z-index: 999;
 }
-.poncho-header-menu-list .active,
-.poncho-header-menu-list .active a {
+.poncho-menu-list .active,
+.poncho-menu-list .active a {
 	color: inherit;
 	font-weight: bold;
 }
-.poncho-header-menu-item a,
-.poncho-header-menu-item .text {
+.poncho-menu-item a,
+.poncho-menu-item .text {
 	display: block;
 	margin: 0;
 	padding: 1em;
 }
-.poncho-header-menu-item.active,
-.poncho-header-menu-item:hover {
-	background: #eee;
+.poncho-menu-item.active,
+.poncho-menu-item:hover {
+	filter: brightness(.95);
 }
-.poncho-header-menu-item:hover .poncho-header-menu-list {
+.poncho-menu-item:hover .poncho-menu-list {
 	display: block;
 }
-#poncho-bell-icon + .poncho-header-menu-list {
+#poncho-bell-icon + .poncho-menu-list {
 	white-space: normal;
 	width: 200px;
 }
@@ -168,6 +171,32 @@ sup {
 }
 #poncho-bell-icon {
 	background: url('images/bell.png') no-repeat center;
+}
+.poncho-submenu-item {
+	background: inherit;
+	position: relative;
+}
+.poncho-submenu-item:hover {
+	filter: brightness(.95);
+}
+.poncho-submenu-item:hover .poncho-submenu {
+	display: block;
+}
+.poncho-submenu-span {
+	background: url('images/triangle.png') no-repeat left;
+	cursor: default;
+	display: block;
+	margin: 0 1em;
+	padding: 1em 0;
+}
+.poncho-submenu {
+	background: inherit;
+	display: none;
+	list-style: none;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 100%;
 }
 
 /**

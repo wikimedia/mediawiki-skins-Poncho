@@ -47,7 +47,11 @@ class PonchoTemplate extends BaseTemplate {
 	 * Return the main menu of the header
 	 */
 	function getMainMenu() {
-		return array_shift( $this->data['sidebar'] );
+		$sidebar = $this->data['sidebar'];
+		unset( $sidebar['SEARCH'] );
+		unset( $sidebar['TOOLBOX'] );
+		unset( $sidebar['LANGUAGES'] );
+		return $sidebar;
 	}
 
 	/**
