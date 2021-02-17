@@ -156,9 +156,7 @@ sup {
 	text-decoration: none;
 }
 .poncho-menu-item a:hover,
-.poncho-menu-item .link:hover,
-.poncho-menu-item .link.active
-.poncho-menu-item .text.active {
+.poncho-menu-item .active {
 	filter: brightness(.95);
 }
 .poncho-menu-item:hover .poncho-menu-list {
