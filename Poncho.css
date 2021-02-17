@@ -111,15 +111,18 @@ sup {
 	white-space: nowrap;
 	vertical-align: middle;
 }
-#poncho-menu > li {
-	display: inline-block;
-	height: 46px;
+#poncho-menu li {
+	background: inherit;
 }
 .poncho-menu-item {
 	background: inherit;
+	display: inline-block;
+	height: 46px;
 	position: relative;
+	z-index: 1;
 }
 .poncho-menu-icon {
+	background: inherit;
 	display: inline-block;
 	opacity: .4;
 	margin: .5em;
@@ -138,19 +141,24 @@ sup {
 	text-align: right;
 	z-index: 999;
 }
-.poncho-menu-list .active,
-.poncho-menu-list .active a {
-	color: inherit;
-	font-weight: bold;
+.poncho-menu-item.active,
+.poncho-menu-item:hover {
+	filter: brightness(.95);
 }
 .poncho-menu-item a,
 .poncho-menu-item .text {
+	background: inherit;
+	color: inherit;
+	cursor: default;
 	display: block;
 	margin: 0;
 	padding: 1em;
+	text-decoration: none;
 }
-.poncho-menu-item.active,
-.poncho-menu-item:hover {
+.poncho-menu-item a:hover,
+.poncho-menu-item .link:hover,
+.poncho-menu-item .link.active
+.poncho-menu-item .text.active {
 	filter: brightness(.95);
 }
 .poncho-menu-item:hover .poncho-menu-list {
