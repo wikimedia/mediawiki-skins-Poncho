@@ -6,27 +6,38 @@
 
 			<a id="poncho-logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
 
-		</div><div id="poncho-header-menu-wrapper">
+		</div><div id="poncho-menu-wrapper">
 
-			<ul id="poncho-header-menu">
+			<ul id="poncho-menu">
 				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
-				<li class="poncho-header-menu-item">
-					<div class="poncho-header-menu-icon" id="poncho-bell-icon"></div>
-					<ul class="poncho-header-menu-list">
+				<li class="poncho-menu-item">
+					<div class="poncho-menu-icon" id="poncho-bell-icon"></div>
+					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 				<?php endif; ?>
-				<li class="poncho-header-menu-item">
-					<div class="poncho-header-menu-icon" id="poncho-user-icon"></div>
-					<ul class="poncho-header-menu-list">
+				<li class="poncho-menu-item">
+					<div class="poncho-menu-icon" id="poncho-user-icon"></div>
+					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-				<li class="poncho-header-menu-item">
-					<div class="poncho-header-menu-icon" id="poncho-menu-icon"></div>
-					<ul class="poncho-header-menu-list">
-						<?php foreach ( $this->getMainMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				<li class="poncho-menu-item">
+					<div class="poncho-menu-icon" id="poncho-menu-icon"></div>
+					<ul class="poncho-menu-list">
+						<?php foreach ( $this->getMainMenu() as $key => $value ): ?>
+							<?php if ( $key === 'navigation' ): ?>
+								<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
+							<?php else: ?>
+								<li class="poncho-submenu-item">
+									<span class="poncho-submenu-span"><?php echo $key; ?></span>
+									<ul class="poncho-submenu">
+										<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
+									</ul>
+								</li>
+							<?php endif; ?>
+						<?php endforeach; ?>
 					</ul>
 				</li>
 			</ul>
