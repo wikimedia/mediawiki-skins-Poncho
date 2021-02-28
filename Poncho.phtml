@@ -9,6 +9,22 @@
 		</div><div id="poncho-menu-wrapper">
 
 			<ul id="poncho-menu">
+				<?php if ( $this->getActions() ): ?>
+				<li class="poncho-menu-item">
+					<div class="poncho-menu-icon" id="poncho-edit-icon"></div>
+					<ul class="poncho-menu-list">
+						<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
+				<?php endif; ?>
+
+				<li class="poncho-menu-item">
+					<div class="poncho-menu-icon" id="poncho-tool-icon"></div>
+					<ul class="poncho-menu-list">
+						<?php foreach ( $this->getTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
+
 				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
 				<li class="poncho-menu-item">
 					<div class="poncho-menu-icon" id="poncho-bell-icon"></div>
@@ -62,12 +78,6 @@
 	</ul>
 	<?php endif; ?>
 
-	<?php if ( $this->getActions() ): ?>
-	<ul id="poncho-actions">
-		<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-	</ul>
-	<?php endif; ?>
-
 	<?php if ( $this->data['sitenotice'] ): ?>
 	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
 	<?php endif; ?>
@@ -106,9 +116,6 @@
 
 <div id="poncho-footer-wrapper">
 	<div id="poncho-footer">
-		<ul id="poncho-footer-tools">
-			<?php foreach ( $this->getTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-		</ul>
 		<?php echo $this->getFooter(); ?>
 	</div>
 </div>

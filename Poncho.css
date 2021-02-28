@@ -15,9 +15,6 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-a.new {
-	color: #a55858;
-}
 h1 {
 	font-size: 2em;
 	margin: 1em 0 .5em 0;
@@ -118,6 +115,7 @@ sup {
 	background: inherit;
 	display: inline-block;
 	height: 46px;
+	opacity: .9;
 	position: relative;
 	z-index: 999;
 }
@@ -171,8 +169,14 @@ sup {
 #poncho-lens-icon {
 	background: url('images/lens.png') no-repeat center;
 }
+#poncho-edit-icon {
+	background: url('images/edit.png') no-repeat center;
+}
 #poncho-user-icon {
 	background: url('images/user.png') no-repeat center;
+}
+#poncho-tool-icon {
+	background: url('images/tool.png') no-repeat center;
 }
 #poncho-bell-icon {
 	background: url('images/bell.png') no-repeat center;
@@ -227,15 +231,6 @@ sup {
 #poncho-namespaces li {
 	display: inline;
 	margin-right: 1em;
-}
-#poncho-namespaces a {
-	color: #aaa;
-}
-#poncho-namespaces a:hover,
-#poncho-namespaces .selected a {
-	border-bottom: 4px solid #aaa;
-	padding: .5em 0;
-	text-decoration: initial;
 }
 
 /**
@@ -329,6 +324,10 @@ sup {
 /**
  * Misc
  */
+.new,
+.new a {
+	color: #a55858;
+}
 .error {
 	color: red;
 }
@@ -540,10 +539,6 @@ sup {
 }
 #poncho-footer .footer-icons {
 	display: none;
-}
-#poncho-footer-tools {
-	float: right;
-	text-align: right;
 }
 #poncho-footer .external {
 	background: none;
