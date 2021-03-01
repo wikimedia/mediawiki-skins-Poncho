@@ -226,44 +226,29 @@ sup {
  */
 #poncho-namespaces {
 	float: right;
+	margin: 0;
 	padding: 0;
 }
 #poncho-namespaces li {
 	display: inline;
-	margin-right: 1em;
 }
 
 /**
- * Actions
- */
-#poncho-actions {
-	display: inline-block;
-	padding: 0;
-	white-space: nowrap;
-}
-#poncho-actions li {
-	display: inline;
-	margin-right: 1em;
-}
-#poncho-actions a {
-	text-transform: lowercase;
-}
-#poncho-actions .selected a {
-	text-decoration: underline;
-}
-
-/**
- * Title, etc.
+ * Indicators
  */
 .mw-indicator {
 	float: right;
-	margin-top: 1em;
+	margin-left: 1em;
 }
 .mw-indicator a {
 	background: none !important;
 	line-height: inherit !important;
 	padding-left: 0 !important;
 }
+
+/**
+ * Subtitles
+ */
 #siteSub {
 	display: none;
 	font-style: italic;
@@ -287,6 +272,7 @@ sup {
 	line-height: 1.5;
 	margin: 2em 0;
 	overflow: hidden;
+	width: 100%;
 }
 #mw-content-text ol,
 .ve-ui-surface ol {
@@ -364,6 +350,9 @@ sup {
 .mw-editsection-divider,
 .mw-editsection-bracket {
 	display: none;
+}
+.searchresults {
+	margin: 1em 0;
 }
 
 /**
@@ -543,13 +532,6 @@ sup {
 #poncho-footer .external {
 	background: none;
 	padding: 0;
-}
-
-/**
- * Search results
- */
-.searchresults {
-	margin: 1em 0;
 }
 
 /**
