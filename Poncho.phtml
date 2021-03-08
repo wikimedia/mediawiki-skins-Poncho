@@ -17,14 +17,12 @@
 					</ul>
 				</li>
 				<?php endif; ?>
-
 				<li class="poncho-menu-item">
 					<div class="poncho-menu-icon" id="poncho-tool-icon"></div>
 					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-
 				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
 				<li class="poncho-menu-item">
 					<div class="poncho-menu-icon" id="poncho-bell-icon"></div>

@@ -209,19 +209,6 @@ sup {
 }
 
 /**
- * Mobile header
- */
-@media (max-width: 640px) {
-	#poncho-logo-wrapper {
-		margin-left: .5em;
-	}
-	#poncho-search-form-wrapper {
-		padding: 0;
-		width: 100%;
-	}
-}
-
-/**
  * Namespaces
  */
 #poncho-namespaces {
@@ -334,7 +321,6 @@ sup {
 .external {
 	background: url( 'images/external.png' ) no-repeat center right;
 	padding-right: 1em;
-	word-break: break-all;
 }
 .plainlinks a {
 	background: none;
@@ -535,14 +521,27 @@ sup {
 }
 
 /**
+ * Mobile version
+ */
+@media (max-width: 640px) {
+	#poncho-logo-wrapper {
+		margin-left: .5em;
+	}
+	#poncho-search-form-wrapper {
+		padding: 0;
+		width: 100%;
+	}
+}
+
+/**
  * Printable version
  */
 @media print {
 	#poncho-header-wrapper,
 	#poncho-footer-wrapper,
 	#poncho-namespaces,
-	#poncho-actions,
 	#toc,
+	.mw-indicators,
 	.mw-editsection {
 		display: none;
 	}
