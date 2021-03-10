@@ -46,6 +46,9 @@ fieldset {
 sup {
 	line-height: 1em;
 }
+img {
+	display: block;
+}
 
 /**
  * Header
@@ -217,18 +220,26 @@ sup {
 	padding: 0;
 }
 #poncho-namespaces li {
-	display: inline;
+	background: #f9f9f9;
+	box-shadow: #aaa 1px 1px 1px;
+	display: inline-block;
+	padding: .5em;
 }
 
 /**
  * Indicators
  */
 .mw-indicator {
+	background: #f9f9f9;
+	box-shadow: #aaa 1px 1px 1px;
 	float: right;
-	margin-left: 1em;
+	margin-left: .5em;
+	padding: .5em;
 }
-.mw-indicator a {
+.mw-indicator a,
+.mw-indicator div {
 	background: none !important;
+	height: inherit !important;
 	line-height: inherit !important;
 	padding-left: 0 !important;
 }
@@ -395,7 +406,7 @@ sup {
 #preftoc a:visited {
 	color: #00e;
 }
-#preftoc li.selected a {
+#preftoc .selected a {
 	color: inherit;
 }
 
@@ -405,6 +416,7 @@ sup {
 .thumb {
 	background: #f9f9f9;
 	border: 1px solid #aaa;
+	page-break-inside: avoid;
 }
 .thumb.tright {
 	clear: right;
