@@ -46,9 +46,6 @@ fieldset {
 sup {
 	line-height: 1em;
 }
-img {
-	display: block;
-}
 
 /**
  * Header
@@ -241,7 +238,8 @@ img {
 	background: none !important;
 	height: inherit !important;
 	line-height: inherit !important;
-	padding-left: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 /**
@@ -311,6 +309,9 @@ img {
 .new,
 .new a {
 	color: #a55858;
+}
+.image img {
+	display: block;
 }
 .error {
 	color: red;
