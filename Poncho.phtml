@@ -71,29 +71,27 @@
 	<?php endif; ?>
 
 	<?php if ( $this->getNamespaces() ): ?>
-	<ul id="poncho-namespaces">
-		<?php foreach ( $this->getNamespaces() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-	</ul>
+	<ul id="poncho-namespaces"><?php foreach ( $this->getNamespaces() as $key => $value ) echo $this->makeListItem( $key, $value ); ?></ul>
 	<?php endif; ?>
 
 	<?php if ( $this->data['sitenotice'] ): ?>
 	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
 	<?php endif; ?>
 
-	<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ); ?></h1>
-
-	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
+	<?php if ( $this->data['newtalk'] ): ?>
+	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
+	<?php endif; ?>
 
 	<?php if ( $this->data['subtitle'] ): ?>
 	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
 	<?php endif; ?>
 
+	<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ); ?></h1>
+
+	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
+
 	<?php if ( $this->data['undelete'] ): ?>
 	<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
-	<?php endif; ?>
-
-	<?php if ( $this->data['newtalk'] ): ?>
-	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
 	<?php endif; ?>
 
 	<div id="content" class="mw-body">

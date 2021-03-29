@@ -218,7 +218,8 @@ sup {
 }
 #poncho-namespaces li {
 	background: #f9f9f9;
-	box-shadow: #aaa 1px 1px 1px;
+	border-right: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
 	display: inline-block;
 	padding: .5em;
 }
@@ -228,7 +229,8 @@ sup {
  */
 .mw-indicator {
 	background: #f9f9f9;
-	box-shadow: #aaa 1px 1px 1px;
+	border-right: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
 	float: right;
 	margin-left: .5em;
 	padding: .5em;
@@ -251,8 +253,12 @@ sup {
 }
 #contentSub,
 #contentSub2 {
+	margin: .5em 0;
+}
+#contentSub span,
+#contentSub2 span {
 	font-size: small;
-	margin-bottom: 1em;
+	margin-right: 1em;
 }
 
 /**
