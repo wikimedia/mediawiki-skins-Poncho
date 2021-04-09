@@ -8,6 +8,7 @@ var Poncho = {
     init: function () {
         Poncho.bind();
         Poncho.ring();
+        jQuery( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
     },
 
     /**
@@ -15,6 +16,25 @@ var Poncho = {
      */
     bind: function () {
         jQuery( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications ); 
+        jQuery( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions ); 
+    },
+
+    /**
+     * Suggest pages while searching
+     */
+    searchSuggestions: function () {
+        jQuery( '#poncho-search-suggestions' ).empty();
+        var query = jQuery( this ).val();
+    	new mw.Api().get( {
+            action: 'opensearch',
+            search: query
+        } ).done( function ( data ) {
+            var suggestions = data.slice( 1, 2 )[0];
+            suggestions.forEach( function ( suggestion ) {
+                suggestion = jQuery( '<option>' ).val( suggestion );
+                jQuery( '#poncho-search-suggestions' ).append( suggestion );
+            } );
+        } );
     },
 
     /**
@@ -22,10 +42,10 @@ var Poncho = {
      * Also unmark the bell icon
      */
     readNotifications: function () {
-    	new mw.Api().postWithEditToken({
-    		'action': 'echomarkread',
-    		'all': true,
-    	});
+    	new mw.Api().postWithEditToken( {
+    		action: 'echomarkread',
+    		all: true,
+    	} );
         jQuery( '#poncho-bell-icon' ).parent().removeClass( 'active' );
     },
 
@@ -40,6 +60,6 @@ var Poncho = {
     }
 };
 
-mw.loader.using([
+mw.loader.using( [
 	'mediawiki.api',
 ], Poncho.init );

@@ -91,6 +91,9 @@ sup {
 	padding: .5em;
 	max-width: 600px;
 }
+#poncho-search-suggestions {
+	display: none;
+}
 
 /**
  * Header menus

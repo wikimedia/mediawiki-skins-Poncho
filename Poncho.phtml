@@ -59,6 +59,7 @@
 		</div><div id="poncho-search-form-wrapper">
 
 			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>"><?php $this->searchInput(); ?></form>
+			<datalist id="poncho-search-suggestions"></datalist>
 
 		</div>
 	</div>
@@ -71,7 +72,7 @@
 	<?php endif; ?>
 
 	<?php if ( $this->getNamespaces() ): ?>
-	<ul id="poncho-namespaces"><?php foreach ( $this->getNamespaces() as $key => $value ) echo $this->makeListItem( $key, $value ); ?></ul>
+	<ul id="poncho-namespaces"><?php foreach ( $this->getNamespaces() as $k => $v ) echo $this->makeListItem( $k, $v ); ?></ul>
 	<?php endif; ?>
 
 	<?php if ( $this->data['sitenotice'] ): ?>
@@ -96,13 +97,9 @@
 
 	<div id="content" class="mw-body">
 		<div id="bodyContent" class="mw-body-content">
-
 			<?php $this->html( 'bodytext' ); ?>
-
 			<?php $this->html( 'dataAfterContent' ); ?>
-
 			<?php $this->html( 'catlinks' ); ?>
-
 		</div>
 	</div>
 
