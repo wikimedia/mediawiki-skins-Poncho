@@ -72,11 +72,6 @@ class PonchoTemplate extends BaseTemplate {
 		$namespaces = [];
 		if ( count( $this->data['content_navigation']['namespaces'] ) > 1 ) {
 			$namespaces = $this->data['content_navigation']['namespaces'];
-			if ( $this->getSkin()->getTitle()->isTalkPage() ) {
-				array_pop( $namespaces );
-			} else {
-				array_shift( $namespaces );
-			}
 		}
 		return $namespaces;
 	}
