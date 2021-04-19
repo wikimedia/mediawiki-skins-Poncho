@@ -481,15 +481,15 @@ sup {
  * Galleries come with their own styling,
  * these are overrides to make the galleries fit with the overall style of the skin
  */
-.gallery {
-	margin: 0 !important;
+#mw-content-text .gallery {
+	margin: 1em 0;
 }
-.gallerytext {
+#mw-content-text .gallerytext {
 	font-size: small;
 	margin: .5em;
 	padding: 0;
 }
-.gallerytext p {
+#mw-content-text .gallerytext p {
 	margin: 0;
 }
 
