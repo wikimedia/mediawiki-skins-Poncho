@@ -387,7 +387,7 @@ sup {
 #toc {
 	background: #f8f9fa;
 	border: 1px solid #a2a9b1;
-	display: inline-block;
+	display: table;
 	padding: 1em;
 }
 #toc .toctoggle {
