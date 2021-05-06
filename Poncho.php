@@ -105,7 +105,7 @@ class PonchoTemplate extends BaseTemplate {
 	function getNotifications() {
 		$notifications = [];
 		$user = $this->getSkin()->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			global $wgRequest;
 			$params = new DerivativeRequest(
 				$wgRequest,
