@@ -222,11 +222,15 @@ sup {
  */
 #poncho-buttons {
 	float: right;
+  margin-bottom: 1em;
 }
 
 /**
  * Indicators
  */
+.mw-indicators {
+  margin-bottom: 1em;
+}
 .mw-indicator {
 	background: #f8f9fa;
 	border: 1px solid #a2a9b1;
@@ -249,6 +253,9 @@ sup {
 #siteSub {
 	display: none;
 	font-style: italic;
+}
+#contentSub {
+  margin-bottom: 1em;
 }
 #contentSub span,
 #contentSub2 span {
