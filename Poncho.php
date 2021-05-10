@@ -17,10 +17,56 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the search bar
 	 */
 	function searchInput() {
-		echo new MediaWiki\Widget\SearchInputWidget([
+		echo new MediaWiki\Widget\SearchInputWidget( [
 			'name' => 'search',
 			'placeholder' => wfMessage( 'search' )
-		]);
+		] );
+	}
+
+	/**
+	 * Print the edit button
+	 */
+	function editButton() {
+		$title = $this->getSkin()->getTitle();
+		if ( $title->isSpecialPage() ) {
+			return;
+		}
+		global $mediaWiki;
+		$action = $mediaWiki->getAction();
+		if ( $action === 'edit' || $action === 've-edit' ) {
+			return;
+		}
+		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
+			$button = $this->data['content_navigation']['views']['ve-edit'];
+		} else if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
+			$button = $this->data['content_navigation']['views']['edit'];
+		}
+		if ( isset( $button ) ) {
+			echo new OOUI\ButtonWidget( [
+				'label' => $button['text'],
+				'href' => $button['href'],
+				'flags' => ['primary', 'progressive'],
+				'id' => 'poncho-edit-button'
+			] );
+		}
+	}
+
+	/**
+	 * Print the talk button
+	 */
+	function talkButton() {
+		$title = $this->getSkin()->getTitle();
+		if ( $title->isSpecialPage() ) {
+			return;
+		}
+		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
+		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
+		echo new OOUI\ButtonWidget( [
+		    'label' => $button['text'],
+		    'href' => $button['href'],
+		    'flags' => $button['class'] === 'new' ? 'destructive' : 'progressive',
+		    'id' => 'poncho-talk-button'
+		] );
 	}
 
 	/**
@@ -66,17 +112,6 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Get the namespaces
-	 */
-	function getNamespaces() {
-		$namespaces = [];
-		if ( count( $this->data['content_navigation']['namespaces'] ) > 1 ) {
-			$namespaces = $this->data['content_navigation']['namespaces'];
-		}
-		return $namespaces;
-	}
-
-	/**
 	 * Get the actions
 	 */
 	function getActions() {
@@ -85,7 +120,6 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['content_navigation']['actions'],
 			$this->data['content_navigation']['variants']
 		);
-		unset( $actions[ 'view' ] ); // Remove the view action per useless
 		return $actions;
 	}
 

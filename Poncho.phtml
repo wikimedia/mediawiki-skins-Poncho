@@ -67,12 +67,13 @@
 
 <div id="poncho-content-wrapper">
 
+	<div id="poncho-buttons">
+	<?php $this->editButton(); ?>
+	<?php $this->talkButton(); ?>
+	</div>
+
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
-	<?php endif; ?>
-
-	<?php if ( $this->getNamespaces() ): ?>
-	<ul id="poncho-namespaces"><?php foreach ( $this->getNamespaces() as $k => $v ) echo $this->makeListItem( $k, $v ); ?></ul>
 	<?php endif; ?>
 
 	<?php if ( $this->data['sitenotice'] ): ?>

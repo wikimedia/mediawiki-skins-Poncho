@@ -218,19 +218,10 @@ sup {
 }
 
 /**
- * Namespaces
+ * Edit and Talk buttons
  */
-#poncho-namespaces {
+#poncho-buttons {
 	float: right;
-	margin: 0;
-	padding: 0;
-}
-#poncho-namespaces li {
-	background: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	display: inline-block;
-	margin: 0 0 .5em .5em;
-	padding: .5em;
 }
 
 /**
@@ -239,8 +230,8 @@ sup {
 .mw-indicator {
 	background: #f8f9fa;
 	border: 1px solid #a2a9b1;
-	float: right;
-	margin-left: .5em;
+	display: inline-block;
+	margin-right: .5em;
 	padding: .5em;
 }
 .mw-indicator a,
@@ -379,6 +370,9 @@ sup {
 }
 .searchresults {
 	margin: 1em 0;
+}
+#wpTextbox1 {
+	box-sizing: border-box;
 }
 
 /**
