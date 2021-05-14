@@ -364,6 +364,9 @@ sup {
 	background: none;
 	padding: 0;
 }
+.patrollink {
+	margin: 1em 0;
+}
 .mw-editsection {
 	font-size: small;
 	font-weight: normal;
