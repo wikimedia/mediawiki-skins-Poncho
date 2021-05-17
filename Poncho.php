@@ -162,7 +162,7 @@ class PonchoTemplate extends BaseTemplate {
 				}
 				$content = $item['*'];
 				$id = "notification-$key";
-				$text = strip_tags( $content['header'] );
+				$text = htmlspecialchars_decode( strip_tags( $content['header'] ), ENT_QUOTES );
 				$href = $content['links']['primary']['url'] ?? null;
 				$active = array_key_exists( 'read', $item ) ? false : true;
 				$link = [

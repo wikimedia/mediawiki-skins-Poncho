@@ -38,8 +38,7 @@ var Poncho = {
     },
 
     /**
-     * Mark all notifications of the current user as read
-     * Also unmark the bell icon
+     * Mark all notifications of the current user as read and unmark the bell icon
      */
     readNotifications: function () {
     	new mw.Api().postWithEditToken( {
