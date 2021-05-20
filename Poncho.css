@@ -425,27 +425,6 @@ sup {
 }
 
 /**
- * User preferences
- */
-#preftoc {
-	margin: 0 !important;
-	padding: 0;
-}
-#preftoc li {
-	border: 1px solid #a2a9b1;
-	border-bottom: none;
-	display: inline;
-	margin-right: .5em;
-	padding: 1em;
-}
-#preftoc a:visited {
-	color: #00e;
-}
-#preftoc .selected a {
-	color: inherit;
-}
-
-/**
  * Thumbnails
  */
 .thumb {
