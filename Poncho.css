@@ -222,14 +222,14 @@ sup {
  */
 #poncho-buttons {
 	float: right;
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 
 /**
  * Indicators
  */
 .mw-indicators {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 .mw-indicator {
 	background: #f8f9fa;
@@ -255,7 +255,7 @@ sup {
 	font-style: italic;
 }
 #contentSub {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 #contentSub span,
 #contentSub2 span {
