@@ -321,6 +321,7 @@ sup {
 .wikitable {
 	background: #f8f9fa;
 	border-collapse: collapse;
+	margin: 1em 0;
 }
 .wikitable th,
 .wikitable td {
