@@ -1,7 +1,6 @@
 <?php
 
 class SkinPoncho extends SkinTemplate {
-
 	// @var string Needed for 1.35 support. This property and entire class can be removed in 1.36
 	public $template = 'PonchoTemplate';
 }
@@ -38,14 +37,14 @@ class PonchoTemplate extends BaseTemplate {
 		}
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['ve-edit'];
-		} else if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
+		} elseif ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['edit'];
 		}
 		if ( isset( $button ) ) {
 			echo new OOUI\ButtonWidget( [
 				'label' => $button['text'],
 				'href' => $button['href'],
-				'flags' => ['primary', 'progressive'],
+				'flags' => [ 'primary', 'progressive' ],
 				'id' => 'poncho-edit-button'
 			] );
 		}
@@ -127,7 +126,7 @@ class PonchoTemplate extends BaseTemplate {
 	 * Return the page tools for the footer
 	 */
 	function getTools() {
-		return $this->get('sidebar')['TOOLBOX'];
+		return $this->get( 'sidebar' )['TOOLBOX'];
 	}
 
 	/**
@@ -157,7 +156,7 @@ class PonchoTemplate extends BaseTemplate {
 			$list = $data['query']['notifications']['list'];
 			$list = array_reverse( $list );
 			foreach ( $list as $key => $item ) {
-				if ( ! is_int( $key ) ) {
+				if ( !is_int( $key ) ) {
 					continue;
 				}
 				$content = $item['*'];
@@ -176,10 +175,10 @@ class PonchoTemplate extends BaseTemplate {
 					'class' => $href ? 'link' : 'text',
 					'active' => $active,
 				];
-				$notifications[ $id ] = $notification;
+				$notifications[$id] = $notification;
 			}
 		}
-		if ( ! $notifications ) {
+		if ( !$notifications ) {
 			$notifications[] = [
 				'id' => 'notification-0',
 				'text' => wfMessage( 'echo-none' ),
