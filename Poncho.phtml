@@ -43,7 +43,7 @@
 						<?php foreach ( $this->getMainMenu() as $key => $value ): ?>
 							<?php if ( $key === 'navigation' ): ?>
 								<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
-							<?php else: ?>
+							<?php elseif ( is_array( $value ) ): ?>
 								<li class="poncho-submenu-item">
 									<span class="poncho-submenu-span"><?php echo $key; ?></span>
 									<ul class="poncho-submenu">
