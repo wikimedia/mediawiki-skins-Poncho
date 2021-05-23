@@ -2,13 +2,13 @@
 
 <div id="poncho-header-wrapper">
 	<div id="poncho-header">
-		<div id="poncho-logo-wrapper">
+		<div id="poncho-logo-wrapper" role="banner">
 
 			<a id="poncho-logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
 
 		</div><div id="poncho-menu-wrapper">
 
-			<ul id="poncho-menu">
+			<ul id="poncho-menu" role="navigation">
 				<?php if ( $this->getActions() ): ?>
 				<li class="poncho-menu-item">
 					<div class="poncho-menu-icon" id="poncho-edit-icon"></div>
@@ -55,12 +55,13 @@
 					</ul>
 				</li>
 			</ul>
+		</div>
 
-		</div><div id="poncho-search-form-wrapper">
-
-			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>"><?php $this->searchInput(); ?></form>
+		<div id="poncho-search-form-wrapper" role="search">
+			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
+				<?php $this->searchInput(); ?>
+			</form>
 			<datalist id="poncho-search-suggestions"></datalist>
-
 		</div>
 	</div>
 </div>
@@ -96,7 +97,7 @@
 	<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
 	<?php endif; ?>
 
-	<div id="content" class="mw-body">
+	<div id="content" class="mw-body" role="main">
 		<div id="bodyContent" class="mw-body-content">
 			<?php $this->html( 'bodytext' ); ?>
 			<?php $this->html( 'dataAfterContent' ); ?>
