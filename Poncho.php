@@ -26,13 +26,9 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the edit button
 	 */
 	function editButton() {
-		$title = $this->getSkin()->getTitle();
-		if ( $title->isSpecialPage() ) {
-			return;
-		}
 		global $mediaWiki;
 		$action = $mediaWiki->getAction();
-		if ( $action === 'edit' || $action === 've-edit' ) {
+		if ( $action === 'edit' ) {
 			return;
 		}
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {

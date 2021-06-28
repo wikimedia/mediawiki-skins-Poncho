@@ -8,6 +8,8 @@ var Poncho = {
 	init: function () {
 		Poncho.bind();
 		Poncho.ring();
+		mw.hook( 've.activationComplete' ).add( function () { $( '#poncho-edit-button' ).hide(); } );
+		mw.hook( 've.deactivationComplete' ).add( function () { $( '#poncho-edit-button' ).show(); } );
 		jQuery( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
 	},
 

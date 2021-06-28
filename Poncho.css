@@ -463,8 +463,8 @@ sup {
 /**
  * Galleries
  * 
- * Galleries come with their own styling,
- * these are overrides to make the galleries fit with the overall style of the skin
+ * Galleries come with their own styling
+ * these are overrides to fit them with the overall style of the skin
  */
 #mw-content-text .gallery {
 	margin: 1em 0;
@@ -476,6 +476,9 @@ sup {
 }
 #mw-content-text .gallerytext p {
 	margin: 0;
+}
+#mw-content-text .mw-gallery-slideshow-img-container img {
+	margin: auto;
 }
 
 /**
