@@ -23,7 +23,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the edit button
+	 * Print the edit button or buttons
 	 */
 	function editButton() {
 		global $mediaWiki;
@@ -33,15 +33,20 @@ class PonchoTemplate extends BaseTemplate {
 		}
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['ve-edit'];
-		} elseif ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
-			$button = $this->data['content_navigation']['views']['edit'];
-		}
-		if ( isset( $button ) ) {
 			echo new OOUI\ButtonWidget( [
 				'label' => $button['text'],
 				'href' => $button['href'],
 				'flags' => [ 'primary', 'progressive' ],
-				'id' => 'poncho-edit-button'
+				'id' => 'poncho-visual-edit-button'
+			] );
+		}
+		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
+			$button = $this->data['content_navigation']['views']['edit'];
+			echo new OOUI\ButtonWidget( [
+				'label' => $button['text'],
+				'href' => $button['href'],
+				'flags' => [ 'primary', 'progressive' ],
+				'id' => 'poncho-edit-source-button'
 			] );
 		}
 	}
