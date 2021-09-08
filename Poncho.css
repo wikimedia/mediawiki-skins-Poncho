@@ -316,6 +316,15 @@ sup {
 }
 
 /**
+ * Overrides for Extension:CodeMirror
+ */
+.CodeMirror pre {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/**
  * Wikitables
  */
 .wikitable {
