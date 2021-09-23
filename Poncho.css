@@ -280,6 +280,12 @@ sup {
 #contentSub .mw-contributions-user-tools .mw-changeslist-links {
 	display: inline;
 }
+#contentSub .subpages {
+	display: none;
+}
+.poncho-title-dash {
+	margin: 0 .5em;
+}
 
 /**
  * Content
