@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
+// Class needed for 1.35 support, can be removed in 1.36
 class SkinPoncho extends SkinTemplate {
-	// @var string Needed for 1.35 support. This property and entire class can be removed in 1.36
 	public $template = 'PonchoTemplate';
 }
 
@@ -79,6 +81,26 @@ class PonchoTemplate extends BaseTemplate {
 		$attributes['style'] = 'background-image: url("' . ( $wgPonchoLogo === false ? $wgLogo : $wgPonchoLogo ) . '");';
 		$attributes = Xml::expandAttributes( $attributes );
 		echo $attributes;
+	}
+
+	/**
+	 * Print the title
+	 */
+	function title() {
+		$Title = $this->getSkin()->getTitle();
+		if ( $Title->isSubpage() ) {
+			$title = $Title->getSubpageText();
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			while ( $Title->isSubpage() ) {
+				$Title = $Title->getBaseTitle();
+				$text = $Title->getSubpageText();
+				$link = $linkRenderer->makeLink( $Title, $text );
+				$title = $link . '<span class="poncho-title-dash">/</span>' . $title;
+			}
+			echo $title;
+		} else {
+			echo $this->html( 'title' );
+		}
 	}
 
 	/**
