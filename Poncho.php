@@ -93,7 +93,11 @@ class PonchoTemplate extends BaseTemplate {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			while ( $Title->isSubpage() ) {
 				$Title = $Title->getBaseTitle();
-				$text = $Title->getSubpageText();
+				if ( $Title->isSubpage() ) {
+					$text = $Title->getSubpageText();
+				} else {
+					$text = $Title->getFullText();
+				}
 				$link = $linkRenderer->makeLink( $Title, $text );
 				$title = $link . '<span class="poncho-title-dash">/</span>' . $title;
 			}
