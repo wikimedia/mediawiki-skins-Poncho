@@ -75,10 +75,17 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgLogo, $wgPonchoLogo;
+		global $wgPonchoLogo, $wgLogos, $wgLogo;
+		if ( !empty( $wgPonchoLogo ) ) {
+			$logo = $wgPonchoLogo;
+		} elseif ( !empty( $wgLogos['wordmark']['src'] ) ) {
+			$logo = $wgLogos['wordmark']['src'];
+		} else {
+			$logo = $wgLogo;
+		}
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$attributes['style'] = 'background-image: url("' . ( $wgPonchoLogo === false ? $wgLogo : $wgPonchoLogo ) . '");';
+		$attributes['style'] = 'background-image: url("' . $logo . '");';
 		$attributes = Xml::expandAttributes( $attributes );
 		echo $attributes;
 	}

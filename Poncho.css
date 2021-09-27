@@ -1,5 +1,5 @@
 /**
- * Color palette (copied from MediaWiki OOUI)
+ * Color palette (same as MediaWiki OOUI)
  *
  * Black: #202122
  * Dark grey: #a2a9b1
@@ -62,6 +62,10 @@ sup {
 	background: #f8f9fa;
 	border-bottom: 1px solid #a2a9b1;
 	padding: .5em 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 8;
 }
 #poncho-header {
 	background: inherit;
@@ -229,62 +233,34 @@ sup {
  * Indicators
  */
 .mw-indicators {
+	float: right;
 	margin-bottom: 1em;
 }
 .mw-indicator {
-	background: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	display: inline-block;
 	margin-right: .5em;
-	padding: .5em;
-}
-.mw-indicator a,
-.mw-indicator div {
-	background: none !important;
-	height: inherit !important;
-	line-height: inherit !important;
-	margin: 0 !important;
-	padding: 0 !important;
+	padding: 6px;
 }
 
 /**
- * Subtitles
+ * Title
  */
+#firstHeading .poncho-title-dash {
+	margin: 0 .5em;
+}
 #siteSub {
 	display: none;
 	font-style: italic;
 }
 #contentSub {
-	margin-bottom: 1em;
-}
-#contentSub span,
-#contentSub2 span {
-	background: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	display: inline-block;
-	margin-right: .5em;
-	padding: .5em;
-}
-#contentSub .mw-contributions-user-tools {
-	background: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	overflow: hidden;
-	padding: .5em;
-}
-#contentSub .mw-contributions-user-tools span {
-	background: none;
-	border: none;
-	margin: 0;
-	padding: 0;
-}
-#contentSub .mw-contributions-user-tools .mw-changeslist-links {
-	display: inline;
+	font-size: small;
+	margin: 1em 0;
 }
 #contentSub .subpages {
 	display: none;
 }
-.poncho-title-dash {
-	margin: 0 .5em;
+#contentSub2 {
+	font-size: small;
+	margin: 1em 0;
 }
 
 /**
@@ -292,6 +268,7 @@ sup {
  */
 #poncho-content-wrapper {
 	margin: 1em auto;
+	margin-top: 5em;
 	padding: 1em;
 	padding-bottom: 5em;
 	max-width: 1024px;
@@ -322,12 +299,22 @@ sup {
 }
 
 /**
- * Overrides for Extension:CodeMirror
+ * Extension:CodeMirror
  */
 .CodeMirror pre {
 	background: transparent !important;
 	border: none !important;
 	padding: 0 !important;
+}
+
+/**
+ * Extension:VisualEditor
+ */
+.ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
+	top: 61px !important;
+}
+.ve-ui-overlay-global {
+	z-index: 3 !important;
 }
 
 /**
@@ -528,44 +515,6 @@ sup {
 #catlinks li {
 	display: inline;
 	margin-left: 1em;
-}
-
-/**
- * Footer
- */
-#poncho-footer-wrapper {
-	background: #f8f9fa;
-	border-top: 1px solid #a2a9b1;
-	clear: both;
-	padding: 1em;
-}
-#poncho-footer {
-	margin: auto;
-	max-width: 1024px;
-	overflow: hidden;
-}
-#poncho-footer ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-#poncho-footer li {
-	line-height: 1.5;
-	margin: .7em 0;
-}
-#poncho-footer .mw-footer {
-	max-width: 640px;
-}
-#poncho-footer .footer-places {
-	list-style: none;
-	padding: 0;
-}
-#poncho-footer .footer-icons {
-	display: none;
-}
-#poncho-footer .external {
-	background: none;
-	padding: 0;
 }
 
 /**
