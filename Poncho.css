@@ -307,6 +307,9 @@ sup {
 	border: none !important;
 	padding: 0 !important;
 }
+.wikiEditor-ui-toolbar {
+	z-index: 3;
+}
 
 /**
  * Extension:VisualEditor
