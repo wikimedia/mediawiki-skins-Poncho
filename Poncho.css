@@ -237,6 +237,7 @@ sup {
 	margin-bottom: 1em;
 }
 .mw-indicator {
+	display: inline-block;
 	margin-right: .5em;
 	padding: 6px;
 }
