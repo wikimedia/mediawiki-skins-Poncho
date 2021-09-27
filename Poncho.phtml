@@ -68,7 +68,9 @@
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-buttons"><?php $this->editButton(); $this->talkButton(); ?></div>
+	<div id="poncho-buttons">
+	<?php $this->editButton(); $this->talkButton(); ?>
+	</div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
@@ -82,13 +84,13 @@
 	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
 	<?php endif; ?>
 
-	<?php if ( $this->data['subtitle'] ): ?>
-	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
-	<?php endif; ?>
-
 	<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>
 
 	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
+
+	<?php if ( $this->data['subtitle'] ): ?>
+	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
+	<?php endif; ?>
 
 	<?php if ( $this->data['undelete'] ): ?>
 	<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
@@ -104,12 +106,6 @@
 
 	<?php $this->html( 'debughtml' ); ?>
 
-</div>
-
-<div id="poncho-footer-wrapper">
-	<div id="poncho-footer">
-		<?php echo $this->getFooter(); ?>
-	</div>
 </div>
 
 <?php $this->printTrail(); ?>
