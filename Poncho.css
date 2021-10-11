@@ -27,21 +27,25 @@ h1 {
 	font-size: 2em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
+	scroll-padding-top: 3em;
 }
 h2 {
 	font-size: 1.6em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
+	scroll-padding-top: 3em;
 }
 h3 {
 	font-size: 1.2em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
+	scroll-padding-top: 3em;
 }
 h4, h5, h6 {
 	font-size: 1em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
+	scroll-padding-top: 3em;
 }
 pre {
 	overflow: hidden;
@@ -387,6 +391,9 @@ sup {
 }
 .searchresults {
 	margin: 1em 0;
+}
+.mw-headline {
+	scroll-margin-top: 3em;
 }
 #wpTextbox1 {
 	box-sizing: border-box;
