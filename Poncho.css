@@ -24,19 +24,19 @@ a:hover {
 	text-decoration: underline;
 }
 h1 {
-	font-size: 2em;
+	font-size: 2.5em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
 	scroll-padding-top: 80px;
 }
 h2 {
-	font-size: 1.6em;
+	font-size: 2em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
 	scroll-padding-top: 80px;
 }
 h3 {
-	font-size: 1.2em;
+	font-size: 1.5em;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
 	scroll-padding-top: 80px;
@@ -409,8 +409,8 @@ sup {
 	margin: 1em 0;
 	padding: 1em;
 }
-#toc .toctoggle {
-	display: none; /* Hide it because it cannot be styled like the Edit section button */
+#toc .toctitle {
+	display: none;
 }
 #toc .tocnumber {
 	color: black;
