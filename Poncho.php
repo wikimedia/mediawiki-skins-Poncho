@@ -44,10 +44,11 @@ class PonchoTemplate extends BaseTemplate {
 		}
 		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['edit'];
+			$visual = array_key_exists( 've-edit', $this->data['content_navigation']['views'] );
 			echo new OOUI\ButtonWidget( [
 				'label' => $button['text'],
 				'href' => $button['href'],
-				'flags' => [ 'primary', 'progressive' ],
+				'flags' => $visual ? null : [ 'primary', 'progressive' ],
 				'id' => 'poncho-edit-source-button'
 			] );
 		}
