@@ -28,8 +28,7 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the edit button or buttons
 	 */
 	function editButton() {
-		global $mediaWiki;
-		$action = $mediaWiki->getAction();
+		$action = Action::getActionName( $this->getSkin()->getContext() );
 		if ( $action === 'edit' ) {
 			return;
 		}
