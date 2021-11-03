@@ -61,13 +61,15 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $title->isSpecialPage() ) {
 			return;
 		}
+		if ( $title->isTalkPage() ) {
+			return;
+		}
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
 		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
 		    'label' => $button['text'],
 		    'href' => $button['href'],
-		    'flags' => $button['class'] === 'new' ? 'destructive' : 'progressive',
-		    'id' => 'poncho-talk-button'
+		    'flags' => $button['class'] === 'new' ? 'destructive' : 'progressive'
 		] );
 	}
 

@@ -23,40 +23,40 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-h1 {
-	font-size: 2.5em;
-	margin: 1.5em 0 .5em 0;
+h1, h2, h3, h4, h5, h6 {
+	break-after: avoid;
+	margin: 1em 0 .5em 0;
 	overflow: hidden;
 	scroll-padding-top: 80px;
+}
+h1 {
+	font-size: 2.5em;
 }
 h2 {
 	font-size: 2em;
-	margin: 1em 0 .5em 0;
-	overflow: hidden;
-	scroll-padding-top: 80px;
 }
 h3 {
 	font-size: 1.5em;
-	margin: 1em 0 .5em 0;
-	overflow: hidden;
-	scroll-padding-top: 80px;
 }
 h4, h5, h6 {
 	font-size: 1em;
-	margin: 1em 0 .5em 0;
-	overflow: hidden;
-	scroll-padding-top: 80px;
-}
-pre {
-	overflow: hidden;
-	white-space: pre-wrap;
 }
 fieldset {
 	border: 1px solid #a2a9b1;
 	margin: 1em 0;
 }
+img {
+    break-inside: avoid;
+}
+pre {
+	overflow: hidden;
+	white-space: pre-wrap;
+}
 sup {
 	line-height: 1em;
+}
+table {
+	break-inside: avoid;
 }
 
 /**
@@ -226,9 +226,9 @@ sup {
 }
 
 /**
- * Edit and Talk buttons
+ * Edit button
  */
-#poncho-buttons {
+#poncho-edit-button {
 	float: right;
 	margin-bottom: 1em;
 }
@@ -304,28 +304,6 @@ sup {
 }
 
 /**
- * Extension:CodeMirror
- */
-.CodeMirror pre {
-	background: transparent !important;
-	border: none !important;
-	padding: 0 !important;
-}
-
-/**
- * Extension:VisualEditor
- */
-.ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
-	top: 61px !important;
-}
-.ve-ui-overlay-global {
-	z-index: 8 !important;
-}
-.oo-ui-dialog {
-	z-index: 8 !important;
-}
-
-/**
  * Wikitables
  */
 .wikitable {
@@ -342,6 +320,9 @@ sup {
 /**
  * Misc
  */
+#wpTextbox1 {
+	box-sizing: border-box;
+}
 .new,
 .new a {
 	color: #a55858;
@@ -395,8 +376,8 @@ sup {
 .mw-headline {
 	scroll-margin-top: 80px;
 }
-#wpTextbox1 {
-	box-sizing: border-box;
+.oo-ui-dialog {
+	z-index: 8 !important;
 }
 
 /**
@@ -457,6 +438,7 @@ sup {
 }
 .thumb.tnone {
 	display: inline-block;
+	margin: 1em 1em 1em 0;
 }
 .thumb .thumbinner {
 	margin: 1em;
@@ -529,6 +511,25 @@ sup {
 }
 
 /**
+ * Extension:VisualEditor
+ */
+.ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
+	top: 61px !important;
+}
+.ve-ui-overlay-global {
+	z-index: 8 !important;
+}
+
+/**
+ * Extension:CodeMirror
+ */
+.CodeMirror pre {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/**
  * Mobile version
  */
 @media (max-width: 640px) {
@@ -544,20 +545,28 @@ sup {
 /**
  * Printable version
  */
-.printonly {
-	display: none;
-}
 @media print {
 	#poncho-header-wrapper,
 	#poncho-footer-wrapper,
-	#poncho-buttons,
+	#poncho-edit-button,
+	#poncho-talk-button,
+	#contentSub,
+	#contentSub2,
+	#siteNotice,
+	#catlinks,
 	#toc,
+	.usermessage,
 	.mw-indicators,
 	.mw-editsection,
 	.noprint {
 		display: none;
 	}
+	a {
+		color: black;
+	}
+}
+@media not print {
 	.printonly {
-		display: initial;
+		display: none;
 	}
 }

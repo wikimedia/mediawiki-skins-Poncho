@@ -1,7 +1,7 @@
 {
 	"manifest_version": 1,
 	"name": "Poncho",
-	"version": "3.6",
+	"version": "3.7",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
