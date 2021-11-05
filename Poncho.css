@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 	scroll-padding-top: 80px;
 }
 h1 {
+	break-before: always;
 	font-size: 2.5em;
 }
 h2 {
@@ -554,7 +555,6 @@ table {
 	#contentSub2,
 	#siteNotice,
 	#catlinks,
-	#toc,
 	.usermessage,
 	.mw-indicators,
 	.mw-editsection,
@@ -562,7 +562,10 @@ table {
 		display: none;
 	}
 	a {
-		color: black;
+		color: inherit;
+	}
+	.thumb {
+		background: transparent;
 	}
 }
 @media not print {
