@@ -56,7 +56,7 @@ pre {
 sup {
 	line-height: 1em;
 }
-table {
+tr {
 	break-inside: avoid;
 }
 
@@ -227,9 +227,9 @@ table {
 }
 
 /**
- * Edit button
+ * Edit and Talk buttons
  */
-#poncho-edit-button {
+#poncho-buttons {
 	float: right;
 	margin-bottom: 1em;
 }
@@ -250,6 +250,9 @@ table {
 /**
  * Title
  */
+#firstHeading {
+	margin-top: 1.5em;
+}
 #firstHeading .poncho-title-dash {
 	margin: 0 .5em;
 }
@@ -531,6 +534,13 @@ table {
 }
 
 /**
+ * Extension:SemanticMediaWiki
+ */
+#mw-indicator-smw-entity-examiner {
+	display: none;
+}
+
+/**
  * Mobile version
  */
 @media (max-width: 640px) {
@@ -549,8 +559,7 @@ table {
 @media print {
 	#poncho-header-wrapper,
 	#poncho-footer-wrapper,
-	#poncho-edit-button,
-	#poncho-talk-button,
+	#poncho-buttons,
 	#contentSub,
 	#contentSub2,
 	#siteNotice,
@@ -563,9 +572,15 @@ table {
 	}
 	a {
 		color: inherit;
+		text-decoration: underline;
 	}
-	.thumb {
+	.toc,
+	.thumb,
+	.wikitable {
 		background: transparent;
+	}
+	h1 {
+		display: block !important; /* Overrides Extension:NoTitle */
 	}
 }
 @media not print {

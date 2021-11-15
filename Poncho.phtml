@@ -68,7 +68,7 @@
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-edit-button"><?php $this->editButton(); ?></div>
+	<div id="poncho-buttons"><?php $this->editButton(); ?><?php $this->talkButton(); ?></div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
@@ -101,8 +101,6 @@
 			<?php $this->html( 'catlinks' ); ?>
 		</div>
 	</div>
-
-	<div id="poncho-talk-button"><?php $this->talkButton(); ?></div>
 
 	<?php $this->html( 'debughtml' ); ?>
 

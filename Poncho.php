@@ -29,7 +29,7 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function editButton() {
 		$action = Action::getActionName( $this->getSkin()->getContext() );
-		if ( $action === 'edit' ) {
+		if ( $action !== 'view' ) {
 			return;
 		}
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
@@ -61,11 +61,8 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $title->isSpecialPage() ) {
 			return;
 		}
-		if ( $title->isTalkPage() ) {
-			return;
-		}
 		$action = Action::getActionName( $this->getSkin()->getContext() );
-		if ( $action !== 'read' ) {
+		if ( $action !== 'view' ) {
 			return;
 		}
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
