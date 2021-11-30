@@ -5,5 +5,6 @@
 			"Sophivorus"
 		]
 	},
-	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}"
+	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}",
+	"poncho-print": "Label for the button to print or download as PDF the current page"
 }

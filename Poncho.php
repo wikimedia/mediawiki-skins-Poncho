@@ -25,7 +25,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the edit button or buttons
+	 * Print the Edit button or buttons
 	 */
 	function editButton() {
 		$action = Action::getActionName( $this->getSkin()->getContext() );
@@ -54,7 +54,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the talk button
+	 * Print the Talk button
 	 */
 	function talkButton() {
 		$title = $this->getSkin()->getTitle();
@@ -71,6 +71,28 @@ class PonchoTemplate extends BaseTemplate {
 		    'label' => $button['text'],
 		    'href' => $button['href'],
 		    'flags' => $button['class'] === 'new' ? 'destructive' : 'progressive'
+		] );
+	}
+
+	/**
+	 * Print the Print button
+	 */
+	function printButton() {
+		global $wgPonchoPrintButton;
+		if ( ! $wgPonchoPrintButton ) {
+			return;
+		}
+		$title = $this->getSkin()->getTitle();
+		if ( $title->isSpecialPage() ) {
+			return;
+		}
+		$action = Action::getActionName( $this->getSkin()->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+		    'label' => wfMessage( 'poncho-print' )->plain(),
+		    'href' => '#print'
 		] );
 	}
 

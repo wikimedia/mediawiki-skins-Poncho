@@ -24,13 +24,13 @@ a:hover {
 	text-decoration: underline;
 }
 h1, h2, h3, h4, h5, h6 {
-	break-after: avoid;
+	page-break-after: avoid;
 	margin: 1em 0 .5em 0;
 	overflow: hidden;
 	scroll-padding-top: 80px;
 }
 h1 {
-	break-before: always;
+	page-break-before: always;
 	font-size: 2.5em;
 }
 h2 {
@@ -47,7 +47,7 @@ fieldset {
 	margin: 1em 0;
 }
 img {
-    break-inside: avoid;
+    page-break-inside: avoid;
 }
 pre {
 	overflow: hidden;
@@ -57,7 +57,7 @@ sup {
 	line-height: 1em;
 }
 tr {
-	break-inside: avoid;
+	page-break-inside: avoid;
 }
 
 /**
@@ -468,6 +468,9 @@ tr {
 #mw-content-text .gallery {
 	margin: 1em 0;
 }
+#mw-content-text .gallery .thumb {
+	margin: 0 0 .5em 0;
+}
 #mw-content-text .gallerytext {
 	font-size: small;
 	margin: .5em;
@@ -578,9 +581,6 @@ tr {
 	.thumb,
 	.wikitable {
 		background: transparent;
-	}
-	h1 {
-		display: block !important; /* Overrides Extension:NoTitle */
 	}
 }
 @media not print {

@@ -68,7 +68,7 @@
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-buttons"><?php $this->editButton(); ?><?php $this->talkButton(); ?></div>
+	<div id="poncho-buttons"><?php $this->editButton(); $this->printButton(); $this->talkButton(); ?></div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>

@@ -11,6 +11,9 @@ var Poncho = {
 		mw.hook( 've.activationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).hide(); } );
 		mw.hook( 've.deactivationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).show(); } );
 		jQuery( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
+		if ( window.location.hash === '#print' ) {
+			window.print();
+		}
 	},
 
 	/**
@@ -19,6 +22,9 @@ var Poncho = {
 	bind: function () {
 		jQuery( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications );
 		jQuery( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
+		$( 'a[href="#print"]' ).click( function () {
+			window.print();
+		} );
 	},
 
 	/**
