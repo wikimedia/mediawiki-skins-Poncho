@@ -83,7 +83,7 @@ class PonchoTemplate extends BaseTemplate {
 			return;
 		}
 		$title = $this->getSkin()->getTitle();
-		if ( $title->isSpecialPage() ) {
+		if ( ! $title->isContentPage() ) {
 			return;
 		}
 		$action = Action::getActionName( $this->getSkin()->getContext() );
