@@ -70,7 +70,7 @@ class PonchoTemplate extends BaseTemplate {
 		echo new OOUI\ButtonWidget( [
 		    'label' => $button['text'],
 		    'href' => $button['href'],
-		    'flags' => $button['class'] === 'new' ? 'destructive' : 'progressive'
+		    'flags' => $button['class'] === 'new' ? 'destructive' : ''
 		] );
 	}
 
@@ -78,12 +78,9 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the Print button
 	 */
 	function printButton() {
-		global $wgPonchoPrintButton;
-		if ( ! $wgPonchoPrintButton ) {
-			return;
-		}
-		$title = $this->getSkin()->getTitle();
-		if ( ! $title->isContentPage() ) {
+		global $wgPonchoPrintButtonNamespaces;
+		$namespace = $this->getSkin()->getTitle()->getNamespace();
+		if ( ! in_array( $namespace, $wgPonchoPrintButtonNamespaces ) ) {
 			return;
 		}
 		$action = Action::getActionName( $this->getSkin()->getContext() );
