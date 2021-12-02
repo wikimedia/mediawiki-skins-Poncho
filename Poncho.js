@@ -1,4 +1,4 @@
-/* global mw, jQuery */
+/* global mw, $ */
 
 var Poncho = {
 
@@ -10,7 +10,7 @@ var Poncho = {
 		Poncho.ring();
 		mw.hook( 've.activationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).hide(); } );
 		mw.hook( 've.deactivationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).show(); } );
-		jQuery( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
+		$( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
 		if ( window.location.hash === '#print' ) {
 			window.print();
 		}
@@ -20,10 +20,25 @@ var Poncho = {
 	 * Bind events
 	 */
 	bind: function () {
-		jQuery( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications );
-		jQuery( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
+		$( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications );
+		$( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
 		$( 'a[href="#print"]' ).click( function () {
 			window.print();
+		} );
+
+		// Hack to detect clicks on #poncho-search-suggestions
+		// See https://stackoverflow.com/a/65073572/809356
+		var searchSuggestionSelected = false;
+		$( '#poncho-search-form input' ).keydown( function ( event ) {
+			searchSuggestionSelected = false;
+			if ( ! event.key ) {
+				searchSuggestionSelected = true;
+			}
+		} );
+		$( '#poncho-search-form input' ).change( function () {
+			if ( searchSuggestionSelected ) {
+				$( '#poncho-search-form' ).submit();
+			}
 		} );
 	},
 
@@ -31,16 +46,16 @@ var Poncho = {
 	 * Suggest pages while searching
 	 */
 	searchSuggestions: function () {
-		jQuery( '#poncho-search-suggestions' ).empty();
-		var query = jQuery( this ).val();
+		$( '#poncho-search-suggestions' ).empty();
+		var query = $( this ).val();
 		new mw.Api().get( {
 			action: 'opensearch',
 			search: query
 		} ).done( function ( data ) {
 			var suggestions = data.slice( 1, 2 )[0];
 			suggestions.forEach( function ( suggestion ) {
-				suggestion = jQuery( '<option>' ).val( suggestion );
-				jQuery( '#poncho-search-suggestions' ).append( suggestion );
+				suggestion = $( '<option>' ).val( suggestion );
+				$( '#poncho-search-suggestions' ).append( suggestion );
 			} );
 		} );
 	},
@@ -53,15 +68,15 @@ var Poncho = {
 			action: 'echomarkread',
 			all: true,
 		} );
-		jQuery( '#poncho-bell-icon' ).parent().removeClass( 'active' );
+		$( '#poncho-bell-icon' ).parent().removeClass( 'active' );
 	},
 
 	/**
 	 * Mark the bell icon if the current user has unread notifications
 	 */
 	ring: function () {
-		var notificationsItem = jQuery( '#poncho-bell-icon' ).parent();
-		if ( jQuery( 'li.active', notificationsItem ).length ) {
+		var notificationsItem = $( '#poncho-bell-icon' ).parent();
+		if ( $( 'li.active', notificationsItem ).length ) {
 			notificationsItem.addClass( 'active' );
 		}
 	}

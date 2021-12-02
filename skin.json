@@ -50,6 +50,6 @@
 	"config": {
 		"PonchoLogo": false,
 		"PonchoSitename": false,
-		"PonchoPrintButton": false
+		"PonchoPrintButtonNamespaces": []
 	}
 }

@@ -380,8 +380,9 @@ tr {
 .mw-headline {
 	scroll-margin-top: 80px;
 }
-.oo-ui-dialog {
-	z-index: 8 !important;
+.oo-ui-dialog,
+.oo-ui-widget {
+	z-index: 9 !important;
 }
 
 /**
