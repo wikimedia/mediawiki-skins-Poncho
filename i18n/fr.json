@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Gomoko",
 			"Wladek92"
 		]
 	},
-	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles."
+	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles.",
+	"poncho-print": "Imprimer"
 }

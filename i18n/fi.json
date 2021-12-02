@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"MITO",
 			"Pyscowicz",
 			"Surjection"
 		]
 	},
-	"poncho-desc": "Yksinkertainen, siisti, vastaanottavainen ja mobiiliystävällinen ulkoasu."
+	"poncho-desc": "Yksinkertainen, siisti, vastaanottavainen ja mobiiliystävällinen ulkoasu.",
+	"poncho-print": "Tulosta"
 }
