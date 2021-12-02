@@ -283,6 +283,7 @@ tr {
 	max-width: 1024px;
 }
 #content {
+	clear: both;
 	line-height: 1.5;
 	margin: 2em 0;
 	width: 100%;
@@ -381,7 +382,7 @@ tr {
 	scroll-margin-top: 80px;
 }
 .oo-ui-dialog,
-.oo-ui-widget {
+.oo-ui-selectWidget {
 	z-index: 9 !important;
 }
 
