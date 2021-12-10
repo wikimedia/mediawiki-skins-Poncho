@@ -260,6 +260,20 @@ class PonchoTemplate extends BaseTemplate {
 		return $userLinks['notifications-notice'];
 	}
 
+	function footer() {
+		$elements = [];
+		$links = $this->getFooterLinks();
+		$places = $links['places'];
+		foreach ( $places as $place ) {
+			$elements[] = $this->get( $place );
+		}
+		global $wgRightsText;
+		if ( $wgRightsText ) {
+			$elements[] = $this->getMsg( 'copyright', $wgRightsText );
+		}
+		echo implode( ' · ', $elements );
+	}
+
 	/**
 	 * Output the page
 	 */

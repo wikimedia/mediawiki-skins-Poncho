@@ -79,6 +79,21 @@ tr {
 }
 
 /**
+ * Footer
+ */
+#poncho-footer {
+	border-top: 1px solid #a2a9b1;
+	margin: auto;
+	margin-bottom: 3em;
+	max-width: 1024px;
+	text-align: center;
+	padding: 1em 0;
+}
+#poncho-footer a {
+	white-space: nowrap;
+}
+
+/**
  * Logo
  */
 #poncho-logo-wrapper {
