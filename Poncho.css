@@ -83,6 +83,7 @@ tr {
  */
 #poncho-footer {
 	border-top: 1px solid #a2a9b1;
+	clear: both;
 	margin: auto;
 	margin-bottom: 3em;
 	max-width: 1024px;
