@@ -61,6 +61,9 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $title->isSpecialPage() ) {
 			return;
 		}
+		if ( $title->isTalkPage() ) {
+			return;
+		}
 		$action = Action::getActionName( $this->getSkin()->getContext() );
 		if ( $action !== 'view' ) {
 			return;
@@ -117,9 +120,16 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function title() {
 		$Title = $this->getSkin()->getTitle();
-		if ( $Title->isSubpage() ) {
+		$title = $Title->getFullText();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		if ( $Title->isTalkPage() ) {
+			$talk = str_replace( '_', ' ', $Title->getNsText() );
+			$Title = $Title->getSubjectPage();
+			$text = $Title->getText();
+			$link = $linkRenderer->makeLink( $Title, $text );
+			$title = $talk . '<span class="poncho-title-colon">:</span>' . $link;
+		} else if ( $Title->isSubpage() ) {
 			$title = $Title->getSubpageText();
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			while ( $Title->isSubpage() ) {
 				$Title = $Title->getBaseTitle();
 				if ( $Title->isSubpage() ) {
@@ -130,10 +140,8 @@ class PonchoTemplate extends BaseTemplate {
 				$link = $linkRenderer->makeLink( $Title, $text );
 				$title = $link . '<span class="poncho-title-dash">/</span>' . $title;
 			}
-			echo $title;
-		} else {
-			echo $this->html( 'title' );
 		}
+		echo $title;
 	}
 
 	/**
