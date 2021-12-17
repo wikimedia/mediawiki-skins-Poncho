@@ -272,6 +272,9 @@ tr {
 #firstHeading .poncho-title-dash {
 	margin: 0 .5em;
 }
+#firstHeading .poncho-title-colon {
+	margin-right: .5em;
+}
 #siteSub {
 	display: none;
 	font-style: italic;
