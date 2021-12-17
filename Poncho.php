@@ -122,11 +122,11 @@ class PonchoTemplate extends BaseTemplate {
 		$Title = $this->getSkin()->getTitle();
 		$title = $Title->getFullText();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( $Title->isTalkPage() ) {
+		if ( $Title->isTalkPage() && $Title->getSubjectPage()->exists() ) {
 			$talk = str_replace( '_', ' ', $Title->getNsText() );
-			$Title = $Title->getSubjectPage();
-			$text = $Title->getText();
-			$link = $linkRenderer->makeLink( $Title, $text );
+			$Subject = $Title->getSubjectPage();
+			$subject = $Subject->getText();
+			$link = $linkRenderer->makeLink( $Subject, $subject );
 			$title = $talk . '<span class="poncho-title-colon">:</span>' . $link;
 		} else if ( $Title->isSubpage() ) {
 			$title = $Title->getSubpageText();
