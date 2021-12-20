@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
-	"poncho-desc": "Enkelt, rent, responsivt och mobilvänligt utseende."
+	"poncho-desc": "Enkelt, rent, responsivt och mobilvänligt utseende.",
+	"poncho-print": "Skriv ut"
 }
