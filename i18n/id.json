@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Daud I.F. Argana",
 			"William Surya Permana"
 		]
 	},
-	"poncho-desc": "Kulit yang ramah seluler, responsif, bersih, dan sederhana."
+	"poncho-desc": "Kulit yang ramah seluler, responsif, bersih, dan sederhana.",
+	"poncho-print": "Cetak"
 }
