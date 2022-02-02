@@ -1,0 +1,763 @@
+@text: #202122; // Same as OOUI
+@border: #a2a9b1; // Same as OOUI
+@background: #f8f9fa; // Same as OOUI
+@link: #a55858;
+
+/**
+ * Site-wide elements
+ */
+body {
+	color: @text;
+	font-family: Arial;
+	font-size: 14px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+h1, h2, h3, h4, h5, h6 {
+	page-break-after: avoid;
+	margin: 1em 0 .5em 0;
+	overflow: hidden;
+	scroll-padding-top: 80px;
+}
+h1 {
+	page-break-before: always;
+	font-size: 2.5em;
+}
+h2 {
+	font-size: 2em;
+}
+h3 {
+	font-size: 1.5em;
+}
+h4, h5, h6 {
+	font-size: 1em;
+}
+fieldset {
+	border: 1px solid @border;
+	margin: 1em 0;
+}
+img {
+    page-break-inside: avoid;
+}
+pre {
+	overflow: hidden;
+	white-space: pre-wrap;
+}
+sup {
+	line-height: 1em;
+}
+tr {
+	page-break-inside: avoid;
+}
+
+/**
+ * Header
+ */
+#poncho-header-wrapper {
+	background: @background;
+	border-bottom: 1px solid @border;
+	box-sizing: border-box;
+	padding: .5em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 8;
+}
+#poncho-header {
+	background: inherit;
+}
+
+/**
+ * Logo
+ */
+#poncho-logo-wrapper {
+	display: inline;
+	margin: 0 1em;
+}
+#poncho-logo {
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: inherit;
+	font-size: 1.5em;
+	padding: .5em .5em .5em 2.5em;
+	text-decoration: none;
+}
+
+/**
+ * Search form
+ */
+#poncho-search-form-wrapper {
+	display: inline-block;
+}
+#poncho-search-form {
+	margin: auto;
+	padding: .5em;
+	width: 500px;
+}
+#poncho-search-suggestions {
+	display: none;
+}
+
+/**
+ * Sidebar
+ */
+#poncho-sidebar-icon-wrapper {
+	background: inherit;
+	display: inline-block;
+	height: 46px;
+	vertical-align: middle;
+	&:hover {
+		filter: brightness(.95);
+	}
+}
+#poncho-sidebar-icon {
+	background: url('images/menu.png') no-repeat center;
+	cursor: pointer;
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	margin: 0;
+	opacity: .4;
+	padding: .5em;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+#poncho-sidebar-wrapper {
+	display: none;
+	height: 100%;
+	padding: 1em;
+	position: fixed;
+	top: 4em;
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	li {
+		margin-bottom: .5em;
+		padding: 0;
+	}
+	div {
+		margin-top: 2em;
+		margin-bottom: .5em;
+	}
+}
+
+/**
+ * Menu
+ */
+#poncho-menu-wrapper {
+	background: inherit;
+	float: right;
+}
+#poncho-menu {
+	background: inherit;
+	display: inline-block;
+	height: 46px;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+	vertical-align: middle;
+	li {
+		background: inherit;
+		&:hover {
+			filter: brightness(.95);
+		}
+	}
+	.poncho-menu-icon {
+		display: inline-block;
+		opacity: .4;
+		padding: .5em;
+		width: 32px;
+		height: 32px;
+	}
+	.poncho-menu-list {
+		background: inherit;
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 46px;
+		right: 0;
+		text-align: right;
+	}
+	.poncho-menu-item {
+		background: inherit;
+		display: inline-block;
+		height: 46px;
+		position: relative;
+		z-index: 999;
+		a, .text {
+			background: inherit;
+			color: inherit;
+			cursor: pointer;
+			display: block;
+			margin: 0;
+			padding: 1em;
+			text-decoration: none;
+		}
+		&:hover {
+			background: @background;
+			.poncho-menu-list {
+				display: block;
+			}
+		}
+		.active .poncho-menu-icon {
+			filter: brightness(.95);
+			border-radius: 50%;
+		}
+	}
+	#poncho-lens-item .poncho-menu-icon {
+		background: url('images/lens.png') no-repeat center;
+	}
+	#poncho-edit-item .poncho-menu-icon {
+		background: url('images/edit.png') no-repeat center;
+	}
+	#poncho-user-item .poncho-menu-icon {
+		background: url('images/user.png') no-repeat center;
+	}
+	#poncho-tool-item .poncho-menu-icon {
+		background: url('images/tool.png') no-repeat center;
+	}
+	#poncho-view-item .poncho-menu-icon {
+		background: url('images/view.png') no-repeat center;
+	}
+	#poncho-bell-item {
+		.poncho-menu-icon {
+			background: url('images/bell.png') no-repeat center;
+		}
+		.poncho-menu-list {
+			white-space: normal;
+			width: 400px;
+		}
+	}
+}
+
+/**
+ * Edit, Talk and Print buttons
+ */
+#poncho-buttons {
+	float: right;
+	margin-bottom: 1em;
+}
+
+/**
+ * Indicators
+ */
+.mw-indicators {
+	float: right;
+	margin-bottom: 1em;
+	.mw-indicator {
+		display: inline-block;
+		margin-right: .5em;
+		padding: 6px;
+	}
+}
+
+/**
+ * Title
+ */
+#firstHeading {
+	margin-top: 1.5em;
+	.poncho-title-dash {
+		margin: 0 .5em;
+	}
+	.poncho-title-colon {
+		margin-right: .5em;
+	}
+}
+#siteSub {
+	display: none;
+	font-style: italic;
+}
+#contentSub {
+	font-size: small;
+	margin: 1em 0;
+	.subpages {
+		display: none;
+	}
+}
+#contentSub2 {
+	font-size: small;
+	margin: 1em 0;
+}
+
+/**
+ * Content
+ */
+#poncho-content-wrapper {
+	margin: 80px auto;
+	max-width: 1024px;
+	padding: 1em;
+	padding-bottom: 5em;
+}
+#content {
+	clear: both;
+	line-height: 1.5;
+	margin: 2em 0;
+	width: 100%;
+	.printfooter {
+		display: none;
+	}
+}
+#mw-content-text {
+	ol,
+	ul {
+		margin: 0 0 0 2em;
+		padding: 0;
+	}
+	pre {
+		background: @background;
+		border: 1px solid @border;
+		padding: 1em;
+	}
+}
+
+/**
+ * Footer
+ */
+#poncho-footer {
+	border-top: 1px solid @border;
+	clear: both;
+	margin: auto;
+	margin-bottom: 3em;
+	max-width: 1024px;
+	text-align: center;
+	padding: 1em 0;
+	a {
+		white-space: nowrap;
+	}
+}
+
+/**
+ * Wikitables
+ */
+.wikitable {
+	background: @background;
+	border-collapse: collapse;
+	margin: 1em 0;
+	th,
+	td {
+		border: 1px solid @border;
+		padding: 1em;
+	}
+}
+
+/**
+ * Misc
+ */
+#wpTextbox1 {
+	box-sizing: border-box;
+}
+.new,
+.new a {
+	color: @link;
+}
+.image img {
+	display: block;
+}
+.error {
+	color: red;
+}
+.center {
+	text-align: center;
+}
+.floatleft {
+	float: left;
+}
+.floatright {
+	float: right;
+}
+.selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+.external {
+	background: url( 'images/link.png' ) no-repeat center right;
+	padding-right: 1em;
+	word-break: break-word;
+}
+.plainlinks a {
+	background: none;
+	padding: 0;
+}
+.patrollink {
+	margin: 1em 0;
+}
+.searchresults {
+	margin: 1em 0;
+}
+.mw-headline {
+	scroll-margin-top: 80px;
+}
+.mw-editsection {
+	font-size: small;
+	font-weight: normal;
+	a {
+		margin-left: 1em;
+	}
+	.mw-editsection-divider,
+	.mw-editsection-bracket {
+		display: none;
+	}
+}
+
+/**
+ * OOUI overrides
+ * !important is often necessary because OOUI loads via JavaScript
+ */
+.oo-ui-dialog,
+.oo-ui-selectWidget {
+	z-index: 9 !important;
+}
+.mw-changeslist-legend {
+	background: @background !important;
+	border-color: @border !important;
+}
+
+/**
+ * Table of contents
+ */
+#toc {
+	background: @background;
+	border: 1px solid @border;
+	display: table;
+	margin: 1em 0;
+	padding: 1em;
+	.toctitle {
+		display: none;
+	}
+	.tocnumber {
+		color: @text;
+	}
+	.toctext:hover {
+		text-decoration: underline;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	ul {
+		margin: 0;
+	}
+	ul ul {
+		margin-left: 1em;
+	}
+	li {
+		list-style: none;
+	}
+}
+#filetoc {
+	display: none; // Hide it per useless
+}
+
+/**
+ * Thumbnails
+ */
+.thumb {
+	background: @background;
+	border: 1px solid @border;
+	page-break-inside: avoid;
+	.thumbinner {
+		margin: 1em;
+	}
+	.thumbimage {
+		display: block;
+	}
+	.thumbcaption {
+		margin-top: 1em;
+		font-size: small;
+	}
+}
+.thumb.tleft {
+	clear: left;
+	float: left;
+	margin: 0 1em 1em 0;
+}
+.thumb.tright {
+	clear: right;
+	float: right;
+	margin: 0 0 1em 1em;
+}
+.thumb.tnone {
+	display: inline-block;
+	margin: 1em 1em 1em 0;
+}
+
+/**
+ * Galleries
+ */
+#mw-content-text .gallery {
+	margin: 1em 0;
+	.thumb {
+		margin: 0 0 .5em 0;
+	}
+	.gallerytext {
+		font-size: small;
+		margin: .5em;
+		padding: 0;
+		p {
+			margin: 0;
+		}
+	}
+	.mw-gallery-slideshow-img-container img {
+		margin: auto;
+	}
+}
+
+/**
+ * Collapse button (prominent in Special:RecentChanges and Special:Watchlist)
+ */
+.mw-collapsible-toggle {
+	margin-left: 1em;
+}
+.mw-collapsible-bracket {
+	display: none;
+}
+
+/**
+ * Categories
+ */
+#catlinks {
+	background: @background;
+	border: 1px solid @border;
+	clear: both;
+	margin-top: 2em;
+	padding: 1em;
+	ul {
+		display: inline;
+		padding: 0;
+	}
+	li {
+		display: inline;
+		margin-left: 1em;
+	}
+}
+#catlinks.catlinks-allhidden {
+	display: none;
+}
+
+/**
+ * Extension:VisualEditor
+ */
+.ve-ui-surface {
+	ol,
+	ul {
+		margin: 0 0 0 2em;
+		padding: 0;
+	}
+	pre {
+		background: @background;
+		border: 1px solid @border;
+		padding: 1em;
+	}
+}
+.ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
+	top: 61px !important;
+}
+.ve-ui-overlay-global {
+	z-index: 8 !important;
+}
+.ve-ce-branchNode-blockSlug {
+	display: none !important;
+}
+
+/**
+ * Extension:CodeMirror
+ */
+.CodeMirror pre {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/**
+ * Extension:SemanticMediaWiki
+ */
+#mw-indicator-smw-entity-examiner {
+	display: none;
+}
+
+/**
+ * Sidebar mode
+ */
+.poncho-sidebar {
+	#poncho-sidebar-wrapper {
+		display: block;
+	}
+	#poncho-content-wrapper,
+	#poncho-footer-wrapper {
+		padding-left: 200px;
+	}
+}
+
+/**
+ * Mobile version
+ */
+@media (max-width: 640px) {
+	#poncho-logo-wrapper {
+		margin-left: .5em;
+	}
+	#poncho-search-form-wrapper {
+		padding: 0;
+		width: 100%;
+	}
+}
+
+/**
+ * Dark mode
+ */
+.poncho-dark-mode {
+	// Same colors a Google's dark mode
+	@bg: #202122;
+	@text: #bdc1c6;
+	@link: #8ab4f8;
+	@background: #303134;
+	@border: #3c4043;
+
+	background: @bg;
+	color: @text;
+
+	a {
+		color: @link;
+	}
+	#poncho-menu a,
+	#toc a .tocnumber {
+		color: @text;
+	}
+
+	#poncho-header-wrapper,
+	#toc,
+	#catlinks,
+	.thumb,
+	.wikitable,
+	.wikitable th,
+	.wikitable td,
+	.mw-prefs-buttons {
+		background: @background;
+		border-color: @border;
+	}
+
+	#poncho-sidebar-icon {
+		filter: invert(1);
+	}
+	#poncho-menu {
+		li:hover {
+			filter: brightness(1.1);
+		}
+		.poncho-menu-item:hover {
+			background: @background;
+		}
+		.poncho-menu-icon {
+			filter: invert(1);
+		}
+	}
+
+	/**
+	 * OOUI overrides
+	 * !important is often necessary because OOUI loads via JavaScript
+	 */
+	.oo-ui-window-content,
+	.oo-ui-inputWidget-input,
+	.oo-ui-buttonElement-button,
+	.oo-ui-tagMultiselectWidget-handle {
+		background: @background !important;
+		border-color: @border !important;
+		color: @text !important;
+	}
+	.oo-ui-tabSelectWidget-framed,
+	.oo-ui-panelLayout-framed {
+		background: @background;
+		border-color: @border;
+	}
+	.oo-ui-icon-search {
+		filter: invert(1);
+	}
+	.mw-changeslist-legend {
+		background: @background !important;
+		border-color: @border !important;
+	}
+}
+
+/**
+ * Read mode
+ */
+.poncho-read-mode {
+	#poncho-header-wrapper {
+		background: transparent;
+		border: none;
+	}
+	#poncho-user-item {
+		visibility: hidden;
+	}
+	#poncho-sidebar-icon-wrapper,
+	#poncho-logo-wrapper,
+	#poncho-search-form-wrapper,
+	#poncho-edit-item,
+	#poncho-tool-item,
+	#poncho-bell-item,
+	#poncho-sidebar-wrapper,
+	#poncho-footer-wrapper,
+	#poncho-talk-button,
+	#poncho-buttons,
+	#contentSub,
+	#contentSub2,
+	#siteNotice,
+	#catlinks,
+	.usermessage,
+	.mw-indicators,
+	.mw-editsection,
+	.noprint {
+		display: none;
+	}
+	.toc,
+	.thumb,
+	.wikitable {
+		background: transparent;
+	}
+	&.poncho-sidebar #poncho-content-wrapper,
+	&.poncho-sidebar #poncho-footer-wrapper {
+		padding-left: 1em; // Hack
+	}
+}
+
+/**
+ * Print mode
+ */
+@media print {
+	#poncho-header-wrapper,
+	#poncho-sidebar-wrapper,
+	#poncho-footer-wrapper,
+	#poncho-talk-button,
+	#poncho-buttons,
+	#contentSub,
+	#contentSub2,
+	#siteNotice,
+	#catlinks,
+	.usermessage,
+	.mw-indicators,
+	.mw-editsection,
+	.noprint {
+		display: none !important; // Override more specific rules
+	}
+	a {
+		color: inherit !important; // Override more specific rules
+		text-decoration: underline;
+	}
+	.toc,
+	.thumb,
+	.wikitable {
+		background: transparent;
+	}
+	&.poncho-sidebar #poncho-content-wrapper,
+	&.poncho-sidebar #poncho-footer-wrapper {
+		padding-left: 1em; // Hack
+	}
+}

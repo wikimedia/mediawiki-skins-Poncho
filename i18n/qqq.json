@@ -7,5 +7,10 @@
 		]
 	},
 	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}",
-	"poncho-print": "Label for the button to print or download as PDF the current page\n\n{{Identical|Print}}"
+	"poncho-print": "Label for the button to print or download as PDF the current page\n\n{{Identical|Print}}",
+	"poncho-show-sidebar": "Label for the preference that shows the sidebar.",
+	"poncho-enable-dark-mode": "Label for the menu option (and preference) that enables the dark mode.",
+	"poncho-disable-dark-mode": "Label for the menu option that disables the dark mode.",
+	"poncho-enable-read-mode": "Label for the menu option that enables the read mode.",
+	"poncho-disable-read-mode": "Label for the menu option (and preference) that disables the read mode."
 }

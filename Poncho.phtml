@@ -1,74 +1,85 @@
 <?php $this->html( 'headelement' ); ?>
 
 <div id="poncho-header-wrapper">
+
 	<div id="poncho-header">
-		<div id="poncho-logo-wrapper" role="banner">
+
+		<div id="poncho-sidebar-icon-wrapper">
+
+			<div id="poncho-sidebar-icon"></div>
+
+		</div><div id="poncho-logo-wrapper" role="banner">
 
 			<a id="poncho-logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
+
+		</div><div id="poncho-search-form-wrapper" role="search">
+
+			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
+				<?php $this->searchInput(); ?>
+				<datalist id="poncho-search-suggestions"></datalist>
+			</form>
 
 		</div><div id="poncho-menu-wrapper">
 
 			<ul id="poncho-menu" role="navigation">
 				<?php if ( $this->getActions() ): ?>
-				<li class="poncho-menu-item">
-					<div class="poncho-menu-icon" id="poncho-edit-icon"></div>
+				<li id="poncho-edit-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getActions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 				<?php endif; ?>
-				<li class="poncho-menu-item">
-					<div class="poncho-menu-icon" id="poncho-tool-icon"></div>
+				<li id="poncho-tool-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
-				<li class="poncho-menu-item">
-					<div class="poncho-menu-icon" id="poncho-bell-icon"></div>
+				<li id="poncho-bell-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 				<?php endif; ?>
-				<li class="poncho-menu-item">
-					<div class="poncho-menu-icon" id="poncho-user-icon"></div>
+				<li id="poncho-view-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
-						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+						<?php foreach ( $this->getViewOptions() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-				<li class="poncho-menu-item">
-					<div class="poncho-menu-icon" id="poncho-menu-icon"></div>
+				<li id="poncho-user-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
-						<?php foreach ( $this->getMainMenu() as $key => $value ): ?>
-							<?php if ( $key === 'navigation' ): ?>
-								<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
-							<?php elseif ( is_array( $value ) ): ?>
-								<li class="poncho-submenu-item">
-									<span class="poncho-submenu-span"><?php echo $key; ?></span>
-									<ul class="poncho-submenu">
-										<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
-									</ul>
-								</li>
-							<?php endif; ?>
-						<?php endforeach; ?>
+						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
-		<div id="poncho-search-form-wrapper" role="search">
-			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
-				<?php $this->searchInput(); ?>
-				<datalist id="poncho-search-suggestions"></datalist>
-			</form>
-		</div>
 	</div>
+
+</div>
+
+<div id="poncho-sidebar-wrapper">
+	<ul id="poncho-sidebar">
+		<?php foreach ( $this->getMainMenu() as $key => $value ): ?>
+			<?php if ( $key === 'navigation' ): ?>
+				<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
+			<?php elseif ( is_array( $value ) ): ?>
+				<li><div><?php echo $key; ?></div>
+					<ul><?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?></ul>
+				</li>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</ul>
 </div>
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-buttons"><?php $this->editButton(); $this->printButton(); $this->talkButton(); ?></div>
+	<div id="poncho-buttons"><?php $this->editButton(); $this->printButton(); ?></div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
@@ -103,6 +114,8 @@
 	</div>
 
 	<?php $this->html( 'debughtml' ); ?>
+
+	<div id="poncho-talk-button"><?php $this->talkButton(); ?></div>
 
 </div>
 

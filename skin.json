@@ -1,7 +1,7 @@
 {
 	"manifest_version": 1,
 	"name": "Poncho",
-	"version": "4.0",
+	"version": "5.0",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -34,10 +34,16 @@
 	},
 	"ResourceModules": {
 		"skins.poncho.styles": {
-			"styles": "Poncho.css"
+			"styles": "Poncho.less"
 		},
 		"skins.poncho.scripts": {
-			"scripts": "Poncho.js"
+			"scripts": "Poncho.js",
+			"messages": [
+				"poncho-enable-dark-mode",
+				"poncho-disable-dark-mode",
+				"poncho-enable-read-mode",
+				"poncho-disable-read-mode"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -45,11 +51,12 @@
 		"remoteSkinPath": "Poncho"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "PonchoTemplate::onBeforePageDisplay"
+		"BeforePageDisplay": "PonchoTemplate::onBeforePageDisplay",
+		"GetPreferences": "PonchoTemplate::onGetPreferences",
+		"OutputPageBodyAttributes": "PonchoTemplate::onOutputPageBodyAttributes"
 	},
 	"config": {
 		"PonchoLogo": false,
-		"PonchoSitename": false,
-		"PonchoPrintButtonNamespaces": []
+		"PonchoSitename": false
 	}
 }

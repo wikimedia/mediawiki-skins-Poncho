@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-// Class needed for 1.35 support, can be removed in 1.36
+// Class needed for 1.35 support
 class SkinPoncho extends SkinTemplate {
 	public $template = 'PonchoTemplate';
 }
@@ -81,9 +81,7 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the Print button
 	 */
 	function printButton() {
-		global $wgPonchoPrintButtonNamespaces;
-		$namespace = $this->getSkin()->getTitle()->getNamespace();
-		if ( ! in_array( $namespace, $wgPonchoPrintButtonNamespaces ) ) {
+		if ( ! $this->getSkin()->getTitle()->isContentPage() ) {
 			return;
 		}
 		$action = Action::getActionName( $this->getSkin()->getContext() );
@@ -120,7 +118,7 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function title() {
 		$Title = $this->getSkin()->getTitle();
-		$title = $Title->getFullText();
+		$title = $this->data['title'];
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $Title->isTalkPage() && $Title->getSubjectPage()->exists() ) {
 			$talk = str_replace( '_', ' ', $Title->getNsText() );
@@ -175,7 +173,34 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Get the actions
+	 * Return the view options
+	 */
+	function getViewOptions() {
+		$viewOptions = [];
+
+		$skin = $this->getSkin();
+		$user = $skin->getUser();
+		$request = $skin->getRequest();
+
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $user->getOption( 'poncho-dark-mode' );
+		$viewOptions['dark-mode'] = [
+			'id' => 'poncho-dark-mode',
+			'text' => $darkMode ? wfMessage( 'poncho-disable-dark-mode' ) : wfMessage( 'poncho-enable-dark-mode' ),
+			'class' => 'text',
+		];
+
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $user->getOption( 'poncho-read-mode' );
+		$viewOptions['read-mode'] = [
+			'id' => 'poncho-read-mode',
+			'text' => $readMode ? wfMessage( 'poncho-disable-read-mode' ) : wfMessage( 'poncho-enable-read-mode' ),
+			'class' => 'text',
+		];
+
+		return $viewOptions;
+	}
+
+	/**
+	 * Return the actions
 	 */
 	function getActions() {
 		$actions = array_merge(
@@ -263,9 +288,50 @@ class PonchoTemplate extends BaseTemplate {
 	/**
 	 * Get the notifications alert of the Echo extension
 	 */
-	function getNotificationsNotice() {
+	static function getNotificationsNotice() {
 		$userLinks = $this->getPersonalTools();
 		return $userLinks['notifications-notice'];
+	}
+
+	/**
+	 * Add preferences
+	 */
+	static function onGetPreferences( $user, &$preferences ) {
+		$preferences['poncho-sidebar'] = [
+			'type' => 'toggle',
+			'label-message' => 'poncho-show-sidebar',
+			'section' => 'rendering/skin',
+		];
+		$preferences['poncho-dark-mode'] = [
+			'type' => 'toggle',
+			'label-message' => 'poncho-enable-dark-mode',
+			'section' => 'rendering/skin',
+		];
+		$preferences['poncho-read-mode'] = [
+			'type' => 'toggle',
+			'label-message' => 'poncho-enable-read-mode',
+			'section' => 'rendering/skin',
+		];
+	}
+
+	/**
+	 * Add classes to the body
+	 */
+	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
+		$user = $skin->getUser();
+		$request = $skin->getRequest();
+		$sidebar = $user->isAnon() ? $request->getCookie( 'PonchoSidebar' ) : $user->getOption( 'poncho-sidebar' );
+		if ( $sidebar ) {
+			$bodyAttrs['class'] .= ' poncho-sidebar';
+		}
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $user->getOption( 'poncho-dark-mode' );
+		if ( $darkMode ) {
+			$bodyAttrs['class'] .= ' poncho-dark-mode';
+		}
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $user->getOption( 'poncho-read-mode' );
+		if ( $readMode ) {
+			$bodyAttrs['class'] .= ' poncho-read-mode';
+		}
 	}
 
 	function footer() {
