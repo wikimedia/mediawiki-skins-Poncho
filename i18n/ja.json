@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"MathXplore",
 			"しぃ"
 		]
 	},
-	"poncho-desc": "シンプル、クリーン、レスポンシブ、モバイルフレンドリーなスキン。"
+	"poncho-desc": "シンプル、クリーン、レスポンシブ、モバイルフレンドリーなスキン。",
+	"poncho-enable-dark-mode": "ダークモードを起動",
+	"poncho-disable-dark-mode": "ダークモードを解除する"
 }

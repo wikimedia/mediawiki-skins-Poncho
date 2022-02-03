@@ -3,9 +3,15 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
+			"Verdy p",
 			"Wladek92"
 		]
 	},
 	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles.",
-	"poncho-print": "Imprimer"
+	"poncho-print": "Imprimer",
+	"poncho-show-sidebar": "Afficher la barre latérale",
+	"poncho-enable-dark-mode": "Activer le mode sombre",
+	"poncho-disable-dark-mode": "Désactiver le mode sombre",
+	"poncho-enable-read-mode": "Activer le mode de lecture",
+	"poncho-disable-read-mode": "Désactiver le mode de lecture"
 }
