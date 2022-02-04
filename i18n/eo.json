@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirin"
+			"Mirin",
+			"Spenĉjo"
 		]
 	},
-	"poncho-desc": "Simpla, pura, respondema etoso por poŝaparatoj."
+	"poncho-desc": "Simpla, pura, respondema etoso por poŝaparatoj.",
+	"poncho-enable-dark-mode": "Ŝalti malhelan reĝimon",
+	"poncho-disable-dark-mode": "Malŝalti malhelan reĝimon"
 }
