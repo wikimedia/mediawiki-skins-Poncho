@@ -2,9 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Steeve815"
+			"Steeve815",
+			"ערן"
 		]
 	},
 	"poncho-desc": "עיצוב פשוט, נקי, רספונסיבי וידידותי למכשירים ניידים.",
-	"poncho-print": "הדפסה"
+	"poncho-print": "הדפסה",
+	"poncho-show-sidebar": "הצגת סרגל צד",
+	"poncho-enable-dark-mode": "הפעלת מצב כהה",
+	"poncho-disable-dark-mode": "כיבוי מצב כהה",
+	"poncho-enable-read-mode": "הפעלת מצב קריאה",
+	"poncho-disable-read-mode": "כיבוי מצב קריאה"
 }
