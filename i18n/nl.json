@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Nickthijssen1994"
 		]
 	},
-	"poncho-print": "Afdrukken"
+	"poncho-print": "Afdrukken",
+	"poncho-show-sidebar": "Zijbalk weergeven",
+	"poncho-enable-dark-mode": "Donkere modes inschakelen",
+	"poncho-disable-dark-mode": "Donkere modes uitschakelen",
+	"poncho-enable-read-mode": "Leesmode inschakelen",
+	"poncho-disable-read-mode": "Leesmode uitschakelen"
 }
