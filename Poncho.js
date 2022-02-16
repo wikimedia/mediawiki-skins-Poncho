@@ -67,19 +67,19 @@ var Poncho = {
 	 * Toggle the sidebar
 	 */
 	toggleSidebar: function () {
-		var sidebar = mw.user.isAnon() ? mw.cookie.get( 'PonchoSidebar' ) : mw.user.options.get( 'poncho-sidebar' );
-		if ( sidebar ) {
-			$( 'body' ).removeClass( 'poncho-sidebar' );
-			sidebar = null;
+		var hideSidebar = mw.user.isAnon() ? mw.cookie.get( 'PonchoHideSidebar' ) : mw.user.options.get( 'poncho-hide-sidebar' );
+		if ( hideSidebar ) {
+			$( 'body' ).removeClass( 'poncho-hide-sidebar' );
+			hideSidebar = null;
 		} else {
-			$( 'body' ).addClass( 'poncho-sidebar' );
-			sidebar = 1;
+			$( 'body' ).addClass( 'poncho-hide-sidebar' );
+			hideSidebar = 1;
 		}
 		if ( mw.user.isAnon() ) {
-			mw.cookie.set( 'PonchoSidebar', sidebar );
+			mw.cookie.set( 'PonchoHideSidebar', hideSidebar );
 		} else {
-			mw.user.options.set( 'poncho-sidebar', sidebar );
-			new mw.Api().saveOption( 'poncho-sidebar', sidebar );
+			mw.user.options.set( 'poncho-hide-sidebar', hideSidebar );
+			new mw.Api().saveOption( 'poncho-hide-sidebar', hideSidebar );
 		}
 	},
 

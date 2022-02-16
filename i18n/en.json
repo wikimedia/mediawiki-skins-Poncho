@@ -6,7 +6,7 @@
 	},
 	"poncho-desc": "Simple, clean, responsive and mobile-friendly skin.",
 	"poncho-print": "Print",
-	"poncho-show-sidebar": "Show sidebar",
+	"poncho-hide-sidebar": "Hide sidebar",
 	"poncho-enable-dark-mode": "Enable dark mode",
 	"poncho-disable-dark-mode": "Disable dark mode",
 	"poncho-enable-read-mode": "Enable read mode",
