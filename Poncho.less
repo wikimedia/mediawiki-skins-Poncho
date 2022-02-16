@@ -610,37 +610,38 @@ tr {
  * Dark mode
  */
 .poncho-dark-mode {
-	// Same colors a Google's dark mode
-	@bg: #202122;
-	@text: #bdc1c6;
-	@link: #8ab4f8;
-	@background: #303134;
-	@border: #3c4043;
+	// Same colors as Google's dark mode
+	@darkbg: #202122;
+	@darktext: #bdc1c6;
+	@darklink: #8ab4f8;
+	@darkbackground: #303134;
+	@darkborder: #3c4043;
 
-	background: @bg;
-	color: @text;
+	background: @darkbg;
+	color: @darktext;
 
 	a {
-		color: @link;
+		color: @darklink;
 	}
 	#poncho-menu a,
 	#toc a .tocnumber {
-		color: @text;
+		color: @darktext;
 	}
 
 	#poncho-sidebar-wrapper {
-		background: @bg;
+		background: @darkbg;
 	}
 	#poncho-header-wrapper,
 	#toc,
 	#catlinks,
+	#mw-content-text pre,
 	.thumb,
 	.wikitable,
 	.wikitable th,
 	.wikitable td,
 	.mw-prefs-buttons {
-		background: @background;
-		border-color: @border;
+		background: @darkbackground;
+		border-color: @darkborder;
 	}
 
 	#poncho-sidebar-icon {
@@ -651,7 +652,7 @@ tr {
 			filter: brightness(1.1);
 		}
 		.poncho-menu-item:hover {
-			background: @background;
+			background: @darkbackground;
 		}
 		.poncho-menu-icon {
 			filter: invert(1);
@@ -666,21 +667,37 @@ tr {
 	.oo-ui-inputWidget-input,
 	.oo-ui-buttonElement-button,
 	.oo-ui-tagMultiselectWidget-handle {
-		background: @background !important;
-		border-color: @border !important;
-		color: @text !important;
+		background: @darkbackground !important;
+		border-color: @darkborder !important;
+		color: @darktext !important;
+	}
+	.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
+		background: none !important;
+		border: none !important;
 	}
 	.oo-ui-tabSelectWidget-framed,
 	.oo-ui-panelLayout-framed {
-		background: @background;
-		border-color: @border;
+		background: @darkbackground;
+		border-color: @darkborder;
 	}
 	.oo-ui-icon-search {
 		filter: invert(1);
 	}
 	.mw-changeslist-legend {
+		background: @darkbackground !important;
+		border-color: @darkborder !important;
+	}
+
+	/**
+	 * Extension:WikiEditor
+	 * Override the OOUI overrides, or suffer
+	 */
+	#wikiEditor-ui-toolbar {
+		color: @text !important;
+	}
+	#wikiEditor-ui-toolbar .oo-ui-buttonElement-button {
 		background: @background !important;
-		border-color: @border !important;
+		border: 1px solid transparent !important;
 	}
 }
 
