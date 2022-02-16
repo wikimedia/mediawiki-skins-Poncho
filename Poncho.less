@@ -1,3 +1,4 @@
+@bg: #ffffff;
 @text: #202122; // Same as OOUI
 @border: #a2a9b1; // Same as OOUI
 @background: #f8f9fa; // Same as OOUI
@@ -85,7 +86,9 @@ tr {
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: inherit;
+	display: inline-block;
 	font-size: 1.5em;
+	min-width: 200px;
 	padding: .5em .5em .5em 2.5em;
 	text-decoration: none;
 }
@@ -109,7 +112,6 @@ tr {
  * Sidebar
  */
 #poncho-sidebar-icon-wrapper {
-	background: inherit;
 	display: inline-block;
 	height: 46px;
 	vertical-align: middle;
@@ -130,11 +132,13 @@ tr {
 	vertical-align: middle;
 }
 #poncho-sidebar-wrapper {
-	display: none;
+	background: @bg;
 	height: 100%;
+	opacity: .9;
 	padding: 1em;
 	position: fixed;
 	top: 4em;
+	max-width: 200px;
 	ul {
 		list-style: none;
 		padding: 0;
@@ -565,9 +569,6 @@ tr {
 .ve-ui-overlay-global {
 	z-index: 8 !important;
 }
-.ve-ce-branchNode-blockSlug {
-	display: none !important;
-}
 
 /**
  * Extension:CodeMirror
@@ -588,14 +589,8 @@ tr {
 /**
  * Sidebar mode
  */
-.poncho-sidebar {
-	#poncho-sidebar-wrapper {
-		display: block;
-	}
-	#poncho-content-wrapper,
-	#poncho-footer-wrapper {
-		padding-left: 200px;
-	}
+.poncho-hide-sidebar #poncho-sidebar-wrapper {
+	display: none;
 }
 
 /**
@@ -633,6 +628,9 @@ tr {
 		color: @text;
 	}
 
+	#poncho-sidebar-wrapper {
+		background: @bg;
+	}
 	#poncho-header-wrapper,
 	#toc,
 	#catlinks,

@@ -61,6 +61,9 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $title->isSpecialPage() ) {
 			return;
 		}
+		if ( ! $title->exists() && $title->getNamespace() !== NS_USER ) {
+			return;
+		}
 		if ( $title->isTalkPage() ) {
 			return;
 		}
@@ -81,10 +84,15 @@ class PonchoTemplate extends BaseTemplate {
 	 * Print the Print button
 	 */
 	function printButton() {
-		if ( ! $this->getSkin()->getTitle()->isContentPage() ) {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->exists() ) {
 			return;
 		}
-		$action = Action::getActionName( $this->getSkin()->getContext() );
+		if ( ! $title->isContentPage() ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
 		if ( $action !== 'view' ) {
 			return;
 		}
@@ -297,9 +305,9 @@ class PonchoTemplate extends BaseTemplate {
 	 * Add preferences
 	 */
 	static function onGetPreferences( $user, &$preferences ) {
-		$preferences['poncho-sidebar'] = [
+		$preferences['poncho-hide-sidebar'] = [
 			'type' => 'toggle',
-			'label-message' => 'poncho-show-sidebar',
+			'label-message' => 'poncho-hide-sidebar',
 			'section' => 'rendering/skin',
 		];
 		$preferences['poncho-dark-mode'] = [
@@ -320,9 +328,9 @@ class PonchoTemplate extends BaseTemplate {
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
-		$sidebar = $user->isAnon() ? $request->getCookie( 'PonchoSidebar' ) : $user->getOption( 'poncho-sidebar' );
-		if ( $sidebar ) {
-			$bodyAttrs['class'] .= ' poncho-sidebar';
+		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) : $user->getOption( 'poncho-hide-sidebar' );
+		if ( $hideSidebar ) {
+			$bodyAttrs['class'] .= ' poncho-hide-sidebar';
 		}
 		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $user->getOption( 'poncho-dark-mode' );
 		if ( $darkMode ) {
