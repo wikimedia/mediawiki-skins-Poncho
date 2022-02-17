@@ -7,7 +7,7 @@
 	},
 	"poncho-desc": "Stellt eine responsive und für mobile Endgeräte geeignete Benutzeroberfläche bereit",
 	"poncho-print": "Drucken",
-	"poncho-show-sidebar": "Seitenleiste anzeigen",
+	"poncho-hide-sidebar": "Sidebar ausblenden",
 	"poncho-enable-dark-mode": "Dunkelmodus aktivieren",
 	"poncho-disable-dark-mode": "Dunkelmodus deaktivieren",
 	"poncho-enable-read-mode": "Lesemodus aktivieren",
