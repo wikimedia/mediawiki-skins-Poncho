@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Piramidion"
+			"Piramidion",
+			"Samflint"
 		]
 	},
-	"poncho-desc": "Проста, чиста й чутлива тема оформлення, приязна до користувачів мобільної версії."
+	"poncho-desc": "Проста, чиста й чутлива тема оформлення, приязна до користувачів мобільної версії.",
+	"poncho-print": "Друк",
+	"poncho-hide-sidebar": "Приховати бічну панель",
+	"poncho-enable-dark-mode": "Увімкнути темний режим",
+	"poncho-disable-dark-mode": "Вимкнути темний режим",
+	"poncho-enable-read-mode": "Увімкнути режим читання",
+	"poncho-disable-read-mode": "Вимкнути режим читання"
 }

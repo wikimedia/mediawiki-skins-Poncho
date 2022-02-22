@@ -6,5 +6,10 @@
 		]
 	},
 	"poncho-desc": "Enkelt, rent, responsivt och mobilvänligt utseende.",
-	"poncho-print": "Skriv ut"
+	"poncho-print": "Skriv ut",
+	"poncho-hide-sidebar": "Dölj sidofält",
+	"poncho-enable-dark-mode": "Aktivera mörkt läge",
+	"poncho-disable-dark-mode": "Inaktivera mörkt läge",
+	"poncho-enable-read-mode": "Aktivera läsläge",
+	"poncho-disable-read-mode": "Inaktivera läsläge"
 }

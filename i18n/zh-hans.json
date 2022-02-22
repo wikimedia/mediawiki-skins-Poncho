@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"500000000006城",
 			"Chixvv",
 			"Interestinghe",
 			"Liuxinyu970226"
 		]
 	},
 	"poncho-desc": "简洁、清楚、灵敏并为移动设备优化的皮肤。",
-	"poncho-print": "打印"
+	"poncho-print": "打印",
+	"poncho-disable-read-mode": "禁止阅读模式"
 }
