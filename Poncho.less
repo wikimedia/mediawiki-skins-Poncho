@@ -139,7 +139,7 @@ tr {
 	padding: 1em;
 	position: fixed;
 	top: 4em;
-	max-width: 200px;
+	max-width: 150px;
 	z-index: 7;
 	ul {
 		list-style: none;
@@ -649,15 +649,22 @@ tr {
 /**
  * Responsive mode
  */
-@media (max-width: 1252px) {
+@media (max-width: 1352px) {
+	#poncho-content-wrapper {
+		margin-left: 150px;
+	}
+	#poncho-footer-wrapper {
+		margin-left: 150px;
+	}
+}
+@media (max-width: 1200px) {
 	#poncho-search-form {
 		width: 400px;
 	}
-	#poncho-content-wrapper {
-		padding-left: 200px;
-	}
-	#poncho-footer-wrapper {
-		padding-left: 200px;
+}
+@media (max-width: 1100px) {
+	#poncho-search-form {
+		width: 300px;
 	}
 }
 
