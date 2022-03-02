@@ -1,14 +1,15 @@
 @bg: #ffffff;
-@text: #202122; // Same as OOUI
-@border: #a2a9b1; // Same as OOUI
-@background: #f8f9fa; // Same as OOUI
+@black: #202122; // Same as OOUI
+@grey: #a2a9b1; // Same as OOUI
+@lightgrey: #f8f9fa; // Same as OOUI
 @link: #a55858;
+@red: #a55858;
 
 /**
  * Site-wide elements
  */
 body {
-	color: @text;
+	color: @black;
 	font-family: Arial;
 	font-size: 14px;
 	height: 100%;
@@ -41,7 +42,7 @@ h4, h5, h6 {
 	font-size: 1em;
 }
 fieldset {
-	border: 1px solid @border;
+	border: 1px solid @grey;
 	margin: 1em 0;
 }
 img {
@@ -62,8 +63,8 @@ tr {
  * Header
  */
 #poncho-header-wrapper {
-	background: @background;
-	border-bottom: 1px solid @border;
+	background: @lightgrey;
+	border-bottom: 1px solid @grey;
 	box-sizing: border-box;
 	padding: .5em;
 	position: fixed;
@@ -139,6 +140,7 @@ tr {
 	position: fixed;
 	top: 4em;
 	max-width: 200px;
+	z-index: 7;
 	ul {
 		list-style: none;
 		padding: 0;
@@ -151,6 +153,9 @@ tr {
 		margin-top: 2em;
 		margin-bottom: .5em;
 	}
+}
+.poncho-hide-sidebar #poncho-sidebar-wrapper {
+	display: none;
 }
 
 /**
@@ -191,6 +196,7 @@ tr {
 		top: 46px;
 		right: 0;
 		text-align: right;
+		max-width: 400px;
 	}
 	.poncho-menu-item {
 		background: inherit;
@@ -208,13 +214,13 @@ tr {
 			text-decoration: none;
 		}
 		&:hover {
-			background: @background;
+			background: @lightgrey;
 			.poncho-menu-list {
 				display: block;
 			}
 		}
-		.active .poncho-menu-icon {
-			filter: brightness(.95);
+		&.active {
+			filter: brightness(.9);
 			border-radius: 50%;
 		}
 	}
@@ -223,6 +229,9 @@ tr {
 	}
 	#poncho-edit-item .poncho-menu-icon {
 		background: url('images/edit.png') no-repeat center;
+	}
+	#poncho-lang-item .poncho-menu-icon {
+		background: url('images/lang.png') no-repeat center;
 	}
 	#poncho-user-item .poncho-menu-icon {
 		background: url('images/user.png') no-repeat center;
@@ -233,21 +242,15 @@ tr {
 	#poncho-view-item .poncho-menu-icon {
 		background: url('images/view.png') no-repeat center;
 	}
-	#poncho-bell-item {
-		.poncho-menu-icon {
-			background: url('images/bell.png') no-repeat center;
-		}
-		.poncho-menu-list {
-			white-space: normal;
-			width: 400px;
-		}
+	#poncho-bell-item .poncho-menu-icon {
+		background: url('images/bell.png') no-repeat center;
 	}
 }
 
 /**
- * Edit, Talk and Print buttons
+ * Action buttons
  */
-#poncho-buttons {
+#poncho-actions {
 	float: right;
 	margin-bottom: 1em;
 }
@@ -318,8 +321,8 @@ tr {
 		padding: 0;
 	}
 	pre {
-		background: @background;
-		border: 1px solid @border;
+		background: @lightgrey;
+		border: 1px solid @grey;
 		padding: 1em;
 	}
 }
@@ -328,7 +331,7 @@ tr {
  * Footer
  */
 #poncho-footer {
-	border-top: 1px solid @border;
+	border-top: 1px solid @grey;
 	clear: both;
 	margin: auto;
 	margin-bottom: 3em;
@@ -344,12 +347,12 @@ tr {
  * Wikitables
  */
 .wikitable {
-	background: @background;
+	background: @lightgrey;
 	border-collapse: collapse;
 	margin: 1em 0;
 	th,
 	td {
-		border: 1px solid @border;
+		border: 1px solid @grey;
 		padding: 1em;
 	}
 }
@@ -368,7 +371,7 @@ tr {
 	display: block;
 }
 .error {
-	color: red;
+	color: @red;
 }
 .center {
 	text-align: center;
@@ -423,16 +426,16 @@ tr {
 	z-index: 9 !important;
 }
 .mw-changeslist-legend {
-	background: @background !important;
-	border-color: @border !important;
+	background: @lightgrey !important;
+	border-color: @grey !important;
 }
 
 /**
  * Table of contents
  */
 #toc {
-	background: @background;
-	border: 1px solid @border;
+	background: @lightgrey;
+	border: 1px solid @grey;
 	display: table;
 	margin: 1em 0;
 	padding: 1em;
@@ -440,7 +443,7 @@ tr {
 		display: none;
 	}
 	.tocnumber {
-		color: @text;
+		color: @black;
 	}
 	.toctext:hover {
 		text-decoration: underline;
@@ -466,8 +469,8 @@ tr {
  * Thumbnails
  */
 .thumb {
-	background: @background;
-	border: 1px solid @border;
+	background: @lightgrey;
+	border: 1px solid @grey;
 	page-break-inside: avoid;
 	.thumbinner {
 		margin: 1em;
@@ -530,22 +533,79 @@ tr {
  * Categories
  */
 #catlinks {
-	background: @background;
-	border: 1px solid @border;
-	clear: both;
-	margin-top: 2em;
-	padding: 1em;
+	margin: 2em 0;
 	ul {
 		display: inline;
 		padding: 0;
 	}
 	li {
 		display: inline;
-		margin-left: 1em;
+		margin-left: .5em;
+	}
+	li a {
+		background: @lightgrey;
+		border: 1px solid @grey;
+		border-radius: 20px;
+		color: inherit;
+		display: inline-block;
+		padding: .3em .7em;
+		text-decoration: none;
+	}
+	li a.new {
+		color: @red;
+	}
+	#mw-hidden-catlinks {
+		margin-top: 1em;
+	}
+	&.catlinks-allhidden {
+		display: none;
 	}
 }
-#catlinks.catlinks-allhidden {
-	display: none;
+
+#poncho-share-overlay {
+	background: @black;
+	opacity: .5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+}
+#poncho-share-dialog {
+	background: @lightgrey;
+	border: 1px solid @grey;
+	padding: 1em;
+	position: fixed;
+	top: 35%;
+	left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    z-index: 10;
+    a {
+    	color: inherit;
+    	cursor: pointer;
+		display: inline-block;
+		margin: 1em;
+		text-decoration: none;
+		width: 60px;
+    }
+    img {
+		width: 50px;
+		height: 50px;
+    }
+    #poncho-share-close {
+    	cursor: pointer;
+    	float: right;
+    	font-size: 2em;
+    	line-height: .9em;
+    }
+    #poncho-share-title {
+    	margin: 1em;
+    }
+    #poncho-share-buttons {
+		margin: 2em;
+    }
 }
 
 /**
@@ -558,8 +618,8 @@ tr {
 		padding: 0;
 	}
 	pre {
-		background: @background;
-		border: 1px solid @border;
+		background: @lightgrey;
+		border: 1px solid @grey;
 		padding: 1em;
 	}
 }
@@ -587,22 +647,17 @@ tr {
 }
 
 /**
- * Sidebar mode
+ * Responsive mode
  */
-.poncho-hide-sidebar #poncho-sidebar-wrapper {
-	display: none;
-}
-
-/**
- * Mobile version
- */
-@media (max-width: 640px) {
-	#poncho-logo-wrapper {
-		margin-left: .5em;
+@media (max-width: 1252px) {
+	#poncho-search-form {
+		width: 400px;
 	}
-	#poncho-search-form-wrapper {
-		padding: 0;
-		width: 100%;
+	#poncho-content-wrapper {
+		padding-left: 200px;
+	}
+	#poncho-footer-wrapper {
+		padding-left: 200px;
 	}
 }
 
@@ -620,7 +675,7 @@ tr {
 	background: @darkbg;
 	color: @darktext;
 
-	a {
+	a:not(.new) {
 		color: @darklink;
 	}
 	#poncho-menu a,
@@ -633,8 +688,8 @@ tr {
 	}
 	#poncho-header-wrapper,
 	#toc,
-	#catlinks,
 	#mw-content-text pre,
+	#catlinks li a,
 	.thumb,
 	.wikitable,
 	.wikitable th,
@@ -644,7 +699,8 @@ tr {
 		border-color: @darkborder;
 	}
 
-	#poncho-sidebar-icon {
+	#poncho-sidebar-icon,
+	.oo-ui-iconElement-icon:not(.oo-ui-image-invert) {
 		filter: invert(1);
 	}
 	#poncho-menu {
@@ -693,10 +749,10 @@ tr {
 	 * Override the OOUI overrides, or suffer
 	 */
 	#wikiEditor-ui-toolbar {
-		color: @text !important;
+		color: @black !important;
 	}
 	#wikiEditor-ui-toolbar .oo-ui-buttonElement-button {
-		background: @background !important;
+		background: @lightgrey !important;
 		border: 1px solid transparent !important;
 	}
 }
@@ -718,10 +774,11 @@ tr {
 	#poncho-edit-item,
 	#poncho-tool-item,
 	#poncho-bell-item,
+	#poncho-lang-item,
 	#poncho-sidebar-wrapper,
 	#poncho-footer-wrapper,
 	#poncho-talk-button,
-	#poncho-buttons,
+	#poncho-actions,
 	#contentSub,
 	#contentSub2,
 	#siteNotice,
@@ -751,7 +808,7 @@ tr {
 	#poncho-sidebar-wrapper,
 	#poncho-footer-wrapper,
 	#poncho-talk-button,
-	#poncho-buttons,
+	#poncho-actions,
 	#contentSub,
 	#contentSub2,
 	#siteNotice,
@@ -771,8 +828,8 @@ tr {
 	.wikitable {
 		background: transparent;
 	}
-	&.poncho-sidebar #poncho-content-wrapper,
-	&.poncho-sidebar #poncho-footer-wrapper {
+	#poncho-content-wrapper,
+	#poncho-footer-wrapper {
 		padding-left: 1em; // Hack
 	}
 }

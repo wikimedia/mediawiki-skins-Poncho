@@ -11,11 +11,17 @@ class PonchoTemplate extends BaseTemplate {
 
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->enableOOUI();
+		$out->addModuleStyles( [
+			'oojs-ui.styles.icons-user',
+			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icons-editing-core',
+			'oojs-ui.styles.icons-editing-advanced'
+		] );
 		$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
 	}
 
 	/**
-	 * Print the search bar
+	 * Echo the search bar
 	 */
 	function searchInput() {
 		echo new MediaWiki\Widget\SearchInputWidget( [
@@ -25,7 +31,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the Edit button or buttons
+	 * Echo the Edit button or buttons
 	 */
 	function editButton() {
 		$action = Action::getActionName( $this->getSkin()->getContext() );
@@ -35,29 +41,30 @@ class PonchoTemplate extends BaseTemplate {
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['ve-edit'];
 			echo new OOUI\ButtonWidget( [
+				'id' => 'poncho-visual-edit-button',
 				'label' => $button['text'],
 				'href' => $button['href'],
 				'flags' => [ 'primary', 'progressive' ],
-				'id' => 'poncho-visual-edit-button'
+				'icon' => 'edit'
 			] );
 		}
 		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['edit'];
-			$visual = array_key_exists( 've-edit', $this->data['content_navigation']['views'] );
 			echo new OOUI\ButtonWidget( [
+				'id' => 'poncho-edit-source-button',
 				'label' => $button['text'],
 				'href' => $button['href'],
-				'flags' => $visual ? null : [ 'primary', 'progressive' ],
-				'id' => 'poncho-edit-source-button'
+				'icon' => 'wikiText'
 			] );
 		}
 	}
 
 	/**
-	 * Print the Talk button
+	 * Echo the Talk button
 	 */
 	function talkButton() {
-		$title = $this->getSkin()->getTitle();
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
 		if ( $title->isSpecialPage() ) {
 			return;
 		}
@@ -67,21 +74,46 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $title->isTalkPage() ) {
 			return;
 		}
-		$action = Action::getActionName( $this->getSkin()->getContext() );
+		$action = Action::getActionName( $skin->getContext() );
 		if ( $action !== 'view' ) {
 			return;
 		}
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
 		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
+		    'id' => 'poncho-talk-button',
 		    'label' => $button['text'],
 		    'href' => $button['href'],
-		    'flags' => $button['class'] === 'new' ? 'destructive' : ''
+		    'flags' => $button['class'] === 'new' ? 'destructive' : '',
+		    'icon' => 'userTalk'
 		] );
 	}
 
 	/**
-	 * Print the Print button
+	 * Echo the Share button
+	 */
+	function shareButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->isContentPage() ) {
+			return;
+		}
+		if ( ! $title->exists() ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+		    'id' => 'poncho-share-button',
+		    'label' => wfMessage( 'poncho-share' )->plain(),
+		    'icon' => 'heart',
+		] );
+	}
+
+	/**
+	 * Echo the Print button
 	 */
 	function printButton() {
 		$skin = $this->getSkin();
@@ -97,13 +129,14 @@ class PonchoTemplate extends BaseTemplate {
 			return;
 		}
 		echo new OOUI\ButtonWidget( [
+		    'id' => 'poncho-print-button',
 		    'label' => wfMessage( 'poncho-print' )->plain(),
-		    'href' => '#print'
+		    'icon' => 'printer',
 		] );
 	}
 
 	/**
-	 * Print the attributes of the logo
+	 * Echo the attributes of the logo
 	 */
 	function logoAttributes() {
 		global $wgPonchoLogo, $wgLogos, $wgLogo;
@@ -122,7 +155,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the title
+	 * Echo the title
 	 */
 	function title() {
 		$Title = $this->getSkin()->getTitle();
@@ -151,7 +184,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print the name of the site
+	 * Echo the name of the site
 	 */
 	function siteName() {
 		global $wgSitename, $wgPonchoSitename;
@@ -178,6 +211,13 @@ class PonchoTemplate extends BaseTemplate {
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
 		return $userMenu;
+	}
+
+	/**
+	 * Get the languages menu
+	 */
+	function getLanguagesMenu() {
+		return $this->data['sidebar']['LANGUAGES'];
 	}
 
 	/**
@@ -235,7 +275,22 @@ class PonchoTemplate extends BaseTemplate {
 	function getNotifications() {
 		$notifications = [];
 		$user = $this->getSkin()->getUser();
-		if ( $user->isRegistered() ) {
+		if ( $this->data['newtalk'] ) {
+			$id = 'usermessage';
+			$link = [
+				'id' => $id,
+				'text' => wfMessage( 'poncho-new-message' ),
+				'href' => $user->getUserPage()->getTalkPage()->getFullURL()
+			];
+			$notification = [
+				'id' => $id,
+				'links' => [ $link ],
+				'class' => 'link',
+				'active' => true,
+			];
+			$notifications[ $id ] = $notification;
+		}
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
 			global $wgRequest;
 			$params = new DerivativeRequest(
 				$wgRequest,
@@ -272,13 +327,13 @@ class PonchoTemplate extends BaseTemplate {
 					'class' => $href ? 'link' : 'text',
 					'active' => $active,
 				];
-				$notifications[$id] = $notification;
+				$notifications[ $id ] = $notification;
 			}
 		}
 		if ( !$notifications ) {
 			$notifications[] = [
 				'id' => 'notification-0',
-				'text' => wfMessage( 'echo-none' ),
+				'text' => wfMessage( 'poncho-no-notifications' ),
 				'class' => 'text',
 			];
 		}

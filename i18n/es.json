@@ -6,5 +6,9 @@
 		]
 	},
 	"poncho-desc": "Apariencia simple, adaptable y compatible con dispositivos móviles.",
-	"poncho-print": "Imprimir"
+	"poncho-print": "Imprimir",
+	"poncho-share": "Compartir",
+	"poncho-copied": "¡Copiado!",
+	"poncho-no-notifications": "No tienes nuevas notificaciones.",
+	"poncho-new-message": "Tienes un nuevo mensaje de otro usuario."
 }
