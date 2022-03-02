@@ -1,6 +1,6 @@
 /* global mw, $ */
 
-var Poncho = {
+let Poncho = {
 
 	/**
 	 * Initialization script
@@ -23,15 +23,14 @@ var Poncho = {
 		$( '#poncho-sidebar-icon' ).click( Poncho.toggleSidebar );
 		$( '#poncho-dark-mode' ).click( Poncho.toggleDarkMode );
 		$( '#poncho-read-mode' ).click( Poncho.toggleReadMode );
-		$( '#poncho-bell-icon' ).mouseenter( Poncho.readNotifications );
+		$( '#poncho-bell-item' ).mouseenter( Poncho.readNotifications );
 		$( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
-		$( 'a[href="#print"]' ).click( function () {
-			window.print();
-		} );
+		$( '#poncho-share-button' ).click( Poncho.share ),
+		$( '#poncho-print-button' ).click( Poncho.print );
 
 		// Hack to detect clicks on #poncho-search-suggestions
 		// See https://stackoverflow.com/a/65073572/809356
-		var searchSuggestionSelected = false;
+		let searchSuggestionSelected = false;
 		$( '#poncho-search-form input' ).keydown( function ( event ) {
 			searchSuggestionSelected = false;
 			if ( ! event.key ) {
@@ -45,17 +44,83 @@ var Poncho = {
 		} );
 	},
 
+	print: function () {
+		window.print();
+	},
+
+	/**
+	 * Build the share dialog
+	 */
+	share: function () {
+		// Define the dialog elements
+		let $overlay = $( '<div>' ).attr( 'id', 'poncho-share-overlay' );
+		let $dialog = $( '<div>' ).attr( 'id', 'poncho-share-dialog' );
+		let $title = $( '<h2>' ).attr( 'id', 'poncho-share-title' ).text( 'Share this page' );
+		let $buttons = $( '<div>' ).attr( 'id', 'poncho-share-buttons' );
+		let $close = $( '<div>' ).attr( 'id', 'poncho-share-close' ).text( '✕' );
+
+		// Define the buttons
+		let stylepath = mw.config.get( 'stylepath' );
+		let url = encodeURIComponent( location.href );
+		let title = $( '#firstHeading' ).text();
+		let $facebook = $( '<a>' ).attr( {
+			id: 'poncho-facebook-button',
+			target: '_blank',
+			href: 'https://www.facebook.com/sharer.php?u=' + url
+		} ).html( '<img src="' + stylepath + '/Poncho/images/facebook.png" /><div>Facebook</div>' );
+		let $twitter = $( '<a>' ).attr( {
+			id: 'poncho-twitter-button',
+			target: '_blank',
+			href: 'https://twitter.com/intent/tweet?url=' + url
+		} ).html( '<img src="' + stylepath + '/Poncho/images/twitter.png" /><div>Twitter</div>' );
+		let $reddit = $( '<a>' ).attr( {
+			id: 'poncho-reddit-button',
+			target: '_blank',
+			href: 'https://www.reddit.com/submit?url=' + url + '&title=' + title,
+		} ).html( '<img src="' + stylepath + '/Poncho/images/reddit.png" /><div>Reddit</div>' );
+		let $email = $( '<a>' ).attr( {
+			id: 'poncho-email-button',
+			target: '_blank',
+			href: 'mailto:?subject=' + title + '&body=' + url
+		} ).html( '<img src="' + stylepath + '/Poncho/images/email.png" /><div>Email</div>' );
+		let $permalink = $( '<a>' ).attr( {
+			id: 'poncho-permalink-button',
+			target: '_blank',
+		} ).html( '<img src="' + stylepath + '/Poncho/images/permalink.png" /><div>Permalink</div>' );
+
+		// Bind events
+		$close.click( function () {
+			$overlay.remove();
+			$dialog.remove();
+		} );
+		$overlay.click( function () {
+			$overlay.remove();
+			$dialog.remove();
+		} );
+		$permalink.click( function () {
+			let copied = mw.message( 'poncho-copied' ).plain();
+			navigator.clipboard.writeText( location.href ).then( function() {
+				$( 'div', $permalink ).text( copied );
+			} );
+		} );
+
+		// Put everything together and add it to the DOM
+		$buttons.append( $facebook, $twitter, $reddit, $email, $permalink );
+		$dialog.append( $close, $title, $buttons );
+		$( 'body' ).append( $overlay, $dialog );
+	},
+
 	/**
 	 * Suggest pages while searching
 	 */
 	searchSuggestions: function () {
 		$( '#poncho-search-suggestions' ).empty();
-		var query = $( this ).val();
+		let query = $( this ).val();
 		new mw.Api().get( {
 			action: 'opensearch',
 			search: query
 		} ).done( function ( data ) {
-			var suggestions = data.slice( 1, 2 )[0];
+			let suggestions = data.slice( 1, 2 )[0];
 			suggestions.forEach( function ( suggestion ) {
 				suggestion = $( '<option>' ).val( suggestion );
 				$( '#poncho-search-suggestions' ).append( suggestion );
@@ -67,7 +132,7 @@ var Poncho = {
 	 * Toggle the sidebar
 	 */
 	toggleSidebar: function () {
-		var hideSidebar = mw.user.isAnon() ? mw.cookie.get( 'PonchoHideSidebar' ) : mw.user.options.get( 'poncho-hide-sidebar' );
+		let hideSidebar = mw.user.isAnon() ? mw.cookie.get( 'PonchoHideSidebar' ) : mw.user.options.get( 'poncho-hide-sidebar' );
 		if ( hideSidebar ) {
 			$( 'body' ).removeClass( 'poncho-hide-sidebar' );
 			hideSidebar = null;
@@ -87,7 +152,7 @@ var Poncho = {
 	 * Toggle the dark mode
 	 */
 	toggleDarkMode: function () {
-		var darkMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoDarkMode' ) : mw.user.options.get( 'poncho-dark-mode' );
+		let darkMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoDarkMode' ) : mw.user.options.get( 'poncho-dark-mode' );
 		if ( darkMode ) {
 			$( 'body' ).removeClass( 'poncho-dark-mode' );
 			$( this ).text( mw.msg( 'poncho-enable-dark-mode' ) );
@@ -109,7 +174,7 @@ var Poncho = {
 	 * Toggle the read mode
 	 */
 	toggleReadMode: function () {
-		var readMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoReadMode' ) : mw.user.options.get( 'poncho-read-mode' );
+		let readMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoReadMode' ) : mw.user.options.get( 'poncho-read-mode' );
 		if ( readMode ) {
 			$( 'body' ).removeClass( 'poncho-read-mode' );
 			$( this ).text( mw.msg( 'poncho-enable-read-mode' ) );
@@ -128,27 +193,25 @@ var Poncho = {
 	},
 
 	/**
-	 * Mark all notifications of the current user as read and unmark the bell icon
+	 * Mark all notifications of the current user as read
 	 */
 	readNotifications: function () {
 		new mw.Api().postWithEditToken( {
 			action: 'echomarkread',
 			all: true,
 		} );
-		$( '#poncho-bell-icon' ).parent().removeClass( 'active' );
+		$( this ).removeClass( 'active' );
 	},
 
 	/**
-	 * Mark the bell icon if the current user has unread notifications
+	 * Mark the bell item if the current user has unread notifications
 	 */
 	ring: function () {
-		var notificationsItem = $( '#poncho-bell-icon' ).parent();
-		if ( $( 'li.active', notificationsItem ).length ) {
-			notificationsItem.addClass( 'active' );
+		let bellItem = $( '#poncho-bell-item' );
+		if ( $( '.active', bellItem ).length ) {
+			bellItem.addClass( 'active' );
 		}
 	}
 };
 
-mw.loader.using( [
-	'mediawiki.api',
-], Poncho.init );
+$( Poncho.init );

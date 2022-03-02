@@ -6,9 +6,13 @@
 	},
 	"poncho-desc": "Simple, clean, responsive and mobile-friendly skin.",
 	"poncho-print": "Print",
+	"poncho-share": "Share",
+	"poncho-copied": "Copied!",
 	"poncho-hide-sidebar": "Hide sidebar",
 	"poncho-enable-dark-mode": "Enable dark mode",
 	"poncho-disable-dark-mode": "Disable dark mode",
 	"poncho-enable-read-mode": "Enable read mode",
-	"poncho-disable-read-mode": "Disable read mode"
+	"poncho-disable-read-mode": "Disable read mode",
+	"poncho-no-notifications": "You have no new notifications.",
+	"poncho-new-message": "You have a new message from another user."
 }

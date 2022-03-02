@@ -36,14 +36,18 @@
 						<?php foreach ( $this->getTools() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-				<?php if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ): ?>
 				<li id="poncho-bell-item" class="poncho-menu-item">
 					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
 						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 					</ul>
 				</li>
-				<?php endif; ?>
+				<li id="poncho-lang-item" class="poncho-menu-item">
+					<div class="poncho-menu-icon"></div>
+					<ul class="poncho-menu-list">
+						<?php foreach ( $this->getLanguagesMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+					</ul>
+				</li>
 				<li id="poncho-view-item" class="poncho-menu-item">
 					<div class="poncho-menu-icon"></div>
 					<ul class="poncho-menu-list">
@@ -79,7 +83,7 @@
 
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-buttons"><?php $this->editButton(); $this->printButton(); ?></div>
+	<div id="poncho-actions"><?php $this->editButton(); $this->printButton(); $this->shareButton(); ?></div>
 
 	<?php if ( $this->data['indicators'] ): ?>
 	<?php echo $this->getIndicators(); ?>
@@ -87,10 +91,6 @@
 
 	<?php if ( $this->data['sitenotice'] ): ?>
 	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
-	<?php endif; ?>
-
-	<?php if ( $this->data['newtalk'] ): ?>
-	<div class="usermessage"><?php $this->html( 'newtalk' ); ?></div>
 	<?php endif; ?>
 
 	<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>

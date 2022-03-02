@@ -1,7 +1,7 @@
 {
-	"manifest_version": 1,
+	"manifest_version": 2,
 	"name": "Poncho",
-	"version": "5.2",
+	"version": "6.0",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -42,7 +42,15 @@
 				"poncho-enable-dark-mode",
 				"poncho-disable-dark-mode",
 				"poncho-enable-read-mode",
-				"poncho-disable-read-mode"
+				"poncho-disable-read-mode",
+				"poncho-copied"
+			],
+			"dependencies": [
+				"mediawiki.api",
+				"mediawiki.jqueryMsg",
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui-windows"
 			]
 		}
 	},
@@ -56,7 +64,16 @@
 		"OutputPageBodyAttributes": "PonchoTemplate::onOutputPageBodyAttributes"
 	},
 	"config": {
-		"PonchoLogo": false,
-		"PonchoSitename": false
+		"PonchoLogo": {
+			"value": false
+		},
+		"PonchoSitename": {
+			"value": false
+		},
+		"PonchoAddThis": {
+			"value": false,
+			"path": false,
+			"public": true
+		}
 	}
 }
