@@ -133,9 +133,7 @@ tr {
 	vertical-align: middle;
 }
 #poncho-sidebar-wrapper {
-	background: @bg;
 	height: 100%;
-	opacity: .9;
 	padding: 1em;
 	position: fixed;
 	top: 4em;
@@ -302,8 +300,8 @@ tr {
 #poncho-content-wrapper {
 	margin: 80px auto;
 	max-width: 1024px;
+	overflow: hidden;
 	padding: 1em;
-	padding-bottom: 5em;
 }
 #content {
 	clear: both;
@@ -330,14 +328,17 @@ tr {
 /**
  * Footer
  */
+#poncho-footer-wrapper {
+	margin: 80px auto;
+	max-width: 1024px;
+	padding: 1em;
+}
 #poncho-footer {
 	border-top: 1px solid @grey;
 	clear: both;
-	margin: auto;
 	margin-bottom: 3em;
-	max-width: 1024px;
 	text-align: center;
-	padding: 1em 0;
+	padding: 1em;
 	a {
 		white-space: nowrap;
 	}
@@ -650,9 +651,7 @@ tr {
  * Responsive behavior
  */
 @media (max-width: 1452px) {
-	#poncho-content-wrapper {
-		margin-left: 200px;
-	}
+	#poncho-content-wrapper,
 	#poncho-footer-wrapper {
 		margin-left: 200px;
 	}

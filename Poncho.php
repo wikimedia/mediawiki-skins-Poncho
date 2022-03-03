@@ -31,6 +31,15 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
+	 * Echo the page action buttons
+	 */
+	function pageActions() {
+		$this->editButton();
+		$this->printButton();
+		$this->shareButton();
+	}
+
+	/**
 	 * Echo the Edit button or buttons
 	 */
 	function editButton() {
@@ -219,16 +228,14 @@ class PonchoTemplate extends BaseTemplate {
 	function getLanguagesMenu() {
 		$languages = $this->data['sidebar']['LANGUAGES'];
 		$link = [
-			'id' => 'google-translate',
 			'text' => wfMessage( 'poncho-google-translate' ),
 			'href' => 'https://translate.google.com/translate?u=' . $this->getSkin()->getTitle()->getFullURL()
 		];
 		$item = [
-			'id' => 'google-translate',
 			'links' => [ $link ],
 			'class' => 'link',
 		];
-		$languages['google-translate'] = $item;
+		$languages[] = $item;
 		return $languages;
 	}
 
@@ -279,41 +286,35 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Get the latest notifications
-	 * process them and return them in a format fit for BaseTemplate::makeListItem
-	 *
-	 * @todo This method uses an internal API call which should be replaced by the proper Echo classes
+	 * Get the latest notifications in a format fit for BaseTemplate::makeListItem
 	 */
 	function getNotifications() {
 		$notifications = [];
-		$user = $this->getSkin()->getUser();
-		if ( $this->data['newtalk'] ) {
-			$id = 'usermessage';
+		$skin = $this->getSkin();
+		$user = $skin->getUser();
+		$title = $skin->getTitle();
+		if ( $this->data['newtalk'] && $title->getFullText() !== $user->getTalkPage()->getFullText() ) {
 			$link = [
-				'id' => $id,
 				'text' => wfMessage( 'poncho-new-message' ),
 				'href' => $user->getUserPage()->getTalkPage()->getFullURL()
 			];
-			$notification = [
-				'id' => $id,
+			$item = [
 				'links' => [ $link ],
 				'class' => 'link',
 				'active' => true,
 			];
-			$notifications[ $id ] = $notification;
+			$notifications[] = $item;
 		}
+		// @todo This method uses an internal API call which should be replaced by direct calls to Echo classes
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
 			global $wgRequest;
-			$params = new DerivativeRequest(
-				$wgRequest,
-				[
-					'action' => 'query',
-					'meta' => 'notifications',
-					'notformat' => 'model',
-					'notlimit' => 10,
-					'format' => 'json',
-				]
-			);
+			$params = new DerivativeRequest( $wgRequest, [
+				'action' => 'query',
+				'meta' => 'notifications',
+				'notformat' => 'model',
+				'notlimit' => 10,
+				'format' => 'json',
+			] );
 			$api = new ApiMain( $params );
 			$api->execute();
 			$data = $api->getResult()->getResultData();
@@ -324,48 +325,40 @@ class PonchoTemplate extends BaseTemplate {
 					continue;
 				}
 				$content = $item['*'];
-				$id = "notification-$key";
 				$text = htmlspecialchars_decode( strip_tags( $content['header'] ), ENT_QUOTES );
 				$href = $content['links']['primary']['url'] ?? null;
 				$active = array_key_exists( 'read', $item ) ? false : true;
 				$link = [
-					'id' => $id,
 					'text' => $text,
 					'href' => $href,
 				];
-				$notification = [
-					'id' => $id,
+				$item = [
 					'links' => [ $link ],
 					'class' => $href ? 'link' : 'text',
 					'active' => $active,
 				];
-				$notifications[ $id ] = $notification;
+				$notifications[] = $item;
 			}
 		}
 		if ( !$notifications ) {
-			$notifications[] = [
-				'id' => 'notification-0',
-				'text' => wfMessage( 'poncho-no-notifications' ),
-				'class' => 'text',
-			];
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
+				$link = [
+					'text' =>  wfMessage( 'echo-none' ),
+					'href' => Title::newFromText( 'Special:Notifications' )->getFullURL()
+				];
+				$item = [
+					'links' => [ $link ],
+					'class' => 'link',
+				];
+			} else {
+				$item = [
+					'text' => wfMessage( 'poncho-no-notifications' ),
+					'class' => 'text'
+				];
+			}
+			$notifications[] = $item;
 		}
 		return $notifications;
-	}
-
-	/**
-	 * Get the notifications alert of the Echo extension
-	 */
-	function getNotificationsAlert() {
-		$userLinks = $this->getPersonalTools();
-		return $userLinks['notifications-alert'];
-	}
-
-	/**
-	 * Get the notifications alert of the Echo extension
-	 */
-	static function getNotificationsNotice() {
-		$userLinks = $this->getPersonalTools();
-		return $userLinks['notifications-notice'];
 	}
 
 	/**
