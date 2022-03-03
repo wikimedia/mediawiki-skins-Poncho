@@ -10,6 +10,7 @@
 	"poncho-print": "Label for the button to print or download as PDF the current page\n\n{{Identical|Print}}",
 	"poncho-share": "Label for the button to share the current page.",
 	"poncho-copied": "Message when the permalink of the current page is copied",
+	"poncho-google-translate": "Text of the item for translating with Google in the languages menu.",
 	"poncho-hide-sidebar": "Label for the preference that hides the sidebar.",
 	"poncho-enable-dark-mode": "Label for the menu option (and preference) that enables the dark mode.",
 	"poncho-disable-dark-mode": "Label for the menu option that disables the dark mode.",

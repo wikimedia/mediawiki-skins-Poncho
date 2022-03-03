@@ -217,7 +217,19 @@ class PonchoTemplate extends BaseTemplate {
 	 * Get the languages menu
 	 */
 	function getLanguagesMenu() {
-		return $this->data['sidebar']['LANGUAGES'];
+		$languages = $this->data['sidebar']['LANGUAGES'];
+		$link = [
+			'id' => 'google-translate',
+			'text' => wfMessage( 'poncho-google-translate' ),
+			'href' => 'https://translate.google.com/translate?u=' . $this->getSkin()->getTitle()->getFullURL()
+		];
+		$item = [
+			'id' => 'google-translate',
+			'links' => [ $link ],
+			'class' => 'link',
+		];
+		$languages['google-translate'] = $item;
+		return $languages;
 	}
 
 	/**
