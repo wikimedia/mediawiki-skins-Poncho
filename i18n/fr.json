@@ -3,15 +3,21 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
+			"Thibaut120094",
 			"Verdy p",
 			"Wladek92"
 		]
 	},
 	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles.",
 	"poncho-print": "Imprimer",
+	"poncho-share": "Partager",
+	"poncho-copied": "Copié !",
+	"poncho-google-translate": "Google Traduction",
 	"poncho-hide-sidebar": "Masquer la barre latérale",
 	"poncho-enable-dark-mode": "Activer le mode sombre",
 	"poncho-disable-dark-mode": "Désactiver le mode sombre",
 	"poncho-enable-read-mode": "Activer le mode de lecture",
-	"poncho-disable-read-mode": "Désactiver le mode de lecture"
+	"poncho-disable-read-mode": "Désactiver le mode de lecture",
+	"poncho-no-notifications": "Vous n’avez aucune nouvelle notification.",
+	"poncho-new-message": "Vous avez un nouveau message d’un autre utilisateur."
 }
