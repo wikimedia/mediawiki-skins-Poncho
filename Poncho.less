@@ -534,13 +534,18 @@ tr {
  */
 #catlinks {
 	margin: 2em 0;
+	> div {
+		display: inline;
+		font-size: 0;
+	}
 	ul {
 		display: inline;
+		font-size: 14px;
 		padding: 0;
 	}
 	li {
 		display: inline;
-		margin-left: .5em;
+		margin-right: .5em;
 	}
 	li a {
 		background: @lightgrey;
@@ -553,12 +558,6 @@ tr {
 	}
 	li a.new {
 		color: @red;
-	}
-	#mw-hidden-catlinks {
-		margin-top: 1em;
-	}
-	&.catlinks-allhidden {
-		display: none;
 	}
 }
 
