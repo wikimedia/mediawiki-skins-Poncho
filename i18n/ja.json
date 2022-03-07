@@ -6,7 +6,12 @@
 		]
 	},
 	"poncho-desc": "シンプル、クリーン、レスポンシブ、モバイルフレンドリーなスキン。",
+	"poncho-share": "共有",
+	"poncho-copied": "コピーしました",
+	"poncho-google-translate": "Google翻訳",
 	"poncho-hide-sidebar": "サイドバーを隠す",
 	"poncho-enable-dark-mode": "ダークモードを起動",
-	"poncho-disable-dark-mode": "ダークモードを解除する"
+	"poncho-disable-dark-mode": "ダークモードを解除する",
+	"poncho-no-notifications": "新しい通知はありません。",
+	"poncho-new-message": "他の利用者から新しいメッセージがあります。"
 }

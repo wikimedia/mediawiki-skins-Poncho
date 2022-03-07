@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"FiberAhmed",
 			"ديفيد"
 		]
 	},
-	"poncho-desc": "برنامج مساعد بسيط ونظيف ومستجيب وصديق للجوال."
+	"poncho-desc": "برنامج مساعد بسيط ونظيف ومستجيب وصديق للجوال.",
+	"poncho-share": "مشاركة",
+	"poncho-copied": "نُسِخت!",
+	"poncho-google-translate": "ترجمة Google",
+	"poncho-no-notifications": "ليست لديك إشعارات جديدة."
 }
