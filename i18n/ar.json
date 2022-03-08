@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"FiberAhmed",
+			"NancyMilad",
 			"ديفيد"
 		]
 	},
@@ -9,5 +10,6 @@
 	"poncho-share": "مشاركة",
 	"poncho-copied": "نُسِخت!",
 	"poncho-google-translate": "ترجمة Google",
-	"poncho-no-notifications": "ليست لديك إشعارات جديدة."
+	"poncho-no-notifications": "ليست لديك إشعارات جديدة.",
+	"poncho-new-message": "لديك رسالة جديدة من مستخدم اخر"
 }
