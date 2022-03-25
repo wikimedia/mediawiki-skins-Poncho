@@ -229,7 +229,8 @@ class PonchoTemplate extends BaseTemplate {
 		$languages = $this->data['sidebar']['LANGUAGES'];
 		$link = [
 			'text' => wfMessage( 'poncho-google-translate' ),
-			'href' => 'https://translate.google.com/translate?u=' . $this->getSkin()->getTitle()->getFullURL()
+			'href' => 'https://translate.google.com/translate?u=' . $this->getSkin()->getTitle()->getFullURL(),
+			'target' => '_blank'
 		];
 		$item = [
 			'links' => [ $link ],
