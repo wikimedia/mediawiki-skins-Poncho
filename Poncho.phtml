@@ -12,13 +12,6 @@
 
 			<a id="poncho-logo" <?php $this->logoAttributes(); ?>><?php $this->siteName(); ?></a>
 
-		</div><div id="poncho-search-form-wrapper" role="search">
-
-			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
-				<?php $this->searchInput(); ?>
-				<datalist id="poncho-search-suggestions"></datalist>
-			</form>
-
 		</div><div id="poncho-menu-wrapper">
 
 			<ul id="poncho-menu" role="navigation">
@@ -61,6 +54,13 @@
 					</ul>
 				</li>
 			</ul>
+		</div><div id="poncho-search-form-wrapper" role="search">
+
+			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
+				<?php $this->searchInput(); ?>
+				<datalist id="poncho-search-suggestions"></datalist>
+			</form>
+
 		</div>
 
 	</div>
@@ -95,7 +95,7 @@
 
 	<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>
 
-	<div id="siteSub"><?php $this->msg( 'tagline' ); ?></div>
+	<div id="siteSub"><?php echo wfMessage( 'tagline' ); ?></div>
 
 	<?php if ( $this->data['subtitle'] ): ?>
 	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>

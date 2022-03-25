@@ -81,6 +81,7 @@ tr {
  */
 #poncho-logo-wrapper {
 	display: inline;
+	float: left;
 	margin: 0 1em;
 }
 #poncho-logo {
@@ -98,12 +99,13 @@ tr {
  * Search form
  */
 #poncho-search-form-wrapper {
-	display: inline-block;
 }
 #poncho-search-form {
 	margin: auto;
+	overflow: hidden;
 	padding: .5em;
-	width: 500px;
+	min-width: 100px;
+	max-width: 500px;
 }
 #poncho-search-suggestions {
 	display: none;
@@ -114,6 +116,7 @@ tr {
  */
 #poncho-sidebar-icon-wrapper {
 	display: inline-block;
+	float: left;
 	height: 46px;
 	vertical-align: middle;
 	&:hover {
@@ -278,7 +281,6 @@ tr {
 	}
 }
 #siteSub {
-	display: none;
 	font-style: italic;
 }
 #contentSub {
@@ -320,6 +322,9 @@ tr {
 		background: @lightgrey;
 		border: 1px solid @grey;
 		padding: 1em;
+	}
+	.mw-parser-output {
+		overflow: hidden;
 	}
 }
 
@@ -532,7 +537,7 @@ tr {
  * Categories
  */
 #catlinks {
-	margin: 2em 0;
+	margin: 1em 0;
 	> div {
 		display: inline;
 		font-size: 0;
@@ -645,7 +650,7 @@ tr {
 }
 
 /**
- * Responsive behavior
+ * Responsive behavior tweaks
  */
 @media (max-width: 1452px) {
 	#poncho-content-wrapper,
@@ -653,14 +658,10 @@ tr {
 		margin-left: 200px;
 	}
 }
-@media (max-width: 1200px) {
-	#poncho-search-form {
-		width: 400px;
-	}
-}
 @media (max-width: 1100px) {
-	#poncho-search-form {
-		width: 300px;
+	.poncho-hide-sidebar #poncho-content-wrapper,
+	.poncho-hide-sidebar #poncho-footer-wrapper {
+		margin-left: 0;
 	}
 }
 
@@ -797,9 +798,11 @@ tr {
 	.wikitable {
 		background: transparent;
 	}
-	&.poncho-sidebar #poncho-content-wrapper,
-	&.poncho-sidebar #poncho-footer-wrapper {
-		padding-left: 1em; // Hack
+	@media (max-width: 1100px) {
+		#poncho-content-wrapper,
+		#poncho-footer-wrapper {
+			margin-left: 0;
+		}
 	}
 }
 
