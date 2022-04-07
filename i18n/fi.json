@@ -4,14 +4,15 @@
 			"MITO",
 			"Pyscowicz",
 			"Surjection",
-			"Korjaus1"
+			"Korjaus1",
+			"Nike"
 		]
 	},
 	"poncho-desc": "Yksinkertainen, siisti, vastaanottavainen ja mobiiliystävällinen ulkoasu.",
 	"poncho-print": "Tulosta",
 	"poncho-share": "Jaa",
 	"poncho-copied": "Kopioitu!",
-	"poncho-google-translate": "Google-kääntäjä",
+	"poncho-google-translate": "Google Translate",
 	"poncho-hide-sidebar": "Piilota sivuvalikko",
 	"poncho-enable-dark-mode": "Ota tumma tila käyttöön",
 	"poncho-disable-dark-mode": "Poista tumma tila käytöstä",
