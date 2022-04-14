@@ -9,5 +9,13 @@
 	"poncho-desc": "簡易、整齊、利於行動裝置的外觀。",
 	"poncho-print": "列印",
 	"poncho-share": "分享",
-	"poncho-copied": "已複製！"
+	"poncho-copied": "已複製！",
+	"poncho-google-translate": "Google 翻譯",
+	"poncho-hide-sidebar": "隱藏側邊欄",
+	"poncho-enable-dark-mode": "啟用暗黑模式",
+	"poncho-disable-dark-mode": "停用暗黑模式",
+	"poncho-enable-read-mode": "啟用閱讀模式",
+	"poncho-disable-read-mode": "停用閱讀模式",
+	"poncho-no-notifications": "你沒有新的通知。",
+	"poncho-new-message": "您有來自於其他使用者的新訊息。"
 }
