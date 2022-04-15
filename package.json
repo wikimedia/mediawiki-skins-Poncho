@@ -1,4 +1,5 @@
 {
+	"name": "Poncho",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
