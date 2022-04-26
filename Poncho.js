@@ -114,12 +114,12 @@ let Poncho = {
 	 * Suggest pages while searching
 	 */
 	searchSuggestions: function () {
-		$( '#poncho-search-suggestions' ).empty();
 		let query = $( this ).val();
 		new mw.Api().get( {
 			action: 'opensearch',
 			search: query
 		} ).done( function ( data ) {
+			$( '#poncho-search-suggestions' ).empty();
 			let suggestions = data.slice( 1, 2 )[0];
 			suggestions.forEach( function ( suggestion ) {
 				suggestion = $( '<option>' ).val( suggestion );
