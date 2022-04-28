@@ -5,7 +5,8 @@
 			"Pyscowicz",
 			"Surjection",
 			"Korjaus1",
-			"Nike"
+			"Nike",
+			"Rönttönen"
 		]
 	},
 	"poncho-desc": "Yksinkertainen, siisti, vastaanottavainen ja mobiiliystävällinen ulkoasu.",
@@ -17,5 +18,7 @@
 	"poncho-enable-dark-mode": "Ota tumma tila käyttöön",
 	"poncho-disable-dark-mode": "Poista tumma tila käytöstä",
 	"poncho-enable-read-mode": "Ota lukutila käyttöön",
-	"poncho-disable-read-mode": "Poista lukutila käytöstä"
+	"poncho-disable-read-mode": "Poista lukutila käytöstä",
+	"poncho-no-notifications": "Sinulle ei ole uusia ilmoituksia.",
+	"poncho-new-message": "Sinulle on uusi viesti toiselta käyttäjältä."
 }
