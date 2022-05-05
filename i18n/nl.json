@@ -6,11 +6,14 @@
 		]
 	},
 	"poncho-print": "Afdrukken",
+	"poncho-share": "Delen",
 	"poncho-copied": "Gekopieerd!",
 	"poncho-google-translate": "Google Vertalen",
 	"poncho-hide-sidebar": "Zijbalk verbergen",
 	"poncho-enable-dark-mode": "Donkere modes inschakelen",
 	"poncho-disable-dark-mode": "Donkere modes uitschakelen",
 	"poncho-enable-read-mode": "Leesmode inschakelen",
-	"poncho-disable-read-mode": "Leesmode uitschakelen"
+	"poncho-disable-read-mode": "Leesmode uitschakelen",
+	"poncho-no-notifications": "U hebt geen nieuwe meldingen.",
+	"poncho-new-message": "U hebt een nieuwe melding van een andere gebruiker."
 }
