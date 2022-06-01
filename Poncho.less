@@ -46,7 +46,7 @@ fieldset {
 	margin: 1em 0;
 }
 img {
-    page-break-inside: avoid;
+	page-break-inside: avoid;
 }
 pre {
 	overflow: hidden;
@@ -283,6 +283,7 @@ code, tt {
  */
 #firstHeading {
 	margin-top: 1.5em;
+	page-break-before: avoid;
 	.poncho-title-dash {
 		margin: 0 .5em;
 	}
@@ -575,6 +576,9 @@ code, tt {
 	}
 }
 
+/**
+ * Share dialog
+ */
 #poncho-share-overlay {
 	background: @black;
 	opacity: .5;
@@ -592,33 +596,33 @@ code, tt {
 	position: fixed;
 	top: 35%;
 	left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center;
-    z-index: 10;
-    a {
-    	color: inherit;
-    	cursor: pointer;
+	transform: translateX(-50%) translateY(-50%);
+	text-align: center;
+	z-index: 10;
+	a {
+		color: inherit;
+		cursor: pointer;
 		display: inline-block;
 		margin: 1em;
 		text-decoration: none;
 		width: 60px;
-    }
-    img {
+	}
+	img {
 		width: 50px;
 		height: 50px;
-    }
-    #poncho-share-close {
-    	cursor: pointer;
-    	float: right;
-    	font-size: 2em;
-    	line-height: .9em;
-    }
-    #poncho-share-title {
-    	margin: 1em;
-    }
-    #poncho-share-buttons {
+	}
+	#poncho-share-close {
+		cursor: pointer;
+		float: right;
+		font-size: 2em;
+		line-height: .9em;
+	}
+	#poncho-share-title {
+		margin: 1em;
+	}
+	#poncho-share-buttons {
 		margin: 2em;
-    }
+	}
 }
 
 /**
