@@ -412,9 +412,9 @@ class PonchoTemplate extends BaseTemplate {
 		foreach ( $places as $place ) {
 			$elements[] = $this->get( $place );
 		}
-		global $wgRightsText;
+		global $wgRightsText, $wgRightsPage, $wgRightsUrl;
 		if ( $wgRightsText ) {
-			$elements[] = $this->getMsg( 'copyright', $wgRightsText );
+			$elements[] = $this->getMsg( 'copyright', $wgRightsText, $wgRightsPage, $wgRightsUrl );
 		}
 		echo implode( ' · ', $elements );
 	}
