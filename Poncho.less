@@ -365,7 +365,7 @@ code, tt {
 	th,
 	td {
 		border: 1px solid @grey;
-		padding: 1em;
+		padding: .2em .5em;
 	}
 }
 
@@ -387,6 +387,9 @@ code, tt {
 }
 .center {
 	text-align: center;
+	.image img {
+		margin: 0 auto;
+	}
 }
 .floatleft {
 	float: left;
@@ -549,6 +552,7 @@ code, tt {
  * Categories
  */
 #catlinks {
+	clear: both;
 	margin: 1em 0;
 	> div {
 		display: inline;
@@ -575,6 +579,13 @@ code, tt {
 	li a.new {
 		color: @red;
 	}
+}
+
+/**
+ * Talk button
+ */
+#poncho-talk-button {
+	clear: both;
 }
 
 /**
