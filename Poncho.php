@@ -368,20 +368,22 @@ class PonchoTemplate extends BaseTemplate {
 	 * Add preferences
 	 */
 	static function onGetPreferences( $user, &$preferences ) {
-		$preferences['poncho-hide-sidebar'] = [
+		$ponchoPref = [
 			'type' => 'toggle',
-			'label-message' => 'poncho-hide-sidebar',
-			'section' => 'rendering/skin',
+			'hide-if' => [ '!==', 'skin', 'poncho' ],
+			'section' => 'rendering/skin/skin-prefs',
 		];
-		$preferences['poncho-dark-mode'] = [
+
+		$preferences['poncho-hide-sidebar'] = $ponchoPref + [
+			'label-message' => 'poncho-hide-sidebar',
+		];
+		$preferences['poncho-dark-mode'] = $ponchoPref + [
 			'type' => 'toggle',
 			'label-message' => 'poncho-enable-dark-mode',
-			'section' => 'rendering/skin',
 		];
-		$preferences['poncho-read-mode'] = [
+		$preferences['poncho-read-mode'] = $ponchoPref + [
 			'type' => 'toggle',
 			'label-message' => 'poncho-enable-read-mode',
-			'section' => 'rendering/skin',
 		];
 	}
 
