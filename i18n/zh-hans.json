@@ -5,7 +5,8 @@
 			"Chixvv",
 			"Interestinghe",
 			"Liuxinyu970226",
-			"StarrySky"
+			"StarrySky",
+			"Tr jason"
 		]
 	},
 	"poncho-desc": "简洁、清楚、灵敏并为移动设备优化的皮肤。",
@@ -13,5 +14,11 @@
 	"poncho-share": "分享",
 	"poncho-copied": "已复制！",
 	"poncho-google-translate": "谷歌翻译",
-	"poncho-disable-read-mode": "禁止阅读模式"
+	"poncho-hide-sidebar": "隐藏侧边栏",
+	"poncho-enable-dark-mode": "启用深色模式",
+	"poncho-disable-dark-mode": "禁用深色模式",
+	"poncho-enable-read-mode": "启用阅读模式",
+	"poncho-disable-read-mode": "禁止阅读模式",
+	"poncho-no-notifications": "您没有新的通知。",
+	"poncho-new-message": "您收到了来自其他用户的新消息。"
 }
