@@ -731,8 +731,7 @@ code, tt {
 		border-color: @darkborder;
 	}
 
-	#poncho-sidebar-icon,
-	.oo-ui-iconElement-icon:not(.oo-ui-image-invert) {
+	#poncho-sidebar-icon {
 		filter: invert(1);
 	}
 	#poncho-menu {
@@ -751,6 +750,7 @@ code, tt {
 	 * OOUI overrides
 	 * !important is often necessary because OOUI loads via JavaScript
 	 */
+	.mw-ui-button,
 	.oo-ui-window-content,
 	.oo-ui-inputWidget-input,
 	.oo-ui-buttonElement-button,
@@ -769,23 +769,11 @@ code, tt {
 		border-color: @darkborder;
 	}
 	.oo-ui-icon-search {
-		filter: invert(1);
+		filter: invert(1) !important;
 	}
 	.mw-changeslist-legend {
 		background: @darkbackground !important;
 		border-color: @darkborder !important;
-	}
-
-	/**
-	 * Extension:WikiEditor
-	 * Override the OOUI overrides, or suffer
-	 */
-	#wikiEditor-ui-toolbar {
-		color: @black !important;
-	}
-	#wikiEditor-ui-toolbar .oo-ui-buttonElement-button {
-		background: @lightgrey !important;
-		border: 1px solid transparent !important;
 	}
 }
 
