@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Poncho",
-	"version": "6.2",
+	"version": "6.3",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -62,13 +62,5 @@
 		"BeforePageDisplay": "PonchoTemplate::onBeforePageDisplay",
 		"GetPreferences": "PonchoTemplate::onGetPreferences",
 		"OutputPageBodyAttributes": "PonchoTemplate::onOutputPageBodyAttributes"
-	},
-	"config": {
-		"PonchoLogo": {
-			"value": false
-		},
-		"PonchoSitename": {
-			"value": false
-		}
 	}
 }

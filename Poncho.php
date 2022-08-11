@@ -148,13 +148,18 @@ class PonchoTemplate extends BaseTemplate {
 	 * Echo the attributes of the logo
 	 */
 	function logoAttributes() {
-		global $wgPonchoLogo, $wgLogos, $wgLogo;
-		if ( !empty( $wgPonchoLogo ) ) {
-			$logo = $wgPonchoLogo;
-		} elseif ( !empty( $wgLogos['wordmark']['src'] ) ) {
-			$logo = $wgLogos['wordmark']['src'];
-		} else {
+		global $wgLogos, $wgLogo;
+		if ( $wgLogo ) {
 			$logo = $wgLogo;
+		}
+		if ( array_key_exists( '1x', $wgLogos ) ) {
+			$logo = $wgLogos['1x'];
+		}
+		if ( array_key_exists( 'icon', $wgLogos ) ) {
+			$logo = $wgLogos['icon'];
+		}
+		if ( array_key_exists( 'wordmark', $wgLogos ) ) {
+			$logo = $wgLogos['wordmark']['src'];
 		}
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
@@ -198,8 +203,11 @@ class PonchoTemplate extends BaseTemplate {
 	 * Echo the name of the site
 	 */
 	function siteName() {
-		global $wgSitename, $wgPonchoSitename;
-		echo $wgPonchoSitename === false ? $wgSitename : $wgPonchoSitename;
+		global $wgSitename, $wgLogos;
+		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
+			return;
+		}
+		echo $wgSitename;
 	}
 
 	/**
