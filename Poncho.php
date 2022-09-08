@@ -259,15 +259,19 @@ class PonchoTemplate extends BaseTemplate {
 		$skin = $this->getSkin();
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 
-		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $user->getOption( 'poncho-dark-mode' );
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) :
+			$userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
 		$viewOptions['dark-mode'] = [
 			'id' => 'poncho-dark-mode',
 			'text' => $darkMode ? wfMessage( 'poncho-disable-dark-mode' ) : wfMessage( 'poncho-enable-dark-mode' ),
 			'class' => 'text',
 		];
 
-		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $user->getOption( 'poncho-read-mode' );
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) :
+			$userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		$viewOptions['read-mode'] = [
 			'id' => 'poncho-read-mode',
 			'text' => $readMode ? wfMessage( 'poncho-disable-read-mode' ) : wfMessage( 'poncho-enable-read-mode' ),
@@ -401,15 +405,20 @@ class PonchoTemplate extends BaseTemplate {
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
-		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) : $user->getOption( 'poncho-hide-sidebar' );
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
+		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) :
+			$userOptionsLookup->getOption( $user, 'poncho-hide-sidebar' );
 		if ( $hideSidebar ) {
 			$bodyAttrs['class'] .= ' poncho-hide-sidebar';
 		}
-		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $user->getOption( 'poncho-dark-mode' );
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) :
+			$userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
 		if ( $darkMode ) {
 			$bodyAttrs['class'] .= ' poncho-dark-mode';
 		}
-		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $user->getOption( 'poncho-read-mode' );
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) :
+			$userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		if ( $readMode ) {
 			$bodyAttrs['class'] .= ' poncho-read-mode';
 		}
