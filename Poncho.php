@@ -159,7 +159,7 @@ class PonchoTemplate extends BaseTemplate {
 			$logo = $wgLogos['icon'];
 		}
 		if ( array_key_exists( 'wordmark', $wgLogos ) ) {
-			$logo = $wgLogos['wordmark']['src'];
+			$logo = $wgLogos['wordmark']['src'] ?? null;
 		}
 		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );

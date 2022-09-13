@@ -8,7 +8,7 @@
 	"type": "skin",
 	"license-name": "GPL-3.0-only",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"MessagesDirs": {
 		"Poncho": [
@@ -20,6 +20,7 @@
 			"class": "SkinPoncho",
 			"args": [
 				{
+					"bodyOnly": true,
 					"name": "poncho",
 					"template": "PonchoTemplate",
 					"styles": [ "skins.poncho.styles" ],
