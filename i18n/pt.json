@@ -4,5 +4,16 @@
 			"Hamilton Abreu"
 		]
 	},
-	"poncho-desc": "Tema simples, claro, reativo e adaptado a dispositivos móveis"
+	"poncho-desc": "Tema simples, claro, de resposta rápida e adaptado a dispositivos móveis",
+	"poncho-print": "Imprimir",
+	"poncho-share": "Partilhar",
+	"poncho-copied": "Copiado!",
+	"poncho-google-translate": "Google Tradutor",
+	"poncho-hide-sidebar": "Ocultar barra lateral",
+	"poncho-enable-dark-mode": "Ativar o modo escuro",
+	"poncho-disable-dark-mode": "Desativar o modo escuro",
+	"poncho-enable-read-mode": "Ativar o modo de leitura",
+	"poncho-disable-read-mode": "Desativar o modo de leitura",
+	"poncho-no-notifications": "Não tem notificações novas.",
+	"poncho-new-message": "Tem uma mensagem nova de outro utilizador."
 }
