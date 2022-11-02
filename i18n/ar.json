@@ -3,13 +3,21 @@
 		"authors": [
 			"FiberAhmed",
 			"NancyMilad",
-			"ديفيد"
+			"ديفيد",
+			"Meno25",
+			"أَحمد"
 		]
 	},
 	"poncho-desc": "برنامج مساعد بسيط ونظيف ومستجيب وصديق للجوال.",
+	"poncho-print": "اطبع",
 	"poncho-share": "مشاركة",
 	"poncho-copied": "نُسِخت!",
 	"poncho-google-translate": "ترجمة Google",
+	"poncho-hide-sidebar": "اخفاء الشريط الجانبي",
+	"poncho-enable-dark-mode": "قم بتمكين الوضع المظلم",
+	"poncho-disable-dark-mode": "تعطيل الوضع الداكن",
+	"poncho-enable-read-mode": "تمكين وضع القراءة",
+	"poncho-disable-read-mode": "تعطيل وضع القراءة",
 	"poncho-no-notifications": "ليست لديك إشعارات جديدة.",
 	"poncho-new-message": "لديك رسالة جديدة من مستخدم اخر"
 }
