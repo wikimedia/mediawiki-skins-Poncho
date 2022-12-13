@@ -1,36 +1,41 @@
 /* global mw, $ */
 
-let Poncho = {
+window.Poncho = {
 
 	/**
 	 * Initialization script
 	 */
 	init: function () {
-		Poncho.bind();
-		Poncho.ring();
-		mw.hook( 've.activationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).hide(); } );
-		mw.hook( 've.deactivationComplete' ).add( function () { $( '#poncho-visual-edit-button, #poncho-edit-source-button' ).show(); } );
+		Poncho.bindEvents();
+
+		Poncho.ringBell();
+
+		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
+		mw.hook( 've.deactivationComplete' ).add( Poncho.toggleContentActions );
+
+		// Stop any running voice
+		window.speechSynthesis.cancel();
+
+		// Add markup that can't be added from Poncho.phtml or Poncho.php
 		$( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
-		if ( window.location.hash === '#print' ) {
-			window.print();
-		}
 	},
 
 	/**
 	 * Bind events
 	 */
-	bind: function () {
-		$( '#poncho-sidebar-icon' ).click( Poncho.toggleSidebar );
+	bindEvents: function () {
 		$( '#poncho-dark-mode' ).click( Poncho.toggleDarkMode );
 		$( '#poncho-read-mode' ).click( Poncho.toggleReadMode );
-		$( '#poncho-bell-item' ).mouseenter( Poncho.readNotifications );
+		$( '#poncho-bell-item' ).one( 'mouseenter', Poncho.readNotifications );
 		$( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
 		$( '#poncho-share-button' ).click( Poncho.share ),
-		$( '#poncho-print-button' ).click( Poncho.print );
+		$( '#poncho-translate-button' ).click( Poncho.translate );
+		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
+		$( '#poncho-more-button' ).click( Poncho.toggleContentActionsMenu );
 
 		// Hack to detect clicks on #poncho-search-suggestions
 		// See https://stackoverflow.com/a/65073572/809356
-		let searchSuggestionSelected = false;
+		var searchSuggestionSelected = false;
 		$( '#poncho-search-form input' ).keydown( function ( event ) {
 			searchSuggestionSelected = false;
 			if ( ! event.key ) {
@@ -44,8 +49,54 @@ let Poncho = {
 		} );
 	},
 
-	print: function () {
-		window.print();
+	/**
+	 * Read the current page aloud
+	 */
+	readAloud: function () {
+		var $content = $( '#mw-content-text' ).clone();
+
+		// Remove elements we don't want to read
+		$content.find( '.mw-editsection, .dablink, .noprint, .thumb' ).remove();
+		$content.find( 'style, table' ).remove();
+
+		// Read the text but add silence between elements
+		var text = $content.text();
+		var textParts = text.split( '\n' );
+		var currentIndex = 0;
+		var speak = function ( textPart ) {
+			var utterance = new SpeechSynthesisUtterance( textPart );
+			utterance.lang = $content.attr( 'lang' );
+			utterance.rate = 0.85;
+			utterance.onend = function () {
+				currentIndex++;
+				if ( currentIndex < textParts.length ) {
+					setTimeout( function () {
+						speak( textParts[ currentIndex ] );
+					}, 500 );
+				}
+			};
+			window.speechSynthesis.speak( utterance );
+		};
+		window.speechSynthesis.cancel();
+		speak( textParts[0] );
+
+		$( this ).off().click( Poncho.pauseReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-pause-reading' ) );
+	},
+
+	/**
+	 * Pause reading aloud
+	 */
+	pauseReading: function () {
+		window.speechSynthesis.pause();
+		$( this ).off().click( Poncho.resumeReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-resume-reading' ) );
+	},
+
+	/**
+	 * Resume reading aloud
+	 */
+	resumeReading: function () {
+		window.speechSynthesis.resume();
+		$( this ).off().click( Poncho.pauseReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-pause-reading' ) );
 	},
 
 	/**
@@ -53,37 +104,37 @@ let Poncho = {
 	 */
 	share: function () {
 		// Define the dialog elements
-		let $overlay = $( '<div>' ).attr( 'id', 'poncho-share-overlay' );
-		let $dialog = $( '<div>' ).attr( 'id', 'poncho-share-dialog' );
-		let $title = $( '<h2>' ).attr( 'id', 'poncho-share-title' ).text( 'Share this page' );
-		let $buttons = $( '<div>' ).attr( 'id', 'poncho-share-buttons' );
-		let $close = $( '<div>' ).attr( 'id', 'poncho-share-close' ).text( '✕' );
+		var $overlay = $( '<div>' ).attr( 'id', 'poncho-share-overlay' );
+		var $dialog = $( '<div>' ).attr( 'id', 'poncho-share-dialog' );
+		var $title = $( '<h2>' ).attr( 'id', 'poncho-share-title' ).text( 'Share this page' );
+		var $buttons = $( '<div>' ).attr( 'id', 'poncho-share-buttons' );
+		var $close = $( '<div>' ).attr( 'id', 'poncho-share-close' ).text( '✕' );
 
 		// Define the buttons
-		let stylepath = mw.config.get( 'stylepath' );
-		let url = encodeURIComponent( location.href );
-		let title = $( '#firstHeading' ).text();
-		let $facebook = $( '<a>' ).attr( {
+		var stylepath = mw.config.get( 'stylepath' );
+		var url = encodeURIComponent( location.href );
+		var title = $( '#firstHeading' ).text();
+		var $facebook = $( '<a>' ).attr( {
 			id: 'poncho-facebook-button',
 			target: '_blank',
 			href: 'https://www.facebook.com/sharer.php?u=' + url
 		} ).html( '<img src="' + stylepath + '/Poncho/images/facebook.png" /><div>Facebook</div>' );
-		let $twitter = $( '<a>' ).attr( {
+		var $twitter = $( '<a>' ).attr( {
 			id: 'poncho-twitter-button',
 			target: '_blank',
 			href: 'https://twitter.com/intent/tweet?url=' + url
 		} ).html( '<img src="' + stylepath + '/Poncho/images/twitter.png" /><div>Twitter</div>' );
-		let $reddit = $( '<a>' ).attr( {
+		var $reddit = $( '<a>' ).attr( {
 			id: 'poncho-reddit-button',
 			target: '_blank',
 			href: 'https://www.reddit.com/submit?url=' + url + '&title=' + title,
 		} ).html( '<img src="' + stylepath + '/Poncho/images/reddit.png" /><div>Reddit</div>' );
-		let $email = $( '<a>' ).attr( {
+		var $email = $( '<a>' ).attr( {
 			id: 'poncho-email-button',
 			target: '_blank',
 			href: 'mailto:?subject=' + title + '&body=' + url
 		} ).html( '<img src="' + stylepath + '/Poncho/images/email.png" /><div>Email</div>' );
-		let $permalink = $( '<a>' ).attr( {
+		var $permalink = $( '<a>' ).attr( {
 			id: 'poncho-permalink-button',
 			target: '_blank',
 		} ).html( '<img src="' + stylepath + '/Poncho/images/permalink.png" /><div>Permalink</div>' );
@@ -98,7 +149,7 @@ let Poncho = {
 			$dialog.remove();
 		} );
 		$permalink.click( function () {
-			let copied = mw.message( 'poncho-copied' ).plain();
+			var copied = mw.message( 'poncho-copied' ).plain();
 			navigator.clipboard.writeText( location.href ).then( function() {
 				$( 'div', $permalink ).text( copied );
 			} );
@@ -114,13 +165,13 @@ let Poncho = {
 	 * Suggest pages while searching
 	 */
 	searchSuggestions: function () {
-		let query = $( this ).val();
+		var query = $( this ).val();
 		new mw.Api().get( {
 			action: 'opensearch',
 			search: query
 		} ).done( function ( data ) {
 			$( '#poncho-search-suggestions' ).empty();
-			let suggestions = data.slice( 1, 2 )[0];
+			var suggestions = data.slice( 1, 2 )[0];
 			suggestions.forEach( function ( suggestion ) {
 				suggestion = $( '<option>' ).val( suggestion );
 				$( '#poncho-search-suggestions' ).append( suggestion );
@@ -129,30 +180,24 @@ let Poncho = {
 	},
 
 	/**
-	 * Toggle the sidebar
+	 * Toggle the content actions
 	 */
-	toggleSidebar: function () {
-		let hideSidebar = mw.user.isAnon() ? mw.cookie.get( 'PonchoHideSidebar' ) : mw.user.options.get( 'poncho-hide-sidebar' );
-		if ( hideSidebar ) {
-			$( 'body' ).removeClass( 'poncho-hide-sidebar' );
-			hideSidebar = null;
-		} else {
-			$( 'body' ).addClass( 'poncho-hide-sidebar' );
-			hideSidebar = 1;
-		}
-		if ( mw.user.isAnon() ) {
-			mw.cookie.set( 'PonchoHideSidebar', hideSidebar );
-		} else {
-			mw.user.options.set( 'poncho-hide-sidebar', hideSidebar );
-			new mw.Api().saveOption( 'poncho-hide-sidebar', hideSidebar );
-		}
+	toggleContentActions: function () {
+		$( '#poncho-content-actions' ).toggle();
+	},
+
+	/**
+	 * Toggle the more content actions menu
+	 */
+	toggleContentActionsMenu: function () {
+		$( '#poncho-content-actions-menu' ).toggle();
 	},
 
 	/**
 	 * Toggle the dark mode
 	 */
 	toggleDarkMode: function () {
-		let darkMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoDarkMode' ) : mw.user.options.get( 'poncho-dark-mode' );
+		var darkMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoDarkMode' ) : mw.user.options.get( 'poncho-dark-mode' );
 		if ( darkMode ) {
 			$( 'body' ).removeClass( 'poncho-dark-mode' );
 			$( this ).text( mw.msg( 'poncho-enable-dark-mode' ) );
@@ -174,7 +219,7 @@ let Poncho = {
 	 * Toggle the read mode
 	 */
 	toggleReadMode: function () {
-		let readMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoReadMode' ) : mw.user.options.get( 'poncho-read-mode' );
+		var readMode = mw.user.isAnon() ? mw.cookie.get( 'PonchoReadMode' ) : mw.user.options.get( 'poncho-read-mode' );
 		if ( readMode ) {
 			$( 'body' ).removeClass( 'poncho-read-mode' );
 			$( this ).text( mw.msg( 'poncho-enable-read-mode' ) );
@@ -206,11 +251,66 @@ let Poncho = {
 	/**
 	 * Mark the bell item if the current user has unread notifications
 	 */
-	ring: function () {
-		let bellItem = $( '#poncho-bell-item' );
-		if ( $( '.active', bellItem ).length ) {
-			bellItem.addClass( 'active' );
+	ringBell: function () {
+		var $bell = $( '#poncho-bell-item' );
+		if ( $( '.active', $bell ).length ) {
+			$bell.addClass( 'active' );
 		}
+	},
+
+	/**
+	 * Load Google Translate
+	 */
+	translate: function () {
+		$.getScript( '//translate.google.com/translate_a/element.js?cb=Poncho.initGoogleTranslate' );
+
+		// Add the necessary DOM element
+		$( 'body' ).after( '<div hidden id="google-translate-element"></div>' );
+
+		// Mark the main interface elements to prevent translation, since MediaWiki already does that
+		$( '#poncho-header-wrapper, #poncho-sidebar-wrapper, #poncho-footer-wrapper, #poncho-content-actions' ).attr( 'translate', 'no' );
+	},
+
+	initGoogleTranslate: function () {
+		new google.translate.TranslateElement( {
+			pageLanguage: mw.config.get( 'wgPageContentLanguage' ),
+			layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+		}, 'google-translate-element' );
+
+		// If the user already translated a page
+		// then Google will remember the language selection and translate immediately
+		// else we ask the user to select a language
+		if ( mw.cookie.get( 'googtrans', '' ) ) {
+			Poncho.updateTranslateButton();
+		} else {
+			setTimeout( Poncho.openTranslationMenu, 1000 ); // For some reason the menu is not available immediately
+		}
+	},
+
+	updateTranslateButton: function () {
+		var $button = $( '#poncho-translate-button' );
+		if ( mw.cookie.get( 'googtrans', '' ) ) {
+			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-stop-translating' ) );
+			$button.off().click( Poncho.stopTranslating );
+		} else {
+			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-translate' ) );
+			$button.off().click( Poncho.openTranslationMenu );
+		}
+	},
+
+	openTranslationMenu: function () {
+		$( '.goog-te-gadget-simple' ).click();
+
+		// If the user actually selects a language, update the button
+		// but wait a second because the cookie is not set instantly
+		$( '.goog-te-menu-frame' ).contents().click( function () {
+			setTimeout( Poncho.updateTranslateButton, 1000 );
+		} );
+	},
+
+	stopTranslating: function () {
+		$( '.goog-te-banner-frame' ).contents().find( '.goog-close-link img' ).click();
+		Poncho.updateTranslateButton();
 	}
 };
 

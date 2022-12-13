@@ -13,11 +13,12 @@ class PonchoTemplate extends BaseTemplate {
 		$out->enableOOUI();
 		$out->addModuleStyles( [
 			'oojs-ui.styles.icons-user',
+			'oojs-ui.styles.icons-media',
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-editing-core',
 			'oojs-ui.styles.icons-editing-advanced'
 		] );
-		$out->addMeta( 'viewport', 'width=device-width,user-scalable=no' );
+		$out->addMeta( 'viewport', 'width=device-width, initial-scale=1, user-scalable=no' );
 	}
 
 	/**
@@ -31,15 +32,6 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the page action buttons
-	 */
-	function pageActions() {
-		$this->editButton();
-		$this->printButton();
-		$this->shareButton();
-	}
-
-	/**
 	 * Echo the Edit button or buttons
 	 */
 	function editButton() {
@@ -50,22 +42,121 @@ class PonchoTemplate extends BaseTemplate {
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['ve-edit'];
 			echo new OOUI\ButtonWidget( [
-				'id' => 'poncho-visual-edit-button',
-				'label' => $button['text'],
+				'id' => 'ca-ve-edit',
+				'title' => $button['text'],
 				'href' => $button['href'],
-				'flags' => [ 'primary', 'progressive' ],
-				'icon' => 'edit'
+				'icon' => 'edit',
+				'framed' => false
 			] );
 		}
 		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['edit'];
 			echo new OOUI\ButtonWidget( [
-				'id' => 'poncho-edit-source-button',
-				'label' => $button['text'],
+				'id' => 'ca-edit',
+				'title' => $button['text'],
 				'href' => $button['href'],
-				'icon' => 'wikiText'
+				'icon' => 'wikiText',
+				'framed' => false
 			] );
 		}
+	}
+
+	/**
+	 * Echo the Print button
+	 */
+	function printButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->exists() ) {
+			return;
+		}
+		if ( ! $title->isContentPage() ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+		    'id' => 't-print',
+		    'title' => wfMessage( 'poncho-print' )->plain(),
+		    'icon' => 'printer',
+			'framed' => false
+		] );
+	}
+
+	/**
+	 * Echo the Translate button
+	 */
+	function translateButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->exists() ) {
+			return;
+		}
+		$namespace = $title->getNamespace();
+		if ( ! in_array( $namespace, [ 0, 4, 12 ] ) ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+			'id' => 'poncho-translate-button',
+			'title' => wfMessage( 'poncho-translate' )->plain(),
+			'icon' => 'language',
+			'framed' => false
+		] );
+	}
+
+	/**
+	 * Echo the Read Aloud button
+	 */
+	function readAloudButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->exists() ) {
+			return;
+		}
+		$namespace = $title->getNamespace();
+		if ( ! in_array( $namespace, [ 0, 4, 12 ] ) ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+			'id' => 'poncho-read-aloud-button',
+			'title' => wfMessage( 'poncho-read-aloud' )->plain(),
+			'icon' => 'play',
+			'framed' => false
+		] );
+	}
+
+	/**
+	 * Echo the Share button
+	 */
+	function shareButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		if ( ! $title->isContentPage() ) {
+			return;
+		}
+		if ( ! $title->exists() ) {
+			return;
+		}
+		$action = Action::getActionName( $skin->getContext() );
+		if ( $action !== 'view' ) {
+			return;
+		}
+		echo new OOUI\ButtonWidget( [
+		    'id' => 'poncho-share-button',
+		    'title' => wfMessage( 'poncho-share' )->plain(),
+		    'icon' => 'heart',
+			'framed' => false
+		] );
 	}
 
 	/**
@@ -90,23 +181,21 @@ class PonchoTemplate extends BaseTemplate {
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
 		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-talk-button',
-		    'label' => $button['text'],
+		    'id' => 'ca-talk',
+		    'title' => $button['text'],
 		    'href' => $button['href'],
 		    'flags' => $button['class'] === 'new' ? 'destructive' : '',
-		    'icon' => 'userTalk'
+		    'icon' => 'userTalk',
+			'framed' => false
 		] );
 	}
 
 	/**
-	 * Echo the Share button
+	 * Echo the More button
 	 */
-	function shareButton() {
+	function moreButton() {
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
-		if ( ! $title->isContentPage() ) {
-			return;
-		}
 		if ( ! $title->exists() ) {
 			return;
 		}
@@ -115,33 +204,32 @@ class PonchoTemplate extends BaseTemplate {
 			return;
 		}
 		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-share-button',
-		    'label' => wfMessage( 'poncho-share' )->plain(),
-		    'icon' => 'heart',
+			'id' => 'poncho-more-button',
+			'title' => wfMessage( 'poncho-more' )->plain(),
+			'icon' => 'ellipsis',
+			'framed' => false
 		] );
 	}
 
 	/**
-	 * Echo the Print button
+	 * Return the content actions menu
 	 */
-	function printButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->exists() ) {
-			return;
-		}
-		if ( ! $title->isContentPage() ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-print-button',
-		    'label' => wfMessage( 'poncho-print' )->plain(),
-		    'icon' => 'printer',
-		] );
+	function getContentActionsMenu() {
+		$menu = array_merge(
+			$this->data['content_navigation']['views'],
+			$this->data['content_navigation']['actions'],
+			$this->data['content_navigation']['variants'],
+			$this->data['sidebar']['TOOLBOX']
+		);
+
+		// Remove undesired items
+		unset( $menu['upload'] );
+		unset( $menu['specialpages'] );
+		unset( $menu['print'] );
+		unset( $menu['edit'] );
+		unset( $menu['ve-edit'] );
+
+		return $menu;
 	}
 
 	/**
@@ -225,10 +313,35 @@ class PonchoTemplate extends BaseTemplate {
 	 * Return the user menu of the header
 	 */
 	function getUserMenu() {
-		$userMenu = $this->getPersonalTools();
+		$userMenu = array_slice( $this->getPersonalTools(), 0, -1 );
+
+		$skin = $this->getSkin();
+		$user = $skin->getUser();
+		$request = $skin->getRequest();
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
+
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
+		$userMenu['dark-mode'] = [
+			'id' => 'poncho-dark-mode',
+			'text' => $darkMode ? wfMessage( 'poncho-disable-dark-mode' ) : wfMessage( 'poncho-enable-dark-mode' ),
+			'class' => 'text',
+		];
+
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
+		$userMenu['read-mode'] = [
+			'id' => 'poncho-read-mode',
+			'text' => $readMode ? wfMessage( 'poncho-disable-read-mode' ) : wfMessage( 'poncho-enable-read-mode' ),
+			'class' => 'text',
+		];
+
+		$userMenu += array_slice( $this->getPersonalTools(), -1 );
+
+		// Unset irrelevant and repeated options
 		unset( $userMenu['uls'] );
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
+
 		return $userMenu;
 	}
 
@@ -237,67 +350,13 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function getLanguagesMenu() {
 		$languages = $this->data['sidebar']['LANGUAGES'];
-		$link = [
-			'text' => wfMessage( 'poncho-google-translate' ),
-			'href' => 'https://translate.google.com/translate?u=' . $this->getSkin()->getTitle()->getFullURL(),
-			'target' => '_blank'
-		];
-		$item = [
-			'links' => [ $link ],
-			'class' => 'link',
-		];
-		$languages[] = $item;
+		if ( !$languages ) {
+			$languages[] = [
+				'text' => wfMessage( 'poncho-no-languages' ),
+				'class' => 'text'
+			];
+		}
 		return $languages;
-	}
-
-	/**
-	 * Return the view options
-	 */
-	function getViewOptions() {
-		$viewOptions = [];
-
-		$skin = $this->getSkin();
-		$user = $skin->getUser();
-		$request = $skin->getRequest();
-		$services = MediaWikiServices::getInstance();
-		$userOptionsLookup = $services->getUserOptionsLookup();
-
-		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) :
-			$userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
-		$viewOptions['dark-mode'] = [
-			'id' => 'poncho-dark-mode',
-			'text' => $darkMode ? wfMessage( 'poncho-disable-dark-mode' ) : wfMessage( 'poncho-enable-dark-mode' ),
-			'class' => 'text',
-		];
-
-		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) :
-			$userOptionsLookup->getOption( $user, 'poncho-read-mode' );
-		$viewOptions['read-mode'] = [
-			'id' => 'poncho-read-mode',
-			'text' => $readMode ? wfMessage( 'poncho-disable-read-mode' ) : wfMessage( 'poncho-enable-read-mode' ),
-			'class' => 'text',
-		];
-
-		return $viewOptions;
-	}
-
-	/**
-	 * Return the actions
-	 */
-	function getActions() {
-		$actions = array_merge(
-			$this->data['content_navigation']['views'],
-			$this->data['content_navigation']['actions'],
-			$this->data['content_navigation']['variants']
-		);
-		return $actions;
-	}
-
-	/**
-	 * Return the page tools for the footer
-	 */
-	function getTools() {
-		return $this->get( 'sidebar' )['TOOLBOX'];
 	}
 
 	/**
@@ -405,20 +464,21 @@ class PonchoTemplate extends BaseTemplate {
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
+		$embed = $request->getText( 'embed' );
+		if ( $embed ) {
+			$bodyAttrs['class'] .= ' poncho-embed-mode';
+		}
 		$services = MediaWikiServices::getInstance();
 		$userOptionsLookup = $services->getUserOptionsLookup();
-		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) :
-			$userOptionsLookup->getOption( $user, 'poncho-hide-sidebar' );
+		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) : $userOptionsLookup->getOption( $user, 'poncho-hide-sidebar' );
 		if ( $hideSidebar ) {
 			$bodyAttrs['class'] .= ' poncho-hide-sidebar';
 		}
-		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) :
-			$userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
 		if ( $darkMode ) {
 			$bodyAttrs['class'] .= ' poncho-dark-mode';
 		}
-		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) :
-			$userOptionsLookup->getOption( $user, 'poncho-read-mode' );
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		if ( $readMode ) {
 			$bodyAttrs['class'] .= ' poncho-read-mode';
 		}

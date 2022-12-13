@@ -8,8 +8,14 @@
 	"poncho-desc": "Apariencia simple, adaptable y compatible con dispositivos móviles.",
 	"poncho-print": "Imprimir",
 	"poncho-share": "Compartir",
+	"poncho-more": "Más",
 	"poncho-copied": "¡Copiado!",
-	"poncho-google-translate": "Traductor de Google",
+	"poncho-read-aloud": "Leer en voz alta",
+	"poncho-pause-reading": "Pausar lectura",
+	"poncho-resume-reading": "Continuar lectura",
+	"poncho-translate": "Traducir",
+	"poncho-stop-translating": "Dejar de traducir",
+	"poncho-no-languages": "No hay enlaces interlinguísticos para esta página.",
 	"poncho-no-notifications": "No tienes nuevas notificaciones.",
 	"poncho-new-message": "Tienes un nuevo mensaje de otro usuario."
 }
