@@ -262,8 +262,9 @@ class PonchoTemplate extends BaseTemplate {
 	function title() {
 		$Title = $this->getSkin()->getTitle();
 		$title = $this->data['title'];
+		$displayTitle = strip_tags( $title );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( $title !== $Title->getFullText() ) {
+		if ( $displayTitle !== $Title->getFullText() ) {
 			// DISPLAYTITLE is set, so do nothing
 		} else if ( $Title->isTalkPage() && $Title->getSubjectPage()->exists() ) {
 			$talk = str_replace( '_', ' ', $Title->getNsText() );
