@@ -3,6 +3,7 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Raymond",
+			"Robby",
 			"Sophivorus"
 		]
 	},
@@ -14,7 +15,7 @@
 	"poncho-read-aloud": "Label for the button to read the page aloud.",
 	"poncho-pause-reading": "Label for the button to pause the reading aloud.",
 	"poncho-resume-reading": "Label for the button to resume the reading aloud.",
-	"poncho-translate": "Label for the button to activate Google Translate.",
+	"poncho-translate": "Label for the button to activate Google Translate.\n{{identical|Translate}}",
 	"poncho-stop-translating": "Label for the button to deactivate Google Translate.",
 	"poncho-hide-sidebar": "Label for the preference that hides the sidebar.",
 	"poncho-enable-dark-mode": "Label for the menu option (and preference) that enables the dark mode.",
