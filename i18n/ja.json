@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Buehl",
 			"MathXplore",
 			"しぃ"
 		]
 	},
 	"poncho-desc": "シンプル、クリーン、レスポンシブ、モバイルフレンドリーなスキン。",
 	"poncho-share": "共有",
+	"poncho-more": "その他",
 	"poncho-copied": "コピーしました",
 	"poncho-translate": "翻訳",
 	"poncho-hide-sidebar": "サイドバーを隠す",
