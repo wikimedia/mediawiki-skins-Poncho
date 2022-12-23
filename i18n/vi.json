@@ -1,8 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Keo010122"
+			"Keo010122",
+			"Nguyenphutrong2"
 		]
 	},
-	"poncho-print": "In"
+	"poncho-print": "In",
+	"poncho-more": "Hơn",
+	"poncho-read-aloud": "Đọc lớn tiếng",
+	"poncho-pause-reading": "tạm dừng đọc",
+	"poncho-resume-reading": "tiếp tục đọc",
+	"poncho-translate": "Dịch",
+	"poncho-stop-translating": "ngừng dịch",
+	"poncho-no-languages": "Không có liên kết liên wiki cho trang này."
 }
