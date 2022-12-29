@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
 	"poncho-share": "Jyevi",
-	"poncho-copied": "Kopijistum!"
+	"poncho-copied": "Kopijistum!",
+	"poncho-translate": "Jurgâl"
 }
