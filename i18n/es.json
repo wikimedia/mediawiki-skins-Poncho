@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
+			"Jack30",
 			"Sophivorus"
 		]
 	},
@@ -11,8 +12,8 @@
 	"poncho-more": "Más",
 	"poncho-copied": "¡Copiado!",
 	"poncho-read-aloud": "Leer en voz alta",
-	"poncho-pause-reading": "Pausar lectura",
-	"poncho-resume-reading": "Continuar lectura",
+	"poncho-pause-reading": "Pausar la lectura",
+	"poncho-resume-reading": "Continuar la lectura",
 	"poncho-translate": "Traducir",
 	"poncho-stop-translating": "Dejar de traducir",
 	"poncho-no-languages": "No hay enlaces interlinguísticos para esta página.",
