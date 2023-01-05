@@ -4,11 +4,22 @@
 			"Eleassar"
 		]
 	},
+	"poncho-desc": "Preprosta, čista, odzivna in mobilnim napravam prijazna preobleka.",
+	"poncho-print": "Natisni",
+	"poncho-share": "Deli",
 	"poncho-more": "Več",
+	"poncho-copied": "Kopirano!",
 	"poncho-read-aloud": "Beri naglas",
 	"poncho-pause-reading": "Prekini branje",
 	"poncho-resume-reading": "Nadaljujte branje",
 	"poncho-translate": "Prevedi",
 	"poncho-stop-translating": "Prenehaj prevajati",
-	"poncho-no-languages": "Za to stran ni interviki povezav."
+	"poncho-hide-sidebar": "Skrij stransko vrstico",
+	"poncho-enable-dark-mode": "Vklopi temni način",
+	"poncho-disable-dark-mode": "Izklopi temni način",
+	"poncho-enable-read-mode": "Vklopi način branja",
+	"poncho-disable-read-mode": "Izklopi način branja",
+	"poncho-no-languages": "Za to stran ni interviki povezav.",
+	"poncho-no-notifications": "Nimate novih obvestil.",
+	"poncho-new-message": "Imate novo sporočilo drugega uporabnika."
 }
