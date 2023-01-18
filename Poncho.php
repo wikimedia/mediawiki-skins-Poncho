@@ -233,27 +233,53 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the attributes of the logo
+	 * Echo logo attributes
 	 */
 	function logoAttributes() {
-		global $wgLogos, $wgLogo;
+		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
+		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
+		$attributes = Xml::expandAttributes( $attributes );
+		echo $attributes;
+	}
+
+	/**
+	 * Echo logo
+	 */
+	function logo() {
+		global $wgLogo, $wgLogos;
 		if ( $wgLogo ) {
 			$logo = $wgLogo;
 		}
-		if ( array_key_exists( '1x', $wgLogos ) ) {
-			$logo = $wgLogos['1x'];
+		if ( $wgLogos ) {
+			if ( array_key_exists( '2x', $wgLogos ) ) {
+				$logo = $wgLogos['2x'];
+			}
+			if ( array_key_exists( '1.5x', $wgLogos ) ) {
+				$logo = $wgLogos['1.5x'];
+			}
+			if ( array_key_exists( '1x', $wgLogos ) ) {
+				$logo = $wgLogos['1x'];
+			}
+			if ( array_key_exists( 'icon', $wgLogos ) ) {
+				$logo = $wgLogos['icon'];
+			}
 		}
-		if ( array_key_exists( 'icon', $wgLogos ) ) {
-			$logo = $wgLogos['icon'];
+		if ( isset( $logo ) ) {
+			echo '<img src="' . $logo . '" />';
 		}
-		if ( array_key_exists( 'wordmark', $wgLogos ) ) {
-			$logo = $wgLogos['wordmark']['src'] ?? null;
+	}
+
+	/**
+	 * Echo sitename or wordmark
+	 */
+	function sitename() {
+		global $wgLogos, $wgSitename;
+		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
+			$wordmark = $wgLogos['wordmark']['src'];
+			echo '<img src="' . $wordmark . '" />';
+		} else {
+			echo $wgSitename;
 		}
-		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
-		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$attributes['style'] = 'background-image: url("' . $logo . '");';
-		$attributes = Xml::expandAttributes( $attributes );
-		echo $attributes;
 	}
 
 	/**
@@ -286,17 +312,6 @@ class PonchoTemplate extends BaseTemplate {
 			}
 		}
 		echo $title;
-	}
-
-	/**
-	 * Echo the name of the site
-	 */
-	function siteName() {
-		global $wgSitename, $wgLogos;
-		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
-			return;
-		}
-		echo $wgSitename;
 	}
 
 	/**
