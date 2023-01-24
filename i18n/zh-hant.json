@@ -12,6 +12,9 @@
 	"poncho-share": "分享",
 	"poncho-more": "更多選項",
 	"poncho-copied": "已複製！",
+	"poncho-read-aloud": "朗讀",
+	"poncho-pause-reading": "暫停閱讀",
+	"poncho-resume-reading": "繼續閱讀",
 	"poncho-translate": "翻譯",
 	"poncho-stop-translating": "停止翻譯",
 	"poncho-hide-sidebar": "隱藏側邊欄",
@@ -19,6 +22,7 @@
 	"poncho-disable-dark-mode": "停用暗黑模式",
 	"poncho-enable-read-mode": "啟用閱讀模式",
 	"poncho-disable-read-mode": "停用閱讀模式",
+	"poncho-no-languages": "此頁面沒有 interwiki 連結。",
 	"poncho-no-notifications": "你沒有新的通知。",
 	"poncho-new-message": "您有來自於其他使用者的新訊息。"
 }
