@@ -233,52 +233,75 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo logo attributes
-	 */
-	function logoAttributes() {
-		$attributes = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
-		$attributes['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$attributes = Xml::expandAttributes( $attributes );
-		echo $attributes;
-	}
-
-	/**
 	 * Echo logo
 	 */
 	function logo() {
-		global $wgLogo, $wgLogos;
-		if ( $wgLogo ) {
-			$logo = $wgLogo;
+		global $wgLogos, $wgLogo, $wgSitename;
+
+		// Make logo
+		$src = $wgLogo;
+		if ( $wgLogos && array_key_exists( 'icon', $wgLogos ) ) {
+			$src = $wgLogos['icon'];
 		}
-		if ( $wgLogos ) {
-			if ( array_key_exists( '2x', $wgLogos ) ) {
-				$logo = $wgLogos['2x'];
-			}
-			if ( array_key_exists( '1.5x', $wgLogos ) ) {
-				$logo = $wgLogos['1.5x'];
-			}
-			if ( array_key_exists( '1x', $wgLogos ) ) {
-				$logo = $wgLogos['1x'];
-			}
-			if ( array_key_exists( 'icon', $wgLogos ) ) {
-				$logo = $wgLogos['icon'];
-			}
+		$width = 42;
+		$height = 42;
+		$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
+		$logo = Html::rawElement( 'img', $attrs );
+
+		// Make wordmark
+		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
+			$src = $wgLogos['wordmark']['src'];
+			$width = $wgLogos['wordmark']['width'];
+			$height = $wgLogos['wordmark']['height'];
+			$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
+			$wordmark = Html::rawElement( 'img', $attrs );
+		} else {
+			$wordmark = Html::rawElement( 'span', [], $wgSitename );
 		}
-		if ( isset( $logo ) ) {
-			echo '<img src="' . $logo . '" />';
+
+		// Make tagline
+		$tagline = null;
+		if ( $wgLogos && array_key_exists( 'tagline', $wgLogos ) ) {
+			$src = $wgLogos['tagline']['src'];
+			$width = $wgLogos['tagline']['width'];
+			$height = $wgLogos['tagline']['height'];
+			$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
+			$tagline = Html::rawElement( 'img', $attrs );
 		}
+
+		// Make wrapper span
+		$span = Html::rawElement( 'span', [], $wordmark . '<br>' . $tagline );
+
+		// Make link
+		$attrs = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
+		$attrs['id'] = 'poncho-logo';
+		$attrs['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
+		$link = Html::rawElement( 'a', $attrs, $logo . $span );
+
+		echo $link;
 	}
 
 	/**
-	 * Echo sitename or wordmark
+	 * Echo wordmark or sitename
 	 */
-	function sitename() {
+	function wordmark() {
 		global $wgLogos, $wgSitename;
 		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
 			$wordmark = $wgLogos['wordmark']['src'];
 			echo '<img src="' . $wordmark . '" />';
 		} else {
 			echo $wgSitename;
+		}
+	}
+
+	/**
+	 * Echo tagline
+	 */
+	function tagline() {
+		global $wgLogos, $wgSitename;
+		if ( $wgLogos && array_key_exists( 'tagline', $wgLogos ) ) {
+			$tagline = $wgLogos['tagline']['src'];
+			echo '<img src="' . $tagline . '" />';
 		}
 	}
 

@@ -109,14 +109,19 @@ code, tt {
 }
 #poncho-logo {
 	color: inherit;
-	display: block;
-	font-size: 1.5em;
+	display: table;
 	text-decoration: none;
 }
 #poncho-logo img {
-	margin-right: .5em;
 	vertical-align: middle;
-	height: 2em;
+}
+#poncho-logo > span {
+	display: table-cell;
+	padding-left: .5em;
+	vertical-align: middle;
+}
+#poncho-logo > span > span {
+	font-size: 1.5em;
 }
 
 /**
