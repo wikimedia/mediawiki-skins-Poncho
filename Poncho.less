@@ -1,3 +1,6 @@
+/**
+ * Color palette
+ */
 @background: #ffffff;
 @link: #a55858;
 @redlink: #a55858;
@@ -6,16 +9,11 @@
 @lightgrey: #f8f9fa; // Same as OOUI
 
 /**
- * Google Translate
+ * Break points
  */
-.goog-te-banner-frame {
-	display: none;
-}
-.goog-te-menu-frame {
-	top: 80px !important;
-	left: 50% !important;
-	transform: translate(-50%, 0);
-}
+@small: 600px;
+@medium: 1000px;
+@large: 1300px;
 
 /**
  * Site-wide elements
@@ -27,7 +25,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	position: static !important; /* !important or Google Translate changes it */
+	position: static;
 }
 a {
 	text-decoration: none;
@@ -91,7 +89,7 @@ code, tt {
 	box-shadow: 0 0 2px @darkgrey;
 	box-sizing: border-box;
 	padding: .5em;
-	position: fixed;
+	position: sticky;
 	top: 0;
 	width: 100%;
 	z-index: 8;
@@ -127,9 +125,8 @@ code, tt {
 /**
  * Search form
  */
-#poncho-search-form-wrapper {
-}
 #poncho-search-form {
+	box-sizing: border-box;
 	margin: auto;
 	overflow: hidden;
 	padding: .5em;
@@ -139,112 +136,72 @@ code, tt {
 #poncho-search-suggestions {
 	display: none;
 }
-
-/**
- * Sidebar
- */
-#poncho-sidebar-wrapper {
-	height: 100%;
-	padding: 1em;
-	position: fixed;
-	top: 4em;
-	max-width: 200px;
-	z-index: 7;
-	ul {
-		list-style: none;
-		padding: 0;
-	}
-	li {
-		margin-bottom: .5em;
-		padding: 0;
-	}
-	div {
-		margin-top: 2em;
-		margin-bottom: .5em;
+@media ( max-width: @small ) {
+	#poncho-search-form {
+		width: 100%;
 	}
 }
-.poncho-hide-sidebar #poncho-sidebar-wrapper {
+
+/**
+ * Menus
+ */
+.poncho-menu {
+	background: inherit;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	&:hover .poncho-menu-icon {
+		filter: brightness(.9);
+	}
+	&:hover .poncho-menu-list {
+		display: block;
+	}
+}
+.poncho-menu-icon {
+	background-color: inherit;
+	border-radius: 50%;
+	opacity: .4;
+	padding: .5em;
+	vertical-align: middle;
+}
+.poncho-menu-list {
+	background: inherit;
+	border: 1px solid @darkgrey;
+	box-shadow: -1px 1px 2px @darkgrey;
 	display: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 46px;
+	white-space: nowrap;
+	a, .text {
+		color: inherit;
+		cursor: pointer;
+		display: block;
+		margin: 0;
+		padding: 1em;
+		text-decoration: none;
+	}
+	li:hover {
+		background: inherit;
+		filter: brightness(.95);
+	}
 }
-
-/**
- * Menu
- */
-#poncho-menu-wrapper {
+#poncho-navigation-wrapper {
+	background: inherit;
+	float: left;
+}
+#poncho-navigation-menu {
+	left: 0;
+}
+#poncho-notifications-and-user-wrapper {
 	background: inherit;
 	float: right;
 }
-#poncho-menu {
-	background: inherit;
-	display: inline-block;
-	height: 46px;
-	margin: 0;
-	padding: 0;
-	white-space: nowrap;
-	vertical-align: middle;
-	.poncho-menu-item {
-		background-color: inherit;
-		display: inline-block;
-		height: 46px;
-		position: relative;
-		z-index: 999;
-		.poncho-menu-icon {
-			background-color: inherit;
-			background-repeat: no-repeat;
-			background-position: center;
-			border-radius: 50%;
-			display: inline-block;
-			opacity: .4;
-			padding: .5em;
-			width: 32px;
-			height: 32px;
-		}
-		.poncho-menu-list {
-			background: inherit;
-			border: 1px solid @darkgrey;
-			box-shadow: -1px 1px 2px @darkgrey;
-			display: none;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			position: absolute;
-			top: 46px;
-			right: 0;
-			text-align: right;
-			a, .text {
-				color: inherit;
-				cursor: pointer;
-				display: block;
-				margin: 0;
-				padding: 1em;
-				text-decoration: none;
-			}
-			li:hover {
-				background: inherit;
-				filter: brightness(.95);
-			}
-		}
-		.active {
-			filter: brightness(.95);
-		}
-		&:hover {
-			.poncho-menu-icon {
-				filter: brightness(.9);
-			}
-			.poncho-menu-list {
-				display: block;
-			}
-		}
-	}
-	#poncho-lang-item .poncho-menu-icon {
-		background-image: url('images/lang.png');
-	}
-	#poncho-user-item .poncho-menu-icon {
-		background-image: url('images/user.png');
-	}
-	#poncho-bell-item .poncho-menu-icon {
-		background-image: url('images/bell.png');
-	}
+#poncho-notifications-and-user-wrapper .poncho-menu-list {
+	right: 0;
+	text-align: right;
 }
 
 /**
@@ -273,7 +230,7 @@ code, tt {
 #poncho-more-button {
 	margin-right: 0;
 }
-#poncho-content-actions-menu {
+#poncho-more-menu {
 	background: @lightgrey;
 	border: 1px solid @darkgrey;
 	box-shadow: -1px 1px 2px @darkgrey;
@@ -300,8 +257,7 @@ code, tt {
 		}
 	}
 }
-
-/* Visually separate content actions from tools */
+// Add separator between content actions and tools
 #t-whatlinkshere {
 	border-top: 1px solid @darkgrey;
 	margin-top: .3em;
@@ -325,6 +281,7 @@ code, tt {
  * Title
  */
 #firstHeading {
+	clear: both;
 	margin-top: 1.5em;
 	page-break-before: avoid;
 	.poncho-title-dash {
@@ -335,6 +292,7 @@ code, tt {
 	}
 }
 #siteSub {
+	display: none;
 	font-style: italic;
 }
 #contentSub {
@@ -353,18 +311,18 @@ code, tt {
  * Content
  */
 #poncho-content-wrapper {
-	margin: 80px auto;
-	max-width: 1024px;
+	margin-left: 300px; // Make room for the table of contents
 	padding: 1em;
+}
+#poncho-content {
+	margin: 1em auto;
+	max-width: @medium;
 }
 #content {
 	clear: both;
 	line-height: 1.5;
 	margin: 2em 0;
 	width: 100%;
-	.printfooter {
-		display: none;
-	}
 }
 #mw-content-text {
 	ol,
@@ -376,6 +334,59 @@ code, tt {
 		background: @lightgrey;
 		border: 1px solid @darkgrey;
 		padding: 1em;
+	}
+}
+@media ( max-width: @large ) {
+	#poncho-content-wrapper {
+		margin-left: 0;
+	}
+}
+
+/**
+ * Table of contents
+ */
+#toc {
+	box-sizing: border-box;
+	padding: 1em;
+	position: fixed;
+	top: 100px;
+	left: 0;
+	width: 300px;
+	.toctitle {
+		display: none;
+	}
+	.tocnumber {
+		color: @black;
+	}
+	.toctext:hover {
+		text-decoration: underline;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	ul {
+		margin: 0;
+	}
+	ul ul {
+		margin-left: 1em;
+	}
+	li {
+		list-style: none;
+	}
+}
+// Hide it per useless
+#filetoc {
+	display: none;
+}
+@media ( max-width: @large ) {
+	#toc {
+		border: 1px solid @darkgrey;
+		display: table;
+		margin: 1em 0;
+		padding: 1em;
+		position: relative;
+		top: 0;
+		width: auto;
 	}
 }
 
@@ -395,6 +406,12 @@ code, tt {
 	padding: 1em;
 	a {
 		white-space: nowrap;
+	}
+}
+@media ( min-width: @large ) {
+	// Make room for the table of contents
+	#poncho-footer-wrapper {
+		margin-left: 300px;
 	}
 }
 
@@ -423,7 +440,7 @@ code, tt {
 	color: @link;
 }
 .image img {
-	display: block;
+	vertical-align: middle;
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -480,6 +497,9 @@ code, tt {
 .mw-empty-elt {
 	display: none;
 }
+.printfooter {
+	display: none;
+}
 
 /**
  * OOUI overrides
@@ -495,41 +515,6 @@ code, tt {
 }
 
 /**
- * Table of contents
- */
-#toc {
-	background: @lightgrey;
-	border: 1px solid @darkgrey;
-	display: table;
-	margin: 1em 0;
-	padding: 1em;
-	.toctitle {
-		display: none;
-	}
-	.tocnumber {
-		color: @black;
-	}
-	.toctext:hover {
-		text-decoration: underline;
-	}
-	a:hover {
-		text-decoration: none;
-	}
-	ul {
-		margin: 0;
-	}
-	ul ul {
-		margin-left: 1em;
-	}
-	li {
-		list-style: none;
-	}
-}
-#filetoc {
-	display: none; // Hide it per useless
-}
-
-/**
  * Thumbnails
  */
 .thumb {
@@ -540,7 +525,7 @@ code, tt {
 		margin: 1em;
 	}
 	.thumbimage {
-		display: block;
+		vertical-align: middle;
 	}
 	.thumbcaption {
 		margin-top: 1em;
@@ -561,6 +546,23 @@ code, tt {
 	display: inline-block;
 	margin: 1em 0;
 	vertical-align: top;
+}
+@media ( max-width: @small ) {
+	.thumb {
+		background: none;
+		border: none;
+		.thumbinner {
+			margin: auto;
+		}
+	}
+	.thumb.tleft,
+	.thumb.tright {
+		float: none;
+		margin: 1em 0;
+	}
+	.thumb.tnone {
+		display: block;
+	}
 }
 
 /**
@@ -715,35 +717,25 @@ code, tt {
 }
 
 /**
- * Responsive behavior tweaks
+ * Google Translate
  */
-@media (max-width: 1452px) {
-	#poncho-content-wrapper,
-	#poncho-footer-wrapper {
-		margin-left: 200px;
-	}
+.goog-te-banner-frame {
+	display: none;
 }
-@media (max-width: 1100px) {
-	.poncho-hide-sidebar #poncho-content-wrapper,
-	.poncho-hide-sidebar #poncho-footer-wrapper {
-		margin-left: 0;
-	}
+.goog-te-menu-frame {
+	top: 80px !important;
+	left: 50% !important;
+	transform: translate(-50%, 0);
 }
 
 /**
  * Embed mode
  */
 .poncho-embed-mode {
-
 	#poncho-header-wrapper,
-	#poncho-sidebar-wrapper,
 	#poncho-content-actions,
-	#poncho-talk-button,
 	#poncho-footer-wrapper {
 		display: none;
-	}
-	#poncho-content-wrapper {
-		margin: 0 auto;
 	}
 }
 
@@ -761,20 +753,8 @@ code, tt {
 	background: @darkbg;
 	color: @darktext;
 
-	a:not(.new) {
-		color: @darklink;
-	}
-	#poncho-menu a,
-	#toc a .tocnumber {
-		color: @darktext;
-	}
-
-	#poncho-sidebar-wrapper {
-		background: @darkbg;
-	}
 	#poncho-header-wrapper,
-	#poncho-content-actions-menu,
-	#toc,
+	#poncho-more-menu,
 	#mw-content-text tt,
 	#mw-content-text pre,
 	#mw-content-text code,
@@ -788,15 +768,28 @@ code, tt {
 		border-color: @darkborder;
 	}
 
-	#poncho-menu {
-		li:hover {
-			filter: brightness(1.1);
-		}
-		.poncho-menu-item:hover {
-			background: @darkbackground;
-		}
+	a:not(.new) {
+		color: @darklink;
+	}
+
+	#toc .tocnumber {
+		color: @darktext;
+	}
+
+	#poncho-logo {
+		filter: invert( .9 );
+	}
+
+	.poncho-menu {
 		.poncho-menu-icon {
-			filter: invert(1);
+			background: transparent;
+			filter: invert( .9 );
+		}
+		li:hover {
+			filter: brightness( 1.1 );
+		}
+		a {
+			color: @darktext;
 		}
 	}
 
@@ -822,8 +815,9 @@ code, tt {
 		background: @darkbackground;
 		border-color: @darkborder;
 	}
-	.oo-ui-icon-search {
-		filter: invert(1) !important;
+	.oo-ui-icon-search,
+	#poncho-content-actions .oo-ui-iconElement-icon {
+		filter: invert( .9 ) !important;
 	}
 	.mw-changeslist-legend {
 		background: @darkbackground !important;
@@ -840,16 +834,10 @@ code, tt {
 .poncho-read-mode {
 	font-size: 120%;
 	transition: font 0.3s ease;
-	#poncho-header-wrapper {
-		background: transparent;
-		border: none;
-		box-shadow: none;
-	}
 	#poncho-logo-wrapper,
 	#poncho-search-form-wrapper,
-	#poncho-bell-item,
-	#poncho-lang-item,
-	#poncho-sidebar-wrapper,
+	#poncho-navigation-menu,
+	#poncho-notifications-menu,
 	#poncho-footer-wrapper,
 	#poncho-content-actions,
 	#contentSub,
@@ -858,20 +846,13 @@ code, tt {
 	#catlinks,
 	.usermessage,
 	.mw-indicators,
-	.mw-editsection,
-	.noprint {
+	.mw-editsection {
 		display: none;
 	}
-	.toc,
-	.thumb,
-	.wikitable {
+	#poncho-header-wrapper {
 		background: transparent;
-	}
-	@media (max-width: 1100px) {
-		#poncho-content-wrapper,
-		#poncho-footer-wrapper {
-			margin-left: 0;
-		}
+		border: none;
+		box-shadow: none;
 	}
 }
 
@@ -880,7 +861,6 @@ code, tt {
  */
 @media print {
 	#poncho-header-wrapper,
-	#poncho-sidebar-wrapper,
 	#poncho-footer-wrapper,
 	#poncho-content-actions,
 	#contentSub,

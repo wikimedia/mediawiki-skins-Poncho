@@ -31,7 +31,7 @@ window.Poncho = {
 		$( '#poncho-share-button' ).click( Poncho.share ),
 		$( '#poncho-translate-button' ).click( Poncho.translate );
 		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
-		$( '#poncho-more-button' ).click( Poncho.toggleContentActionsMenu );
+		$( '#poncho-more-button' ).click( Poncho.toggleMoreMenu );
 
 		// Hack to detect clicks on #poncho-search-suggestions
 		// See https://stackoverflow.com/a/65073572/809356
@@ -187,10 +187,10 @@ window.Poncho = {
 	},
 
 	/**
-	 * Toggle the more content actions menu
+	 * Toggle the more actions menu
 	 */
-	toggleContentActionsMenu: function () {
-		$( '#poncho-content-actions-menu' ).toggle();
+	toggleMoreMenu: function () {
+		$( '#poncho-more-menu' ).toggle();
 	},
 
 	/**

@@ -10,6 +10,10 @@ class SkinPoncho extends SkinTemplate {
 class PonchoTemplate extends BaseTemplate {
 
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		// Don't add these styles or the viewport meta tag for other skins
+		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
+			return;
+		}
 		$out->enableOOUI();
 		$out->addModuleStyles( [
 			'oojs-ui.styles.icons-user',
@@ -212,9 +216,9 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Return the content actions menu
+	 * Return the more actions menu
 	 */
-	function getContentActionsMenu() {
+	function getMoreMenu() {
 		$menu = array_merge(
 			$this->data['content_navigation']['views'],
 			$this->data['content_navigation']['actions'],
@@ -340,12 +344,10 @@ class PonchoTemplate extends BaseTemplate {
 	/**
 	 * Return the main menu of the header
 	 */
-	function getMainMenu() {
+	function getNavigationMenu() {
 		$sidebar = $this->data['sidebar'];
-		unset( $sidebar['SEARCH'] );
-		unset( $sidebar['TOOLBOX'] );
-		unset( $sidebar['LANGUAGES'] );
-		return $sidebar;
+		$navigation = $sidebar['navigation'];
+		return $navigation;
 	}
 
 	/**
@@ -501,6 +503,10 @@ class PonchoTemplate extends BaseTemplate {
 	 * Add classes to the body
 	 */
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
+		// Don't add these classes for other skins
+		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
+			return;
+		}
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
 		$embed = $request->getText( 'embed' );
@@ -535,6 +541,13 @@ class PonchoTemplate extends BaseTemplate {
 			$elements[] = $this->getMsg( 'copyright', $wgRightsText, $wgRightsPage, $wgRightsUrl );
 		}
 		echo implode( ' · ', $elements );
+	}
+
+	/**
+	 * Output path to image
+	 */
+	function image( $name ) {
+		echo $this->getSkin()->getConfig()->get( 'StylePath' ) . '/Poncho/images/' . $name;
 	}
 
 	/**

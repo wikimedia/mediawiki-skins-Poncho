@@ -2,32 +2,33 @@
 
 	<div id="poncho-header">
 
-		<div id="poncho-logo-wrapper" role="banner">
+		<div id="poncho-navigation-wrapper" role="navigation">
+
+			<div id="poncho-navigation-menu" class="poncho-menu">
+				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'menu.png' ); ?>">
+				<ul class="poncho-menu-list">
+					<?php foreach ( $this->getNavigationMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</div>
+
+		</div><div id="poncho-logo-wrapper" role="banner">
 
 			<?php $this->logo(); ?>
 
-		</div><div id="poncho-menu-wrapper" role="navigation">
+		</div><div id="poncho-notifications-and-user-wrapper">
 
-			<ul id="poncho-menu">
-				<li id="poncho-lang-item" class="poncho-menu-item">
-					<div class="poncho-menu-icon"></div>
-					<ul class="poncho-menu-list">
-						<?php foreach ( $this->getLanguagesMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-					</ul>
-				</li>
-				<li id="poncho-bell-item" class="poncho-menu-item">
-					<div class="poncho-menu-icon"></div>
-					<ul class="poncho-menu-list">
-						<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-					</ul>
-				</li>
-				<li id="poncho-user-item" class="poncho-menu-item">
-					<div class="poncho-menu-icon"></div>
-					<ul class="poncho-menu-list">
-						<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-					</ul>
-				</li>
-			</ul>
+			<div id="poncho-notifications-menu" class="poncho-menu">
+				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'bell.png' ); ?>">
+				<ul class="poncho-menu-list">
+					<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</div>
+			<div id="poncho-user-menu" class="poncho-menu">
+				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'user.png' ); ?>">
+				<ul class="poncho-menu-list">
+					<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</div>
 
 		</div><div id="poncho-search-form-wrapper" role="search">
 
@@ -42,66 +43,56 @@
 
 </div>
 
-<div id="poncho-sidebar-wrapper">
-	<ul id="poncho-sidebar">
-		<?php foreach ( $this->getMainMenu() as $key => $value ): ?>
-			<?php if ( $key === 'navigation' ): ?>
-				<?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?>
-			<?php elseif ( is_array( $value ) ): ?>
-				<li><div><?php echo wfMessage( $key )->exists() ? wfMessage( $key ) : $key; ?></div>
-					<ul><?php foreach ( $value as $k => $v ) echo $this->makeListItem( $k, $v ); ?></ul>
-				</li>
-			<?php endif; ?>
-		<?php endforeach; ?>
-	</ul>
-</div>
-
 <div id="poncho-content-wrapper">
 
-	<div id="poncho-content-actions">
-		<?php
-			$this->editButton();
-			$this->translateButton();
-			$this->printButton();
-			$this->readAloudButton();
-			$this->shareButton();
-			$this->talkButton();
-			$this->moreButton();
-		?>
-		<ul id="poncho-content-actions-menu">
-			<?php foreach ( $this->getContentActionsMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-		</ul>
-	</div>
+	<div id="poncho-content">
 
-	<?php if ( $this->data['indicators'] ): ?>
-	<?php echo $this->getIndicators(); ?>
-	<?php endif; ?>
-
-	<?php if ( $this->data['sitenotice'] ): ?>
-	<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
-	<?php endif; ?>
-
-	<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>
-
-	<div id="siteSub"><?php echo wfMessage( 'tagline' ); ?></div>
-
-	<?php if ( $this->data['subtitle'] ): ?>
-	<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
-	<?php endif; ?>
-
-	<?php if ( $this->data['undelete'] ): ?>
-	<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
-	<?php endif; ?>
-
-	<div id="content" class="mw-body" role="main">
-		<div id="bodyContent" class="mw-body-content">
-			<?php $this->html( 'bodytext' ); ?>
-			<?php $this->html( 'dataAfterContent' ); ?>
-			<?php $this->html( 'catlinks' ); ?>
+		<div id="poncho-content-actions">
+			<?php
+				$this->editButton();
+				$this->translateButton();
+				$this->printButton();
+				$this->readAloudButton();
+				$this->shareButton();
+				$this->talkButton();
+				$this->moreButton();
+			?>
+			<ul id="poncho-more-menu">
+				<?php foreach ( $this->getMoreMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+			</ul>
 		</div>
-	</div>
 
-	<?php $this->html( 'debughtml' ); ?>
+		<?php if ( $this->data['indicators'] ): ?>
+		<?php echo $this->getIndicators(); ?>
+		<?php endif; ?>
+
+		<?php if ( $this->data['sitenotice'] ): ?>
+		<div id="siteNotice"><?php $this->html( 'sitenotice' ); ?></div>
+		<?php endif; ?>
+
+		<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>
+
+		<div id="siteSub"><?php echo wfMessage( 'tagline' ); ?></div>
+
+		<?php if ( $this->data['subtitle'] ): ?>
+		<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
+		<?php endif; ?>
+
+		<?php if ( $this->data['undelete'] ): ?>
+		<div id="contentSub2"><?php $this->html( 'undelete' ); ?></div>
+		<?php endif; ?>
+
+		<div id="content" class="mw-body" role="main">
+			<div id="bodyContent" class="mw-body-content">
+				<?php $this->html( 'bodytext' ); ?>
+				<?php $this->html( 'dataAfterContent' ); ?>
+				<?php $this->html( 'catlinks' ); ?>
+			</div>
+		</div>
+
+		<?php $this->html( 'debughtml' ); ?>
+
+	</div>
 
 </div>
 
