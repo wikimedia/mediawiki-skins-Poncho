@@ -8,10 +8,7 @@ window.Poncho = {
 	init: function () {
 		Poncho.bindEvents();
 
-		Poncho.ringBell();
-
-		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
-		mw.hook( 've.deactivationComplete' ).add( Poncho.toggleContentActions );
+		Poncho.markNotificationsBell();
 
 		// Stop any running voice
 		window.speechSynthesis.cancel();
@@ -32,6 +29,11 @@ window.Poncho = {
 		$( '#poncho-translate-button' ).click( Poncho.translate );
 		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
 		$( '#poncho-more-button' ).click( Poncho.toggleMoreMenu );
+		$( window ).click( Poncho.hideMoreMenu );
+		$( window ).scroll( Poncho.updateTOC );
+
+		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
+		mw.hook( 've.deactivationComplete' ).add( Poncho.toggleContentActions );
 
 		// Hack to detect clicks on #poncho-search-suggestions
 		// See https://stackoverflow.com/a/65073572/809356
@@ -45,6 +47,22 @@ window.Poncho = {
 		$( '#poncho-search-form input' ).change( function () {
 			if ( searchSuggestionSelected ) {
 				$( '#poncho-search-form' ).submit();
+			}
+		} );
+	},
+
+	updateTOC: function () {
+		var windowTop = $( window ).scrollTop();
+		console.log( 'windowTop', windowTop );
+		$( ':header' ).each( function ( index ) {
+			var headerTop = $( this ).offset().top;
+			console.log( 'headerTop', headerTop );
+			if ( headerTop > windowTop ) {
+				console.log( 'index', index );
+				var section = index - 1;
+				$( '.toctext' ).css( 'font-weight', 'normal' );
+				$( '#toc' ).find( '.tocsection-' + section + ' > a > .toctext' ).css( 'font-weight', 'bold' );
+				return false;
 			}
 		} );
 	},
@@ -194,6 +212,16 @@ window.Poncho = {
 	},
 
 	/**
+	 * Hide the more actions menu if the click is outside it
+	 */
+	hideMoreMenu: function ( event ) {
+		var $target = $( event.target );
+		if ( !$target.closest( '#poncho-more-menu' ).length && !$target.closest( '#poncho-more-button' ).length ) {
+			$( '#poncho-more-menu' ).hide();
+		}
+	},
+
+	/**
 	 * Toggle the dark mode
 	 */
 	toggleDarkMode: function () {
@@ -251,9 +279,9 @@ window.Poncho = {
 	/**
 	 * Mark the bell item if the current user has unread notifications
 	 */
-	ringBell: function () {
+	markNotificationsBell: function () {
 		var $bell = $( '#poncho-bell-item' );
-		if ( $( '.active', $bell ).length ) {
+		if ( $bell.find( '.active' ).length ) {
 			$bell.addClass( 'active' );
 		}
 	},

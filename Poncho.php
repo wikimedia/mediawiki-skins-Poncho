@@ -10,9 +10,8 @@ class SkinPoncho extends SkinTemplate {
 class PonchoTemplate extends BaseTemplate {
 
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		// Don't add these styles or the viewport meta tag for other skins
 		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
-			return;
+			return; // Don't run for other skins
 		}
 		$out->enableOOUI();
 		$out->addModuleStyles( [
@@ -237,7 +236,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo logo
+	 * Echo the logo
 	 */
 	function logo() {
 		global $wgLogos, $wgLogo, $wgSitename;
@@ -286,7 +285,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo wordmark or sitename
+	 * Print wordmark or sitename
 	 */
 	function wordmark() {
 		global $wgLogos, $wgSitename;
@@ -299,7 +298,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo tagline
+	 * Echo the tagline
 	 */
 	function tagline() {
 		global $wgLogos, $wgSitename;
@@ -339,6 +338,13 @@ class PonchoTemplate extends BaseTemplate {
 			}
 		}
 		echo $title;
+	}
+
+	/**
+	 * Echo the path to the given image
+	 */
+	function image( $name ) {
+		echo $this->getSkin()->getConfig()->get( 'StylePath' ) . '/Poncho/images/' . $name;
 	}
 
 	/**
@@ -480,20 +486,15 @@ class PonchoTemplate extends BaseTemplate {
 	 * Add preferences
 	 */
 	static function onGetPreferences( $user, &$preferences ) {
-		$ponchoPref = [
-			'type' => 'toggle',
+		$preferences['poncho-dark-mode'] = [
 			'hide-if' => [ '!==', 'skin', 'poncho' ],
 			'section' => 'rendering/skin/skin-prefs',
-		];
-
-		$preferences['poncho-hide-sidebar'] = $ponchoPref + [
-			'label-message' => 'poncho-hide-sidebar',
-		];
-		$preferences['poncho-dark-mode'] = $ponchoPref + [
 			'type' => 'toggle',
 			'label-message' => 'poncho-enable-dark-mode',
 		];
-		$preferences['poncho-read-mode'] = $ponchoPref + [
+		$preferences['poncho-read-mode'] = [
+			'hide-if' => [ '!==', 'skin', 'poncho' ],
+			'section' => 'rendering/skin/skin-prefs',
 			'type' => 'toggle',
 			'label-message' => 'poncho-enable-read-mode',
 		];
@@ -503,9 +504,8 @@ class PonchoTemplate extends BaseTemplate {
 	 * Add classes to the body
 	 */
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
-		// Don't add these classes for other skins
 		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
-			return;
+			return; // Don't run for other skins
 		}
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
@@ -515,10 +515,6 @@ class PonchoTemplate extends BaseTemplate {
 		}
 		$services = MediaWikiServices::getInstance();
 		$userOptionsLookup = $services->getUserOptionsLookup();
-		$hideSidebar = $user->isAnon() ? $request->getCookie( 'PonchoHideSidebar' ) : $userOptionsLookup->getOption( $user, 'poncho-hide-sidebar' );
-		if ( $hideSidebar ) {
-			$bodyAttrs['class'] .= ' poncho-hide-sidebar';
-		}
 		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
 		if ( $darkMode ) {
 			$bodyAttrs['class'] .= ' poncho-dark-mode';
@@ -526,6 +522,9 @@ class PonchoTemplate extends BaseTemplate {
 		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		if ( $readMode ) {
 			$bodyAttrs['class'] .= ' poncho-read-mode';
+		}
+		if ( $out->isTOCEnabled() ) {
+			$bodyAttrs['class'] .= ' poncho-has-toc'; // We need this for responsive styling of the table of contents
 		}
 	}
 
@@ -541,13 +540,6 @@ class PonchoTemplate extends BaseTemplate {
 			$elements[] = $this->getMsg( 'copyright', $wgRightsText, $wgRightsPage, $wgRightsUrl );
 		}
 		echo implode( ' · ', $elements );
-	}
-
-	/**
-	 * Output path to image
-	 */
-	function image( $name ) {
-		echo $this->getSkin()->getConfig()->get( 'StylePath' ) . '/Poncho/images/' . $name;
 	}
 
 	/**

@@ -15,7 +15,14 @@
 
 			<?php $this->logo(); ?>
 
-		</div><div id="poncho-notifications-and-user-wrapper">
+		</div><div id="poncho-right-menus-wrapper">
+
+			<div id="poncho-languages-menu" class="poncho-menu">
+				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'lang.png' ); ?>">
+				<ul class="poncho-menu-list">
+					<?php foreach ( $this->getLanguagesMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</div>
 
 			<div id="poncho-notifications-menu" class="poncho-menu">
 				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'bell.png' ); ?>">
@@ -23,6 +30,7 @@
 					<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</div>
+
 			<div id="poncho-user-menu" class="poncho-menu">
 				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'user.png' ); ?>">
 				<ul class="poncho-menu-list">
@@ -97,5 +105,7 @@
 </div>
 
 <div id="poncho-footer-wrapper">
+
 	<div id="poncho-footer"><?php $this->footer(); ?></div>
+
 </div>

@@ -12,7 +12,7 @@
  * Break points
  */
 @small: 600px;
-@medium: 1000px;
+@medium: 1016px;
 @large: 1300px;
 
 /**
@@ -195,11 +195,11 @@ code, tt {
 #poncho-navigation-menu {
 	left: 0;
 }
-#poncho-notifications-and-user-wrapper {
+#poncho-right-menus-wrapper {
 	background: inherit;
 	float: right;
 }
-#poncho-notifications-and-user-wrapper .poncho-menu-list {
+#poncho-right-menus-wrapper .poncho-menu-list {
 	right: 0;
 	text-align: right;
 }
@@ -311,7 +311,6 @@ code, tt {
  * Content
  */
 #poncho-content-wrapper {
-	margin-left: 300px; // Make room for the table of contents
 	padding: 1em;
 }
 #poncho-content {
@@ -336,9 +335,9 @@ code, tt {
 		padding: 1em;
 	}
 }
-@media ( max-width: @large ) {
-	#poncho-content-wrapper {
-		margin-left: 0;
+@media ( min-width: @large ) {
+	.poncho-has-toc #poncho-content-wrapper {
+		margin-left: 250px; // Make room for the table of contents
 	}
 }
 
@@ -349,14 +348,14 @@ code, tt {
 	box-sizing: border-box;
 	padding: 1em;
 	position: fixed;
-	top: 100px;
+	top: 80px;
 	left: 0;
-	width: 300px;
+	width: 250px;
 	.toctitle {
 		display: none;
 	}
 	.tocnumber {
-		color: @black;
+		display: none;
 	}
 	.toctext:hover {
 		text-decoration: underline;
@@ -395,23 +394,23 @@ code, tt {
  */
 #poncho-footer-wrapper {
 	margin: 80px auto;
-	max-width: 1024px;
 	padding: 1em;
 }
 #poncho-footer {
 	border-top: 1px solid @darkgrey;
+	box-sizing: border-box;
 	clear: both;
-	margin-bottom: 3em;
+	margin: 1em auto;
 	text-align: center;
 	padding: 1em;
+	max-width: @medium;
 	a {
 		white-space: nowrap;
 	}
 }
 @media ( min-width: @large ) {
-	// Make room for the table of contents
-	#poncho-footer-wrapper {
-		margin-left: 300px;
+	.poncho-has-toc #poncho-footer-wrapper {
+		margin-left: 250px; // Make room for the table of contents
 	}
 }
 
@@ -772,10 +771,6 @@ code, tt {
 		color: @darklink;
 	}
 
-	#toc .tocnumber {
-		color: @darktext;
-	}
-
 	#poncho-logo {
 		filter: invert( .9 );
 	}
@@ -837,6 +832,7 @@ code, tt {
 	#poncho-logo-wrapper,
 	#poncho-search-form-wrapper,
 	#poncho-navigation-menu,
+	#poncho-languages-menu,
 	#poncho-notifications-menu,
 	#poncho-footer-wrapper,
 	#poncho-content-actions,
