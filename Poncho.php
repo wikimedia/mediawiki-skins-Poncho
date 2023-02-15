@@ -136,6 +136,12 @@ class PonchoTemplate extends BaseTemplate {
 			'icon' => 'play',
 			'framed' => false
 		] );
+		echo new OOUI\ButtonWidget( [
+			'id' => 'poncho-pause-reading-button',
+			'title' => wfMessage( 'poncho-pause-reading' )->plain(),
+			'icon' => 'pause',
+			'framed' => false
+		] );
 	}
 
 	/**

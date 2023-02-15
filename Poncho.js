@@ -28,7 +28,9 @@ window.Poncho = {
 		$( '#poncho-share-button' ).click( Poncho.share ),
 		$( '#poncho-translate-button' ).click( Poncho.translate );
 		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
+		$( '#poncho-pause-reading-button' ).click( Poncho.pauseReading );
 		$( '#poncho-more-button' ).click( Poncho.toggleMoreMenu );
+
 		$( window ).click( Poncho.hideMoreMenu );
 		$( window ).scroll( Poncho.updateTOC );
 
@@ -53,12 +55,9 @@ window.Poncho = {
 
 	updateTOC: function () {
 		var windowTop = $( window ).scrollTop();
-		console.log( 'windowTop', windowTop );
 		$( ':header' ).each( function ( index ) {
 			var headerTop = $( this ).offset().top;
-			console.log( 'headerTop', headerTop );
 			if ( headerTop > windowTop ) {
-				console.log( 'index', index );
 				var section = index - 1;
 				$( '.toctext' ).css( 'font-weight', 'normal' );
 				$( '#toc' ).find( '.tocsection-' + section + ' > a > .toctext' ).css( 'font-weight', 'bold' );
@@ -71,50 +70,51 @@ window.Poncho = {
 	 * Read the current page aloud
 	 */
 	readAloud: function () {
-		var $content = $( '#mw-content-text' ).clone();
+
+		// Swap buttons
+		$( this ).hide();
+		$( '#poncho-pause-reading-button' ).show();
+
+		// If speech was paused, just resume
+		if ( window.speechSynthesis.paused || window.speechSynthesis.ponchoPause ) {
+			window.speechSynthesis.resume();
+			return;
+		}
 
 		// Remove elements we don't want to read
-		$content.find( '.mw-editsection, .dablink, .noprint, .thumb' ).remove();
+		var $content = $( '#mw-content-text' ).clone();
+		$content.find( '.toc, .mw-editsection, .dablink, .noprint, .thumb' ).remove();
 		$content.find( 'style, table' ).remove();
 
 		// Read the text but add silence between elements
-		var text = $content.text();
-		var textParts = text.split( '\n' );
-		var currentIndex = 0;
-		var speak = function ( textPart ) {
-			var utterance = new SpeechSynthesisUtterance( textPart );
+		var text = $content.text().trim();
+		var parts = text.split( '\n' );
+		var index = 0;
+		var speak = function ( text ) {
+			var utterance = new SpeechSynthesisUtterance( text );
 			utterance.lang = $content.attr( 'lang' );
-			utterance.rate = 0.85;
+			utterance.rate = 0.9;
+			window.speechSynthesis.speak( utterance );
 			utterance.onend = function () {
-				currentIndex++;
-				if ( currentIndex < textParts.length ) {
+				index++;
+				if ( index < parts.length ) {
 					setTimeout( function () {
-						speak( textParts[ currentIndex ] );
+						speak( parts[ index ] );
 					}, 500 );
 				}
 			};
-			window.speechSynthesis.speak( utterance );
 		};
-		window.speechSynthesis.cancel();
-		speak( textParts[0] );
-
-		$( this ).off().click( Poncho.pauseReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-pause-reading' ) );
+		speak( parts[0] );
 	},
 
 	/**
 	 * Pause reading aloud
 	 */
 	pauseReading: function () {
+		$( this ).hide();
+		$( '#poncho-read-aloud-button' ).show();
 		window.speechSynthesis.pause();
-		$( this ).off().click( Poncho.resumeReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-resume-reading' ) );
-	},
-
-	/**
-	 * Resume reading aloud
-	 */
-	resumeReading: function () {
-		window.speechSynthesis.resume();
-		$( this ).off().click( Poncho.pauseReading ).find( 'a' ).attr( 'title', mw.msg( 'poncho-pause-reading' ) );
+		window.speechSynthesis.ponchoPause = true; // window.speechSynthesis.paused sometimes doesn't work
 	},
 
 	/**
