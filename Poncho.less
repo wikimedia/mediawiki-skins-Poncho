@@ -377,9 +377,7 @@ code, tt {
 		border: 1px solid @darkgrey;
 		display: table;
 		margin: 1em 0;
-		padding: 1em;
-		position: relative;
-		top: 0;
+		position: static;
 		width: auto;
 	}
 }
@@ -403,13 +401,11 @@ code, tt {
 	text-align: center;
 	padding: 1em;
 	max-width: @medium;
+	div {
+		margin: 1em 0;
+	}
 	a {
 		white-space: nowrap;
-	}
-}
-@media ( min-width: @large ) {
-	.poncho-has-toc #poncho-footer-wrapper {
-		margin-left: 250px; // Make room for the table of contents
 	}
 }
 

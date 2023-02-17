@@ -54,13 +54,17 @@ window.Poncho = {
 	},
 
 	updateTOC: function () {
+		var $toc = $( '#toc' );
+		if ( $toc.css( 'position' ) === 'static' ) {
+			return;
+		}
 		var windowTop = $( window ).scrollTop();
 		$( ':header' ).each( function ( index ) {
 			var headerTop = $( this ).offset().top;
 			if ( headerTop > windowTop ) {
 				var section = index - 1;
-				$( '.toctext' ).css( 'font-weight', 'normal' );
-				$( '#toc' ).find( '.tocsection-' + section + ' > a > .toctext' ).css( 'font-weight', 'bold' );
+				$toc.find( '.toctext' ).css( 'font-weight', 'normal' );
+				$toc.find( '.tocsection-' + section + ' > a > .toctext' ).css( 'font-weight', 'bold' );
 				return false;
 			}
 		} );

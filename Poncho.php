@@ -534,18 +534,20 @@ class PonchoTemplate extends BaseTemplate {
 		}
 	}
 
+	/**
+	 * Echo the footer
+	 */
 	function footer() {
-		$elements = [];
+		$footer = '';
 		$links = $this->getFooterLinks();
-		$places = $links['places'];
-		foreach ( $places as $place ) {
-			$elements[] = $this->get( $place );
+		foreach ( $links as $items ) {
+			$list = [];
+			foreach ( $items as $item ) {
+				$list[] = $this->get( $item );
+			}
+			$footer .= '<div>' . implode( ' · ', $list ) . '</div>';
 		}
-		global $wgRightsText, $wgRightsPage, $wgRightsUrl;
-		if ( $wgRightsText ) {
-			$elements[] = $this->getMsg( 'copyright', $wgRightsText, $wgRightsPage, $wgRightsUrl );
-		}
-		echo implode( ' · ', $elements );
+		echo $footer;
 	}
 
 	/**
