@@ -204,8 +204,16 @@ code, tt {
 		text-align: right;
 	}
 }
-#poncho-more-menu ul {
-	background: @background;
+#poncho-more-menu {
+	ul {
+		background: @background;
+	}
+	a {
+		padding: .5em;
+	}
+	&:hover #poncho-more-button {
+		filter: brightness(.9);
+	}
 }
 
 /**
@@ -235,10 +243,8 @@ code, tt {
 	display: none;
 }
 // Add separator between content actions and tools
-#t-whatlinkshere {
+#poncho-more-menu #t-whatlinkshere {
 	border-top: 1px solid @border;
-	margin-top: .3em;
-	padding-top: .3em;
 }
 
 /**
