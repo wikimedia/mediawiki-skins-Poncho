@@ -1,12 +1,11 @@
 /**
  * Color palette
  */
-@background: #ffffff;
-@link: #a55858;
+@bg: #fff;
+@text: #202122; // Same as OOUI
+@border: #a2a9b1; // Same as OOUI
+@background: #f8f9fa; // Same as OOUI
 @redlink: #a55858;
-@black: #202122; // Same as OOUI
-@darkgrey: #a2a9b1; // Same as OOUI
-@lightgrey: #f8f9fa; // Same as OOUI
 
 /**
  * Break points
@@ -19,7 +18,8 @@
  * Site-wide elements
  */
 body {
-	color: @black;
+	background: @bg;
+	color: @text;
 	font-family: Arial;
 	font-size: 14px;
 	height: 100%;
@@ -53,7 +53,7 @@ h4, h5, h6 {
 	font-size: 1em;
 }
 fieldset {
-	border: 1px solid @darkgrey;
+	border: 1px solid @border;
 	margin: 1em 0;
 }
 img {
@@ -71,7 +71,7 @@ tr {
 }
 hr {
 	border: 0;
-	border-top: 1px solid @darkgrey;
+	border-top: 1px solid @border;
 }
 code, tt {
 	background: #f8f9fa;
@@ -84,9 +84,9 @@ code, tt {
  * Header
  */
 #poncho-header-wrapper {
-	background: @lightgrey;
-	border-bottom: 1px solid @darkgrey;
-	box-shadow: 0 0 2px @darkgrey;
+	background: @background;
+	border-bottom: 1px solid @border;
+	box-shadow: 0 0 2px @border;
 	box-sizing: border-box;
 	padding: .5em;
 	position: sticky;
@@ -166,14 +166,13 @@ code, tt {
 }
 .poncho-menu-list {
 	background: inherit;
-	border: 1px solid @darkgrey;
-	box-shadow: -1px 1px 2px @darkgrey;
+	border: 1px solid @border;
+	box-shadow: -1px 1px 2px @border;
 	display: none;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	top: 46px;
 	white-space: nowrap;
 	a, .text {
 		color: inherit;
@@ -192,16 +191,21 @@ code, tt {
 	background: inherit;
 	float: left;
 }
-#poncho-navigation-menu {
-	left: 0;
-}
 #poncho-right-menus-wrapper {
 	background: inherit;
 	float: right;
 }
-#poncho-right-menus-wrapper .poncho-menu-list {
-	right: 0;
-	text-align: right;
+#poncho-languages-menu,
+#poncho-notifications-menu,
+#poncho-user-menu,
+#poncho-more-menu {
+	.poncho-menu-list {
+		right: 0;
+		text-align: right;
+	}
+}
+#poncho-more-menu ul {
+	background: @background;
 }
 
 /**
@@ -215,8 +219,8 @@ code, tt {
 		border-radius: 50%;
 		position: relative;
 	}
-	.oo-ui-buttonElement-button:hover:after {
-		background: @darkgrey;
+	& > .oo-ui-buttonElement .oo-ui-buttonElement-button:hover:after {
+		background: @border;
 		border-radius: 2px;
 		color: white;
 		content: attr( title );
@@ -230,39 +234,9 @@ code, tt {
 #poncho-pause-reading-button {
 	display: none;
 }
-#poncho-more-button {
-	margin-right: 0;
-}
-#poncho-more-menu {
-	background: @lightgrey;
-	border: 1px solid @darkgrey;
-	box-shadow: -1px 1px 2px @darkgrey;
-	display: none;
-	list-style: none;
-	margin: .2em 0;
-	text-align: right;
-	padding: .3em;
-	position: absolute;
-	right: 0;
-	z-index: 7;
-	li {
-		background: inherit;
-	}
-	a {
-		color: inherit;
-		display: block;
-		padding: .3em;
-		white-space: nowrap;
-		&:hover {
-			background: inherit;
-			filter: brightness(.95);
-			text-decoration: none;
-		}
-	}
-}
 // Add separator between content actions and tools
 #t-whatlinkshere {
-	border-top: 1px solid @darkgrey;
+	border-top: 1px solid @border;
 	margin-top: .3em;
 	padding-top: .3em;
 }
@@ -333,8 +307,8 @@ code, tt {
 		padding: 0;
 	}
 	pre {
-		background: @lightgrey;
-		border: 1px solid @darkgrey;
+		background: @background;
+		border: 1px solid @border;
 		padding: 1em;
 	}
 }
@@ -373,8 +347,8 @@ code, tt {
 }
 @media ( max-width: @large ) {
 	#toc {
-		background: @lightgrey;
-		border: 1px solid @darkgrey;
+		background: @background;
+		border: 1px solid @border;
 		display: table;
 		margin: 1em 0;
 		position: static;
@@ -394,7 +368,7 @@ code, tt {
 	padding: 1em;
 }
 #poncho-footer {
-	border-top: 1px solid @darkgrey;
+	border-top: 1px solid @border;
 	box-sizing: border-box;
 	clear: both;
 	margin: 1em auto;
@@ -413,12 +387,12 @@ code, tt {
  * Wikitables
  */
 .wikitable {
-	background: @lightgrey;
+	background: @background;
 	border-collapse: collapse;
 	margin: 1em 0;
 	th,
 	td {
-		border: 1px solid @darkgrey;
+		border: 1px solid @border;
 		padding: .2em .5em;
 	}
 }
@@ -431,7 +405,7 @@ code, tt {
 }
 .new,
 .new a {
-	color: @link;
+	color: @redlink;
 }
 .image img {
 	vertical-align: middle;
@@ -504,16 +478,16 @@ code, tt {
 	z-index: 9 !important;
 }
 .mw-changeslist-legend {
-	background: @lightgrey !important;
-	border-color: @darkgrey !important;
+	background: @background !important;
+	border-color: @border !important;
 }
 
 /**
  * Thumbnails
  */
 .thumb {
-	background: @lightgrey;
-	border: 1px solid @darkgrey;
+	background: @background;
+	border: 1px solid @border;
 	page-break-inside: avoid;
 	.thumbinner {
 		margin: 1em;
@@ -562,9 +536,11 @@ code, tt {
 /**
  * Galleries
  */
-#mw-content-text .gallery {
+.gallery {
 	margin: 1em 0;
 	.thumb {
+		background: @background;
+		border-color: @border;
 		margin: 0 0 .5em 0;
 	}
 	.gallerytext {
@@ -610,8 +586,8 @@ code, tt {
 		margin: 0 .5em .5em 0;
 	}
 	li a {
-		background: @lightgrey;
-		border: 1px solid @darkgrey;
+		background: @background;
+		border: 1px solid @border;
 		border-radius: 20px;
 		color: inherit;
 		display: inline-block;
@@ -627,7 +603,7 @@ code, tt {
  * Share dialog
  */
 #poncho-share-overlay {
-	background: @black;
+	background: black;
 	opacity: .5;
 	position: fixed;
 	top: 0;
@@ -637,8 +613,8 @@ code, tt {
 	z-index: 9;
 }
 #poncho-share-dialog {
-	background: @lightgrey;
-	border: 1px solid @darkgrey;
+	background: @background;
+	border: 1px solid @border;
 	padding: 1em;
 	position: fixed;
 	top: 35%;
@@ -682,8 +658,8 @@ code, tt {
 		padding: 0;
 	}
 	pre {
-		background: @lightgrey;
-		border: 1px solid @darkgrey;
+		background: @background;
+		border: 1px solid @border;
 		padding: 1em;
 	}
 }
@@ -738,39 +714,40 @@ code, tt {
  */
 .poncho-dark-mode {
 	// Same colors as Google's dark mode
-	@darkbg: #202122;
-	@darktext: #bdc1c6;
-	@darklink: #8ab4f8;
-	@darkbackground: #303134;
-	@darkborder: #3c4043;
+	@bg: #202122;
+	@text: #bdc1c6;
+	@border: #3c4043;
+	@background: #303134;
+	@link: #8ab4f8;
 
-	background: @darkbg;
-	color: @darktext;
+	background: @bg;
+	color: @text;
 
 	#poncho-header-wrapper,
-	#poncho-more-menu,
+	#poncho-more-menu ul,
 	#mw-content-text tt,
 	#mw-content-text pre,
 	#mw-content-text code,
 	#catlinks li a,
 	.thumb,
+	.gallery .thumb,
 	.wikitable,
 	.wikitable th,
 	.wikitable td,
 	.mw-prefs-buttons {
-		background: @darkbackground;
-		border-color: @darkborder;
+		background: @background;
+		border-color: @border;
 	}
 
 	@media ( max-width: @large ) {
 		#toc {
-			background: @darkbackground;
-			border-color: @darkborder;
+			background: @background;
+			border-color: @border;
 		}
 	}
 
 	a:not(.new) {
-		color: @darklink;
+		color: @link;
 	}
 
 	#poncho-logo {
@@ -786,7 +763,7 @@ code, tt {
 			filter: brightness( 1.1 );
 		}
 		a {
-			color: @darktext;
+			color: @text;
 		}
 	}
 
@@ -799,9 +776,9 @@ code, tt {
 	.oo-ui-inputWidget-input,
 	.oo-ui-buttonElement-button,
 	.oo-ui-tagMultiselectWidget-handle {
-		background: @darkbackground !important;
-		border-color: @darkborder !important;
-		color: @darktext !important;
+		background: @background !important;
+		border-color: @border !important;
+		color: @text !important;
 	}
 	.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
 		background-color: transparent !important;
@@ -809,16 +786,16 @@ code, tt {
 	}
 	.oo-ui-tabSelectWidget-framed,
 	.oo-ui-panelLayout-framed {
-		background: @darkbackground;
-		border-color: @darkborder;
+		background: @background;
+		border-color: @border;
 	}
 	.oo-ui-icon-search,
 	#poncho-content-actions .oo-ui-iconElement-icon {
 		filter: invert( .9 ) !important;
 	}
 	.mw-changeslist-legend {
-		background: @darkbackground !important;
-		border-color: @darkborder !important;
+		background: @background !important;
+		border-color: @border !important;
 	}
 	.wikiEditor-ui {
 		color: initial;

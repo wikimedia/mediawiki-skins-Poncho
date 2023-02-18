@@ -29,9 +29,7 @@ window.Poncho = {
 		$( '#poncho-translate-button' ).click( Poncho.translate );
 		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
 		$( '#poncho-pause-reading-button' ).click( Poncho.pauseReading );
-		$( '#poncho-more-button' ).click( Poncho.toggleMoreMenu );
 
-		$( window ).click( Poncho.hideMoreMenu );
 		$( window ).scroll( Poncho.updateTOC );
 
 		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
@@ -206,23 +204,6 @@ window.Poncho = {
 	 */
 	toggleContentActions: function () {
 		$( '#poncho-content-actions' ).toggle();
-	},
-
-	/**
-	 * Toggle the more actions menu
-	 */
-	toggleMoreMenu: function () {
-		$( '#poncho-more-menu' ).toggle();
-	},
-
-	/**
-	 * Hide the more actions menu if the click is outside it
-	 */
-	hideMoreMenu: function ( event ) {
-		var $target = $( event.target );
-		if ( !$target.closest( '#poncho-more-menu' ).length && !$target.closest( '#poncho-more-button' ).length ) {
-			$( '#poncho-more-menu' ).hide();
-		}
 	},
 
 	/**
