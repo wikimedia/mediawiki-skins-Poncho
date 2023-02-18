@@ -63,11 +63,13 @@
 				$this->readAloudButton();
 				$this->shareButton();
 				$this->talkButton();
-				$this->moreButton();
 			?>
-			<ul id="poncho-more-menu">
-				<?php foreach ( $this->getMoreMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
-			</ul>
+			<div id="poncho-more-menu" class="poncho-menu">
+				<span class="poncho-menu-item"><?php $this->moreButton(); ?></span>
+				<ul class="poncho-menu-list">
+					<?php foreach ( $this->getMoreMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
+				</ul>
+			</div>
 		</div>
 
 		<?php if ( $this->data['indicators'] ): ?>
