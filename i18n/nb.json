@@ -7,12 +7,15 @@
 	"poncho-desc": "Enkel, ren, responsiv og mobilvennlig drakt.",
 	"poncho-print": "Skriv ut",
 	"poncho-share": "Del",
+	"poncho-more": "Mer",
 	"poncho-copied": "Kopiert!",
+	"poncho-read-aloud": "Les høyt",
 	"poncho-hide-sidebar": "Skjul sidefeltet",
 	"poncho-enable-dark-mode": "Slå på mørk modus",
 	"poncho-disable-dark-mode": "Slå av mørk modus",
 	"poncho-enable-read-mode": "Slå på lesemodus",
 	"poncho-disable-read-mode": "Slå av lesemodus",
+	"poncho-no-languages": "Ingen interwikilenker for denne siden.",
 	"poncho-no-notifications": "Du har ingen nye varsler.",
 	"poncho-new-message": "Du har en ny beskjed fra en annen bruker."
 }
