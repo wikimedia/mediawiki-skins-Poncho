@@ -44,8 +44,8 @@ class PonchoTemplate extends BaseTemplate {
 		}
 		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['ve-edit'];
-			echo new OOUI\ButtonWidget( [
-				'id' => 'ca-ve-edit',
+			echo '<span id="ca-edit"></span>' . new OOUI\ButtonWidget( [
+				'id' => 'poncho-visual-edit-button',
 				'title' => $button['text'],
 				'href' => $button['href'],
 				'icon' => 'edit',
@@ -55,7 +55,7 @@ class PonchoTemplate extends BaseTemplate {
 		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
 			$button = $this->data['content_navigation']['views']['edit'];
 			echo new OOUI\ButtonWidget( [
-				'id' => 'ca-edit',
+				'id' => 'poncho-edit-button',
 				'title' => $button['text'],
 				'href' => $button['href'],
 				'icon' => 'wikiText',
@@ -81,7 +81,7 @@ class PonchoTemplate extends BaseTemplate {
 			return;
 		}
 		echo new OOUI\ButtonWidget( [
-		    'id' => 't-print',
+		    'id' => 'poncho-print-button',
 		    'title' => wfMessage( 'poncho-print' )->plain(),
 		    'icon' => 'printer',
 			'framed' => false
@@ -190,7 +190,7 @@ class PonchoTemplate extends BaseTemplate {
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
 		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
-		    'id' => 'ca-talk',
+		    'id' => 'poncho-talk-button',
 		    'title' => $button['text'],
 		    'href' => $button['href'],
 		    'flags' => $button['class'] === 'new' ? 'destructive' : '',
