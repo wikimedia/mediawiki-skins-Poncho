@@ -32,8 +32,6 @@ window.Poncho = {
 
 		$( window ).scroll( Poncho.updateTOC );
 
-		$( '#mw-content-text :header' ).hover( Poncho.toggleEditSection );
-
 		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
 		mw.hook( 've.deactivationComplete' ).add( Poncho.toggleContentActions );
 
@@ -51,10 +49,6 @@ window.Poncho = {
 				$( '#poncho-search-form' ).submit();
 			}
 		} );
-	},
-
-	toggleEditSection: function () {
-		$( this ).find( '.mw-editsection' ).toggle();
 	},
 
 	updateTOC: function () {
