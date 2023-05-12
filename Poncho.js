@@ -95,7 +95,8 @@ window.Poncho = {
 
 	readParagraphs: function ( paragraphs ) {
 		var paragraph = paragraphs.shift();
-		var sentences = paragraph.split( '.' );
+		paragraph = paragraph.replace( / ([A-Z])\./g, ' $1' ); // Remove dots from acronyms to prevent confusion with sentences
+		var sentences = paragraph.split( '. ' );
 		sentences = sentences.filter( s => s ); // Remove empty sentences
 		Poncho.readSentences( sentences, paragraphs );
 	},
