@@ -85,7 +85,7 @@ window.Poncho = {
 
 		// Remove elements we don't want to read
 		var $elements = $( '#mw-content-text' ).clone();
-		$elements.find( '.toc, .reference, .references, .mw-editsection, .dablink, .noprint, .thumb' ).remove();
+		$elements.find( '.toc, .reference, .references, .mw-editsection, .dablink, .noprint, .gallery, .thumb' ).remove();
 		$elements.find( 'style, table, pre' ).remove();
 
 		var text = $elements.text();
