@@ -27,7 +27,7 @@ window.Poncho = {
 		$( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
 		$( '#poncho-share-button' ).click( Poncho.share ),
 		$( '#poncho-translate-button' ).click( Poncho.translate );
-		$( '#poncho-read-aloud-button' ).click( Poncho.readAloud );
+		$( '#poncho-read-aloud-button' ).click( Poncho.readPage );
 		$( '#poncho-pause-reading-button' ).click( Poncho.pauseReading );
 
 		$( window ).scroll( Poncho.updateTOC );
@@ -71,7 +71,7 @@ window.Poncho = {
 	/**
 	 * Read the current page aloud
 	 */
-	readAloud: function () {
+	readPage: function () {
 
 		// Swap buttons
 		$( this ).hide();
@@ -84,29 +84,38 @@ window.Poncho = {
 		}
 
 		// Remove elements we don't want to read
-		var $content = $( '#mw-content-text' ).clone();
-		$content.find( '.toc, .mw-editsection, .dablink, .noprint, .thumb' ).remove();
-		$content.find( 'style, table' ).remove();
+		var $elements = $( '#mw-content-text' ).clone();
+		$elements.find( '.toc, .reference, .references, .mw-editsection, .dablink, .noprint, .thumb' ).remove();
+		$elements.find( 'style, table' ).remove();
+		var text = $elements.text();
+		var paragraphs = text.split( '\n' );
+		paragraphs = paragraphs.filter( s => s ); // Remove empty paragraphs
+		Poncho.readParagraphs( paragraphs );
+	},
 
-		// Read the text but add silence between elements
-		var text = $content.text().trim();
-		var parts = text.split( '\n' );
-		var index = 0;
-		var speak = function ( text ) {
-			var utterance = new SpeechSynthesisUtterance( text );
-			utterance.lang = $content.attr( 'lang' );
-			utterance.rate = 0.9;
-			window.speechSynthesis.speak( utterance );
-			utterance.onend = function () {
-				index++;
-				if ( index < parts.length ) {
-					setTimeout( function () {
-						speak( parts[ index ] );
-					}, 500 );
-				}
-			};
+	readParagraphs: function ( paragraphs ) {
+		var paragraph = paragraphs.shift();
+		var sentences = paragraph.split( '.' );
+		sentences = sentences.filter( s => s ); // Remove empty sentences
+		Poncho.readSentences( sentences, paragraphs );
+	},
+
+	readSentences: function ( sentences, paragraphs ) {
+		var sentence = sentences.shift();
+		var utterance = new SpeechSynthesisUtterance( sentence );
+		utterance.lang = mw.config.get( 'wgPageContentLanguage' );
+		window.speechSynthesis.speak( utterance );
+		utterance.onend = function () {
+			if ( sentences.length ) {
+				setTimeout( function () {
+					Poncho.readSentences( sentences, paragraphs );
+				}, 500 );
+			} else if ( paragraphs.length ){
+				setTimeout( function () {
+					Poncho.readParagraphs( paragraphs );
+				}, 1000 );
+			}
 		};
-		speak( parts[0] );
 	},
 
 	/**
