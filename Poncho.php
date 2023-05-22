@@ -123,7 +123,7 @@ class PonchoTemplate extends BaseTemplate {
 			return;
 		}
 		$namespace = $title->getNamespace();
-		if ( ! in_array( $namespace, [ 0, 4, 12 ] ) ) {
+		if ( ! in_array( $namespace, [ 0, 2, 4, 12 ] ) ) {
 			return;
 		}
 		$action = Action::getActionName( $skin->getContext() );

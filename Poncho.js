@@ -1,4 +1,4 @@
-/* global mw, $ */
+/* global mw, $, Poncho */
 
 window.Poncho = {
 
@@ -6,7 +6,7 @@ window.Poncho = {
 	 * Initialization script
 	 */
 	init: function () {
-		Poncho.bindEvents();
+		Poncho.bind();
 
 		Poncho.markNotificationsBell();
 
@@ -20,17 +20,18 @@ window.Poncho = {
 	/**
 	 * Bind events
 	 */
-	bindEvents: function () {
-		$( '#poncho-dark-mode' ).click( Poncho.toggleDarkMode );
-		$( '#poncho-read-mode' ).click( Poncho.toggleReadMode );
+	bind: function () {
+		$( '#poncho-dark-mode' ).on( 'click', Poncho.toggleDarkMode );
+		$( '#poncho-read-mode' ).on( 'click', Poncho.toggleReadMode );
 		$( '#poncho-bell-item' ).one( 'mouseenter', Poncho.readNotifications );
-		$( '#poncho-search-form input' ).keyup( Poncho.searchSuggestions );
-		$( '#poncho-share-button' ).click( Poncho.share ),
-		$( '#poncho-translate-button' ).click( Poncho.translate );
-		$( '#poncho-read-aloud-button' ).click( Poncho.readPage );
-		$( '#poncho-pause-reading-button' ).click( Poncho.pauseReading );
+		$( '#poncho-search-form input' ).on( 'keyup', Poncho.searchSuggestions );
+		$( '#poncho-print-button' ).on( 'click', Poncho.print ),
+		$( '#poncho-share-button' ).on( 'click', Poncho.share ),
+		$( '#poncho-translate-button' ).on( 'click', Poncho.translate );
+		$( '#poncho-read-aloud-button' ).on( 'click', Poncho.readPage );
+		$( '#poncho-pause-reading-button' ).on( 'click', Poncho.pauseReading );
 
-		$( window ).scroll( Poncho.updateTOC );
+		$( window ).on( 'scroll', Poncho.updateTOC );
 
 		mw.hook( 've.activationComplete' ).add( Poncho.toggleContentActions );
 		mw.hook( 've.deactivationComplete' ).add( Poncho.toggleContentActions );
@@ -38,15 +39,15 @@ window.Poncho = {
 		// Hack to detect clicks on #poncho-search-suggestions
 		// See https://stackoverflow.com/a/65073572/809356
 		var searchSuggestionSelected = false;
-		$( '#poncho-search-form input' ).keydown( function ( event ) {
+		$( '#poncho-search-form input' ).on( 'keydown', function ( event ) {
 			searchSuggestionSelected = false;
 			if ( ! event.key ) {
 				searchSuggestionSelected = true;
 			}
 		} );
-		$( '#poncho-search-form input' ).change( function () {
+		$( '#poncho-search-form input' ).on( 'change', function () {
 			if ( searchSuggestionSelected ) {
-				$( '#poncho-search-form' ).submit();
+				$( '#poncho-search-form' ).trigger( 'submit' );
 			}
 		} );
 	},
@@ -84,41 +85,69 @@ window.Poncho = {
 		}
 
 		// Remove elements we don't want to read
-		var $elements = $( '#mw-content-text' ).clone();
-		$elements.find( '.toc, .reference, .references, .mw-editsection, .dablink, .noprint, .gallery, .thumb' ).remove();
-		$elements.find( 'style, table, pre' ).remove();
-
-		var text = $elements.text();
-		var paragraphs = text.split( '\n' );
-		paragraphs = paragraphs.filter( s => s ); // Remove empty paragraphs
-		Poncho.readParagraphs( paragraphs );
+		var $content = $( '#mw-content-text .mw-parser-output' );
+		var $elements = $content.children( 'h1, h2, h3, h4, h5, h6, p, ul, ol' );
+		$elements.addClass( 'read' ).on( 'click', Poncho.jumpToElement );
+		Poncho.readNextElement();
 	},
 
-	readParagraphs: function ( paragraphs ) {
-		var paragraph = paragraphs.shift();
-		paragraph = paragraph.replace( / ([A-Z])\./g, ' $1' ); // Remove dots from acronyms to prevent confusion with sentences
-		paragraph = paragraph.replace( /[([].*?[\])]/g, '' ); // Remove parentheses
-		var sentences = paragraph.split( '. ' );
+	index: 0,
+	readNextElement: function () {
+		var $element = $( '.read' ).eq( Poncho.index );
+		Poncho.index++;
+		$( '.reading' ).removeClass( 'reading' );
+		$element.addClass( 'reading' ).get(0).scrollIntoView( { behavior: 'auto', block: 'center', inline: 'center' } );
+		var text = $element.text();
+		text = text.replace( / ([A-Z])\./g, ' $1' ); // Remove dots from acronyms to prevent confusion with sentences
+		text = text.replace( /[([].*?[\])]/g, '' ); // Don't read parentheses
+		var sentences = text.split( '. ' ); // Include space to prevent matching things like "99.9%"
 		sentences = sentences.filter( s => s ); // Remove empty sentences
-		Poncho.readSentences( sentences, paragraphs );
+		Poncho.sentences = sentences;
+		Poncho.readNextSentence();
 	},
 
-	readSentences: function ( sentences, paragraphs ) {
-		var sentence = sentences.shift();
-		var utterance = new SpeechSynthesisUtterance( sentence );
+	sentences: [],
+	readNextSentence: function () {
+		var sentence = Poncho.sentences.shift();
+		var utterance = new window.SpeechSynthesisUtterance( sentence );
 		utterance.lang = mw.config.get( 'wgPageContentLanguage' );
+		window.speechSynthesis.cancel();
 		window.speechSynthesis.speak( utterance );
-		utterance.onend = function () {
-			if ( sentences.length ) {
-				setTimeout( function () {
-					Poncho.readSentences( sentences, paragraphs );
-				}, 500 );
-			} else if ( paragraphs.length ){
-				setTimeout( function () {
-					Poncho.readParagraphs( paragraphs );
-				}, 1000 );
-			}
-		};
+		utterance.onend = Poncho.onUtteranceEnd;
+	},
+
+	/**
+	 * Note! This will fire not only when the utterance finishes
+	 * but also when the speechSynthesis is cancelled
+	 * notably when jumping to another element
+	 * This is why we need the ugly skipNextSentence hack seen below
+	 */
+	onUtteranceEnd: function () {
+		if ( Poncho.skipNextSentence ) {
+			Poncho.skipNextSentence = false;
+			return;
+		}
+		if ( Poncho.sentences.length ) {
+			Poncho.nextSentenceTimeout = setTimeout( Poncho.readNextSentence, 500 );
+			return;
+		}
+		if ( Poncho.index < $( '.read' ).length ) {
+			Poncho.nextElementTimeout = setTimeout( Poncho.readNextElement, 1000 );
+			return;
+		}
+	},
+
+	/**
+	 * Jump to a specific element
+	 */
+	nextElementTimeout: null,
+	nextSentenceTimeout: null,
+	jumpToElement: function () {
+		var $element = $( this );
+		var index = $( '.read' ).index( $element );
+		Poncho.index = index;
+		Poncho.skipNextSentence = true;
+		Poncho.readNextElement();
 	},
 
 	/**
@@ -132,6 +161,13 @@ window.Poncho = {
 	},
 
 	/**
+	 * Print the current page
+	 */
+	print: function () {
+		window.print();
+	},
+	
+	/**
 	 * Build the share dialog
 	 */
 	share: function () {
@@ -144,7 +180,7 @@ window.Poncho = {
 
 		// Define the buttons
 		var stylepath = mw.config.get( 'stylepath' );
-		var url = encodeURIComponent( location.href );
+		var url = encodeURIComponent( window.location.href );
 		var title = $( '#firstHeading' ).text();
 		var $facebook = $( '<a>' ).attr( {
 			id: 'poncho-facebook-button',
@@ -172,17 +208,17 @@ window.Poncho = {
 		} ).html( '<img src="' + stylepath + '/Poncho/images/permalink.png" /><div>Permalink</div>' );
 
 		// Bind events
-		$close.click( function () {
+		$close.on( 'click', function () {
 			$overlay.remove();
 			$dialog.remove();
 		} );
-		$overlay.click( function () {
+		$overlay.on( 'click', function () {
 			$overlay.remove();
 			$dialog.remove();
 		} );
-		$permalink.click( function () {
+		$permalink.on( 'click', function () {
 			var copied = mw.message( 'poncho-copied' ).plain();
-			navigator.clipboard.writeText( location.href ).then( function() {
+			window.navigator.clipboard.writeText( window.location.href ).then( function() {
 				$( 'div', $permalink ).text( copied );
 			} );
 		} );
@@ -316,25 +352,25 @@ window.Poncho = {
 		var $button = $( '#poncho-translate-button' );
 		if ( mw.cookie.get( 'googtrans', '' ) ) {
 			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-stop-translating' ) );
-			$button.off().click( Poncho.stopTranslating );
+			$button.off().on( 'click', Poncho.stopTranslating );
 		} else {
 			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-translate' ) );
-			$button.off().click( Poncho.openTranslationMenu );
+			$button.off().on( 'click', Poncho.openTranslationMenu );
 		}
 	},
 
 	openTranslationMenu: function () {
-		$( '.goog-te-gadget-simple' ).click();
+		$( '.goog-te-gadget-simple' ).trigger( 'click' );
 
 		// If the user actually selects a language, update the button
 		// but wait a second because the cookie is not set instantly
-		$( '.goog-te-menu-frame' ).contents().click( function () {
+		$( '.goog-te-menu-frame' ).contents().on( 'click', function () {
 			setTimeout( Poncho.updateTranslateButton, 1000 );
 		} );
 	},
 
 	stopTranslating: function () {
-		$( '.goog-te-banner-frame' ).contents().find( '.goog-close-link img' ).click();
+		$( '.goog-te-banner-frame' ).contents().find( '.goog-close-link img' ).trigger( 'click' );
 		Poncho.updateTranslateButton();
 	}
 };
