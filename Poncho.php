@@ -10,7 +10,7 @@ class SkinPoncho extends SkinTemplate {
 class PonchoTemplate extends BaseTemplate {
 
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
+		if ( $skin->getSkinName() !== 'poncho' ) {
 			return; // Don't run for other skins
 		}
 		$out->enableOOUI();

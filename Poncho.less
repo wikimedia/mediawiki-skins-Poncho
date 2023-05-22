@@ -310,7 +310,7 @@ code, tt {
 		margin: 0 0 0 2em;
 		padding: 0;
 	}
-	pre {
+	pre:not([class]) {
 		background: @background;
 		border: 1px solid @border;
 		padding: 1em;
@@ -577,6 +577,13 @@ h2, h3, h4, h5, h6 {
 }
 
 /**
+ * Special:RecentChanges
+ */
+.mw-changeslist-line td {
+	min-width: 30px;
+}
+
+/**
  * Categories
  */
 #catlinks {
@@ -678,15 +685,6 @@ h2, h3, h4, h5, h6 {
 }
 .ve-ui-overlay-global {
 	z-index: 8 !important;
-}
-
-/**
- * Extension:CodeMirror
- */
-.CodeMirror pre {
-	background: transparent !important;
-	border: none !important;
-	padding: 0 !important;
 }
 
 /**
