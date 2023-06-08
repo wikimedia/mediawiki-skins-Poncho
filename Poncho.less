@@ -1,11 +1,22 @@
 /**
  * Color palette
+ * Same colors as OOUI
  */
 @bg: #fff;
-@text: #202122; // Same as OOUI
-@border: #a2a9b1; // Same as OOUI
-@background: #f8f9fa; // Same as OOUI
+@text: #202122;
+@border: #a2a9b1;
+@background: #f8f9fa;
 @redlink: #a55858;
+
+/**
+ * Dark mode
+ * Same colors as Google's dark mode
+ */
+@dark-bg: #202122;
+@dark-text: #bdc1c6;
+@dark-border: #3c4043;
+@dark-background: #303134;
+@dark-link: #8ab4f8;
 
 /**
  * Break points
@@ -673,8 +684,15 @@ h2, h3, h4, h5, h6 {
 }
 
 /**
- * Extension:VisualEditor
+ * Extensions
  */
+
+// Extension:SemanticMediaWiki
+#mw-indicator-smw-entity-examiner {
+	display: none;
+}
+
+// Extension:VisualEditor
 .ve-ui-surface {
 	ol,
 	ul {
@@ -694,11 +712,9 @@ h2, h3, h4, h5, h6 {
 	z-index: 8 !important;
 }
 
-/**
- * Extension:SemanticMediaWiki
- */
-#mw-indicator-smw-entity-examiner {
-	display: none;
+// Extension:Maps
+[id^=map] {
+	z-index: 0;
 }
 
 /**
@@ -728,15 +744,8 @@ h2, h3, h4, h5, h6 {
  * Dark mode
  */
 .poncho-dark-mode {
-	// Same colors as Google's dark mode
-	@bg: #202122;
-	@text: #bdc1c6;
-	@border: #3c4043;
-	@background: #303134;
-	@link: #8ab4f8;
-
-	background: @bg;
-	color: @text;
+	background-color: @dark-bg;
+	color: @dark-text;
 
 	#poncho-header-wrapper,
 	#poncho-more-menu ul,
@@ -749,19 +758,19 @@ h2, h3, h4, h5, h6 {
 	.wikitable th,
 	.wikitable td,
 	.mw-prefs-buttons {
-		background: @background;
-		border-color: @border;
+		background-color: @dark-background;
+		border-color: @dark-border;
 	}
 
 	@media ( max-width: @large ) {
 		#toc {
-			background: @background;
-			border-color: @border;
+			background-color: @dark-background;
+			border-color: @dark-border;
 		}
 	}
 
 	a:not(.new) {
-		color: @link;
+		color: @dark-link;
 	}
 
 	#poncho-logo {
@@ -770,29 +779,30 @@ h2, h3, h4, h5, h6 {
 
 	.poncho-menu {
 		.poncho-menu-icon {
-			background: transparent;
+			background-color: transparent;
 			filter: invert( .9 );
 		}
 		li:hover {
 			filter: brightness( 1.1 );
 		}
 		a {
-			color: @text;
+			color: @dark-text;
 		}
 	}
 
 	/**
 	 * OOUI overrides
-	 * !important is often necessary because OOUI loads via JavaScript
+	 * !important is generally necessary because most of OOUI loads via JavaScript
 	 */
 	.mw-ui-button,
 	.oo-ui-window-content,
 	.oo-ui-inputWidget-input,
+	.oo-ui-selectFileWidget,
 	.oo-ui-buttonElement-button,
 	.oo-ui-tagMultiselectWidget-handle {
-		background: @background !important;
-		border-color: @border !important;
-		color: @text !important;
+		background-color: @dark-background !important;
+		border-color: @dark-border !important;
+		color: @dark-text !important;
 	}
 	.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
 		background-color: transparent !important;
@@ -800,19 +810,37 @@ h2, h3, h4, h5, h6 {
 	}
 	.oo-ui-tabSelectWidget-framed,
 	.oo-ui-panelLayout-framed {
-		background: @background;
-		border-color: @border;
+		background-color: @dark-background;
+		border-color: @dark-border;
 	}
 	.oo-ui-icon-search,
 	#poncho-content-actions .oo-ui-iconElement-icon {
 		filter: invert( .9 ) !important;
 	}
 	.mw-changeslist-legend {
-		background: @background !important;
-		border-color: @border !important;
+		background-color: @dark-background !important;
+		border-color: @dark-border !important;
 	}
+
+	/**
+	 * Extensions
+	 */
+	// Extension:WikiEditor
 	.wikiEditor-ui {
 		color: initial;
+	}
+	// Extension:InputBox
+	.mw-ui-input {
+		background-color: @dark-background;
+		border-color: @dark-border;
+		color: @dark-text;
+	}
+	// Extension:UploadWizard
+	#mwe-upwiz-steps,
+	#mwe-upwiz-steps li {
+		background-color: @dark-background !important;
+		border-color: @dark-border !important;
+		color: @dark-text !important;
 	}
 }
 
@@ -839,7 +867,7 @@ h2, h3, h4, h5, h6 {
 		display: none;
 	}
 	#poncho-header-wrapper {
-		background: transparent;
+		background-color: transparent;
 		border: none;
 		box-shadow: none;
 	}
@@ -870,7 +898,7 @@ h2, h3, h4, h5, h6 {
 	.toc,
 	.thumb,
 	.wikitable {
-		background: transparent;
+		background-color: transparent;
 	}
 	#poncho-content-wrapper,
 	#poncho-footer-wrapper {
