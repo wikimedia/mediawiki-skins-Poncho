@@ -391,6 +391,7 @@ class PonchoTemplate extends BaseTemplate {
 		$userMenu += array_slice( $this->getPersonalTools(), -1 );
 
 		// Unset irrelevant and repeated options
+		unset( $userMenu['anonuserpage'] );
 		unset( $userMenu['uls'] );
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
