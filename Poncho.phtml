@@ -24,12 +24,14 @@
 				</ul>
 			</div>
 
+			<?php if ( $this->getSkin()->getUser()->isRegistered() ): ?>
 			<div id="poncho-notifications-menu" class="poncho-menu">
 				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'bell.png' ); ?>">
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</div>
+			<?php endif; ?>
 
 			<div id="poncho-user-menu" class="poncho-menu">
 				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'user.png' ); ?>">

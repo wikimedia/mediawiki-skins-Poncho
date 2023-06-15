@@ -9,19 +9,41 @@ class SkinPoncho extends SkinTemplate {
 
 class PonchoTemplate extends BaseTemplate {
 
+	/**
+	 * Enable OOUI
+	 */
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		if ( $skin->getSkinName() === 'poncho' ) {
+			$out->enableOOUI();
+		}
+	}
+
+	/**
+	 * Add classes to the body
+	 */
+	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
 		if ( $skin->getSkinName() !== 'poncho' ) {
 			return; // Don't run for other skins
 		}
-		$out->enableOOUI();
-		$out->addModuleStyles( [
-			'oojs-ui.styles.icons-user',
-			'oojs-ui.styles.icons-media',
-			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-editing-core',
-			'oojs-ui.styles.icons-editing-advanced'
-		] );
-		$out->addMeta( 'viewport', 'width=device-width, initial-scale=1, user-scalable=no' );
+		$user = $skin->getUser();
+		$request = $skin->getRequest();
+		$embed = $request->getText( 'embed' );
+		if ( $embed ) {
+			$bodyAttrs['class'] .= ' poncho-embed-mode';
+		}
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
+		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
+		if ( $darkMode ) {
+			$bodyAttrs['class'] .= ' poncho-dark-mode';
+		}
+		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
+		if ( $readMode ) {
+			$bodyAttrs['class'] .= ' poncho-read-mode';
+		}
+		if ( $out->isTOCEnabled() ) {
+			$bodyAttrs['class'] .= ' poncho-has-toc'; // We need this for responsive styling of the table of contents
+		}
 	}
 
 	/**
@@ -392,7 +414,8 @@ class PonchoTemplate extends BaseTemplate {
 
 		// Unset irrelevant and repeated options
 		unset( $userMenu['anonuserpage'] );
-		unset( $userMenu['uls'] );
+		unset( $userMenu['uls'] ); // Universal Language Selector
+		unset( $userMenu['talk-alert'] );
 		unset( $userMenu['notifications-alert'] );
 		unset( $userMenu['notifications-notice'] );
 
@@ -505,34 +528,6 @@ class PonchoTemplate extends BaseTemplate {
 			'type' => 'toggle',
 			'label-message' => 'poncho-enable-read-mode',
 		];
-	}
-
-	/**
-	 * Add classes to the body
-	 */
-	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
-		if ( strtolower( $skin->getSkinName() ) !== 'poncho' ) {
-			return; // Don't run for other skins
-		}
-		$user = $skin->getUser();
-		$request = $skin->getRequest();
-		$embed = $request->getText( 'embed' );
-		if ( $embed ) {
-			$bodyAttrs['class'] .= ' poncho-embed-mode';
-		}
-		$services = MediaWikiServices::getInstance();
-		$userOptionsLookup = $services->getUserOptionsLookup();
-		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
-		if ( $darkMode ) {
-			$bodyAttrs['class'] .= ' poncho-dark-mode';
-		}
-		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
-		if ( $readMode ) {
-			$bodyAttrs['class'] .= ' poncho-read-mode';
-		}
-		if ( $out->isTOCEnabled() ) {
-			$bodyAttrs['class'] .= ' poncho-has-toc'; // We need this for responsive styling of the table of contents
-		}
 	}
 
 	/**

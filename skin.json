@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Poncho",
-	"version": "9.8",
+	"version": "10.0",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -20,10 +20,18 @@
 			"class": "SkinPoncho",
 			"args": [
 				{
-					"bodyOnly": true,
 					"name": "poncho",
+					"bodyOnly": true,
+					"responsive": true,
 					"template": "PonchoTemplate",
-					"styles": [ "skins.poncho.styles" ],
+					"styles": [
+						"skins.poncho.styles",
+						"oojs-ui.styles.icons-user",
+						"oojs-ui.styles.icons-media",
+						"oojs-ui.styles.icons-interactions",
+						"oojs-ui.styles.icons-editing-core",
+						"oojs-ui.styles.icons-editing-advanced"
+					],
 					"scripts": [ "skins.poncho.scripts" ]
 				}
 			]

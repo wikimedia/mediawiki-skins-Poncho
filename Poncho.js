@@ -8,7 +8,7 @@ window.Poncho = {
 	init: function () {
 		Poncho.bind();
 
-		Poncho.markNotificationsBell();
+		Poncho.markNotifications();
 
 		// Stop any running voice
 		window.speechSynthesis.cancel();
@@ -23,7 +23,7 @@ window.Poncho = {
 	bind: function () {
 		$( '#poncho-dark-mode' ).on( 'click', Poncho.toggleDarkMode );
 		$( '#poncho-read-mode' ).on( 'click', Poncho.toggleReadMode );
-		$( '#poncho-bell-item' ).one( 'mouseenter', Poncho.readNotifications );
+		$( '#poncho-notifications-menu' ).on( 'mouseenter', Poncho.readNotifications );
 		$( '#poncho-search-form input' ).on( 'keyup', Poncho.searchSuggestions );
 		$( '#poncho-print-button' ).on( 'click', Poncho.print ),
 		$( '#poncho-share-button' ).on( 'click', Poncho.share ),
@@ -310,12 +310,12 @@ window.Poncho = {
 	},
 
 	/**
-	 * Mark the bell item if the current user has unread notifications
+	 * Mark the notifications menu if the current user has unread notifications
 	 */
-	markNotificationsBell: function () {
-		var $bell = $( '#poncho-bell-item' );
-		if ( $bell.find( '.active' ).length ) {
-			$bell.addClass( 'active' );
+	markNotifications: function () {
+		var $menu = $( '#poncho-notifications-menu' );
+		if ( $menu.find( '.active' ).length ) {
+			$menu.addClass( 'active' );
 		}
 	},
 
