@@ -32,7 +32,7 @@
 						"oojs-ui.styles.icons-editing-core",
 						"oojs-ui.styles.icons-editing-advanced"
 					],
-					"scripts": [ "skins.poncho.scripts" ]
+					"scripts": "skins.poncho.scripts"
 				}
 			]
 		}
@@ -43,10 +43,18 @@
 	},
 	"ResourceModules": {
 		"skins.poncho.styles": {
-			"styles": "Poncho.less"
+			"styles": "Poncho.less",
+			"targets": [
+				"mobile",
+				"desktop"
+			]
 		},
 		"skins.poncho.scripts": {
 			"scripts": "Poncho.js",
+			"targets": [
+				"mobile",
+				"desktop"
+			],
 			"messages": [
 				"poncho-enable-dark-mode",
 				"poncho-disable-dark-mode",
