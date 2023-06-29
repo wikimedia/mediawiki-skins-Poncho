@@ -269,25 +269,25 @@ class PonchoTemplate extends BaseTemplate {
 	function logo() {
 		global $wgLogos, $wgLogo, $wgSitename;
 
-		// Make logo
+		// Make icon
 		$src = $wgLogo;
 		if ( $wgLogos && array_key_exists( 'icon', $wgLogos ) ) {
 			$src = $wgLogos['icon'];
 		}
 		$width = 42;
 		$height = 42;
-		$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
-		$logo = Html::rawElement( 'img', $attrs );
+		$attrs = [ 'id' => 'poncho-icon', 'src' => $src, 'width' => $width, 'height' => $height ];
+		$icon = Html::rawElement( 'img', $attrs );
 
 		// Make wordmark
 		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
 			$src = $wgLogos['wordmark']['src'];
 			$width = $wgLogos['wordmark']['width'];
 			$height = $wgLogos['wordmark']['height'];
-			$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
+			$attrs = [ 'id' => 'poncho-wordmark', 'src' => $src, 'width' => $width, 'height' => $height ];
 			$wordmark = Html::rawElement( 'img', $attrs );
 		} else {
-			$wordmark = Html::rawElement( 'span', [], $wgSitename );
+			$wordmark = Html::rawElement( 'div', [ 'id' => 'poncho-wordmark' ], $wgSitename );
 		}
 
 		// Make tagline
@@ -296,20 +296,23 @@ class PonchoTemplate extends BaseTemplate {
 			$src = $wgLogos['tagline']['src'];
 			$width = $wgLogos['tagline']['width'];
 			$height = $wgLogos['tagline']['height'];
-			$attrs = [ 'src' => $src, 'width' => $width, 'height' => $height ];
+			$attrs = [ 'id' => 'poncho-tagline', 'src' => $src, 'width' => $width, 'height' => $height ];
 			$tagline = Html::rawElement( 'img', $attrs );
 		}
 
 		// Make wrapper span
-		$span = Html::rawElement( 'span', [], $wordmark . '<br>' . $tagline );
+		$span = Html::rawElement( 'span', [], $wordmark . $tagline );
 
 		// Make link
 		$attrs = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
 		$attrs['id'] = 'poncho-logo';
 		$attrs['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$link = Html::rawElement( 'a', $attrs, $logo . $span );
+		$logo = Html::rawElement( 'a', $attrs, $icon . $span );
 
-		echo $link;
+		// Allow extensions to completely override the logo
+		Hooks::run( 'PonchoLogo', [ &$logo, $this ] );
+
+		echo $logo;
 	}
 
 	/**
