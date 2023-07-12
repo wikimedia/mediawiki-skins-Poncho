@@ -233,17 +233,19 @@ dt {
  */
 #poncho-content-actions {
 	float: right;
-	margin-bottom: 1em;
-	position: relative;
 	.oo-ui-buttonElement-button {
 		border-radius: 50%;
 		position: relative;
+	}
+	& > span {
+		line-height: 2.5em;
 	}
 	& > .oo-ui-buttonElement .oo-ui-buttonElement-button:hover:after {
 		background: @border;
 		border-radius: 2px;
 		color: white;
 		content: attr( title );
+		line-height: 1em;
 		opacity: .8;
 		padding: .5em;
 		position: absolute;
@@ -277,14 +279,17 @@ dt {
  * Title
  */
 #firstHeading {
-	clear: both;
-	margin-top: 1.5em;
 	page-break-before: avoid;
 	.poncho-title-dash {
 		margin: 0 .5em;
 	}
 	.poncho-title-colon {
 		margin-right: .5em;
+	}
+}
+@media ( max-width: @small ) {
+	#firstHeading {
+		clear: both;
 	}
 }
 #siteSub {
@@ -903,9 +908,5 @@ h2, h3, h4, h5, h6 {
 	.thumb,
 	.wikitable {
 		background-color: transparent;
-	}
-	#poncho-content-wrapper,
-	#poncho-footer-wrapper {
-		margin-left: 1em;
 	}
 }
