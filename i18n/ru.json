@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BerryAVGN",
 			"Facenapalm",
 			"Gulka.nik",
 			"Kareyac",
@@ -11,12 +12,19 @@
 	"poncho-desc": "Простая, чистая, гибкая и хорошо смотрящаяся на мобильных устройствах тема.",
 	"poncho-print": "Печать",
 	"poncho-share": "Поделиться",
+	"poncho-more": "Ещё",
 	"poncho-copied": "Скопировано!",
+	"poncho-read-aloud": "Прочитать вслух",
+	"poncho-pause-reading": "Приостановить чтение",
+	"poncho-resume-reading": "Возобновить чтение",
+	"poncho-translate": "Перевести",
+	"poncho-stop-translating": "Прекратить перевод",
 	"poncho-hide-sidebar": "Скрыть боковую панель",
 	"poncho-enable-dark-mode": "Включить тёмную тему",
 	"poncho-disable-dark-mode": "Отключить тёмную тему",
 	"poncho-enable-read-mode": "Включить режим чтения",
 	"poncho-disable-read-mode": "Отключить режим чтения",
+	"poncho-no-languages": "Для этой страницы нет интервики-ссылок.",
 	"poncho-no-notifications": "У вас нет новых уведомлений.",
 	"poncho-new-message": "Вам пришло новое сообщение от другого пользователя."
 }
