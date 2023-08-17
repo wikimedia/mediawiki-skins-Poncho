@@ -5,7 +5,8 @@
 			"Meno25",
 			"NancyMilad",
 			"أَحمد",
-			"ديفيد"
+			"ديفيد",
+			"Hubaishan"
 		]
 	},
 	"poncho-desc": "برنامج مساعد بسيط ونظيف ومستجيب وصديق للجوال.",
@@ -13,7 +14,7 @@
 	"poncho-share": "مشاركة",
 	"poncho-copied": "نُسِخت!",
 	"poncho-hide-sidebar": "اخفاء الشريط الجانبي",
-	"poncho-enable-dark-mode": "قم بتمكين الوضع المظلم",
+	"poncho-enable-dark-mode": "مكِّن الوضع المظلم",
 	"poncho-disable-dark-mode": "تعطيل الوضع الداكن",
 	"poncho-enable-read-mode": "تمكين وضع القراءة",
 	"poncho-disable-read-mode": "تعطيل وضع القراءة",
