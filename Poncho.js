@@ -1,5 +1,3 @@
-/* global mw, $, Poncho */
-
 window.Poncho = {
 
 	/**
@@ -327,9 +325,6 @@ window.Poncho = {
 
 		// Add the necessary DOM element
 		$( 'body' ).after( '<div hidden id="google-translate-element"></div>' );
-
-		// Mark the main interface elements to prevent translation, since MediaWiki already does that
-		$( '#poncho-header-wrapper, #poncho-sidebar-wrapper, #poncho-footer-wrapper, #poncho-content-actions' ).attr( 'translate', 'no' );
 	},
 
 	initGoogleTranslate: function () {
@@ -338,40 +333,12 @@ window.Poncho = {
 			layout: google.translate.TranslateElement.InlineLayout.SIMPLE
 		}, 'google-translate-element' );
 
-		// If the user already translated a page
-		// then Google will remember the language selection and translate immediately
-		// else we ask the user to select a language
-		if ( mw.cookie.get( 'googtrans', '' ) ) {
-			Poncho.updateTranslateButton();
-		} else {
-			setTimeout( Poncho.openTranslationMenu, 1000 ); // For some reason the menu is not available immediately
-		}
-	},
-
-	updateTranslateButton: function () {
-		var $button = $( '#poncho-translate-button' );
-		if ( mw.cookie.get( 'googtrans', '' ) ) {
-			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-stop-translating' ) );
-			$button.off().on( 'click', Poncho.stopTranslating );
-		} else {
-			$button.find( 'a' ).attr( 'title', mw.msg( 'poncho-translate' ) );
-			$button.off().on( 'click', Poncho.openTranslationMenu );
-		}
-	},
-
-	openTranslationMenu: function () {
-		$( '.goog-te-gadget-simple' ).trigger( 'click' );
-
-		// If the user actually selects a language, update the button
-		// but wait a second because the cookie is not set instantly
-		$( '.goog-te-menu-frame' ).contents().on( 'click', function () {
-			setTimeout( Poncho.updateTranslateButton, 1000 );
-		} );
-	},
-
-	stopTranslating: function () {
-		$( '.goog-te-banner-frame' ).contents().find( '.goog-close-link img' ).trigger( 'click' );
-		Poncho.updateTranslateButton();
+		// Make the language list scrollable on small screens
+		setTimeout( function () {
+			var $frame = $( '#goog-gt-tt' ).next( 'div' ).next( 'iframe' ).next( 'iframe' );
+			$frame.attr( 'scrollable', true ).css( 'max-width', '100%' );
+			$frame.contents().find( 'body' ).css( 'overflow', 'scroll' );
+		}, 1000 );
 	}
 };
 
