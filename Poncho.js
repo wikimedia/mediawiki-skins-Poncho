@@ -321,10 +321,14 @@ window.Poncho = {
 	 * Load Google Translate
 	 */
 	translate: function () {
-		$.getScript( '//translate.google.com/translate_a/element.js?cb=Poncho.initGoogleTranslate' );
-
-		// Add the necessary DOM element
-		$( 'body' ).after( '<div hidden id="google-translate-element"></div>' );
+		var googleTranslateElement = $( '#google-translate-element' );
+		if ( googleTranslateElement.length ) {
+			Poncho.initGoogleTranslate();
+		} else {
+			googleTranslateElement = $( '<div hidden id="google-translate-element"></div>' );
+			$( 'body' ).after( googleTranslateElement );
+			$.getScript( '//translate.google.com/translate_a/element.js?cb=Poncho.initGoogleTranslate' );
+		}
 	},
 
 	initGoogleTranslate: function () {
@@ -333,11 +337,23 @@ window.Poncho = {
 			layout: google.translate.TranslateElement.InlineLayout.SIMPLE
 		}, 'google-translate-element' );
 
-		// Make the language list scrollable on small screens
+		// Wait for the element to load and then open the language list
+		// @todo Wait for the relevant element rather than setTimeout
 		setTimeout( function () {
-			var $frame = $( '#goog-gt-tt' ).next( 'div' ).next( 'iframe' ).next( 'iframe' );
-			$frame.attr( 'scrollable', true ).css( 'max-width', '100%' );
-			$frame.contents().find( 'body' ).css( 'overflow', 'scroll' );
+			$( '.goog-te-gadget-simple' ).trigger( 'click' );
+		}, 1000 );
+
+		// Make the language menu scrollable in small screens
+		// @todo Wait for the relevant element rather than setTimeout
+		// @note Because the number and position of the iframes varies wildly
+		// and there's barely any CSS class or anything to distinguish them
+		// we just apply the changes to all of them
+		setTimeout( function () {
+			var $frames = $( '#goog-gt-tt' ).nextAll( 'iframe' );
+			if ( $frames.length ) {
+				$frames.attr( 'scrollable', true ).css( 'max-width', '100%' );
+				$frames.contents().find( 'body' ).css( 'overflow', 'scroll' );
+			}
 		}, 1000 );
 	}
 };
