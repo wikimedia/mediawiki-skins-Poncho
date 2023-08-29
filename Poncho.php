@@ -57,154 +57,18 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the Edit button or buttons
-	 */
-	function editButton() {
-		$action = Action::getActionName( $this->getSkin()->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		if ( array_key_exists( 've-edit', $this->data['content_navigation']['views'] ) ) {
-			$button = $this->data['content_navigation']['views']['ve-edit'];
-			echo '<span id="ca-edit"></span>' . new OOUI\ButtonWidget( [
-				'id' => 'poncho-visual-edit-button',
-				'title' => $button['text'],
-				'href' => $button['href'],
-				'icon' => 'edit',
-				'framed' => false
-			] );
-		}
-		if ( array_key_exists( 'edit', $this->data['content_navigation']['views'] ) ) {
-			$button = $this->data['content_navigation']['views']['edit'];
-			echo new OOUI\ButtonWidget( [
-				'id' => 'poncho-edit-button',
-				'title' => $button['text'],
-				'href' => $button['href'],
-				'icon' => 'wikiText',
-				'framed' => false
-			] );
-		}
-	}
-
-	/**
-	 * Echo the Print button
-	 */
-	function printButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->exists() ) {
-			return;
-		}
-		if ( ! $title->isContentPage() ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-print-button',
-		    'title' => wfMessage( 'poncho-print' )->plain(),
-		    'icon' => 'printer',
-			'framed' => false
-		] );
-	}
-
-	/**
-	 * Echo the Translate button
-	 */
-	function translateButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->exists() ) {
-			return;
-		}
-		$namespace = $title->getNamespace();
-		if ( ! in_array( $namespace, [ 0, 4, 12 ] ) ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-			'id' => 'poncho-translate-button',
-			'title' => wfMessage( 'poncho-translate' )->plain(),
-			'icon' => 'language',
-			'framed' => false
-		] );
-	}
-
-	/**
-	 * Echo the Read Aloud button
-	 */
-	function readAloudButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->exists() ) {
-			return;
-		}
-		$namespace = $title->getNamespace();
-		if ( ! in_array( $namespace, [ 0, 2, 4, 12 ] ) ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-			'id' => 'poncho-read-aloud-button',
-			'title' => wfMessage( 'poncho-read-aloud' )->plain(),
-			'icon' => 'play',
-			'framed' => false
-		] );
-		echo new OOUI\ButtonWidget( [
-			'id' => 'poncho-pause-reading-button',
-			'title' => wfMessage( 'poncho-pause-reading' )->plain(),
-			'icon' => 'pause',
-			'framed' => false
-		] );
-	}
-
-	/**
-	 * Echo the Share button
-	 */
-	function shareButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->isContentPage() ) {
-			return;
-		}
-		if ( ! $title->exists() ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-share-button',
-		    'title' => wfMessage( 'poncho-share' )->plain(),
-		    'icon' => 'heart',
-			'framed' => false
-		] );
-	}
-
-	/**
 	 * Echo the Talk button
 	 */
 	function talkButton() {
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
-		if ( $title->isSpecialPage() ) {
-			return;
-		}
-		if ( ! $title->exists() && $title->getNamespace() !== NS_USER ) {
+		if ( !$title->canHaveTalkPage() ) {
 			return;
 		}
 		if ( $title->isTalkPage() ) {
 			return;
 		}
+		$context = $skin->getContext();
 		$action = Action::getActionName( $skin->getContext() );
 		if ( $action !== 'view' ) {
 			return;
@@ -212,7 +76,7 @@ class PonchoTemplate extends BaseTemplate {
 		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
 		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
-		    'id' => 'poncho-talk-button',
+		    'id' => $button['id'],
 		    'title' => $button['text'],
 		    'href' => $button['href'],
 		    'flags' => $button['class'] === 'new' ? 'destructive' : '',
@@ -222,18 +86,56 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
+	 * Echo the content action buttons
+	 */
+	function actionButtons() {
+		$actions = $this->data['content_navigation']['views'];
+
+		// Unset the current action per generally useless
+		$skin = $this->getSkin();
+		$context = $skin->getContext();
+		$action = Action::getActionName( $context );
+		unset( $actions[ $action ] );
+
+		// Hack! VisualEditor includes JavaScript that replaces the contents
+		// of the Edit <a> tag for plain text, which effectively removes
+		// the HTML of our Edit button, so we echo this decoy first to trick it
+		echo '<span id="ca-ve-edit"></span>';
+
+		// Set the default icons
+		$icons = [
+			'view' => 'article',
+			'edit' => $actions['ve-edit'] ? 'wikiText' : 'edit',
+			've-edit' => 'edit',
+			'history' => 'history',
+			'addsection' => 'add',
+		];
+
+		// Print the buttons
+		foreach ( $actions as $key => $action ) {
+			$icon = $action['icon'] ?? $icons[ $key ] ?? null;
+			echo new OOUI\ButtonWidget( [
+				'id' => $action['id'],
+				'label' => $icon ? '' : $action['text'],
+				'title' => $icon ? $action['text'] : '',
+				'href' => $action['href'],
+				'icon' => $icon,
+				'framed' => false
+			] );
+		}
+	}
+
+	/**
 	 * Echo the More button
 	 */
 	function moreButton() {
+		$menu = $this->getMoreMenu();
+		if ( ! $menu ) {
+			return;
+		}
 		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( ! $title->exists() ) {
-			return;
-		}
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
+		$context = $skin->getContext();
+		$action = Action::getActionName( $context );
 		echo new OOUI\ButtonWidget( [
 			'id' => 'poncho-more-button',
 			'title' => wfMessage( 'poncho-more' )->plain(),
@@ -247,19 +149,10 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function getMoreMenu() {
 		$menu = array_merge(
-			$this->data['content_navigation']['views'],
 			$this->data['content_navigation']['actions'],
 			$this->data['content_navigation']['variants'],
 			$this->data['sidebar']['TOOLBOX']
 		);
-
-		// Remove undesired items
-		unset( $menu['upload'] );
-		unset( $menu['specialpages'] );
-		unset( $menu['print'] );
-		unset( $menu['edit'] );
-		unset( $menu['ve-edit'] );
-
 		return $menu;
 	}
 
@@ -316,7 +209,7 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Print wordmark or sitename
+	 * Echo the wordmark or sitename
 	 */
 	function wordmark() {
 		global $wgLogos, $wgSitename;

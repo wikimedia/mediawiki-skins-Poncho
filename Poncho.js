@@ -6,10 +6,7 @@ window.Poncho = {
 	init: function () {
 		Poncho.bind();
 
-		Poncho.markNotifications();
-
-		// Stop any running voice
-		window.speechSynthesis.cancel();
+		Poncho.ringNotificationsBell();
 
 		// Add markup that can't be added from Poncho.phtml or Poncho.php
 		$( '#poncho-search-form input' ).attr( 'list', 'poncho-search-suggestions' );
@@ -23,11 +20,6 @@ window.Poncho = {
 		$( '#poncho-read-mode' ).on( 'click', Poncho.toggleReadMode );
 		$( '#poncho-notifications-menu' ).on( 'mouseenter', Poncho.readNotifications );
 		$( '#poncho-search-form input' ).on( 'keyup', Poncho.searchSuggestions );
-		$( '#poncho-print-button' ).on( 'click', Poncho.print ),
-		$( '#poncho-share-button' ).on( 'click', Poncho.share ),
-		$( '#poncho-translate-button' ).on( 'click', Poncho.translate );
-		$( '#poncho-read-aloud-button' ).on( 'click', Poncho.readPage );
-		$( '#poncho-pause-reading-button' ).on( 'click', Poncho.pauseReading );
 
 		$( window ).on( 'scroll', Poncho.updateTOC );
 
@@ -65,166 +57,6 @@ window.Poncho = {
 				return false;
 			}
 		} );
-	},
-
-	/**
-	 * Read the current page aloud
-	 */
-	readPage: function () {
-
-		// Swap buttons
-		$( this ).hide();
-		$( '#poncho-pause-reading-button' ).show();
-
-		// If speech was paused, just resume
-		if ( window.speechSynthesis.paused || window.speechSynthesis.ponchoPause ) {
-			window.speechSynthesis.resume();
-			return;
-		}
-
-		// Remove elements we don't want to read
-		var $content = $( '#mw-content-text .mw-parser-output' );
-		var $elements = $content.children( 'h1, h2, h3, h4, h5, h6, p, ul, ol' );
-		$elements.addClass( 'read' ).on( 'click', Poncho.jumpToElement );
-		Poncho.readNextElement();
-	},
-
-	index: 0,
-	readNextElement: function () {
-		var $element = $( '.read' ).eq( Poncho.index );
-		Poncho.index++;
-		$( '.reading' ).removeClass( 'reading' );
-		$element.addClass( 'reading' ).get(0).scrollIntoView( { behavior: 'auto', block: 'center', inline: 'center' } );
-		var text = $element.text();
-		text = text.replace( / ([A-Z])\./g, ' $1' ); // Remove dots from acronyms to prevent confusion with sentences
-		text = text.replace( /[([].*?[\])]/g, '' ); // Don't read parentheses
-		var sentences = text.split( '. ' ); // Include space to prevent matching things like "99.9%"
-		sentences = sentences.filter( s => s ); // Remove empty sentences
-		Poncho.sentences = sentences;
-		Poncho.readNextSentence();
-	},
-
-	sentences: [],
-	readNextSentence: function () {
-		var sentence = Poncho.sentences.shift();
-		var utterance = new window.SpeechSynthesisUtterance( sentence );
-		utterance.lang = mw.config.get( 'wgPageContentLanguage' );
-		window.speechSynthesis.cancel();
-		window.speechSynthesis.speak( utterance );
-		utterance.onend = Poncho.onUtteranceEnd;
-	},
-
-	/**
-	 * Note! This will fire not only when the utterance finishes
-	 * but also when the speechSynthesis is cancelled
-	 * notably when jumping to another element
-	 * This is why we need the ugly skipNextSentence hack seen below
-	 */
-	onUtteranceEnd: function () {
-		if ( Poncho.skipNextSentence ) {
-			Poncho.skipNextSentence = false;
-			return;
-		}
-		if ( Poncho.sentences.length ) {
-			Poncho.nextSentenceTimeout = setTimeout( Poncho.readNextSentence, 500 );
-			return;
-		}
-		if ( Poncho.index < $( '.read' ).length ) {
-			Poncho.nextElementTimeout = setTimeout( Poncho.readNextElement, 1000 );
-			return;
-		}
-	},
-
-	/**
-	 * Jump to a specific element
-	 */
-	nextElementTimeout: null,
-	nextSentenceTimeout: null,
-	jumpToElement: function () {
-		var $element = $( this );
-		var index = $( '.read' ).index( $element );
-		Poncho.index = index;
-		Poncho.skipNextSentence = true;
-		Poncho.readNextElement();
-	},
-
-	/**
-	 * Pause reading aloud
-	 */
-	pauseReading: function () {
-		$( this ).hide();
-		$( '#poncho-read-aloud-button' ).show();
-		window.speechSynthesis.pause();
-		window.speechSynthesis.ponchoPause = true; // window.speechSynthesis.paused sometimes doesn't work
-	},
-
-	/**
-	 * Print the current page
-	 */
-	print: function () {
-		window.print();
-	},
-	
-	/**
-	 * Build the share dialog
-	 */
-	share: function () {
-		// Define the dialog elements
-		var $overlay = $( '<div>' ).attr( 'id', 'poncho-share-overlay' );
-		var $dialog = $( '<div>' ).attr( 'id', 'poncho-share-dialog' );
-		var $title = $( '<h2>' ).attr( 'id', 'poncho-share-title' ).text( 'Share this page' );
-		var $buttons = $( '<div>' ).attr( 'id', 'poncho-share-buttons' );
-		var $close = $( '<div>' ).attr( 'id', 'poncho-share-close' ).text( '✕' );
-
-		// Define the buttons
-		var stylepath = mw.config.get( 'stylepath' );
-		var url = encodeURIComponent( window.location.href );
-		var title = $( '#firstHeading' ).text();
-		var $facebook = $( '<a>' ).attr( {
-			id: 'poncho-facebook-button',
-			target: '_blank',
-			href: 'https://www.facebook.com/sharer.php?u=' + url
-		} ).html( '<img src="' + stylepath + '/Poncho/images/facebook.png" /><div>Facebook</div>' );
-		var $twitter = $( '<a>' ).attr( {
-			id: 'poncho-twitter-button',
-			target: '_blank',
-			href: 'https://twitter.com/intent/tweet?url=' + url
-		} ).html( '<img src="' + stylepath + '/Poncho/images/twitter.png" /><div>Twitter</div>' );
-		var $reddit = $( '<a>' ).attr( {
-			id: 'poncho-reddit-button',
-			target: '_blank',
-			href: 'https://www.reddit.com/submit?url=' + url + '&title=' + title,
-		} ).html( '<img src="' + stylepath + '/Poncho/images/reddit.png" /><div>Reddit</div>' );
-		var $email = $( '<a>' ).attr( {
-			id: 'poncho-email-button',
-			target: '_blank',
-			href: 'mailto:?subject=' + title + '&body=' + url
-		} ).html( '<img src="' + stylepath + '/Poncho/images/email.png" /><div>Email</div>' );
-		var $permalink = $( '<a>' ).attr( {
-			id: 'poncho-permalink-button',
-			target: '_blank',
-		} ).html( '<img src="' + stylepath + '/Poncho/images/permalink.png" /><div>Permalink</div>' );
-
-		// Bind events
-		$close.on( 'click', function () {
-			$overlay.remove();
-			$dialog.remove();
-		} );
-		$overlay.on( 'click', function () {
-			$overlay.remove();
-			$dialog.remove();
-		} );
-		$permalink.on( 'click', function () {
-			var copied = mw.message( 'poncho-copied' ).plain();
-			window.navigator.clipboard.writeText( window.location.href ).then( function() {
-				$( 'div', $permalink ).text( copied );
-			} );
-		} );
-
-		// Put everything together and add it to the DOM
-		$buttons.append( $facebook, $twitter, $reddit, $email, $permalink );
-		$dialog.append( $close, $title, $buttons );
-		$( 'body' ).append( $overlay, $dialog );
 	},
 
 	/**
@@ -308,53 +140,13 @@ window.Poncho = {
 	},
 
 	/**
-	 * Mark the notifications menu if the current user has unread notifications
+	 * Ring the notifications bell if the current user has unread notifications
 	 */
-	markNotifications: function () {
+	ringNotificationsBell: function () {
 		var $menu = $( '#poncho-notifications-menu' );
 		if ( $menu.find( '.active' ).length ) {
 			$menu.addClass( 'active' );
 		}
-	},
-
-	/**
-	 * Load Google Translate
-	 */
-	translate: function () {
-		var googleTranslateElement = $( '#google-translate-element' );
-		if ( googleTranslateElement.length ) {
-			Poncho.initGoogleTranslate();
-		} else {
-			googleTranslateElement = $( '<div hidden id="google-translate-element"></div>' );
-			$( 'body' ).after( googleTranslateElement );
-			$.getScript( '//translate.google.com/translate_a/element.js?cb=Poncho.initGoogleTranslate' );
-		}
-	},
-
-	initGoogleTranslate: function () {
-		new google.translate.TranslateElement( {
-			pageLanguage: mw.config.get( 'wgPageContentLanguage' ),
-			layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-		}, 'google-translate-element' );
-
-		// Wait for the element to load and then open the language list
-		// @todo Wait for the relevant element rather than setTimeout
-		setTimeout( function () {
-			$( '.goog-te-gadget-simple' ).trigger( 'click' );
-		}, 1000 );
-
-		// Make the language menu scrollable in small screens
-		// @todo Wait for the relevant element rather than setTimeout
-		// @note Because the number and position of the iframes varies wildly
-		// and there's barely any CSS class or anything to distinguish them
-		// we just apply the changes to all of them
-		setTimeout( function () {
-			var $frames = $( '#goog-gt-tt' ).nextAll( 'iframe' );
-			if ( $frames.length ) {
-				$frames.attr( 'scrollable', true ).css( 'max-width', '100%' );
-				$frames.contents().find( 'body' ).css( 'overflow', 'scroll' );
-			}
-		}, 1000 );
 	}
 };
 
