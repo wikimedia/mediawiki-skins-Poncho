@@ -105,7 +105,8 @@ class PonchoTemplate extends BaseTemplate {
 		// Set the default icons
 		$icons = [
 			'view' => 'article',
-			'edit' => $actions['ve-edit'] ? 'wikiText' : 'edit',
+			'viewsource' => 'wikiText',
+			'edit' => array_key_exists( 've-edit', $actions ) ? 'wikiText' : 'edit',
 			've-edit' => 'edit',
 			'history' => 'history',
 			'addsection' => 'add',
