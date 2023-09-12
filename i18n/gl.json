@@ -2,8 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Banjo",
-			"Elisardojm"
+			"Elisardojm",
+			"Toliño"
 		]
 	},
-	"poncho-desc": "Aparencia simple, limpa, reactiva e adaptable a dispositivos móbiles."
+	"poncho-desc": "Aparencia simple, limpa, reactiva e adaptable a dispositivos móbiles.",
+	"poncho-enable-dark-mode": "Activar o modo escuro",
+	"poncho-disable-dark-mode": "Desactivar o modo escuro",
+	"poncho-enable-read-mode": "Activar o modo de lectura",
+	"poncho-disable-read-mode": "Desactivar o modo de lectura",
+	"poncho-no-notifications": "Non tes notificacións novas.",
+	"poncho-new-message": "Tes unha mensaxe nova doutro usuario."
 }
