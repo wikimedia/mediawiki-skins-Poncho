@@ -47,6 +47,58 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
+	 * Echo the logo
+	 */
+	function logo() {
+		global $wgLogos, $wgLogo, $wgSitename;
+
+		// Make icon
+		$src = $wgLogo;
+		if ( $wgLogos && array_key_exists( 'icon', $wgLogos ) ) {
+			$src = $wgLogos['icon'];
+		}
+		$width = 42;
+		$height = 42;
+		$attrs = [ 'id' => 'poncho-icon', 'src' => $src, 'width' => $width, 'height' => $height, 'alt' => $wgSitename ];
+		$icon = Html::rawElement( 'img', $attrs );
+
+		// Make wordmark
+		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
+			$src = $wgLogos['wordmark']['src'];
+			$width = $wgLogos['wordmark']['width'];
+			$height = $wgLogos['wordmark']['height'];
+			$attrs = [ 'id' => 'poncho-wordmark', 'src' => $src, 'width' => $width, 'height' => $height, 'alt' => $wgSitename ];
+			$wordmark = Html::rawElement( 'img', $attrs );
+		} else {
+			$wordmark = Html::rawElement( 'div', [ 'id' => 'poncho-wordmark' ], $wgSitename );
+		}
+
+		// Make tagline
+		$tagline = null;
+		if ( $wgLogos && array_key_exists( 'tagline', $wgLogos ) ) {
+			$src = $wgLogos['tagline']['src'];
+			$width = $wgLogos['tagline']['width'];
+			$height = $wgLogos['tagline']['height'];
+			$attrs = [ 'id' => 'poncho-tagline', 'src' => $src, 'width' => $width, 'height' => $height, 'alt' => $wgSitename ];
+			$tagline = Html::rawElement( 'img', $attrs );
+		}
+
+		// Make wrapper span
+		$span = Html::rawElement( 'span', [], $wordmark . $tagline );
+
+		// Make link
+		$attrs = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
+		$attrs['id'] = 'poncho-logo';
+		$attrs['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
+		$logo = Html::rawElement( 'a', $attrs, $icon . $span );
+
+		// Allow extensions to completely override the logo
+		Hooks::run( 'PonchoLogo', [ &$logo, $this ] );
+
+		echo $logo;
+	}
+
+	/**
 	 * Echo the search bar
 	 */
 	function searchInput() {
@@ -155,82 +207,6 @@ class PonchoTemplate extends BaseTemplate {
 			$this->data['sidebar']['TOOLBOX']
 		);
 		return $menu;
-	}
-
-	/**
-	 * Echo the logo
-	 */
-	function logo() {
-		global $wgLogos, $wgLogo, $wgSitename;
-
-		// Make icon
-		$src = $wgLogo;
-		if ( $wgLogos && array_key_exists( 'icon', $wgLogos ) ) {
-			$src = $wgLogos['icon'];
-		}
-		$width = 42;
-		$height = 42;
-		$attrs = [ 'id' => 'poncho-icon', 'src' => $src, 'width' => $width, 'height' => $height ];
-		$icon = Html::rawElement( 'img', $attrs );
-
-		// Make wordmark
-		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
-			$src = $wgLogos['wordmark']['src'];
-			$width = $wgLogos['wordmark']['width'];
-			$height = $wgLogos['wordmark']['height'];
-			$attrs = [ 'id' => 'poncho-wordmark', 'src' => $src, 'width' => $width, 'height' => $height ];
-			$wordmark = Html::rawElement( 'img', $attrs );
-		} else {
-			$wordmark = Html::rawElement( 'div', [ 'id' => 'poncho-wordmark' ], $wgSitename );
-		}
-
-		// Make tagline
-		$tagline = null;
-		if ( $wgLogos && array_key_exists( 'tagline', $wgLogos ) ) {
-			$src = $wgLogos['tagline']['src'];
-			$width = $wgLogos['tagline']['width'];
-			$height = $wgLogos['tagline']['height'];
-			$attrs = [ 'id' => 'poncho-tagline', 'src' => $src, 'width' => $width, 'height' => $height ];
-			$tagline = Html::rawElement( 'img', $attrs );
-		}
-
-		// Make wrapper span
-		$span = Html::rawElement( 'span', [], $wordmark . $tagline );
-
-		// Make link
-		$attrs = Linker::tooltipAndAccesskeyAttribs( 'p-logo' );
-		$attrs['id'] = 'poncho-logo';
-		$attrs['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
-		$logo = Html::rawElement( 'a', $attrs, $icon . $span );
-
-		// Allow extensions to completely override the logo
-		Hooks::run( 'PonchoLogo', [ &$logo, $this ] );
-
-		echo $logo;
-	}
-
-	/**
-	 * Echo the wordmark or sitename
-	 */
-	function wordmark() {
-		global $wgLogos, $wgSitename;
-		if ( $wgLogos && array_key_exists( 'wordmark', $wgLogos ) ) {
-			$wordmark = $wgLogos['wordmark']['src'];
-			echo '<img src="' . $wordmark . '" />';
-		} else {
-			echo $wgSitename;
-		}
-	}
-
-	/**
-	 * Echo the tagline
-	 */
-	function tagline() {
-		global $wgLogos, $wgSitename;
-		if ( $wgLogos && array_key_exists( 'tagline', $wgLogos ) ) {
-			$tagline = $wgLogos['tagline']['src'];
-			echo '<img src="' . $tagline . '" />';
-		}
 	}
 
 	/**

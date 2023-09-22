@@ -8,6 +8,10 @@
 		]
 	},
 	"poncho-desc": "{{desc|name=Poncho|url=https://www.mediawiki.org/wiki/Skin:Poncho|what=skin}}",
+	"poncho-menu": "Alternative text for the main menu icon.",
+	"poncho-languages": "Alternative text for the languages menu icon.",
+	"poncho-notifications": "Alternative text for the notifications menu icon.",
+	"poncho-user": "Alternative text for the user menu icon.",
 	"poncho-more": "Label for the button to show more page options.",
 	"poncho-enable-dark-mode": "Label for the menu option (and preference) that enables the dark mode.",
 	"poncho-disable-dark-mode": "Label for the menu option that disables the dark mode.",

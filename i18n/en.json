@@ -5,6 +5,10 @@
 		]
 	},
 	"poncho-desc": "Simple, clean, responsive and mobile-friendly skin.",
+	"poncho-menu": "Menu",
+	"poncho-languages": "Languages",
+	"poncho-notifications": "Notifications",
+	"poncho-user": "User",
 	"poncho-more": "More",
 	"poncho-enable-dark-mode": "Enable dark mode",
 	"poncho-disable-dark-mode": "Disable dark mode",
