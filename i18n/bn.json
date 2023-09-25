@@ -7,6 +7,10 @@
 		]
 	},
 	"poncho-desc": "সহজ, পরিষ্কার, প্রতিক্রিয়াশীল এবং মোবাইল-বন্ধুত্বপূর্ণ আবরণ।",
+	"poncho-menu": "মেনু",
+	"poncho-languages": "ভাষা",
+	"poncho-notifications": "বিজ্ঞপ্তি",
+	"poncho-user": "ব্যবহারকারী",
 	"poncho-enable-dark-mode": "আঁধার মোড সক্রিয় করুন",
 	"poncho-disable-dark-mode": "আঁধার মোড নিষ্ক্রিয় করুন",
 	"poncho-enable-read-mode": "পাঠ্য মোড সক্রিয় করুন",

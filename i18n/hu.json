@@ -2,10 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Bencemac",
+			"Hanna Tardos",
 			"Krisztina",
 			"Urbalazs"
 		]
 	},
 	"poncho-desc": "Egyszerű, letisztult, alkalmazkodó és mobilbarát felszín.",
+	"poncho-menu": "Menü",
+	"poncho-languages": "Nyelvek",
+	"poncho-notifications": "Értesítések",
+	"poncho-user": "Felhasználó",
 	"poncho-more": "Több"
 }

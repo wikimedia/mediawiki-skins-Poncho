@@ -7,6 +7,9 @@
 		]
 	},
 	"poncho-desc": "シンプル、クリーン、レスポンシブ、モバイルフレンドリーなスキン。",
+	"poncho-menu": "メニュー",
+	"poncho-languages": "言語",
+	"poncho-notifications": "通知",
 	"poncho-more": "その他",
 	"poncho-enable-dark-mode": "ダークモードを起動",
 	"poncho-disable-dark-mode": "ダークモードを解除する",
