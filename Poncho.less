@@ -71,6 +71,8 @@ fieldset {
 }
 img {
 	page-break-inside: avoid;
+	max-width: 100%;
+	height: auto;
 }
 pre {
 	overflow: hidden;
@@ -412,25 +414,6 @@ dt {
 }
 
 /**
- * Wikitables
- */
-.wikitable {
-	background: @background;
-	border-collapse: collapse;
-	margin: 1em 0;
-	th,
-	td {
-		border: 1px solid @border;
-		padding: .2em .5em;
-	}
-	.thumb {
-		background: transparent;
-		border: none;
-		margin: 0;
-	}
-}
-
-/**
  * Misc
  */
 #wpTextbox1 {
@@ -524,6 +507,35 @@ h1, h2, h3, h4, h5, h6 {
 /**
  * Thumbnails
  */
+figure {
+	border: 1px solid @border;
+	clear: right;
+	float: right;
+	margin: 0 0 1em 1em;
+	page-break-inside: avoid;
+	a.mw-file-description {
+		display: block;
+		margin: 1em;
+	}
+	img {
+		vertical-align: middle;
+	}
+	figcaption {
+		margin: 1em;
+		font-size: small;
+	}
+	&.mw-halign-left {
+		clear: left;
+		float: left;
+		margin: 0 1em 1em 0;
+	}
+	&.mw-halign-none {
+		display: inline-block;
+		float: none;
+		margin: 1em 0;
+		vertical-align: top;
+	}
+}
 .thumb {
 	background: @background;
 	border: 1px solid @border;
@@ -538,21 +550,21 @@ h1, h2, h3, h4, h5, h6 {
 		margin-top: 1em;
 		font-size: small;
 	}
-}
-.tleft {
-	clear: left;
-	float: left;
-	margin: 0 1em 1em 0;
-}
-.tright {
-	clear: right;
-	float: right;
-	margin: 0 0 1em 1em;
-}
-.tnone {
-	display: inline-block;
-	margin: 1em 0;
-	vertical-align: top;
+	&.tleft {
+		clear: left;
+		float: left;
+		margin: 0 1em 1em 0;
+	}
+	&.tright {
+		clear: right;
+		float: right;
+		margin: 0 0 1em 1em;
+	}
+	&.tnone {
+		display: inline-block;
+		margin: 1em 0;
+		vertical-align: top;
+	}
 }
 @media ( max-width: @small ) {
 	.thumb {
@@ -561,14 +573,34 @@ h1, h2, h3, h4, h5, h6 {
 		.thumbinner {
 			margin: auto;
 		}
+		&.tleft,
+		&.tright {
+			float: none;
+			margin: 1em 0;
+		}
+		&.tnone {
+			display: block;
+		}
 	}
-	.thumb.tleft,
-	.thumb.tright {
-		float: none;
-		margin: 1em 0;
+}
+
+/**
+ * Wikitables
+ */
+.wikitable {
+	background: @background;
+	border-collapse: collapse;
+	margin: 1em 0;
+	th,
+	td {
+		border: 1px solid @border;
+		padding: .2em .5em;
 	}
-	.thumb.tnone {
-		display: block;
+	figure,
+	.thumb {
+		background: transparent;
+		border: none;
+		margin: 0;
 	}
 }
 
