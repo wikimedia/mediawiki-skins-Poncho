@@ -584,6 +584,19 @@ figure {
 	}
 }
 @media ( max-width: @small ) {
+	figure {
+		background: none;
+		border: none;
+		float: none;
+		margin: 1em 0;
+		&.mw-halign-left {
+			float: none;
+			margin: 1em 0;
+		}
+		&.mw-halign-none {
+			display: block;
+		}
+	}
 	.thumb {
 		background: none;
 		border: none;
