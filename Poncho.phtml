@@ -5,7 +5,7 @@
 		<div id="poncho-navigation-wrapper" role="navigation">
 
 			<div id="poncho-navigation-menu" class="poncho-menu">
-				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'menu.svg' ); ?>" alt="<?php $this->msg( 'poncho-menu' ); ?>" />
+				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-menu-icon', 'icon' => 'menu', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getNavigationMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
@@ -18,7 +18,7 @@
 		</div><div id="poncho-right-menus-wrapper">
 
 			<div id="poncho-languages-menu" class="poncho-menu">
-				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'lang.svg' ); ?>" alt="<?php $this->msg( 'poncho-languages' ); ?>" />
+				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-notifications-icon', 'icon' => 'textLanguage', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getLanguagesMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
@@ -26,7 +26,7 @@
 
 			<?php if ( $this->getSkin()->getUser()->isRegistered() ): ?>
 			<div id="poncho-notifications-menu" class="poncho-menu">
-				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'bell.svg' ); ?>" alt="<?php $this->msg( 'poncho-notifications' ); ?>" />
+				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-notifications-icon', 'icon' => 'bell', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getNotifications() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
@@ -34,7 +34,7 @@
 			<?php endif; ?>
 
 			<div id="poncho-user-menu" class="poncho-menu">
-				<img class="poncho-menu-icon" width="32" height="32" src="<?php $this->image( 'user.svg' ); ?>" alt="<?php $this->msg( 'poncho-user' ); ?>" />
+				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-user-icon', 'icon' => 'userAvatar', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getUserMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
@@ -43,7 +43,8 @@
 		</div><div id="poncho-search-form-wrapper" role="search">
 
 			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
-				<?php $this->searchInput(); ?>
+				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-search-button', 'icon' => 'search', 'framed' => false ] ); ?>
+				<?php echo new OOUI\TextInputWidget( [ 'id' => 'poncho-search-input', 'name' => 'search', 'placeholder' => wfMessage( 'search' ) ] ); ?>
 				<datalist id="poncho-search-suggestions"></datalist>
 			</form>
 

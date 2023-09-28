@@ -19,6 +19,7 @@ window.Poncho = {
 		$( '#poncho-dark-mode' ).on( 'click', Poncho.toggleDarkMode );
 		$( '#poncho-read-mode' ).on( 'click', Poncho.toggleReadMode );
 		$( '#poncho-notifications-menu' ).on( 'mouseenter', Poncho.readNotifications );
+		$( '#poncho-search-button' ).on( 'click', Poncho.search );
 		$( '#poncho-search-form input' ).on( 'keyup', Poncho.searchSuggestions );
 
 		$( window ).on( 'scroll', Poncho.updateTOC );
@@ -57,6 +58,28 @@ window.Poncho = {
 				return false;
 			}
 		} );
+	},
+
+	search: function () {
+		var $searchButton = $( this );
+		var $searchInput = $( '#poncho-search-input' );
+		var $searchForm = $( '#poncho-search-form' );
+		var $searchWrapper = $( '#poncho-search-form-wrapper' );
+		if ( $searchInput.is( ':visible' ) ) {
+			$searchForm.trigger( 'submit' );
+		} else {
+			$searchWrapper.siblings().hide();
+			$searchForm.css( 'max-width', '100%' );
+			$searchInput.show().find( 'input' ).trigger( 'focus' );
+			var closeButton = new OO.ui.ButtonWidget( { id: 'poncho-close-button', icon: 'close', framed: false } );
+			closeButton.on( 'click', function () {
+				closeButton.$element.remove();
+				$searchForm.css( 'max-width', '600px' );
+				$searchInput.hide();
+				$searchWrapper.siblings().show();
+			} );
+			$searchButton.after( closeButton.$element );
+		}
 	},
 
 	/**

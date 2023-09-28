@@ -99,16 +99,6 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the search bar
-	 */
-	function searchInput() {
-		echo new MediaWiki\Widget\SearchInputWidget( [
-			'name' => 'search',
-			'placeholder' => wfMessage( 'search' )
-		] );
-	}
-
-	/**
 	 * Echo the Talk button
 	 */
 	function talkButton() {

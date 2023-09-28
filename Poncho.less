@@ -121,7 +121,6 @@ dt {
  */
 #poncho-logo-wrapper {
 	float: left;
-	margin: 0 .5em;
 }
 #poncho-logo {
 	color: inherit;
@@ -148,15 +147,30 @@ dt {
 	margin: auto;
 	overflow: hidden;
 	padding: .5em;
-	min-width: 200px;
+	text-align: right;
 	max-width: 600px;
+}
+#poncho-search-input {
+	overflow: hidden;
+	width: auto;
 }
 #poncho-search-suggestions {
 	display: none;
 }
+#poncho-search-button {
+	float: right;
+	margin-left: .5em;
+	.oo-ui-buttonElement-button {
+		border-radius: 50%;
+		opacity: .5;
+	}
+}
+#poncho-close-button {
+	float: left;
+}
 @media ( max-width: @small ) {
-	#poncho-search-form {
-		width: 100%;
+	#poncho-search-input {
+		display: none;
 	}
 }
 
@@ -167,21 +181,24 @@ dt {
 	background: inherit;
 	display: inline-block;
 	position: relative;
-	z-index: 1;
-	&:hover .poncho-menu-icon,
-	&.active .poncho-menu-icon {
+	z-index: 8;
+	.oo-ui-buttonElement {
+		padding: .5em 0;
+	}
+	.oo-ui-buttonElement-button {
+		border-radius: 50%;
+	}
+	&.active .oo-ui-buttonElement-button {
 		filter: brightness(.9);
 	}
 	&:hover .poncho-menu-list {
 		display: block;
 	}
 }
-.poncho-menu-icon {
-	background-color: inherit;
-	border-radius: 50%;
-	opacity: .5;
-	padding: .5em;
-	vertical-align: middle;
+#poncho-header {
+	.oo-ui-buttonElement-button {
+		opacity: .5;
+	}
 }
 .poncho-menu-list {
 	background: inherit;
@@ -214,11 +231,11 @@ dt {
 	background: inherit;
 	float: right;
 }
-#poncho-languages-menu,
-#poncho-notifications-menu,
-#poncho-user-menu,
+#poncho-menu-icon {
+	margin-left: .5em;
+}
+#poncho-right-menus-wrapper,
 #poncho-more-menu {
-	z-index: 8;
 	.poncho-menu-list {
 		right: 0;
 		text-align: right;
@@ -756,10 +773,6 @@ figure {
 	}
 
 	.poncho-menu {
-		.poncho-menu-icon {
-			background-color: transparent;
-			filter: invert( .9 );
-		}
 		li:hover {
 			filter: brightness( 1.1 );
 		}
@@ -791,7 +804,7 @@ figure {
 		background-color: @dark-background;
 		border-color: @dark-border;
 	}
-	.oo-ui-icon-search,
+	#poncho-header .oo-ui-iconElement-icon,
 	#poncho-content-actions .oo-ui-iconElement-icon {
 		filter: invert( .9 ) !important;
 	}
