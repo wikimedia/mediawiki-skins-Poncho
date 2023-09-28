@@ -17,12 +17,14 @@
 
 		</div><div id="poncho-right-menus-wrapper">
 
+			<?php if ( !$this->getSkin()->getConfig()->get( 'HideInterlanguageLinks' ) ): ?>
 			<div id="poncho-languages-menu" class="poncho-menu">
 				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-notifications-icon', 'icon' => 'textLanguage', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getLanguagesMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</div>
+			<?php endif; ?>
 
 			<?php if ( $this->getSkin()->getUser()->isRegistered() ): ?>
 			<div id="poncho-notifications-menu" class="poncho-menu">
