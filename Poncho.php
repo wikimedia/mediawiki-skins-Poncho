@@ -232,13 +232,6 @@ class PonchoTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Echo the path to the given image
-	 */
-	function image( $name ) {
-		echo $this->getSkin()->getConfig()->get( 'StylePath' ) . '/Poncho/images/' . $name;
-	}
-
-	/**
 	 * Return the main menu of the header
 	 */
 	function getNavigationMenu() {
