@@ -9,6 +9,10 @@
 		]
 	},
 	"poncho-desc": "Habillage simple, propre, réactif et adapté aux mobiles.",
+	"poncho-menu": "Menu",
+	"poncho-languages": "Langues",
+	"poncho-notifications": "Notifications",
+	"poncho-user": "Utilisateur",
 	"poncho-more": "Plus",
 	"poncho-enable-dark-mode": "Activer le mode sombre",
 	"poncho-disable-dark-mode": "Désactiver le mode sombre",
