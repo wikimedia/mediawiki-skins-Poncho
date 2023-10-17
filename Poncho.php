@@ -173,7 +173,7 @@ class PonchoTemplate extends BaseTemplate {
 	 */
 	function moreButton() {
 		$menu = $this->getMoreMenu();
-		if ( ! $menu ) {
+		if ( !$menu ) {
 			return;
 		}
 		$skin = $this->getSkin();
@@ -181,7 +181,7 @@ class PonchoTemplate extends BaseTemplate {
 		$action = Action::getActionName( $context );
 		echo new OOUI\ButtonWidget( [
 			'id' => 'poncho-more-button',
-			'title' => wfMessage( 'poncho-more' )->plain(),
+			'title' => $skin->msg( 'poncho-more' )->plain(),
 			'icon' => 'ellipsis',
 			'framed' => false
 		] );
@@ -255,14 +255,14 @@ class PonchoTemplate extends BaseTemplate {
 		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
 		$userMenu['dark-mode'] = [
 			'id' => 'poncho-dark-mode',
-			'text' => $darkMode ? wfMessage( 'poncho-disable-dark-mode' ) : wfMessage( 'poncho-enable-dark-mode' ),
+			'text' => $darkMode ? $skin->msg( 'poncho-disable-dark-mode' ) : $skin->msg( 'poncho-enable-dark-mode' ),
 			'class' => 'text',
 		];
 
 		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		$userMenu['read-mode'] = [
 			'id' => 'poncho-read-mode',
-			'text' => $readMode ? wfMessage( 'poncho-disable-read-mode' ) : wfMessage( 'poncho-enable-read-mode' ),
+			'text' => $readMode ? $skin->msg( 'poncho-disable-read-mode' ) : $skin->msg( 'poncho-enable-read-mode' ),
 			'class' => 'text',
 		];
 
@@ -285,7 +285,7 @@ class PonchoTemplate extends BaseTemplate {
 		$languages = $this->data['sidebar']['LANGUAGES'];
 		if ( !$languages ) {
 			$languages[] = [
-				'text' => wfMessage( 'poncho-no-languages' ),
+				'text' => $this->getSkin()->msg( 'poncho-no-languages' ),
 				'class' => 'text'
 			];
 		}
@@ -302,7 +302,7 @@ class PonchoTemplate extends BaseTemplate {
 		$title = $skin->getTitle();
 		if ( $this->data['newtalk'] && $title->getFullText() !== $user->getTalkPage()->getFullText() ) {
 			$link = [
-				'text' => wfMessage( 'poncho-new-message' ),
+				'text' => $skin->msg( 'poncho-new-message' ),
 				'href' => $user->getUserPage()->getTalkPage()->getFullURL()
 			];
 			$item = [
@@ -350,7 +350,7 @@ class PonchoTemplate extends BaseTemplate {
 		if ( !$notifications ) {
 			if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
 				$link = [
-					'text' =>  wfMessage( 'echo-none' ),
+					'text' => $skin->msg( 'echo-none' ),
 					'href' => Title::newFromText( 'Special:Notifications' )->getFullURL()
 				];
 				$item = [
@@ -359,7 +359,7 @@ class PonchoTemplate extends BaseTemplate {
 				];
 			} else {
 				$item = [
-					'text' => wfMessage( 'poncho-no-notifications' ),
+					'text' => $skin->msg( 'poncho-no-notifications' ),
 					'class' => 'text'
 				];
 			}
