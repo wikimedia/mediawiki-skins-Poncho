@@ -102,11 +102,12 @@ class PonchoTemplate extends BaseTemplate {
 	 * Echo the Talk button
 	 */
 	function talkButton() {
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( !$title->canHaveTalkPage() ) {
+		$talk = $this->data['content_navigation']['namespaces']['talk'] ?? null;
+		if ( !$talk ) {
 			return;
 		}
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
 		if ( $title->isTalkPage() ) {
 			return;
 		}
@@ -115,13 +116,11 @@ class PonchoTemplate extends BaseTemplate {
 		if ( $action !== 'view' ) {
 			return;
 		}
-		$namespaces = array_values( $this->data['content_navigation']['namespaces'] );
-		$button = $title->isTalkPage() ? $namespaces[0] : $namespaces[1];
 		echo new OOUI\ButtonWidget( [
-		    'id' => $button['id'],
-		    'title' => $button['text'],
-		    'href' => $button['href'],
-		    'flags' => $button['class'] === 'new' ? 'destructive' : '',
+		    'id' => $talk['id'],
+		    'title' => $talk['text'],
+		    'href' => $talk['href'],
+		    'flags' => $talk['class'] === 'new' ? 'destructive' : '',
 		    'icon' => 'userTalk',
 			'framed' => false
 		] );
