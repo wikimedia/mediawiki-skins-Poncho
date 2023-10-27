@@ -46,7 +46,7 @@
 
 			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
 				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-search-button', 'icon' => 'search', 'framed' => false ] ); ?>
-				<?php echo new OOUI\TextInputWidget( [ 'id' => 'poncho-search-input', 'name' => 'search', 'placeholder' => $this->msg( 'search' ) ] ); ?>
+				<?php echo new OOUI\TextInputWidget( [ 'id' => 'poncho-search-input', 'name' => 'search', 'placeholder' => wfMessage( 'search' ) ] ); ?>
 				<datalist id="poncho-search-suggestions"></datalist>
 			</form>
 
