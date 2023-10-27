@@ -46,7 +46,7 @@
 
 			<form id="poncho-search-form" action="<?php $this->text( 'wgScript' ); ?>">
 				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-search-button', 'icon' => 'search', 'framed' => false ] ); ?>
-				<?php echo new OOUI\TextInputWidget( [ 'id' => 'poncho-search-input', 'name' => 'search', 'placeholder' => wfMessage( 'search' ) ] ); ?>
+				<?php echo new OOUI\TextInputWidget( [ 'id' => 'poncho-search-input', 'name' => 'search', 'placeholder' => $this->msg( 'search' ) ] ); ?>
 				<datalist id="poncho-search-suggestions"></datalist>
 			</form>
 
@@ -82,7 +82,7 @@
 
 		<h1 id="firstHeading" class="firstHeading"><?php $this->title(); ?></h1>
 
-		<div id="siteSub"><?php echo wfMessage( 'tagline' ); ?></div>
+		<div id="siteSub"><?php echo $this->msg( 'tagline' ); ?></div>
 
 		<?php if ( $this->data['subtitle'] ): ?>
 		<div id="contentSub"><?php $this->html( 'subtitle' ); ?></div>
