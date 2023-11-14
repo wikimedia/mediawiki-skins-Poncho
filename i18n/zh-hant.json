@@ -8,6 +8,10 @@
 		]
 	},
 	"poncho-desc": "簡易、整齊、利於行動裝置的外觀。",
+	"poncho-menu": "選單",
+	"poncho-languages": "語言",
+	"poncho-notifications": "通知",
+	"poncho-user": "使用者",
 	"poncho-more": "更多選項",
 	"poncho-enable-dark-mode": "啟用暗黑模式",
 	"poncho-disable-dark-mode": "停用暗黑模式",
