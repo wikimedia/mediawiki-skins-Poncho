@@ -4,12 +4,18 @@
 			"500000000006城",
 			"Chixvv",
 			"Interestinghe",
+			"LittlePaw365",
 			"Liuxinyu970226",
 			"StarrySky",
 			"Tr jason"
 		]
 	},
 	"poncho-desc": "简洁、清楚、灵敏并为移动设备优化的皮肤。",
+	"poncho-menu": "菜单",
+	"poncho-languages": "语言",
+	"poncho-notifications": "通知",
+	"poncho-user": "用户",
+	"poncho-more": "更多",
 	"poncho-enable-dark-mode": "启用深色模式",
 	"poncho-disable-dark-mode": "禁用深色模式",
 	"poncho-enable-read-mode": "启用阅读模式",
