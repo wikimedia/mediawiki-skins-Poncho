@@ -6,7 +6,8 @@
 			"أَحمد",
 			"ديفيد",
 			"Meno25",
-			"Hubaishan"
+			"Hubaishan",
+			"علاء"
 		]
 	},
 	"poncho-desc": "برنامج مساعد بسيط ونظيف ومستجيب وصديق للجوال.",
@@ -19,6 +20,6 @@
 	"poncho-disable-dark-mode": "تعطيل الوضع الداكن",
 	"poncho-enable-read-mode": "تمكين وضع القراءة",
 	"poncho-disable-read-mode": "تعطيل وضع القراءة",
-	"poncho-no-notifications": "ليست لديك إشعارات جديدة.",
+	"poncho-no-notifications": "ليس لديك إشعارات جديدة.",
 	"poncho-new-message": "لديك رسالة جديدة من مستخدم اخر"
 }
