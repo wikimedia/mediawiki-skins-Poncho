@@ -5,5 +5,8 @@
 			"Woytecr"
 		]
 	},
-	"poncho-desc": "Prosta, czysta, responsywna i przyjazna skórka dla urządzeń mobilnych."
+	"poncho-desc": "Prosta, czysta, responsywna i przyjazna skórka dla urządzeń mobilnych.",
+	"poncho-more": "Więcej",
+	"poncho-enable-dark-mode": "Włącz tryb ciemny",
+	"poncho-disable-dark-mode": "Wyłącz tryb ciemny"
 }
