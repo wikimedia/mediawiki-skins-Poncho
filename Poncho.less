@@ -40,7 +40,7 @@ body {
 	position: static;
 }
 a {
-	color: #3366cc;
+	color: @link;
 	text-decoration: none;
 }
 a:hover {
@@ -87,9 +87,8 @@ hr {
 	border-top: 1px solid @border;
 }
 code, tt {
-	background: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	border-radius: 3px;
+	background: @background;
+	border: 1px solid @border;
 	padding: 0 .2em;
 }
 dt {
@@ -146,7 +145,7 @@ dt {
 	overflow: hidden;
 	padding: .5em;
 	text-align: right;
-	max-width: 600px;
+	max-width: @small;
 }
 #poncho-search-input {
 	overflow: hidden;
@@ -255,7 +254,6 @@ dt {
 	}
 	& > .oo-ui-buttonElement .oo-ui-buttonElement-button[title]:not([title=""]):hover:after {
 		background: @border;
-		border-radius: 2px;
 		color: white;
 		content: attr( title );
 		line-height: 1em;
@@ -692,7 +690,7 @@ figure {
 	li a {
 		background: @background;
 		border: 1px solid @border;
-		border-radius: 20px;
+		border-radius: 1em;
 		color: inherit;
 		display: inline-block;
 		padding: .3em .7em;
