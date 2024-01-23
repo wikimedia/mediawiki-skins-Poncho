@@ -311,29 +311,18 @@ class PonchoTemplate extends BaseTemplate {
 			];
 			$notifications[] = $item;
 		}
-		// @todo This method uses an internal API call which should be replaced by direct calls to Echo classes
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
-			global $wgRequest;
-			$params = new DerivativeRequest( $wgRequest, [
-				'action' => 'query',
-				'meta' => 'notifications',
-				'notformat' => 'model',
-				'notlimit' => 10,
-				'format' => 'json',
-			] );
-			$api = new ApiMain( $params );
-			$api->execute();
-			$data = $api->getResult()->getResultData();
-			$list = $data['query']['notifications']['list'];
-			$list = array_reverse( $list );
-			foreach ( $list as $key => $item ) {
-				if ( !is_int( $key ) ) {
-					continue;
-				}
-				$content = $item['*'];
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			$attributeManager = EchoServices::getInstance()->getAttributeManager();
+			$events = $attributeManager->getUserEnabledEvents( $user, 'web' );
+			$notificationMapper = new EchoNotificationMapper;
+			$notifs = $notificationMapper->fetchByUser( $user, 10, null, $events );
+			$language = $this->getSkin()->getLanguage();
+			foreach ( $notifs as $notif ) {
+				$notification = EchoDataOutputFormatter::formatOutput( $notif, 'model', $user, $language );
+				$content = $notification['*'];
 				$text = htmlspecialchars_decode( strip_tags( $content['header'] ), ENT_QUOTES );
 				$href = $content['links']['primary']['url'] ?? null;
-				$active = array_key_exists( 'read', $item ) ? false : true;
+				$active = array_key_exists( 'read', $notification ) ? false : true;
 				$link = [
 					'text' => $text,
 					'href' => $href,
@@ -347,7 +336,7 @@ class PonchoTemplate extends BaseTemplate {
 			}
 		}
 		if ( !$notifications ) {
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $user->isRegistered() ) {
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 				$link = [
 					'text' => $skin->msg( 'echo-none' ),
 					'href' => Title::newFromText( 'Special:Notifications' )->getFullURL()
