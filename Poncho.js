@@ -159,16 +159,16 @@ window.Poncho = {
 			action: 'echomarkread',
 			all: true,
 		} );
-		$( this ).removeClass( 'active' );
+		$( this ).find( '.oo-ui-buttonElement-button' ).removeClass( 'active' );
 	},
 
 	/**
-	 * Ring the notifications bell if the current user has unread notifications
+	 * Ring the notifications bell if there're unread notifications
 	 */
 	ringNotificationsBell: function () {
 		var $menu = $( '#poncho-notifications-menu' );
 		if ( $menu.find( '.active' ).length ) {
-			$menu.addClass( 'active' );
+			$menu.find( '.oo-ui-buttonElement-button' ).addClass( 'active' );
 		}
 	}
 };

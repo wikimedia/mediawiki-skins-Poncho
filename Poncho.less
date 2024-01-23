@@ -8,6 +8,7 @@
 @background: #f8f9fa;
 @link: #3366cc;
 @redlink: #a55858;
+@active: #f55;
 
 /**
  * Dark mode
@@ -185,8 +186,8 @@ dt {
 	.oo-ui-buttonElement-button {
 		border-radius: 50%;
 	}
-	&.active .oo-ui-buttonElement-button {
-		filter: brightness(.9);
+	.oo-ui-buttonElement-button.active {
+		background-color: @active;
 	}
 	&:hover .poncho-menu-list {
 		display: block;
@@ -808,6 +809,9 @@ figure {
 	.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
 		background-color: transparent !important;
 		border-color: transparent !important;
+	}
+	.oo-ui-buttonElement-button.active {
+		background-color: @active !important;
 	}
 	.oo-ui-tabSelectWidget-framed,
 	.oo-ui-panelLayout-framed {
