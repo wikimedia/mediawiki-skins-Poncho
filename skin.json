@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Poncho",
-	"version": "12.4",
+	"version": "13.0",
 	"author": "[https://mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Skin:Poncho",
 	"descriptionmsg": "poncho-desc",
@@ -20,10 +20,10 @@
 			"class": "SkinPoncho",
 			"args": [
 				{
-					"name": "poncho",
+					"name": "Poncho",
 					"bodyOnly": true,
 					"responsive": true,
-					"template": "PonchoTemplate",
+					"template": "Poncho",
 					"styles": [
 						"skins.poncho.styles",
 						"oojs-ui.styles.icons-user",
@@ -41,8 +41,8 @@
 		}
 	},
 	"AutoloadClasses": {
-		"SkinPoncho": "Poncho.php",
-		"PonchoTemplate": "Poncho.php"
+		"Poncho": "Poncho.php",
+		"SkinPoncho": "Poncho.php"
 	},
 	"ResourceModules": {
 		"skins.poncho.styles": {
@@ -78,8 +78,8 @@
 		"remoteSkinPath": "Poncho"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "PonchoTemplate::onBeforePageDisplay",
-		"GetPreferences": "PonchoTemplate::onGetPreferences",
-		"OutputPageBodyAttributes": "PonchoTemplate::onOutputPageBodyAttributes"
+		"BeforePageDisplay": "Poncho::onBeforePageDisplay",
+		"GetPreferences": "Poncho::onGetPreferences",
+		"OutputPageBodyAttributes": "Poncho::onOutputPageBodyAttributes"
 	}
 }

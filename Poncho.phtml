@@ -61,10 +61,8 @@
 	<div id="poncho-content">
 
 		<div id="poncho-content-actions">
-			<?php
-				$this->actionButtons();
-				$this->talkButton();
-			?><div id="poncho-more-menu" class="poncho-menu">
+			<?php foreach ( $this->getMainActions() as $key => $value ) echo $this->makeActionButton( $key, $value ); ?>
+			<div id="poncho-more-menu" class="poncho-menu">
 				<span class="poncho-menu-item"><?php $this->moreButton(); ?></span>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getMoreMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>

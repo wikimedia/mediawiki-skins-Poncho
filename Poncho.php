@@ -2,35 +2,49 @@
 
 use MediaWiki\MediaWikiServices;
 
-// Class needed for 1.35 support
+// @todo Migrate to SkinMustache
 class SkinPoncho extends SkinTemplate {
-	public $template = 'PonchoTemplate';
+	public $template = 'Poncho';
 }
 
-class PonchoTemplate extends BaseTemplate {
+class Poncho extends BaseTemplate {
 
 	/**
 	 * Enable OOUI
 	 */
 	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		if ( $skin->getSkinName() === 'poncho' ) {
+		if ( $skin->getSkinName() === 'Poncho' ) {
 			$out->enableOOUI();
 		}
+	}
+
+	/**
+	 * Add preferences
+	 */
+	static function onGetPreferences( $user, &$preferences ) {
+		$preferences['poncho-dark-mode'] = [
+			'hide-if' => [ '!==', 'skin', 'Poncho' ],
+			'section' => 'rendering/skin/skin-prefs',
+			'type' => 'toggle',
+			'label-message' => 'poncho-enable-dark-mode',
+		];
+		$preferences['poncho-read-mode'] = [
+			'hide-if' => [ '!==', 'skin', 'Poncho' ],
+			'section' => 'rendering/skin/skin-prefs',
+			'type' => 'toggle',
+			'label-message' => 'poncho-enable-read-mode',
+		];
 	}
 
 	/**
 	 * Add classes to the body
 	 */
 	static function onOutputPageBodyAttributes( OutputPage $out, Skin $skin, &$bodyAttrs ) {
-		if ( $skin->getSkinName() !== 'poncho' ) {
+		if ( $skin->getSkinName() !== 'Poncho' ) {
 			return; // Don't run for other skins
 		}
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
-		$embed = $request->getText( 'embed' );
-		if ( $embed ) {
-			$bodyAttrs['class'] .= ' poncho-embed-mode';
-		}
 		$services = MediaWikiServices::getInstance();
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$darkMode = $user->isAnon() ? $request->getCookie( 'PonchoDarkMode' ) : $userOptionsLookup->getOption( $user, 'poncho-dark-mode' );
@@ -40,9 +54,6 @@ class PonchoTemplate extends BaseTemplate {
 		$readMode = $user->isAnon() ? $request->getCookie( 'PonchoReadMode' ) : $userOptionsLookup->getOption( $user, 'poncho-read-mode' );
 		if ( $readMode ) {
 			$bodyAttrs['class'] .= ' poncho-read-mode';
-		}
-		if ( $out->isTOCEnabled() ) {
-			$bodyAttrs['class'] .= ' poncho-has-toc'; // We need this for responsive styling of the table of contents
 		}
 	}
 
@@ -98,38 +109,7 @@ class PonchoTemplate extends BaseTemplate {
 		echo $logo;
 	}
 
-	/**
-	 * Echo the Talk button
-	 */
-	function talkButton() {
-		$talk = $this->data['content_navigation']['namespaces']['talk'] ?? null;
-		if ( !$talk ) {
-			return;
-		}
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-		if ( $title->isTalkPage() ) {
-			return;
-		}
-		$context = $skin->getContext();
-		$action = Action::getActionName( $skin->getContext() );
-		if ( $action !== 'view' ) {
-			return;
-		}
-		echo new OOUI\ButtonWidget( [
-		    'id' => $talk['id'],
-		    'title' => $talk['text'],
-		    'href' => $talk['href'],
-		    'flags' => $talk['class'] === 'new' ? 'destructive' : '',
-		    'icon' => 'userTalk',
-			'framed' => false
-		] );
-	}
-
-	/**
-	 * Echo the content action buttons
-	 */
-	function actionButtons() {
+	function getMainActions() {
 		$actions = $this->data['content_navigation']['views'];
 
 		// Unset the current action per generally useless
@@ -138,33 +118,51 @@ class PonchoTemplate extends BaseTemplate {
 		$action = Action::getActionName( $context );
 		unset( $actions[ $action ] );
 
-		// Hack! VisualEditor includes JavaScript that replaces the contents
-		// of the Edit <a> tag for plain text, which effectively removes
-		// the HTML of our Edit button, so we echo this decoy first to trick it
-		echo '<span id="ca-ve-edit"></span>';
+		// Add the talk page to the actions but only when useful
+		$title = $skin->getTitle();
+		if ( !$title->isTalkPage() && $action == 'view' ) {
+			$namespaces = $this->data['content_navigation']['namespaces'];
+			foreach ( $namespaces as $key => $namespace ) {
+				if ( preg_match( '/talk/', $key ) ) {
+					$actions['talk'] = $namespace;
+				}
+			}
+		}
 
-		// Set the default icons
+		// Hack!!!
+		// VisualEditor replaces the contents of #ca-ve-edit for a plain text message
+		// which breaks the markup of the button made by Poncho::makeActionButton
+		// so we echo this decoy to prevent it
+		// but unfortunately this also prevents the visual editor from loading without a refresh
+		if ( array_key_exists( 've-edit', $actions ) ) {
+			echo '<span id="ca-ve-edit"></span>';
+		}
+
+		return $actions;
+	}
+
+	/**
+	 * Echo the content action buttons
+	 */
+	function makeActionButton( $key, $action ) {
 		$icons = [
 			'view' => 'article',
 			'viewsource' => 'wikiText',
-			'edit' => array_key_exists( 've-edit', $actions ) ? 'wikiText' : 'edit',
+			'edit' => 'wikiText',
 			've-edit' => 'edit',
 			'history' => 'history',
 			'addsection' => 'add',
+			'talk' => 'userTalk',
 		];
-
-		// Print the buttons
-		foreach ( $actions as $key => $action ) {
-			$icon = $action['icon'] ?? $icons[ $key ] ?? null;
-			echo new OOUI\ButtonWidget( [
-				'id' => $action['id'],
-				'label' => $icon ? '' : $action['text'],
-				'title' => $icon ? $action['text'] : '',
-				'href' => $action['href'],
-				'icon' => $icon,
-				'framed' => false
-			] );
-		}
+		$icon = $action['icon'] ?? $icons[ $key ] ?? null;
+		return new OOUI\ButtonWidget( [
+			'id' => $action['id'],
+			'label' => $icon ? '' : $action['text'],
+			'title' => $icon ? $action['text'] : '',
+			'href' => $action['href'],
+			'icon' => $icon,
+			'framed' => false
+		] );
 	}
 
 	/**
@@ -354,24 +352,6 @@ class PonchoTemplate extends BaseTemplate {
 			$notifications[] = $item;
 		}
 		return $notifications;
-	}
-
-	/**
-	 * Add preferences
-	 */
-	static function onGetPreferences( $user, &$preferences ) {
-		$preferences['poncho-dark-mode'] = [
-			'hide-if' => [ '!==', 'skin', 'poncho' ],
-			'section' => 'rendering/skin/skin-prefs',
-			'type' => 'toggle',
-			'label-message' => 'poncho-enable-dark-mode',
-		];
-		$preferences['poncho-read-mode'] = [
-			'hide-if' => [ '!==', 'skin', 'poncho' ],
-			'section' => 'rendering/skin/skin-prefs',
-			'type' => 'toggle',
-			'label-message' => 'poncho-enable-read-mode',
-		];
 	}
 
 	/**
