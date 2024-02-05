@@ -360,12 +360,17 @@ class Poncho extends BaseTemplate {
 	function footer() {
 		$footer = '';
 		$links = $this->getFooterLinks();
-		foreach ( $links as $items ) {
+		foreach ( $links as $key => $items ) {
 			$list = [];
 			foreach ( $items as $item ) {
 				$list[] = $this->get( $item );
 			}
-			$footer .= '<div>' . implode( ' · ', $list ) . '</div>';
+			if ( $key === 'info' ) {
+				$separator = ' ';
+			} else {
+				$separator = ' · ';
+			}
+			$footer .= '<div>' . implode( $separator, $list ) . '</div>';
 		}
 		echo $footer;
 	}
