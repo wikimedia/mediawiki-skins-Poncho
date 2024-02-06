@@ -129,15 +129,6 @@ class Poncho extends BaseTemplate {
 			}
 		}
 
-		// Hack!!!
-		// VisualEditor replaces the contents of #ca-ve-edit for a plain text message
-		// which breaks the markup of the button made by Poncho::makeActionButton
-		// so we echo this decoy to prevent it
-		// but unfortunately this also prevents the visual editor from loading without a refresh
-		if ( array_key_exists( 've-edit', $actions ) ) {
-			echo '<span id="ca-ve-edit"></span>';
-		}
-
 		return $actions;
 	}
 
