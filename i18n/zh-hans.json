@@ -7,7 +7,8 @@
 			"Liuxinyu970226",
 			"StarrySky",
 			"Tr jason",
-			"LittlePaw365"
+			"LittlePaw365",
+			"Anterdc99"
 		]
 	},
 	"poncho-desc": "简洁、清楚、灵敏并为移动设备优化的皮肤。",
@@ -20,6 +21,7 @@
 	"poncho-disable-dark-mode": "禁用深色模式",
 	"poncho-enable-read-mode": "启用阅读模式",
 	"poncho-disable-read-mode": "禁止阅读模式",
+	"poncho-no-languages": "此页面没有跨维基链接。",
 	"poncho-no-notifications": "您没有新的通知。",
 	"poncho-new-message": "您收到了来自其他用户的新消息。"
 }
