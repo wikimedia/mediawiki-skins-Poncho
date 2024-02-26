@@ -439,19 +439,11 @@ dt {
 .new a {
 	color: @redlink;
 }
-.image img {
-	vertical-align: middle;
-	max-width: 100%;
-	max-height: 100%;
-}
 .error {
 	color: @redlink;
 }
 .center {
 	text-align: center;
-	.image img {
-		margin: 0 auto;
-	}
 }
 .floatleft {
 	float: left;
@@ -521,20 +513,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /**
- * Thumbnails
+ * Media
  */
-figure {
+figure img {
+	page-break-inside: avoid;
+	vertical-align: middle;
+	max-width: 100%;
+	max-height: 100%;	
+}
+figure[typeof="mw:File"] {
+	margin: 1em 0;
+	&.mw-halign-left {
+		clear: left;
+		float: left;
+		margin-right: 1em;
+	}
+	&.mw-halign-right {
+		clear: right;
+		float: right;
+		margin-left: 1em;
+	}
+}
+figure[typeof="mw:File/Thumb"] {
+	background: @background;
 	border: 1px solid @border;
 	clear: right;
 	float: right;
 	margin: 0 0 1em 1em;
-	page-break-inside: avoid;
-	a.mw-file-description {
+	& > a,
+	& > span {
 		display: block;
 		margin: 1em;
-	}
-	img {
-		vertical-align: middle;
 	}
 	figcaption {
 		margin: 1em;
@@ -552,38 +561,8 @@ figure {
 		vertical-align: top;
 	}
 }
-.thumb {
-	background: @background;
-	border: 1px solid @border;
-	page-break-inside: avoid;
-	.thumbinner {
-		margin: 1em;
-	}
-	.thumbimage {
-		vertical-align: middle;
-	}
-	.thumbcaption {
-		margin-top: 1em;
-		font-size: small;
-	}
-	&.tleft {
-		clear: left;
-		float: left;
-		margin: 0 1em 1em 0;
-	}
-	&.tright {
-		clear: right;
-		float: right;
-		margin: 0 0 1em 1em;
-	}
-	&.tnone {
-		display: inline-block;
-		margin: 1em 0;
-		vertical-align: top;
-	}
-}
 @media ( max-width: @small ) {
-	figure {
+	figure[typeof="mw:File/Thumb"] {
 		background: none;
 		border: none;
 		float: none;
@@ -592,23 +571,29 @@ figure {
 			float: none;
 			margin: 1em 0;
 		}
-		&.mw-halign-none {
-			display: block;
-		}
 	}
+}
+
+/**
+ * Galleries
+ */
+#mw-content-text .gallery {
+	margin: 1em 0;
 	.thumb {
-		background: none;
-		border: none;
-		.thumbinner {
+		background: @background;
+		border-color: @border;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		span {
 			margin: auto;
 		}
-		&.tleft,
-		&.tright {
-			float: none;
-			margin: 1em 0;
-		}
-		&.tnone {
-			display: block;
+	}
+	.gallerytext {
+		font-size: small;
+		padding: .5em;
+		p {
+			margin: 0;
 		}
 	}
 }
@@ -625,34 +610,10 @@ figure {
 		border: 1px solid @border;
 		padding: .2em .5em;
 	}
-	figure,
-	.thumb {
+	figure {
 		background: transparent;
 		border: none;
 		margin: 0;
-	}
-}
-
-/**
- * Galleries
- */
-#mw-content-text .gallery {
-	margin: 1em 0;
-	.thumb {
-		background: @background;
-		border-color: @border;
-		margin: 0 0 .5em 0;
-	}
-	.gallerytext {
-		font-size: small;
-		margin: .5em;
-		padding: 0;
-		p {
-			margin: 0;
-		}
-	}
-	.mw-gallery-slideshow-img-container img {
-		margin: auto;
 	}
 }
 
@@ -746,12 +707,13 @@ figure {
 	background-color: @dark-bg;
 	color: @dark-text;
 
+	figure[typeof="mw:File/Thumb"],
 	#poncho-header-wrapper,
 	#poncho-more-menu ul,
 	#mw-content-text tt,
 	#mw-content-text pre,
 	#mw-content-text code,
-	#mw-content-text .thumb,
+	#mw-content-text .gallery .thumb,
 	#catlinks li a,
 	.wikitable,
 	.wikitable th,
@@ -894,7 +856,6 @@ figure {
 		text-decoration: underline;
 	}
 	.toc,
-	.thumb,
 	.wikitable {
 		background-color: transparent;
 	}
