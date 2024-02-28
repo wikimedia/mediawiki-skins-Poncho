@@ -10,16 +10,6 @@ class SkinPoncho extends SkinTemplate {
 class Poncho extends BaseTemplate {
 
 	/**
-	 * Enable only the necessary OOUI module
-	 * @todo Replace with Codex
-	 */
-	static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		if ( $skin->getSkinName() === 'Poncho' ) {
-			$out->addModuleStyles( 'oojs-ui-core.styles' );
-		}
-	}
-
-	/**
 	 * Add preferences
 	 */
 	static function onGetPreferences( $user, &$preferences ) {
