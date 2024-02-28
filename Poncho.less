@@ -580,17 +580,21 @@ figure[typeof="mw:File/Thumb"] {
 #mw-content-text .gallery {
 	margin: 1em 0;
 	.thumb {
-		background: @background;
-		border-color: @border;
 		margin: 0;
+	}
+	&.mw-gallery-traditional .thumb {
+		background: @background;
+		border-color: @border;		
 		display: flex;
 		align-items: center;
 		span {
 			margin: auto;
 		}
 	}
+	.gallerytextwrapper {
+		margin: 0;
+	}
 	.gallerytext {
-		font-size: small;
 		padding: .5em;
 		p {
 			margin: 0;
