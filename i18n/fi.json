@@ -22,6 +22,7 @@
 	"poncho-disable-dark-mode": "Poista tumma tila käytöstä",
 	"poncho-enable-read-mode": "Ota lukutila käyttöön",
 	"poncho-disable-read-mode": "Poista lukutila käytöstä",
+	"poncho-no-languages": "Ei interwiki-linkkejä tälle sivulle.",
 	"poncho-no-notifications": "Sinulle ei ole uusia ilmoituksia.",
 	"poncho-new-message": "Sinulle on uusi viesti toiselta käyttäjältä."
 }
