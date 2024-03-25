@@ -109,17 +109,6 @@ class Poncho extends BaseTemplate {
 		$action = Action::getActionName( $context );
 		unset( $actions[ $action ] );
 
-		// Add the talk page to the actions but only when useful
-		$title = $skin->getTitle();
-		if ( !$title->isTalkPage() && $action == 'view' ) {
-			$namespaces = $this->data['content_navigation']['namespaces'];
-			foreach ( $namespaces as $key => $namespace ) {
-				if ( preg_match( '/talk/', $key ) ) {
-					$actions['talk'] = $namespace;
-				}
-			}
-		}
-
 		return $actions;
 	}
 
@@ -134,7 +123,6 @@ class Poncho extends BaseTemplate {
 			've-edit' => 'edit',
 			'history' => 'history',
 			'addsection' => 'add',
-			'talk' => 'userTalk',
 		];
 		$icon = $action['icon'] ?? $icons[ $key ] ?? null;
 		return new OOUI\ButtonWidget( [
@@ -334,6 +322,24 @@ class Poncho extends BaseTemplate {
 			$notifications[] = $item;
 		}
 		return $notifications;
+	}
+
+	/**
+	 * Echo the talk page button
+	 */
+	function talkButton() {
+		$skin = $this->getSkin();
+		$title = $skin->getTitle();
+		$talk = $title->getTalkPageIfDefined();
+		if ( $talk && !$title->isTalkPage() ) {
+			echo new OOUI\ButtonWidget( [
+				'id' => 'poncho-talk-button',
+				'label' => $skin->msg( 'talk' )->plain(),
+				'href' => $talk->getLinkURL(),
+				'title' => $skin->msg( 'viewtalkpage' )->plain(),
+				'icon' => 'userTalk'
+			] );
+		}
 	}
 
 	/**
