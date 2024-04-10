@@ -203,7 +203,7 @@ class Poncho extends BaseTemplate {
 	 */
 	function getNavigationMenu() {
 		$sidebar = $this->data['sidebar'];
-		$navigation = $sidebar['navigation'];
+		$navigation = reset( $sidebar );
 		return $navigation;
 	}
 

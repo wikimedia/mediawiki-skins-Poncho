@@ -4,12 +4,14 @@
 
 		<div id="poncho-navigation-wrapper" role="navigation">
 
+			<?php if ( $this->getNavigationMenu() ): ?>
 			<div id="poncho-navigation-menu" class="poncho-menu">
 				<?php echo new OOUI\ButtonWidget( [ 'id' => 'poncho-menu-icon', 'icon' => 'menu', 'framed' => false ] ); ?>
 				<ul class="poncho-menu-list">
 					<?php foreach ( $this->getNavigationMenu() as $key => $value ) echo $this->makeListItem( $key, $value ); ?>
 				</ul>
 			</div>
+			<?php endif; ?>
 
 		</div><div id="poncho-logo-wrapper" role="banner">
 
