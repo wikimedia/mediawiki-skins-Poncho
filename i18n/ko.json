@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Garam",
-			"Ykhwong"
+			"Ykhwong",
+			"Markingdots"
 		]
 	},
 	"poncho-desc": "단순하고 깨끗하면서도 반응성이 좋은 모바일 친화 스킨입니다.",
@@ -11,6 +12,10 @@
 	"poncho-copied": "복사했습니다!",
 	"poncho-google-translate": "구글 번역",
 	"poncho-hide-sidebar": "사이드바 숨기기",
+	"poncho-enable-dark-mode": "다크 모드 활성화",
+	"poncho-disable-dark-mode": "다크 모드 비활성화",
+	"poncho-enable-read-mode": "읽기 모드 활성화",
+	"poncho-disable-read-mode": "읽기 모드 비활성화",
 	"poncho-no-notifications": "새 알림이 없습니다.",
 	"poncho-new-message": "다른 사용자에게서 온 새 메시지가 있습니다."
 }
