@@ -2,16 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
-			"Nickthijssen1994"
+			"Nickthijssen1994",
+			"Romaine"
 		]
 	},
+	"poncho-menu": "Menu",
 	"poncho-languages": "Talen",
+	"poncho-notifications": "Meldingen",
 	"poncho-user": "Gebruiker",
 	"poncho-more": "Meer",
 	"poncho-enable-dark-mode": "Donkere modes inschakelen",
 	"poncho-disable-dark-mode": "Donkere modes uitschakelen",
 	"poncho-enable-read-mode": "Leesmode inschakelen",
 	"poncho-disable-read-mode": "Leesmode uitschakelen",
+	"poncho-no-languages": "Geen interwiki-links voor deze pagina.",
 	"poncho-no-notifications": "U hebt geen nieuwe meldingen.",
 	"poncho-new-message": "U hebt een nieuwe melding van een andere gebruiker."
 }
