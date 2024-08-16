@@ -34,6 +34,7 @@ class Poncho extends BaseTemplate {
 		if ( $skin->getSkinName() !== 'Poncho' ) {
 			return; // Don't run for other skins
 		}
+		$out->enableOOUI();
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
 		$services = MediaWikiServices::getInstance();
@@ -93,9 +94,6 @@ class Poncho extends BaseTemplate {
 		$attrs['id'] = 'poncho-logo';
 		$attrs['href'] = htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] );
 		$logo = Html::rawElement( 'a', $attrs, $icon . $span );
-
-		// Allow extensions to completely override the logo
-		Hooks::run( 'PonchoLogo', [ &$logo, $this ] );
 
 		echo $logo;
 	}
