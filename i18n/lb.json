@@ -1,13 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
-	"poncho-desc": "Einfach, uspriechend a mobilfrëndlecht Ausgesinn.",
+	"poncho-desc": "Einfach, propper, reaktiv a mobilfrëndlech Benotzeruewerfläch.",
 	"poncho-print": "Drécken",
 	"poncho-share": "Deelen",
 	"poncho-copied": "Kopéiert!",
 	"poncho-google-translate": "Google Iwwersetzen",
-	"poncho-hide-sidebar": "Sidebar verstoppen"
+	"poncho-hide-sidebar": "Sidebar verstoppen",
+	"poncho-enable-dark-mode": "Däischtere Modus aktivéieren",
+	"poncho-disable-dark-mode": "Däischtere Modus desaktivéieren",
+	"poncho-enable-read-mode": "Liesmodus aktivéieren",
+	"poncho-disable-read-mode": "Liesmodus desaktivéieren",
+	"poncho-no-notifications": "Dir hutt keng Notifikatiounen.",
+	"poncho-new-message": "Dir hutt en neie Message vun engem anere Benotzer."
 }
