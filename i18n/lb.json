@@ -5,9 +5,17 @@
 			"Volvox"
 		]
 	},
-	"poncho-desc": "Einfach, uspriechend a mobilfrëndlecht Ausgesinn.",
+	"poncho-desc": "Einfach, propper, reaktiv a mobilfrëndlech Benotzeruewerfläch.",
 	"poncho-menu": "Menü",
 	"poncho-languages": "Sproochen",
 	"poncho-notifications": "Notifikatiounen",
-	"poncho-user": "Benotzer"
+	"poncho-user": "Benotzer",
+	"poncho-more": "Méi",
+	"poncho-enable-dark-mode": "Däischtere Modus aktivéieren",
+	"poncho-disable-dark-mode": "Däischtere Modus desaktivéieren",
+	"poncho-enable-read-mode": "Liesmodus aktivéieren",
+	"poncho-disable-read-mode": "Liesmodus desaktivéieren",
+	"poncho-no-languages": "Keng Interwikilinke fir dës Säit.",
+	"poncho-no-notifications": "Dir hutt keng Notifikatiounen.",
+	"poncho-new-message": "Dir hutt en neie Message vun engem anere Benotzer."
 }
