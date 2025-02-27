@@ -34,7 +34,6 @@ class Poncho extends BaseTemplate {
 		if ( $skin->getSkinName() !== 'Poncho' ) {
 			return; // Don't run for other skins
 		}
-		$out->enableOOUI();
 		$user = $skin->getUser();
 		$request = $skin->getRequest();
 		$services = MediaWikiServices::getInstance();
@@ -365,6 +364,9 @@ class Poncho extends BaseTemplate {
 	 * Output the page
 	 */
 	function execute() {
+		$context = RequestContext::getMain();
+		$out = $context->getOutput();
+		$out->enableOOUI();
 		include 'Poncho.phtml';
 	}
 }
