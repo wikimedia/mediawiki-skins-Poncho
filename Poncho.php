@@ -1,6 +1,12 @@
 <?php
 
+use MediaWiki\Extension\Notifications\Mapper\NotificationMapper;
+use MediaWiki\Extension\Notifications\DataOutputFormatter;
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Title\Title;
 
 // @todo Migrate to SkinMustache
 class SkinPoncho extends SkinTemplate {
@@ -277,13 +283,13 @@ class Poncho extends BaseTemplate {
 			$notifications[] = $item;
 		}
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$attributeManager = EchoServices::getInstance()->getAttributeManager();
+			$attributeManager = MediaWikiServices::getInstance()->getService( 'EchoAttributeManager' );
 			$events = $attributeManager->getUserEnabledEvents( $user, 'web' );
-			$notificationMapper = new EchoNotificationMapper;
+			$notificationMapper = new NotificationMapper;
 			$notifs = $notificationMapper->fetchByUser( $user, 10, null, $events );
 			$language = $this->getSkin()->getLanguage();
 			foreach ( $notifs as $notif ) {
-				$notification = EchoDataOutputFormatter::formatOutput( $notif, 'model', $user, $language );
+				$notification = DataOutputFormatter::formatOutput( $notif, 'model', $user, $language );
 				$content = $notification['*'];
 				$text = htmlspecialchars_decode( strip_tags( $content['header'] ), ENT_QUOTES );
 				$href = $content['links']['primary']['url'] ?? null;
