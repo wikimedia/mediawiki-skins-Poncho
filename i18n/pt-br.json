@@ -11,5 +11,9 @@
 	"poncho-print": "Imprimir",
 	"poncho-share": "Compartilhar",
 	"poncho-copied": "Copiado!",
-	"poncho-hide-sidebar": "Ocultar barra lateral"
+	"poncho-hide-sidebar": "Ocultar barra lateral",
+	"poncho-enable-dark-mode": "Ativar modo escuro",
+	"poncho-disable-dark-mode": "Desativar modo escuro",
+	"poncho-enable-read-mode": "Ativar modo de leitura",
+	"poncho-disable-read-mode": "Desativar modo de leitura"
 }
