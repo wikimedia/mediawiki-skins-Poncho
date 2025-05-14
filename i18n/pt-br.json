@@ -8,5 +8,13 @@
 		]
 	},
 	"poncho-desc": "Tema simples, claro, reativo e adaptado a dispositivos móveis",
-	"poncho-more": "Mais"
+	"poncho-menu": "Menu",
+	"poncho-languages": "Idiomas",
+	"poncho-notifications": "Notificações",
+	"poncho-user": "Usuário",
+	"poncho-more": "Mais",
+	"poncho-enable-dark-mode": "Ativar modo escuro",
+	"poncho-disable-dark-mode": "Desativar modo escuro",
+	"poncho-enable-read-mode": "Ativar modo de leitura",
+	"poncho-disable-read-mode": "Desativar modo de leitura"
 }
