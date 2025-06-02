@@ -15,5 +15,7 @@
 	"poncho-enable-dark-mode": "Ativar modo escuro",
 	"poncho-disable-dark-mode": "Desativar modo escuro",
 	"poncho-enable-read-mode": "Ativar modo de leitura",
-	"poncho-disable-read-mode": "Desativar modo de leitura"
+	"poncho-disable-read-mode": "Desativar modo de leitura",
+	"poncho-no-notifications": "Você não tem novas notificações.",
+	"poncho-new-message": "Você tem uma nova mensagem de outro usuário."
 }
