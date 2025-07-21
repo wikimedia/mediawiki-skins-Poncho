@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"poncho-desc": "ساده، سپا، ځوابگره او موبايل ملگرې پوښۍ.",
+	"poncho-enable-dark-mode": "تياره ونگ‌ډول چارنول",
+	"poncho-disable-dark-mode": "تياره ونگ‌ډول ناچارنول",
+	"poncho-enable-read-mode": "لوست ونگ‌ډول چارنول",
+	"poncho-disable-read-mode": "لوست ونگ‌ډول ناچارنول",
+	"poncho-no-notifications": "تاسې هېڅ نوې خبرتياوې نه لرئ.",
+	"poncho-new-message": "تاسو له بل کارن څخه يو نوی پيغام ترلاسه کړ."
+}
