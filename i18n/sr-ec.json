@@ -9,7 +9,11 @@
 		]
 	},
 	"poncho-desc": "Једноставна, јасна, респонсивна и за мобилне уређаје прилагођена тема.",
+	"poncho-menu": "Мени",
 	"poncho-languages": "Језици",
+	"poncho-notifications": "Обавештења",
 	"poncho-user": "Корисник",
-	"poncho-more": "Више"
+	"poncho-more": "Више",
+	"poncho-no-notifications": "Немате нових обавештења.",
+	"poncho-new-message": "Имате нових порука."
 }
