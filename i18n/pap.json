@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kallmemel"
+		]
+	},
+	"poncho-desc": "Diseño simpel, adaptabel i tratabel pa aparatonan móbil.",
+	"poncho-menu": "Menú",
+	"poncho-languages": "Idioma",
+	"poncho-notifications": "Notifikashon",
+	"poncho-user": "Usadó",
+	"poncho-more": "Mas",
+	"poncho-enable-dark-mode": "Aktivá modo sukú",
+	"poncho-disable-dark-mode": "Desaktivá modo sukú",
+	"poncho-enable-read-mode": "Aktivá modo lektura",
+	"poncho-disable-read-mode": "Desaktivá modo di lektura",
+	"poncho-no-languages": "No tin interwiki-lenk pa e página aki.",
+	"poncho-no-notifications": "Bo no tin notifikashon nobo!",
+	"poncho-new-message": "Bo tin un mensahe nobo di un otro usadó."
+}
