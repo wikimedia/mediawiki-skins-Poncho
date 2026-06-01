@@ -2,9 +2,22 @@
 	"@metadata": {
 		"authors": [
 			"Bulgu",
+			"HakanIST",
 			"TmY e12",
 			"ToprakM"
 		]
 	},
-	"poncho-desc": "Basit, temiz, duyarlı ve cep telefonu dostu bir skin."
+	"poncho-desc": "Basit, temiz, duyarlı ve cep telefonu dostu bir skin.",
+	"poncho-menu": "Menü",
+	"poncho-languages": "Diller",
+	"poncho-notifications": "Bildirimler",
+	"poncho-user": "Kullanıcı",
+	"poncho-more": "Daha fazla",
+	"poncho-enable-dark-mode": "Karanlık modu etkinleştir",
+	"poncho-disable-dark-mode": "Karanlık modu devre dışı bırak",
+	"poncho-enable-read-mode": "Okuma modunu etkinleştir",
+	"poncho-disable-read-mode": "Okuma modunu devre dışı bırak",
+	"poncho-no-languages": "Bu sayfa için diller arası bağlantı yok.",
+	"poncho-no-notifications": "Yeni bildiriminiz yok.",
+	"poncho-new-message": "Başka bir kullanıcıdan yeni bir mesajınız var."
 }
