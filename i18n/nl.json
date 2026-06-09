@@ -4,7 +4,8 @@
 			"Mainframe98",
 			"Nickthijssen1994",
 			"Romaine",
-			"McDutchie"
+			"McDutchie",
+			"Siebrand"
 		]
 	},
 	"poncho-desc": "Eenvoudige, strakke, responsieve en mobielvriendelijke vormgeving.",
@@ -17,7 +18,7 @@
 	"poncho-disable-dark-mode": "Donkere modes uitschakelen",
 	"poncho-enable-read-mode": "Leesmode inschakelen",
 	"poncho-disable-read-mode": "Leesmode uitschakelen",
-	"poncho-no-languages": "Geen interwiki-links voor deze pagina.",
+	"poncho-no-languages": "Geen interwikikoppelingen voor deze pagina.",
 	"poncho-no-notifications": "U hebt geen nieuwe meldingen.",
 	"poncho-new-message": "U hebt een nieuwe melding van een andere gebruiker."
 }
