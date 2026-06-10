@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"poncho-desc": "Jednoduchá, čistá, responzívna a mobilom priateľská téma vzhľadu.",
+	"poncho-menu": "Menu",
+	"poncho-languages": "Jazyky",
+	"poncho-notifications": "Upozornenia",
+	"poncho-user": "Používateľ",
+	"poncho-more": "Viac",
+	"poncho-enable-dark-mode": "Zapnúť tmavý režim",
+	"poncho-disable-dark-mode": "Vypnúť tmavý režim",
+	"poncho-enable-read-mode": "Zapnúť režim čítania",
+	"poncho-disable-read-mode": "Vypnúť režim čítania",
+	"poncho-no-languages": "Pre túto stránku nie sú žiadne interwiki odkazy.",
+	"poncho-no-notifications": "Nemáte žiadne nové upozornenia.",
+	"poncho-new-message": "Máte novú správu od iného používateľa."
+}
