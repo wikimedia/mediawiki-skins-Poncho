@@ -4,5 +4,17 @@
 			"AhmedG612"
 		]
 	},
-	"poncho-enable-dark-mode": "Daar qaabka mugdiga ah"
+	"poncho-desc": "Maqaar fudud, nadiif ah, la jaanqaadi kara cabbirrada shaashadaha, oo ku habboon taleefannada gacanta.",
+	"poncho-menu": "Liiska",
+	"poncho-languages": "Luuqadaha",
+	"poncho-notifications": "Ogeysiisyo",
+	"poncho-user": "Isticmaale",
+	"poncho-more": "Dheeraad",
+	"poncho-enable-dark-mode": "Daar qaabka mugdiga ah",
+	"poncho-disable-dark-mode": "Dami qaabka mugdiga ah",
+	"poncho-enable-read-mode": "Daar qaabka akhriska",
+	"poncho-disable-read-mode": "Dami qaabka akhriska",
+	"poncho-no-languages": "Boggan ma laha xiriiriyeyaasha interwiki.",
+	"poncho-no-notifications": "Ma lihid ogeysiisyo cusub.",
+	"poncho-new-message": "Waxaad farriin cusub ka heshay isticmaale kale."
 }
