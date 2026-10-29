@@ -6,5 +6,16 @@
 		]
 	},
 	"poncho-desc": "Опростен, изчистен, с отзивчив дизайн и подходящ за мобилни устройства облик.",
-	"poncho-notifications": "Известия"
+	"poncho-menu": "Меню",
+	"poncho-languages": "Езици",
+	"poncho-notifications": "Известия",
+	"poncho-user": "Потребител",
+	"poncho-more": "Още",
+	"poncho-enable-dark-mode": "Активиране на тъмен режим",
+	"poncho-disable-dark-mode": "Деактивиране на тъмния режим",
+	"poncho-enable-read-mode": "Активиране на режим на четене",
+	"poncho-disable-read-mode": "Деактивиране на режима на четене",
+	"poncho-no-languages": "Няма интеруики връзки за тази страница.",
+	"poncho-no-notifications": "Нямате нови известия.",
+	"poncho-new-message": "Имате ново съобщение от друг потребител."
 }
